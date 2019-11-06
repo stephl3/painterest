@@ -11,15 +11,21 @@ import {
 import Modal from "./modal/modal";
 import SignupFormContainer from "./session_form/signup_form_container";
 import LoginFormContainer from "./session_form/login_form_container";
+import NavBarContainer from "./navbar/nav_bar_container";
 
 const App = () => (
-  <div>
+  <div className="app">
     <Modal />
-    <header>
-      <Link to="/" className="header-link">
-        <h1>Painterist</h1>
-      </Link>
+    
+    <header className="header">
+      <NavBarContainer />
     </header>
+    <main className="content">
+      {/* <PinIndex /> */}
+    </main>
+    <footer className="footer">
+
+    </footer>
   </div>
 );
 

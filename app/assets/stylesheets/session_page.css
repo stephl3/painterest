@@ -1,0 +1,69 @@
+/* MODAL BACKGROUND (UPDATE AFTER AWS LECTURE) */
+body {
+  background-image: url("bob_ross_painting.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* SWITCH FORM BUTTON MODAL */
+.session-form-switch {
+  background-color: #efefef;
+  box-sizing: border-box;
+  width: 100%;
+  height: 25px;
+  min-width: 130px;
+  min-height: 40px;
+  display: block;
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.switch-form-value {
+  color: #333;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: -.4px;
+}
+
+/* SESSION FORM MODAL */
+.session-form-page {
+  margin: 16px 0px;
+  position: relative
+}
+
+.session-form-container {
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  position: relative;
+  text-align: center;
+  width: 440px;
+  margin: auto;
+  min-height: initial;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 2px 10px;
+  padding-bottom: 55px;
+}
+
+.session-form-box {
+  min-height: 400px;
+  padding: 20px 10px;
+}
+
+.session-form-icon {
+  height: 45px;
+  margin: 5px auto;
+  width: 45px;
+}
+
+.session-form-header {
+  margin: 0px auto 25px;
+  width: 355px;
+  color: rgb(51,51,51);
+  font-size: 32px;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: -1.2px;
+}
+

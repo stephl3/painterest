@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  namespace :api, default: {format: :json} do
+  namespace :api, defaults: {format: :json} do
     ### issue???
-    resources :users, only: [:create, :show, :edit, :update]
+    resources :users, only: [:create, :edit, :update]
     resource :session, only: [:create, :destroy]
   end
 

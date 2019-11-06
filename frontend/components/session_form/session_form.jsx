@@ -36,28 +36,39 @@ class SessionForm extends React.Component {
   }
 
   render() {
+    const { formType, switchForm } = this.props;
+
+    const switchFormLink = (
+      <a onClick={switchForm}>
+        {formType === "Sign up" ? 
+        "Already a member? Log in" : 
+        "Not on Painterest yet? Sign up"}
+      </a>
+    );
+
     return (
       <div className="session-form-page">
-        <div className="session-form-switch">{this.props.otherForm}</div>
         <div className="session-form-container">
+          <img className="session-form-icon" src="/painterest_icon.png" alt="painterest icon"/>
+          <h3 className="session-form-header">Welcome to Painterest</h3>
           <form onSubmit={this.handleSubmit} className="session-form-box">
-            <h1>Welcome to Painterest</h1>
-              <br/>
             {this.renderErrors()}
               <br/>
             <div className="session-form">
-              <label>Email:
+              <label>
                 <input
                   type="text"
+                  placeholder="Email"
                   value={this.state.email}
                   onChange={this.changeInput("email")}
                   className="session-input"
                 />
               </label>
                 <br/>
-              <label>Password:
+              <label>
                 <input
                   type="password"
+                  placeholder="Password"
                   value={this.state.password}
                   onChange={this.changeInput("password")}
                   className="session-input"
@@ -70,7 +81,7 @@ class SessionForm extends React.Component {
                 value={this.props.formType}
               />
                 <br/>
-              {this.props.otherForm}
+              {switchFormLink}
             </div>
           </form>
         </div>

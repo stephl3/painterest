@@ -21,14 +21,15 @@ class User < ApplicationRecord
   ### included in validations?
   validates :password, length: { minimum: 6 }, allow_nil: true
   validates :username, :email, :session_token, presence: true, uniqueness: true
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
   before_validation :ensure_session_token, :parse_email
 
   attr_reader :password
 
   # associations here
 
-  def self.find_by_credentials(username, password)
-    user = User.find_by_username(username)
+  def self.find_by_credentials(email, password)
+    user = User.find_by_email(email)
     user && user.is_password?(password) ? user : nil
   end
 
@@ -41,17 +42,18 @@ class User < ApplicationRecord
     BCrypt::Password.new(self.password_digest) == password
   end
 
+  def reset_session_token!
+    self.update!(session_token: generate_session_token)
+    self.session_token
+  end
+
+  private
   def generate_session_token
     SecureRandom.urlsafe_base64
   end
 
   def ensure_session_token
     self.session_token ||= generate_session_token
-  end
-
-  def reset_session_token!
-    self.update!(session_token: generate_session_token)
-    self.session_token
   end
 
   def parse_email
