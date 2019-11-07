@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   Route,
   Redirect,
@@ -7,25 +6,24 @@ import {
   Link,
   HashRouter
 } from "react-router-dom";
+import { ProtectedRoute, AuthRoute } from "../util/route_util";
 
 import Modal from "./modal/modal";
 import SignupFormContainer from "./session_form/signup_form_container";
 import LoginFormContainer from "./session_form/login_form_container";
+import HomeFeedContainer from "./homefeed/home_feed_container";
 import NavBarContainer from "./navbar/nav_bar_container";
 
 const App = () => (
   <div className="app">
     <Modal />
-    
-    <header className="header">
-      <NavBarContainer />
-    </header>
-    <main className="content">
-      {/* <PinIndex /> */}
-    </main>
-    <footer className="footer">
+    {/* <NavBarContainer /> */}
 
-    </footer>
+    <Switch>
+      <AuthRoute exact path="/" component={HomeFeedContainer} />
+    </Switch>
+
+    <footer></footer>
   </div>
 );
 

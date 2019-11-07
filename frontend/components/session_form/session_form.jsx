@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { login } from "../../actions/session_actions";
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -9,6 +10,8 @@ class SessionForm extends React.Component {
       password: ""
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
+    this._autoInput = this._autoInput.bind(this);
   }
   
   changeInput(field) {
@@ -21,6 +24,47 @@ class SessionForm extends React.Component {
     e.preventDefault();
     const user = Object.assign({}, this.state)
     this.props.processForm(user).then(this.props.closeModal);
+  }
+
+  handleDemo(e) {
+    e.preventDefault();
+    let email = "bob_ross@happyaccidents.io";
+    let password = "password123";
+
+    this._disableInputs();
+    
+    this._autoInput("email", email, () =>
+      this._autoInput("password", password, () => {
+        const demoUser = Object.assign({}, this.state);
+        this.props.demoLogin(demoUser).then(this.props.closeModal);
+      })
+    )
+  }
+
+  _disableInputs() {
+    document.getElementById("email").disabled = true;
+    document.getElementById("password").disabled = true;
+    document.getElementById("form-action").disabled = true;
+    document.getElementById("demo-login").disabled = true;
+  }
+
+  _autoInput(field, text, callback) {
+    const inputChars = text.split("");
+    
+    const _addChar = (chars) => {
+      if (chars.length > 0) {
+        let char = chars.shift();
+        let currentInput = this.state[field];
+        this.setState(
+          { [field]: (currentInput + char) },
+          () => setTimeout(() => { _addChar(chars) }, 30)
+        )
+      } else {
+        callback()
+      }
+    }
+    
+    _addChar(inputChars);
   }
 
   renderErrors() {
@@ -39,7 +83,7 @@ class SessionForm extends React.Component {
     const { formType, switchForm } = this.props;
 
     const switchFormLink = (
-      <a onClick={switchForm}>
+      <a className="switch-form-link" onClick={switchForm} id="switch-form">
         {formType === "Sign up" ? 
         "Already a member? Log in" : 
         "Not on Painterest yet? Sign up"}
@@ -49,41 +93,63 @@ class SessionForm extends React.Component {
     return (
       <div className="session-form-page">
         <div className="session-form-container">
-          <img className="session-form-icon" src="/painterest_icon.png" alt="painterest icon"/>
-          <h3 className="session-form-header">Welcome to Painterest</h3>
-          <form onSubmit={this.handleSubmit} className="session-form-box">
-            {this.renderErrors()}
-              <br/>
-            <div className="session-form">
-              <label>
-                <input
-                  type="text"
-                  placeholder="Email"
-                  value={this.state.email}
-                  onChange={this.changeInput("email")}
-                  className="session-input"
-                />
-              </label>
-                <br/>
-              <label>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  value={this.state.password}
-                  onChange={this.changeInput("password")}
-                  className="session-input"
-                />
-              </label>
-                <br/>
-              <input
-                className="session-submit"
-                type="submit"
-                value={this.props.formType}
-              />
-                <br/>
-              {switchFormLink}
+          <div className="session-form-content">
+            <img className="session-form-icon" src="/painterest_icon.png" alt="painterest icon"/>
+            <div className="session-form-title">
+              <h3>Welcome to Painterest</h3>
             </div>
-          </form>
+            <div className="session-form-subtitle">
+              <h3>Find new ideas to try</h3>
+            </div>
+
+            <form onSubmit={this.handleSubmit} className="session-form-box">
+              {this.renderErrors()}
+                <br/>
+              <div className="session-form">
+                <div>
+
+                </div>
+                <label>
+                  <input
+                    type="text"
+                    placeholder="Email"
+                    value={this.state.email}
+                    onChange={this.changeInput("email")}
+                    className="session-input"
+                    id="email"
+                  />
+                </label>
+                  <br/>
+                <label>
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    value={this.state.password}
+                    onChange={this.changeInput("password")}
+                    className="session-input"
+                    id="password"
+                  />
+                </label>
+                  <br/>
+                <input
+                  className="session-submit"
+                  type="submit"
+                  value={this.props.formType}
+                  id="form-action"
+                />
+                  <br/>
+                <p className="button-separator">OR</p>
+                <input 
+                  className="demo-session"
+                  type="submit"
+                  value="Demo User"
+                  onClick={this.handleDemo}
+                  id="demo-login"
+                />
+                {switchFormLink}
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );

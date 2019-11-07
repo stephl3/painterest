@@ -1,0 +1,128 @@
+/* MAV BAR BACKGROUND */
+.nav-bar-background {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-bottom: 4px;
+  padding-top: 4px;
+  display: flex;
+  flex-direction: row;
+}
+
+/* NAV BAR */
+.nav-bar-container {
+  height: 56px;
+  width: 100%;
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-bar-container > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav-bar-logo,
+.nav-bar-following,
+.nav-bar-icon {
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  color: #333;
+  text-decoration: none;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 4px;
+}
+
+.home-link,
+.header-link,
+.nav-bar-icon-link {
+  background-color: transparent;
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-link:hover,
+.header-link:hover,
+.nav-bar-icon-link:hover {
+  background-color: #E2E2E2;
+}
+
+.home-icon,
+.header-link img,
+.nav-bar-icon img {
+  height: 28px;
+  width: 28px;
+}
+
+.nav-bar-search {
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  box-sizing: border-box;
+  display: block;
+  height: 40px;
+  background-color: #efefef;
+  border-radius: 8px;
+}
+
+.search-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+  padding: 0px 16px;
+  flex-direction: row;
+}
+
+.search-icon-container {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  margin-right: 12px;
+  display: block;
+}
+
+.search-icon {
+  color: #8e8e8e;
+  display: block;
+  fill: currentColor;
+  stroke-width: 0;
+  height: 20px;
+  width: 20px;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.search-icon-path {
+  
+}
+
+.search-bar-input {
+  background-color: transparent;
+  border: none;
+  color: #333;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,"ＭＳ Ｐゴシック",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  height: 100%;
+  outline: none;
+  padding: 0px;
+  width: 100%;
+  line-height: normal;
+  vertical-align: middle;
+
+
+}

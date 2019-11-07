@@ -1,4 +1,5 @@
 import React from "react";
+import NavBarContainer from "../navbar/nav_bar_container";
 
 class HomeFeed extends React.Component {
   constructor(props) {
@@ -8,13 +9,17 @@ class HomeFeed extends React.Component {
   render() {
     const { currentUser, logout, openModal } = this.props;
 
-    const 
     return (
-      <div className="home-feed">
-        {/* <PinIndex
-          currentUser={currentUser}
-          logout={logout}
-        /> */}
+      <div className="home-feed-container">
+        <div className="nav-bar-component">
+          <NavBarContainer />
+        </div>
+        {/* <div>
+          <PinIndexContainer
+            currentUser={currentUser}
+            logout={logout}
+          />
+        </div> */}
       </div>
     )
   }

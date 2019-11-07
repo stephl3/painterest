@@ -19,9 +19,8 @@
 class User < ApplicationRecord
   ### circle back: do password_digest and session_token need to be
   ### included in validations?
+  validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP } 
   validates :password, length: { minimum: 6 }, allow_nil: true
-  validates :username, :email, :session_token, presence: true, uniqueness: true
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
   before_validation :ensure_session_token, :parse_email
 
   attr_reader :password

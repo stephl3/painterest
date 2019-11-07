@@ -27,7 +27,7 @@ const Modal = ({ modal, openModal, closeModal }) => {
   }
 
   const switchFormButton = (
-    <button className="session-form-switch" onClick={() => openModal(altModal)}>
+    <button className="switch-form-button" onClick={() => openModal(altModal)}>
       <div className="switch-form-value">
         {switchFormValue}
       </div>

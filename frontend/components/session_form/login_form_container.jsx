@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  demoLogin: user => dispatch(login(user)),
   processForm: user => dispatch(login(user)),
   switchForm: () => dispatch(openModal("signup")),
   closeModal: () => dispatch(closeModal())
