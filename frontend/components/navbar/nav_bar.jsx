@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import SearchContainer from "../search/search_container";
 
 class NavBar extends React.Component {
@@ -10,7 +10,7 @@ class NavBar extends React.Component {
 
   render() {
     const { currentUser, logout } = this.props;
-
+    
     return !currentUser ? (
       null
     ) : (
@@ -34,25 +34,25 @@ class NavBar extends React.Component {
           <div className="right-nav-bar">
 
             <div className="nav-bar-button" id="following">
-              <Link to="/following" className="nav-bar-link">
+              <NavLink to="/following" className="nav-bar-link">
                 <div className="icon-container-shadow">
                   <div className="icon-container">
                     <i className="fas fa-user-friends" id="following-icon"></i>
                   </div>
                 </div>
-              </Link>
+              </NavLink>
             </div>
 
             <div className="nav-bar-button" id="profile">
-              <Link to={`/${currentUser.username}`} className="nav-bar-link">
+              <NavLink to={`/${currentUser.username}`} className="nav-bar-link">
                 <div className="icon-container-shadow">
                   <div className="icon-container">
                     <div id="profile-icon-frame">
-                      <img src={`${currentUser.image_url}`} alt="profile-pic" id="profile-icon"/>
+                      <img src={window.bobURL} alt="profile-pic" id="profile-icon"/>
                     </div>
                   </div>
                 </div>
-              </Link>
+              </NavLink>
             </div>
 
             <div className="nav-bar-spacer" id="spacer"></div>

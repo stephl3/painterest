@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const ProfileContent = ({  }) => {
   return (
-    <div>
+    <div id="profile-content">
       BoardIndexContainer
       {/* <BoardIndexContainer /> */}
       PinIndexContainer

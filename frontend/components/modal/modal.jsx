@@ -10,17 +10,19 @@ const Modal = ({ modal, openModal, closeModal }) => {
     return null;
   }
 
-  let component, switchFormValue, altModal;
+  let component, switchFormValue, altModal, background;
   switch (modal) {
     case "login":
       switchFormValue = "Sign up";
       altModal = "signup"
       component = <LoginFormContainer />;
+      background = "session-background"
       break;
     case "signup":
       switchFormValue = "Log in";
       altModal = "login";
       component = <SignupFormContainer />;
+      background = "session-background"
       break;
     default:
       return null;
@@ -35,7 +37,7 @@ const Modal = ({ modal, openModal, closeModal }) => {
   )
 
   return (
-    <div className="modal-background">
+    <div id="modal-background" className={background}>
       <div className="modal-child" onClick={e => e.stopPropagation()}>
         {component}
       </div>

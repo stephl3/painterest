@@ -28,16 +28,19 @@ class SessionForm extends React.Component {
 
   handleDemo(e) {
     e.preventDefault();
+
     let email = "bob_ross@happyaccidents.io";
     let password = "password123";
 
     this._disableInputs();
     
-    this._autoInput("email", email, () =>
-      this._autoInput("password", password, () => {
-        const demoUser = Object.assign({}, this.state);
-        this.props.demoLogin(demoUser).then(this.props.closeModal);
-      })
+    this.setState({email: "", password: ""},
+      () => this._autoInput("email", email, () =>
+        this._autoInput("password", password, () => {
+          const demoUser = Object.assign({}, this.state);
+          this.props.demoLogin(demoUser).then(this.props.closeModal);
+        })
+      )
     )
   }
 
@@ -91,64 +94,66 @@ class SessionForm extends React.Component {
     );
 
     return (
-      <div className="session-form-page">
-        <div className="session-form-container">
-          <div className="session-form-content">
-            <i className="fab fa-pinterest" id="session-form-icon"></i>
-            <div className="session-form-title">
-              <h3>Welcome to Painterest</h3>
-            </div>
-            <div className="session-form-subtitle">
-              <h3>Find new ideas to try</h3>
-            </div>
-
-            <form onSubmit={this.handleSubmit} className="session-form-box">
-              {this.renderErrors()}
-                <br/>
-              <div className="session-form">
-                <div>
-
-                </div>
-                <label>
-                  <input
-                    type="text"
-                    placeholder="Email"
-                    value={this.state.email}
-                    onChange={this.changeInput("email")}
-                    className="session-input"
-                    id="email"
-                  />
-                </label>
-                  <br/>
-                <label>
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    value={this.state.password}
-                    onChange={this.changeInput("password")}
-                    className="session-input"
-                    id="password"
-                  />
-                </label>
-                  <br/>
-                <input
-                  className="session-submit"
-                  type="submit"
-                  value={this.props.formType}
-                  id="form-action"
-                />
-                  <br/>
-                <p className="button-separator">OR</p>
-                <input 
-                  className="demo-session"
-                  type="submit"
-                  value="Demo User"
-                  onClick={this.handleDemo}
-                  id="demo-login"
-                />
-                {switchFormLink}
+      <div id="session-form-background">
+        <div className="session-form-page">
+          <div className="session-form-container">
+            <div className="session-form-content">
+              <i className="fab fa-pinterest" id="session-form-icon"></i>
+              <div className="session-form-title">
+                <h3>Welcome to Painterest</h3>
               </div>
-            </form>
+              <div className="session-form-subtitle">
+                <h3>Find new ideas to try</h3>
+              </div>
+
+              <form onSubmit={this.handleSubmit} className="session-form-box">
+                {this.renderErrors()}
+                <br />
+                <div className="session-form">
+                  <div>
+
+                  </div>
+                  <label>
+                    <input
+                      type="text"
+                      placeholder="Email"
+                      value={this.state.email}
+                      onChange={this.changeInput("email")}
+                      className="session-input"
+                      id="email"
+                    />
+                  </label>
+                  <br />
+                  <label>
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      value={this.state.password}
+                      onChange={this.changeInput("password")}
+                      className="session-input"
+                      id="password"
+                    />
+                  </label>
+                  <br />
+                  <input
+                    className="session-submit"
+                    type="submit"
+                    value={this.props.formType}
+                    id="form-action"
+                  />
+                  <br />
+                  <p className="button-separator">OR</p>
+                  <input
+                    className="demo-session"
+                    type="submit"
+                    value="Demo User"
+                    onClick={this.handleDemo}
+                    id="demo-login"
+                  />
+                  {switchFormLink}
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

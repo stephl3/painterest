@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import React from "react";
 
 import { openModal, closeModal } from "../../actions/modal_actions";
-import Profile from "./profile";
+import ProfileShow from "./profile_show";
 
 const mapStateToProps = state => ({
   currentUser: state.entities.users[state.session.id],
@@ -10,10 +10,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  newBoardModal: () => dispatch(openModal("new-board")),
-  editBoardModal: () => dispatch(openModal("edit-board")),
-  editPinModal: () => dispatch(openModal("edit-pin")),
+  openModal: modal => dispatch(openModal(modal)),
   closeModal: () => dispatch(closeModal())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileShow);

@@ -13,7 +13,7 @@ import SignupFormContainer from "./session_form/signup_form_container";
 import LoginFormContainer from "./session_form/login_form_container";
 import NavBarContainer from "./navbar/nav_bar_container";
 import HomeFeedContainer from "./homefeed/home_feed_container";
-import ProfileContainer from "./profile/profile_container";
+import ProfileShowContainer from "./profile/profile_show_container";
 
 const App = () => (
   <div className="app">
@@ -22,10 +22,12 @@ const App = () => (
 
     <Switch>
       {/* <AuthRoute exact path="/" component={HomeFeedContainer} /> */}
-      <ProtectedRoute exact path="/:username" component={ProfileContainer} />
+      <ProtectedRoute exact path="/:username" component={ProfileShowContainer} />
     </Switch>
 
-    <footer></footer>
+    {/* <footer>
+      create pin button?
+    </footer> */}
   </div>
 );
 

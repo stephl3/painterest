@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>P Painterist</title>
-    <%# <link rel="icon" href="/painterest_icon.png" type="image/jpg"> %>
+    <title>Painterist</title>
+    <%= favicon_link_tag asset_path('painterest_icon.png') %>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,6 +13,9 @@
       src="https://use.fontawesome.com/releases/v5.11.2/js/all.js"
       data-auto-a11y="true"
     ></script>
+    <script type="text/javascript">
+      window.bobURL = "<%= image_url('bob_ross.jpg') %>";
+    </script>
   </head>
 
   <body>

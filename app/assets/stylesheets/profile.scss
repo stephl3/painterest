@@ -1,0 +1,146 @@
+/* PROFILE */
+#profile-background {
+  padding-top: 65px;
+}
+
+#profile-container {
+  box-sizing: border-box;
+  margin-top: 24px;
+}
+
+/* PROFILE HEADER */
+#profile-header-container {
+
+}
+
+#profile-nav-bar-container {
+  top: 65px;
+  position: fixed;
+  background: hsla(0,0%,100%,.97);
+  width: 100%;
+  z-index: 670;
+}
+
+#profile-nav-bar {
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 8px 0px;
+  margin: 4px 0px;
+}
+
+#buttons-container {
+  width: 33.33333%;
+}
+
+#buttons {
+  flex: 0 0 auto;
+  align-items: center;
+  box-sizing: border-box;
+  flex-direction: row;
+  display: flex;
+}
+
+.profile-header-button {
+
+}
+
+.profile-header-link {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  line-height: normal;
+}
+
+.profile-icon-container-shadow {
+  height: 48px;
+  width: 48px;
+  background-color: transparent;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 50%;
+}
+
+.profile-icon-container {
+  
+}
+
+.profile-icon-container i {
+  color: #8e8e8e;
+  display: block;
+  vertical-align: middle;
+  height: 24px;
+  width: 24px;
+}
+
+
+
+
+#profile-details-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+#nav-bar-name-container {
+  width: 33.33333%;
+  flex: 1 1 0px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 8px;
+  flex-direction: row;
+}
+
+#nav-bar-name {
+  min-width: 0px;
+  opacity: 0;
+  position: relative;
+  top: -50px;
+}
+
+#nav-bar-name.transitionOut {
+  animation: fadeOutUp .2s ease-in forwards;
+}
+
+#nav-bar-name.transitionIn {
+  animation: fadeInDown .2s ease-in forwards;
+}
+
+@keyframes fadeInDown {
+   0% {
+      opacity: 0;
+      transform: translate(0);
+   }
+   100% {
+      opacity: 1;
+      transform: translateY(50px);
+   }
+}
+
+#nav-bar-name h3 {
+  color: #333;
+  font-size: 18px;
+  text-align: center;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  hyphens: auto;
+  word-wrap: break-word;
+  font-weight: 700;
+  letter-spacing: -.4px;
+}
+
+/* PROFILE CONTENT */
+#profile-content-container {
+
+}

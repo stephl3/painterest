@@ -1,5 +1,5 @@
-/* MODAL BACKGROUND (UPDATE AFTER AWS LECTURE) */
-body {
+/* SESSION PAGE BACKGROUND (UPDATE AFTER AWS LECTURE) */
+.session-background {
   background-image: image-url("bob_ross_painting.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -35,7 +35,7 @@ body {
 /* SESSION FORM MODAL */
 .session-form-page {
   margin: 16px 0px;
-  position: relative
+  position: relative;
 
 }
 
