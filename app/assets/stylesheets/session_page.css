@@ -56,10 +56,11 @@ body {
   padding: 20px 10px;
 }
 
-.session-form-icon {
+#session-form-icon {
   height: 45px;
   margin: 5px auto;
   width: 45px;
+  color: #e60023;
 }
 
 .session-form-title {

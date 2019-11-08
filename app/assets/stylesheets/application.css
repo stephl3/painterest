@@ -215,3 +215,9 @@ h1, h2, h3, h4, h5, h6 {
 figure {
   margin: 0;
 }
+
+.app {
+  margin-top: -1px;
+  min-width: 320px;
+  padding-top: 1px;
+}

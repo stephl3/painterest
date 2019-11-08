@@ -14,63 +14,92 @@ class NavBar extends React.Component {
     return !currentUser ? (
       null
     ) : (
-      <header className="nav-bar-background">
-        <div className="nav-bar-container">
-          <div className="left-nav-bar">
-            <div>
-            </div>
-            <div className="nav-bar-logo">
-              <Link to="/" className="home-link">
-                <img className="home-icon" src="/painterest_icon.png" alt="painterest icon"/>
-              </Link>
-            </div>
-            <div className="nav-bar-search">
-              <SearchContainer />
-            </div>
+      <div className="nav-bar-background">
+        <header className="nav-bar-container">
+
+          <div className="nav-bar-button" id="home">
+            <Link to="/" className="nav-bar-link">
+              <div className="icon-container-shadow">
+                <div className="icon-container">
+                  <i className="fab fa-pinterest" id="home-icon"></i>
+                </div>
+              </div>
+            </Link>
           </div>
+
+          <div className="nav-bar-search-container" id="search">
+            <SearchContainer />
+          </div>
+
           <div className="right-nav-bar">
-            <div className="nav-bar-following">
-              <Link to="/following" className="header-link">
-                <img src="/construct_icon.png"/>
-                {/* want this one... how to add i tag...?!
-                <i className="fas fa-user-friends"></i>
-                this one is funny hoho
-                <i className="fas fa-user-injured" id="icon" height=""></i> */}
+
+            <div className="nav-bar-button" id="following">
+              <Link to="/following" className="nav-bar-link">
+                <div className="icon-container-shadow">
+                  <div className="icon-container">
+                    <i className="fas fa-user-friends" id="following-icon"></i>
+                  </div>
+                </div>
               </Link>
             </div>
-            <div className="nav-bar-profile">
-              <Link to={`/${currentUser.username}`} className="header-link">
-                <div className="user-icon"/>
+
+            <div className="nav-bar-button" id="profile">
+              <Link to={`/${currentUser.username}`} className="nav-bar-link">
+                <div className="icon-container-shadow">
+                  <div className="icon-container">
+                    <div id="profile-icon-frame">
+                      <img src={`${currentUser.image_url}`} alt="profile-pic" id="profile-icon"/>
+                    </div>
+                  </div>
+                </div>
               </Link>
             </div>
-            <div className="nav-bar-spacer"></div>
-            <div className="nav-bar-icon">
-              <a href="https://github.com/stephl3/painterest" className="nav-bar-icon-link">
-                <img src="/github_icon.svg"/>
+
+            <div className="nav-bar-spacer" id="spacer"></div>
+
+            <div className="nav-bar-button" id="github">
+              <a href="https://github.com/stephl3/painterest" target="_blank" className="nav-bar-link">
+                <div className="icon-container-shadow">
+                  <div className="icon-container">
+                    <i className="fab fa-github-square" id="networking-icon"></i>
+                  </div>
+                </div>
               </a>
             </div>
-            <div className="nav-bar-icon">
-              <a href="https://www.linkedin.com/in/mrstephenlee1/" className="nav-bar-icon-link">
-                <img src="/linkedin_icon.svg"/>
+
+            <div className="nav-bar-button" id="linkedin">
+              <a href="https://www.linkedin.com/in/mrstephenlee1/" target="_blank" className="nav-bar-link">
+                <div className="icon-container-shadow">
+                  <div className="icon-container">
+                    <i className="fab fa-linkedin" id="networking-icon"></i>
+                  </div>
+                </div>
               </a>
             </div>
-            <div className="nav-bar-icon">
-              <a className="nav-bar-icon-link" onClick={logout}>
-                <img src="logout_icon.png"/>
+
+            <div className="nav-bar-button" id="options">
+              <a className="nav-bar-link" onClick={logout}>
+                <div className="icon-container-shadow">
+                  <div className="icon-container">
+                    <i className="fas fa-sign-out-alt" id="options-icon"></i>
+
+                  </div>
+                </div>
               </a>
             </div>
+
             {/* come back and turn into drop-down if time
             <div className="nav-bar-drop-down">
               <div className="nav-bar-icon-container">
-                <i className="fas fa-ellipsis-h"></i>
+                <i className="fas fa-ellipsis-h" id="options-icon"></i>
               </div>
                 <span className="options-dropdown" hidden>
                   options drop-down
                 </span>
             </div> */}
           </div>
-        </div>
-      </header>
+        </header>
+      </div>
     )
   }
 }

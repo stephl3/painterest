@@ -14,7 +14,7 @@ User.create(
   password: 'password123',
   location: 'Heaven',
   description: 'We don\'t make mistakes, just happy little accidents.',
-  image_url: '/app/assets/images/home_bob.png'
+  image_url: '/bob_ross.jpg'
 )
 
 User.create(

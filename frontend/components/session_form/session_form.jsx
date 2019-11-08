@@ -57,7 +57,7 @@ class SessionForm extends React.Component {
         let currentInput = this.state[field];
         this.setState(
           { [field]: (currentInput + char) },
-          () => setTimeout(() => { _addChar(chars) }, 30)
+          () => setTimeout(() => { _addChar(chars) }, 50)
         )
       } else {
         callback()
@@ -94,7 +94,7 @@ class SessionForm extends React.Component {
       <div className="session-form-page">
         <div className="session-form-container">
           <div className="session-form-content">
-            <img className="session-form-icon" src="/painterest_icon.png" alt="painterest icon"/>
+            <i className="fab fa-pinterest" id="session-form-icon"></i>
             <div className="session-form-title">
               <h3>Welcome to Painterest</h3>
             </div>

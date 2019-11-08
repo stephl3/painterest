@@ -1,17 +1,31 @@
-import { connect } from "react-redux";
 import React from "react";
+import modal from "../modal/modal";
 
-import { openModal, closeModal } from "../../actions/modal_actions";
-import Search from "./search_container";
 
-const mapStateToProps = state => ({
-  currentUser: state.entities.users[state.session.id],
+class Search extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-});
+  render() {
+    const { } = this.props;
 
-const mapDispatchToProps = dispatch => ({
-  openModal: () => dispatch(openModal("search")),
-  closeModal: () => dispatch(closeModal())
-});
+    return (
+      <div className="search-container">
+        <div className="search-icon-container">
+          <i className="fas fa-search" id="search-icon"></i>
+        </div>
+        <div className="search-input-container">
+          <input className="search-input" type="text" placeholder="Search" />
+          {/* <div className="search-modal">
+            When autocomplete results are available use up and down arrows
+            to review and enter to select. Touch device users, explore by touch
+            or with swipe gestures.
+          </div> */}
+        </div>
+      </div>
+    )
+  }
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default Search;

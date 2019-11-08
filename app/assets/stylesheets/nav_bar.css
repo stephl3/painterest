@@ -1,5 +1,6 @@
 /* MAV BAR BACKGROUND */
 .nav-bar-background {
+  z-index: 671;
   position: fixed;
   top: 0;
   width: 100%;
@@ -16,113 +17,172 @@
 /* NAV BAR */
 .nav-bar-container {
   height: 56px;
-  width: 100%;
   align-items: center;
+  width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
 }
 
-.nav-bar-container > div {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
 
-.nav-bar-logo,
-.nav-bar-following,
-.nav-bar-icon {
+.nav-bar-button {
   box-sizing: border-box;
   display: block;
   position: relative;
+}
+
+.nav-bar-link {
   color: #333;
   text-decoration: none;
   font-weight: 700;
   cursor: pointer;
-  padding: 4px 4px;
 }
 
-.home-link,
-.header-link,
-.nav-bar-icon-link {
+.icon-container-shadow {
   background-color: transparent;
   height: 48px;
   width: 48px;
+  box-sizing: border-box;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.home-link:hover,
-.header-link:hover,
-.nav-bar-icon-link:hover {
+.icon-container-shadow:hover {
   background-color: #E2E2E2;
 }
 
-.home-icon,
-.header-link img,
-.nav-bar-icon img {
+.icon-container {
+  height: 48px;
+  width: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 4px
+}
+
+#home-icon {
+  color: #e60023;
+  display: block;
   height: 28px;
   width: 28px;
 }
 
-.nav-bar-search {
+.nav-bar-search-container {
+  /* min-width: 407px; */
   flex: 1 1 auto;
   min-height: 0;
-  min-width: 0;
   box-sizing: border-box;
-  display: block;
-  height: 40px;
-  background-color: #efefef;
-  border-radius: 8px;
+  padding: 0px 16px;
+  width: 100%;
 }
 
 .search-container {
-  height: 100%;
-  display: flex;
-  align-items: center;
+  height: 40px;
+  min-width: 0px;
+  background-color: #efefef;
   box-sizing: border-box;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   position: relative;
   padding: 0px 16px;
-  flex-direction: row;
 }
 
 .search-icon-container {
   flex: 0 0 auto;
   box-sizing: border-box;
   margin-right: 12px;
-  display: block;
 }
 
-.search-icon {
+#search-icon {
   color: #8e8e8e;
-  display: block;
   fill: currentColor;
-  stroke-width: 0;
   height: 20px;
   width: 20px;
-  overflow: hidden;
   vertical-align: middle;
+  overflow: hidden;
 }
 
-.search-icon-path {
-  
+.search-input-container {
+  height: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
-.search-bar-input {
+.search-input {
   background-color: transparent;
   border: none;
   color: #333;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,"ＭＳ Ｐゴシック",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 16px;
   font-weight: 600;
-  height: 100%;
   outline: none;
   padding: 0px;
+  height: 100%;
   width: 100%;
   line-height: normal;
   vertical-align: middle;
+}
 
+.right-nav-bar {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
+#following-icon {
+  color: #8e8e8e;
+  display: block;
+  height: 24px;
+  width: 24px;
+}
+
+#profile-icon-frame {
+  color: #333;
+  box-sizing: border-box;
+  display: block;
+  height: 28px;
+  width: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#profile-icon {
+  color: transparent;
+  width: 100%;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+}
+
+.nav-bar-spacer {
+  height: 30px;
+  width: 24px;
+  border-left: 2px solid #efefef;
+  box-sizing: border-box;
+  margin-left: 16px;
+  display: block;
+}
+
+#networking-icon {
+  color: #8e8e8e;
+  display: block;
+  height: 28px;
+  width: 28px;
+}
+
+#options-icon {
+  color: #8e8e8e;
+  display: block;
+  height: 24px;
+  width: 24px;
 }

@@ -3,7 +3,6 @@ import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
 
 // default null; set to string representing which component to display
 const ModalReducer = (oldState = null, action) => {
-  // debugger;
   switch (action.type) {
     case OPEN_MODAL:
       return action.modal;

@@ -8,12 +8,13 @@ class HomeFeed extends React.Component {
 
   render() {
     const { currentUser, logout, openModal } = this.props;
-
+    
+    /* only load a return if current user is logged in */
     return (
       <div className="home-feed-container">
-        <div className="nav-bar-component">
+        {/* <div className="nav-bar-component">
           <NavBarContainer />
-        </div>
+        </div> */}
         {/* <div>
           <PinIndexContainer
             currentUser={currentUser}
