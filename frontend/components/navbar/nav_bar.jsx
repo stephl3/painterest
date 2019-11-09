@@ -99,6 +99,7 @@ class NavBar extends React.Component {
             </div> */}
           </div>
         </header>
+        <hr id="nav-bar-border"/>
       </div>
     )
   }

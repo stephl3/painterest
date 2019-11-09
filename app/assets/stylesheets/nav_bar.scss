@@ -186,3 +186,18 @@
   height: 24px;
   width: 24px;
 }
+
+#nav-bar-border {
+  display: block;
+  border-top: 1px solid #efefef;
+  margin: 0px;
+  border-bottom: 0px;
+  border-left: 0px;
+  unicode-bidi: isolate;
+  margin-block-start: 0.5em;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  overflow: hidden;
+  border-style: inset;
+  border-width: 1px;
+}

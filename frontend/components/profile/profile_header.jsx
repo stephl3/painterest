@@ -15,12 +15,10 @@ const ProfileHeader = ({ user, openModal, closeModal }) => {
         />
       </div>
       <div id="profile-details-container">
-        <ProfileDetails
-          user={user}
-        />
+        <ProfileDetails user={user}/>
       </div>
       <div id="profile-switches-container">
-        <ProfileSwitches />
+        <ProfileSwitches user={user}/>
       </div>
     </div>
   )

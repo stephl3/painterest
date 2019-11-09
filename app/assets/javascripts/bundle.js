@@ -575,7 +575,9 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-sign-out-alt",
         id: "options-icon"
-      }))))))));
+      }))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        id: "nav-bar-border"
+      }));
     }
   }]);
 
@@ -670,6 +672,8 @@ __webpack_require__.r(__webpack_exports__);
 var ProfileDetails = function ProfileDetails(_ref) {
   var user = _ref.user;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "profile-details-background"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-details"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-basics-container"
@@ -679,7 +683,7 @@ var ProfileDetails = function ProfileDetails(_ref) {
     id: "profile-name-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-name"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, user.first_name + " " + user.last_name))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, user.firstName + " " + user.lastName)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-follows-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-follows"
@@ -688,7 +692,11 @@ var ProfileDetails = function ProfileDetails(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/followers",
     className: "profile-follows-link"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "100000 followers \xB7 "))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "1,000,000 followers")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "profile-follows-spacer-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "profile-follows-spacer"
+  }, "\xB7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-following-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/following",
@@ -698,14 +706,14 @@ var ProfileDetails = function ProfileDetails(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-personal"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, user.location, " \xB7 ", user.description))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "profile-image-container"
+    id: "profile-image-container-outer"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-image-frame"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: window.bobURL,
     alt: "profile-pic",
     id: "profile-image"
-  }))));
+  })))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProfileDetails);
@@ -749,7 +757,9 @@ var ProfileHeader = function ProfileHeader(_ref) {
     user: user
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-switches-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_switches__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_switches__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    user: user
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProfileHeader);
@@ -802,9 +812,12 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfileNavBar).call(this, props));
     _this.state = {
       prevScrollPos: window.pageYOffset,
-      visible: false
+      fadeInName: false,
+      showCreateOptions: false
     };
     _this.handleScroll = _this.handleScroll.bind(_assertThisInitialized(_this));
+    _this.toggleShow = _this.toggleShow.bind(_assertThisInitialized(_this));
+    _this.hide = _this.hide.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -823,10 +836,27 @@ function (_React$Component) {
     value: function handleScroll() {
       var prevScrollPos = this.state.prevScrollPos;
       var currentScrollPos = window.pageYOffset;
-      var visible = prevScrollPos < currentScrollPos - 120;
+      var fadeInName = prevScrollPos < currentScrollPos - 120;
       this.setState({
-        prevScrollPos: currentScrollPos,
-        visible: visible
+        fadeInName: fadeInName
+      });
+    }
+  }, {
+    key: "toggleShow",
+    value: function toggleShow() {
+      this.setState({
+        showCreateOptions: !this.state.showCreateOptions
+      });
+    }
+  }, {
+    key: "hide",
+    value: function hide(e) {
+      if (e && e.relatedTarget) {
+        e.relatedTarget.click();
+      }
+
+      this.setState({
+        showCreateOptions: false
       });
     }
   }, {
@@ -835,7 +865,8 @@ function (_React$Component) {
       var _this$props = this.props,
           user = _this$props.user,
           openModal = _this$props.openModal,
-          closeModal = _this$props.closeModal;
+          closeModal = _this$props.closeModal; // debugger;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "profile-nav-bar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -848,7 +879,9 @@ function (_React$Component) {
         className: "profile-header-button",
         id: "create-dropdown"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "profile-header-link"
+        className: "profile-header-link",
+        onClick: this.toggleShow,
+        onBlur: this.hide
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-icon-container-shadow"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -857,9 +890,17 @@ function (_React$Component) {
         className: "fas fa-plus",
         id: "create-dropdown-icon"
       })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "create-options-container"
+        id: "create-options-container",
+        style: {
+          visibility: this.state.showCreateOptions ? "visible" : "hidden"
+        }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "create-options"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "create-board-button",
+        onClick: function onClick() {
+          return openModal("create-board");
+        }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "option-container-shadow"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -867,14 +908,18 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "option-label",
         id: "create-board"
-      }, "Create board"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Create board")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "create-pin-button"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/pin-builder"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "option-container-shadow"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "option-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "option-label",
         id: "create-pin"
-      }, "Create Pin"))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Create Pin"))))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-header-button",
         id: "edit-profile"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -891,8 +936,8 @@ function (_React$Component) {
         id: "nav-bar-name-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "nav-bar-name",
-        className: this.state.visible ? "transitionIn" : "transitionOut"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, user.first_name + " " + user.last_name))));
+        className: this.state.fadeInName ? "transitionIn" : "transitionOut"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, user.firstName + " " + user.lastName))));
     }
   }]);
 
@@ -1046,8 +1091,24 @@ __webpack_require__.r(__webpack_exports__);
 var ProfileSwitches = function ProfileSwitches(_ref) {
   var user = _ref.user;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "profile-switches-background"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-switches"
-  }, "Profile Switches");
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "profile-switch-links-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "profile-switch-links"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+    to: "/".concat(user.username, "/boards"),
+    className: "profile-switch-link"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-switch-link-label"
+  }, "Boards")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+    to: "/".concat(user.username, "/pins"),
+    className: "profile-switch-link"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-switch-link-label"
+  }, "Pins"))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProfileSwitches);
