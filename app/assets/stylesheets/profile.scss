@@ -9,7 +9,19 @@
 }
 
 /* PROFILE HEADER */
+#profile-header-container {
+  display: block;
+}
+
 #profile-header {
+  display: block;
+}
+
+#profile-header-upper {
+  display: block;
+}
+
+#profile-header-fixed {
   top: 65px;
   position: fixed;
   background: hsla(0,0%,100%,.97);
@@ -25,10 +37,15 @@
   flex-direction: row;
 }
 
-#profile-nav-bar {
+#profile-nav-bar-wrapper {
   max-width: 800px;
   width: 100%;
-  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+#profile-nav-bar {
+  width: 100%;
+  justify-content: flex-start;
   align-items: center;
   display: flex;
   flex-direction: row;
@@ -39,6 +56,7 @@
 
 #buttons-container {
   width: 33.33333%;
+  display: block;
 }
 
 #buttons {
@@ -171,15 +189,12 @@
   -webkit-font-smoothing: antialiased;
 }
 
-#profile-details-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  box-sizing: border-box;
-}
-
 #nav-bar-name-container {
   width: 33.33333%;
+  display: block;
+}
+
+#nav-bar-name-fixed {
   flex: 1 1 0px;
   justify-content: center;
   align-items: center;
@@ -400,7 +415,7 @@
   border: 0;
 }
 
-#profile-switches-container {
+#profile-switches-wrapper {
   justify-content: center;
   box-sizing: border-box;
   margin-top: 16px;
@@ -409,14 +424,21 @@
   flex-direction: row;
 }
 
-#profile-switches-background {
+#profile-switches-container {
   max-width: 850px;
   width: 100%;
   box-sizing: border-box;
 }
 
 #profile-switches {
-  
+  margin-left: -4px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  flex-direction: row;
+  display: flex;
+
 }
 
 #profile-switch-links-container {
@@ -430,12 +452,40 @@
 }
 
 .profile-switch-link {
-
+  color: #8e8e8e;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  box-sizing: border-box;
+  min-height: 40px;
+  cursor: pointer;
+  border: 0px;
+  border-radius: 999px;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin: 0px;
+  font-weight: 700;
+  user-select: none;
+  &.active {
+    background-color: #efefef;
+    color: #333
+  }
+  &:hover {
+    color: #333;
+    text-decoration: underline;
+  }
 }
 
 .profile-switch-link-label {
-
+  text-align: left;
+  font-size: 16px;
+  hyphens: auto;
+  word-wrap: break-word;
+  font-weight: 700;
+  letter-spacing: -.4px;
+  -webkit-font-smoothing: antialiased;
 }
+
 
 /* PROFILE CONTENT */
 #profile-content-container {

@@ -22,7 +22,7 @@ const App = () => (
 
     <Switch>
       {/* <AuthRoute exact path="/" component={HomeFeedContainer} /> */}
-      <ProtectedRoute exact path="/:username" component={ProfileShowContainer} />
+      <ProtectedRoute path="/:username" component={ProfileShowContainer} />
     </Switch>
 
     {/* <footer>

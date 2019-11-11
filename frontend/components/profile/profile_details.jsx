@@ -15,7 +15,7 @@ const ProfileDetails = ({ user }) => {
             <div id="profile-follows-container">
               <div id="profile-follows">
                 <div id="profile-followers-container">
-                  <Link to="/followers" className="profile-follows-link">
+                  <Link to={`/${user.username}/followers`} className="profile-follows-link">
                     <h4>1,000,000 followers</h4>
                   </Link>
                   <div id="profile-follows-spacer-container">
@@ -25,7 +25,7 @@ const ProfileDetails = ({ user }) => {
                   </div>
                 </div>
                 <div id="profile-following-container">
-                  <Link to="/following" className="profile-follows-link">
+                  <Link to={`/${user.username}/following`} className="profile-follows-link">
                     <h4>1 following</h4>
                   </Link>
                 </div>
