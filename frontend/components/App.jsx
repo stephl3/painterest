@@ -14,15 +14,17 @@ import LoginFormContainer from "./session_form/login_form_container";
 import NavBarContainer from "./navbar/nav_bar_container";
 import HomeFeedContainer from "./homefeed/home_feed_container";
 import ProfileShowContainer from "./profile/profile_show_container";
+import EditProfileFormContainer from "./profile/edit_profile_form_container";
 
 const App = () => (
   <div className="app">
     <Modal />
-    <NavBarContainer />
-
+    <ProtectedRoute path="/" component={NavBarContainer} />
+    
     <Switch>
-      {/* <AuthRoute exact path="/" component={HomeFeedContainer} /> */}
+      <ProtectedRoute path="/settings" component={EditProfileFormContainer} />
       <ProtectedRoute path="/:username" component={ProfileShowContainer} />
+      {/* <ProtectedRoute exact path="/" component={HomeFeedContainer} /> */}
     </Switch>
 
     {/* <footer>

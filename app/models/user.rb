@@ -6,12 +6,11 @@
 #  username        :string           not null
 #  password_digest :string           not null
 #  session_token   :string           not null
-#  first_name      :string           not null
-#  last_name       :string           not null
+#  first_name      :string
+#  last_name       :string
 #  email           :string           not null
 #  location        :string
 #  description     :text
-#  image_url       :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
@@ -21,11 +20,15 @@ class User < ApplicationRecord
   ### included in validations?
   validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP } 
   validates :password, length: { minimum: 6 }, allow_nil: true
+  validates :first_name, :last_name, length: { maximum: 30 }
+  validates :location, length: { maximum: 50 }
   before_validation :ensure_session_token, :parse_email
 
   attr_reader :password
 
-  # associations here
+  has_one_attached :photo
+  has_many :boards
+  has_many :pins
 
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)

@@ -13,8 +13,7 @@ User.create(
   email: 'bob_ross@happyaccidents.io',
   password: 'password123',
   location: 'Heaven',
-  description: 'We don\'t make mistakes, just happy little accidents.',
-  image_url: '/bob_ross.jpg'
+  description: 'We don\'t make mistakes, just happy little accidents.'
 )
 
 User.create(
@@ -24,8 +23,7 @@ User.create(
   email: 'king_james@lakers.io',
   password: 'password123',
   location: 'Akron, OH',
-  description: 'Strive For Greatness',
-  image_url: '/app/assets/images/lebron_james.jpeg'
+  description: 'Strive For Greatness'
 )
 
 User.create(
@@ -35,6 +33,5 @@ User.create(
   email: 'big_brow@lakers.io',
   password: 'password123',
   location: 'Chicago, IL',
-  description: 'Fear The Brow',
-  image_url: '/app/assets/images/anthony_davis.jpeg'
+  description: 'Fear The Brow'
 )

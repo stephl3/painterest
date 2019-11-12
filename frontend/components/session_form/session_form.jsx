@@ -34,8 +34,8 @@ class SessionForm extends React.Component {
 
     this._disableInputs();
     
-    this.setState({email: "", password: ""},
-      () => this._autoInput("email", email, () =>
+    this.setState({email: "", password: ""}, () =>
+      this._autoInput("email", email, () =>
         this._autoInput("password", password, () => {
           const demoUser = Object.assign({}, this.state);
           this.props.demoLogin(demoUser).then(this.props.closeModal);

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     ### issue???
     resources :users, only: [:create, :show, :edit, :update]
     resource :session, only: [:create, :destroy]
+    
   end
 
   root to: "static_pages#root"

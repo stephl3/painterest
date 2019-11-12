@@ -41,7 +41,7 @@ const ProfileDetails = ({ user }) => {
         <div id="profile-image-container-outer">
 
           <div id="profile-image-frame">
-            <img src={window.bobURL} alt="profile-pic" id="profile-image" />
+            <img src={user.photo} alt="profile-pic" id="profile-photo" />
           </div>
         </div>
       </div>
