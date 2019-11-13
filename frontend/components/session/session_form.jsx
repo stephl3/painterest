@@ -29,7 +29,7 @@ class SessionForm extends React.Component {
   handleDemo(e) {
     e.preventDefault();
 
-    let email = "bob_ross@happyaccidents.io";
+    let email = "bob_ross@happyaccidents.org";
     let password = "password123";
 
     this._disableInputs();

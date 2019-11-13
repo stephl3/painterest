@@ -2,6 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const ProfileDetails = ({ user }) => {
+  // debugger;
   return (
     <div id="profile-details-background">
       <div id="profile-details">
@@ -39,7 +40,6 @@ const ProfileDetails = ({ user }) => {
           </div>
         </div>
         <div id="profile-image-container-outer">
-
           <div id="profile-image-frame">
             <img src={user.photo} alt="profile-pic" id="profile-photo" />
           </div>

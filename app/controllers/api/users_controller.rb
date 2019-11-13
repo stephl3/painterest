@@ -12,20 +12,30 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = selected_user
   end
   
   def edit
-    @user = User.find(params[:id])
+    @user = selected_user
     render "api/users/show"
   end
 
   def update
-    @user = User.find(params[:id])
-    # @user.photo.purge
-    # debugger;
-    @user.photo.attach(edit_user_params[:photo])
-    if @user.update(edit_user_params)
+    @user = selected_user
+
+    unless edit_user_params[:photo].is_a? String
+      @user.photo.attach(edit_user_params[:photo])
+    end
+
+    # refactor...
+    if @user.update(
+      first_name: no_null(edit_user_params[:firstName]),
+      last_name: no_null(edit_user_params[:lastName]),
+      username: no_null(edit_user_params[:username]),
+      email: no_null(edit_user_params[:email]),
+      description: no_null(edit_user_params[:description]),
+      location: no_null(edit_user_params[:location])
+    )
       render "api/users/show"
     else
       render json: @user.errors.full_messages, status: 422
@@ -33,12 +43,20 @@ class Api::UsersController < ApplicationController
   end
 
   private
+  def selected_user
+    User.find(params[:id])
+  end
+  
   def new_user_params
     params.require(:user).permit(:email, :password)
   end
 
   def edit_user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :description, :location, :photo, :email)
+    params.require(:user).permit(:id, :firstName, :lastName, :username, :description, :location, :photo, :email)
+  end
+
+  def no_null(text)
+    text || ""
   end
 
 end

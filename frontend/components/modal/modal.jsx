@@ -2,8 +2,11 @@ import React from "react";
 import { openModal, closeModal } from "../../actions/modal_actions";
 import { connect } from "react-redux";
 
-import SignupFormContainer from "../session_form/signup_form_container";
-import LoginFormContainer from "../session_form/login_form_container";
+import SignupFormContainer from "../session/signup_form_container";
+import LoginFormContainer from "../session/login_form_container";
+import CreateBoardFormContainer from "../board/create_board_form_container";
+import EditBoardFormContainer from "../board/Edit_board_form_container";
+
 
 const Modal = ({ modal, openModal, closeModal }) => {
   if (!modal) {
@@ -16,14 +19,22 @@ const Modal = ({ modal, openModal, closeModal }) => {
       switchFormValue = "Sign up";
       altModal = "signup"
       component = <LoginFormContainer />;
-      background = "session-background"
+      background = "session-background";
+      clickBackground = "";
       break;
     case "signup":
       switchFormValue = "Log in";
       altModal = "login";
       component = <SignupFormContainer />;
-      background = "session-background"
+      background = "session-background";
+      clickBackground = "";
       break;
+    case "new-board":
+      component = <CreateBoardFormContainer />;
+      clickBackground = closeModal;
+    case "edit-board":
+      component = <EditBoardFormContainer />;
+      clickBackground = closeModal;
     default:
       return null;
   }
@@ -37,7 +48,7 @@ const Modal = ({ modal, openModal, closeModal }) => {
   )
 
   return (
-    <div id="modal-background" className={background}>
+    <div id="modal-background" className={background} onClick={clickBackground}>
       <div className="modal-child" onClick={e => e.stopPropagation()}>
         {component}
       </div>

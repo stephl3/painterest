@@ -13,11 +13,14 @@
 
 class Board < ApplicationRecord
 
-  validates :title, :user_id, presence: true
+  validates :title, presence: { message: "Don't forget to name your board!" }
   validates :secret, :inclusion => { :in => [true, false] }
 
   belongs_to :user
-  has_many :boards_pins
+
+  has_many :boards_pins,
+    dependent: :destroy
+    
   has_many :pins,
     through: :boards_pins,
     source: :pin

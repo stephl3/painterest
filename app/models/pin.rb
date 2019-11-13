@@ -13,10 +13,13 @@
 
 class Pin < ApplicationRecord
 
-  validates :title, :url, :user_id, presence: true
+  validates :title, :url, :user_id, :photo, presence: true
   
   belongs_to :user
-  has_many :boards_pins
+
+  has_many :boards_pins,
+    dependent: :destroy
+
   has_many :boards,
     through: :boards_pins,
     source: :board

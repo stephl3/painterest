@@ -72,7 +72,7 @@ class ProfileNavBar extends React.Component {
                     "hidden"
                   }}>
                     <div id="create-options">
-                      <div id="create-board-button" onClick={() => openModal("create-board")}>
+                      <div id="create-board-button" onClick={() => openModal("new-board")}>
                         <div className="option-container-shadow">
                           <div className="option-container">
                             <h3 className="option-label" id="create-board">Create board</h3>

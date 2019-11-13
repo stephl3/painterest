@@ -6,37 +6,38 @@ class EditProfileForm extends React.Component {
   constructor(props) {
     super(props);
     // debugger;
-    this.state = Object.assign(
-      {}, this.props.currentUser,
-      { photoPreview: null });
-    // this.handleCancel = this.handleCancel.bind(this);
+    this.state = this._getInitialState();
+    this.handleCancel = this.handleCancel.bind(this);
     this.handleDone = this.handleDone.bind(this);
     this.handleFile = this.handleFile.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
   }
 
-  handleCancel() {
+  _getInitialState() {
+    const initialState = Object.assign(
+      {}, this.props.currentUser,
+      { photoPreview: null }
+    );
+    return initialState
+  }
 
+  handleCancel(e) {
+    e.preventDefault();
+    
+    this.setState(this._getInitialState);
   }
 
   handleDone(e) {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("user[photo]", this.state.photo)
-    formData.append("user[firstName]", this.state.firstName)
-    formData.append("user[lastName]", this.state.lastName)
-    formData.append("user[username]", this.state.username)
-    formData.append("user[email]", this.state.email)
-    formData.append("user[description]", this.state.description)
-    formData.append("user[location]", this.state.location)
+    const details = Object.assign({}, this.state);
+    delete details["photoPreview"];
 
-    $.ajax({
-      method: "PATCH",
-      url: `/api/users/${this.state.id}`,
-      data: formData,
-      contentType: false,
-      processData: false
-    }).then(window.setTimeout(() => window.location.reload(false), 2000))
+    const formData = new FormData();
+    for (let key in details) {
+      formData.append(`user[${key}]`, details[key])
+    }
+
+    this.props.updateUser(formData)
+      .then(window.setTimeout(() => window.location.reload(false), 1000))
   }
 
   handleFile(e) {
@@ -113,6 +114,7 @@ class EditProfileForm extends React.Component {
                             <button
                               className={`edit-profile cancel button ${disabled}`}
                               id="cancel-button"
+                              onClick={this.handleCancel}
                             >
                               <div className={`edit-profile cancel button-label ${disabled}`}>Cancel</div>
                             </button>

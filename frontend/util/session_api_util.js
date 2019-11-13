@@ -6,6 +6,16 @@ export const signup = user => (
   })
 );
 
+export const update = user => (
+  $.ajax({
+    method: "PATCH",
+    url: `/api/users/${user.get("user[id]")}`,
+    data: user,
+    contentType: false,
+    processData: false
+  })
+);
+
 export const login = user => (
   $.ajax({
     method: "POST",

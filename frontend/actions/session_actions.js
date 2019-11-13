@@ -15,7 +15,7 @@ const logoutCurrentUser = () => ({
   type: LOGOUT_CURRENT_USER
 });
 
-const receiveErrors = errors => ({
+const receiveUserErrors = errors => ({
   type: RECEIVE_SESSION_ERRORS,
   errors
 });
@@ -23,15 +23,22 @@ const receiveErrors = errors => ({
 // thunk action creators
 export const signup = user => dispatch => (
   SessionAPIUtil.signup(user).then(
-    user => (dispatch(receiveCurrentUser(user))),
-    err => (dispatch(receiveErrors(err.responseJSON)))
+    user => dispatch(receiveCurrentUser(user)),
+    err => dispatch(receiveUserErrors(err.responseJSON))
+  )
+);
+
+export const update = user => dispatch => (
+  SessionAPIUtil.update(user).then(
+    user => dispatch(receiveCurrentUser(user)),
+    err => dispatch(receiveUserErrors(err.responseJSON))
   )
 );
 
 export const login = user => dispatch => (
   SessionAPIUtil.login(user).then(
-    user => (dispatch(receiveCurrentUser(user))),
-    err => (dispatch(receiveErrors(err.responseJSON)))
+    user => dispatch(receiveCurrentUser(user)),
+    err => dispatch(receiveUserErrors(err.responseJSON))
   )
 );
 
