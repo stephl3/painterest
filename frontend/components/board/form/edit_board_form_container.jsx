@@ -1,30 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { fetchBoard, updateBoard, deleteBoard } from "../../actions/board_actions";
-import { closeModal } from "../../actions/modal_actions";
-import BoardForm from "./board_form";
-
-
-class EditBoardForm extends React.Component {
-  componentDidMount() {
-    this.props.fetchBoard(this.props.match.params.boardId);
-  }
-
-  render() {
-    const { board, errors, formType, processForm } = this.props;
-
-    return (!board) ? null : (
-      <BoardForm
-        board={board}
-        errors={errors}
-        formType={formType}
-        processForm={processForm}
-      />
-    );
-  }
-}
-
+import { fetchBoard, updateBoard, deleteBoard } from "../../../actions/board_actions";
+import { closeModal } from "../../../actions/modal_actions";
+import EditBoardForm from "./edit_board_form";
 
 const mapStateToProps = (state, ownProps) => ({
   board: state.entities.boards[ownProps.match.params.boardId],

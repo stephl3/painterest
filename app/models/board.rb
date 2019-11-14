@@ -15,6 +15,7 @@ class Board < ApplicationRecord
 
   validates :title, presence: { message: "Don't forget to name your board!" }
   validates :secret, :inclusion => { :in => [true, false] }
+  validates :user_id, presence: true
 
   belongs_to :user
 

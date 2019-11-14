@@ -147,11 +147,9 @@
   box-sizing: border-box;
   color: #fff;
   cursor: pointer;
+  outline: none;
   border-radius: 0;
   overflow: hidden;
-  &:hover {
-    background-color: #E2E2E2;
-  }
 }
 
 .option-container-shadow {
@@ -162,7 +160,9 @@
   padding: 8px 16px;
   flex-direction: row;
   display: flex;
-
+  &:hover {
+    background-color: #E2E2E2;
+  }
 }
 
 .option-container {
@@ -175,7 +175,6 @@
   padding: 4px;
   flex-direction: column;
   display: flex;
-
 }
 
 .option-label {

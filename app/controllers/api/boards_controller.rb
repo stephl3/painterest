@@ -1,4 +1,4 @@
-class BoardsController < ApplicationController
+class Api::BoardsController < ApplicationController
 
   def create
     @board = Board.new(board_params)
@@ -47,3 +47,4 @@ class BoardsController < ApplicationController
   end
 
 end
+

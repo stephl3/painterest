@@ -1,2 +1,0 @@
-class BoardsPinsController < ApplicationController
-end

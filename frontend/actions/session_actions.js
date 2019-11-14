@@ -28,8 +28,8 @@ export const signup = user => dispatch => (
   )
 );
 
-export const update = user => dispatch => (
-  SessionAPIUtil.update(user).then(
+export const update = (user, id) => dispatch => (
+  SessionAPIUtil.update(user, id).then(
     user => dispatch(receiveCurrentUser(user)),
     err => dispatch(receiveUserErrors(err.responseJSON))
   )

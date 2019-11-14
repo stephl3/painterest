@@ -6,10 +6,10 @@ export const signup = user => (
   })
 );
 
-export const update = user => (
+export const update = (user, id) => (
   $.ajax({
     method: "PATCH",
-    url: `/api/users/${user.get("user[id]")}`,
+    url: `/api/users/${id}`,
     data: user,
     contentType: false,
     processData: false

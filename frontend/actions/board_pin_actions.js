@@ -35,8 +35,8 @@ export const fetchAllBoardsPins = () => dispatch => (
 );
 
 export const createBoardPin = boardPin => dispatch => (
-  BoardPinAPIUtil.createBoardPin(board).then(
-    board => dispatch(receiveBoard(boardPin)),
+  BoardPinAPIUtil.createBoardPin(boardPin).then(
+    board => dispatch(receiveBoardPin(boardPin)),
     err => dispatch(receiveBoardPinErrors(err.responseJSON))
   )
 );

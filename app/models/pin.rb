@@ -13,7 +13,7 @@
 
 class Pin < ApplicationRecord
 
-  validates :title, :url, :user_id, :photo, presence: true
+  validates :title, :user_id, :photo, presence: true
   
   belongs_to :user
 

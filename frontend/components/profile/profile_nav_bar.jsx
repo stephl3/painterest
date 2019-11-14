@@ -14,6 +14,7 @@ class ProfileNavBar extends React.Component {
     this.handleScroll = this.handleScroll.bind(this);
     this.toggleShow = this.toggleShow.bind(this);
     this.hide = this.hide.bind(this);
+    this.newBoard = this.newBoard.bind(this);
   }
 
   componentDidMount() {
@@ -35,7 +36,9 @@ class ProfileNavBar extends React.Component {
   }
 
   toggleShow() {
-    this.setState({ showCreateOptions: !this.state.showCreateOptions });
+    let that = this;
+    // debugger;
+    this.setState({ showCreateOptions: !this.state.showCreateOptions })
   }
 
   hide(e) {
@@ -43,6 +46,10 @@ class ProfileNavBar extends React.Component {
       e.relatedTarget.click();
     }
     this.setState({ showCreateOptions: false });
+  }
+
+  newBoard() {
+    this.props.openModal("new-board");
   }
 
   render() {
@@ -72,7 +79,7 @@ class ProfileNavBar extends React.Component {
                     "hidden"
                   }}>
                     <div id="create-options">
-                      <div id="create-board-button" onClick={() => openModal("new-board")}>
+                      <div id="create-board-button" tabIndex="0" onClick={this.newBoard}>
                         <div className="option-container-shadow">
                           <div className="option-container">
                             <h3 className="option-label" id="create-board">Create board</h3>

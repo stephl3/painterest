@@ -22,20 +22,7 @@ class Api::UsersController < ApplicationController
 
   def update
     @user = selected_user
-
-    unless edit_user_params[:photo].is_a? String
-      @user.photo.attach(edit_user_params[:photo])
-    end
-
-    # refactor...
-    if @user.update(
-      first_name: no_null(edit_user_params[:firstName]),
-      last_name: no_null(edit_user_params[:lastName]),
-      username: no_null(edit_user_params[:username]),
-      email: no_null(edit_user_params[:email]),
-      description: no_null(edit_user_params[:description]),
-      location: no_null(edit_user_params[:location])
-    )
+    if @user.update(edit_user_params)
       render "api/users/show"
     else
       render json: @user.errors.full_messages, status: 422
@@ -52,11 +39,7 @@ class Api::UsersController < ApplicationController
   end
 
   def edit_user_params
-    params.require(:user).permit(:id, :firstName, :lastName, :username, :description, :location, :photo, :email)
-  end
-
-  def no_null(text)
-    text || ""
+    params.require(:user).permit(:first_name, :last_name, :username, :email, :description, :location, :photo)
   end
 
 end

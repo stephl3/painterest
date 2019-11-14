@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PinsControllerTest < ActionDispatch::IntegrationTest
+class Api::BoardsPinsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

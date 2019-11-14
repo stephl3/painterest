@@ -5,18 +5,28 @@ import { Link, NavLink } from "react-router-dom";
 class EditProfileForm extends React.Component {
   constructor(props) {
     super(props);
-    // debugger;
     this.state = this._getInitialState();
+
+    this._getInitialState = this._getInitialState.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleDone = this.handleDone.bind(this);
     this.handleFile = this.handleFile.bind(this);
   }
 
   _getInitialState() {
-    const initialState = Object.assign(
-      {}, this.props.currentUser,
-      { photoPreview: null }
-    );
+    const user = this.props.currentUser;
+    const initialState = Object.assign({}, {
+      id: user.id,
+      first_name: user.firstName,
+      last_name: user.lastName,
+      username: user.username,
+      email: user.email,
+      description: user.description,
+      location: user.location,
+      photo: user.photo,
+      photoPreview: null
+    });
+
     return initialState
   }
 
@@ -29,14 +39,18 @@ class EditProfileForm extends React.Component {
   handleDone(e) {
     e.preventDefault();
     const details = Object.assign({}, this.state);
+    delete details["id"];
     delete details["photoPreview"];
+    if (!this.state.photo) {
+      delete details["photo"];
+    }
 
     const formData = new FormData();
     for (let key in details) {
       formData.append(`user[${key}]`, details[key])
     }
-
-    this.props.updateUser(formData)
+    // debugger;
+    this.props.updateUser(formData, this.state.id)
       .then(window.setTimeout(() => window.location.reload(false), 1000))
   }
 
@@ -70,10 +84,9 @@ class EditProfileForm extends React.Component {
     ) : (
       profilePhoto
     );
-    
+
     let currentState = Object.assign({}, this.state);
-    delete currentState["photoPreview"];
-    const disabled = (JSON.stringify(currentState) === JSON.stringify(currentUser)) ? "disabled" : "";
+    const disabled = (JSON.stringify(currentState) === JSON.stringify(this._getInitialState())) ? "disabled" : "";
     
     return (
       <div id="settings-container-padding">
@@ -172,8 +185,8 @@ class EditProfileForm extends React.Component {
                               <input
                                 type="text"
                                 placeholder="Ex. Jo"
-                                value={this.state.firstName}
-                                onChange={this.changeInput("firstName")}
+                                value={this.state.first_name}
+                                onChange={this.changeInput("first_name")}
                                 className="edit-profile input"
                               />
                             </div>
@@ -190,8 +203,8 @@ class EditProfileForm extends React.Component {
                               <input
                                 type="text"
                                 placeholder="Ex. Jo"
-                                value={this.state.lastName}
-                                onChange={this.changeInput("lastName")}
+                                value={this.state.last_name}
+                                onChange={this.changeInput("last_name")}
                                 className="edit-profile input"
                               />
                             </div>

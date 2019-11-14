@@ -13,20 +13,22 @@ import SignupFormContainer from "./session/signup_form_container";
 import LoginFormContainer from "./session/login_form_container";
 import NavBarContainer from "./navbar/nav_bar_container";
 import HomeFeedContainer from "./homefeed/home_feed_container";
-import ProfileShowContainer from "./profile/profile_show_container";
+import CreatePinFormContainer from "./pin/form/create_pin_form_container";
 import EditProfileFormContainer from "./profile/edit_profile_form_container";
+import ProfileShowContainer from "./profile/profile_show_container";
 
 const App = () => (
   <div className="app">
     <Modal />
-    <ProtectedRoute path="/" component={NavBarContainer} />
-
+    <header>
+      <ProtectedRoute path="/" component={NavBarContainer} />
+    </header>
     <Switch>
+      <ProtectedRoute path="/pin-builder" component={CreatePinFormContainer} />
       <ProtectedRoute path="/settings" component={EditProfileFormContainer} />
       <ProtectedRoute path="/:username" component={ProfileShowContainer} />
       {/* <ProtectedRoute exact path="/" component={HomeFeedContainer} /> */}
     </Switch>
-
     {/* <footer>
       create pin button?
     </footer> */}
