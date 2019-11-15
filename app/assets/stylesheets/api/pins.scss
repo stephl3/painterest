@@ -14,7 +14,7 @@
 }
 
 .pin-index#grid-container {
-  margin: 0 40px;
+  margin: 0 100px;
 }
 
 .pin-index#grid {
@@ -34,7 +34,6 @@
   align-items: flex-start;
   box-sizing: border-box;
   padding: 0 8px;
-  padding-bottom: 16px;
 }
 
 .pin-index#item {
@@ -48,7 +47,7 @@
   align-items: center;
 }
 
-.pin#image {
+.pin-index#image {
   box-sizing: border-box;
   border-radius: 8px;
   width: 236px;

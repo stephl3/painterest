@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class CreatePinForm extends React.Component {
   constructor(props) {
@@ -11,17 +12,16 @@ class CreatePinForm extends React.Component {
   }
 
   handleSave(e) {
-    e.preventDefault();
+    // e.preventDefault();
     const details = Object.assign({}, this.state);
     delete details["photoPreview"];
-    debugger;
+
     const formData = new FormData();
     for (let key in details) {
       formData.append(`pin[${key}]`, details[key])
     }
-
     this.props.processForm(formData)
-      // .then(this.props.createBoardPin({ "pin_id": 1, "board_id": 1 }));
+    // .then(this.props.createBoardPin({ "pin_id": 1, "board_id": 1 }));
   }
 
   uploadImage() {
@@ -54,7 +54,7 @@ class CreatePinForm extends React.Component {
     const { currentUser, errors, formType } = this.props;
     const displayImage = (this.state.photoPreview) ? (
       <div className="create-pin" id="image-uploaded-container">
-        <img src={this.state.photoPreview} className="create-pin" id="photo"/>
+        <img src={this.state.photoPreview} className="create-pin" id="photo" />
         <div className="create-pin" id="delete-image-button-container">
           <button className="create-pin" id="delete-image-button" onClick={this.deleteImage}>
             <div className="create-pin" id="trash-icon-container">
@@ -64,27 +64,27 @@ class CreatePinForm extends React.Component {
         </div>
       </div>
     ) : (
-      <div className="create-pin" id="image-upload-container">
-        <div className="create-pin" id="image-upload-area" onClick={this.uploadImage}>
-          <div className="create-pin" id="image-upload-area-border">
-            <div className="create-pin" id="upload-icon-container">
-              <i className="fas fa-arrow-circle-up" id="upload-icon"></i>
+        <div className="create-pin" id="image-upload-container">
+          <div className="create-pin" id="image-upload-area" onClick={this.uploadImage}>
+            <div className="create-pin" id="image-upload-area-border">
+              <div className="create-pin" id="upload-icon-container">
+                <i className="fas fa-arrow-circle-up" id="upload-icon"></i>
+              </div>
+              <div className="create-pin" id="instruction">
+                Click to upload
             </div>
-            <div className="create-pin" id="instruction">
-              Click to upload
             </div>
+            <div className="create-pin" id="upload-recommendation">
+              Recommendation: Use high-quality .jpg files less than 2 MB
           </div>
-          <div className="create-pin" id="upload-recommendation">
-            Recommendation: Use high-quality .jpg files less than 2 MB
           </div>
+          <input
+            type="file"
+            onChange={this.handleFile}
+            className="create-pin"
+            id="image-upload-input" />
         </div>
-        <input
-          type="file"
-          onChange={this.handleFile}
-          className="create-pin"
-          id="image-upload-input" />
-      </div>
-    )
+      )
     return (
       <div id="create-pin-background">
         <div id="create-pin-container">
@@ -93,17 +93,17 @@ class CreatePinForm extends React.Component {
               <div className="create-pin" id="buttons">
                 <button className="create-pin" id="select-board-dropdown">
                   <div className="create-pin" id="select-board-label">
-                    Select
+                    PAINTING{/* Select */}
                   </div>
                   <div className="create-pin" id="dropdown-icon-container">
                     <i className="fas fa-angle-down" id="dropdown-icon"></i>
                   </div>
                 </button>
-                <button className="create-pin" id="save-button" onClick={this.handleSave}>
+                <Link to="/" className="create-pin" id="save-button" onClick={this.handleSave}>
                   <div className="create-pin" id="save-button-label">
                     Save
                   </div>
-                </button>
+                </Link>
               </div>
             </div>
             <div className="create-pin" id="content">
@@ -118,7 +118,7 @@ class CreatePinForm extends React.Component {
                     id="title"
                     placeholder="Add your title"
                     value={this.state.title}
-                    onChange={this.changeInput("title")}/>
+                    onChange={this.changeInput("title")} />
                 </div>
                 <div className="create-pin" id="user-container">
                   <div className="create-pin" id="user-image-frame">
@@ -126,7 +126,7 @@ class CreatePinForm extends React.Component {
                       src={currentUser.photo}
                       alt="profile-icon"
                       className="create-pin"
-                      id="user-image"/>
+                      id="user-image" />
                   </div>
                   <div className="create-pin" id="username">
                     {currentUser.firstName} {currentUser.lastName}
@@ -139,7 +139,7 @@ class CreatePinForm extends React.Component {
                     id="description"
                     placeholder="Tell everyone what your Pin is about"
                     value={this.state.description}
-                    onChange={this.changeInput("description")}/>
+                    onChange={this.changeInput("description")} />
                 </div>
                 <div className="create-pin" id="url-container">
                   <textarea
@@ -148,7 +148,7 @@ class CreatePinForm extends React.Component {
                     id="url"
                     placeholder="Add a destination link"
                     value={this.state.url}
-                    onChange={this.changeInput("url")}/>
+                    onChange={this.changeInput("url")} />
                 </div>
               </div>
             </div>

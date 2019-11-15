@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import React from "react";
+import { withRouter } from "react-router-dom";
 
 import { createPin } from "../../../actions/pin_actions";
 import CreatePinForm from "./create_pin_form";
@@ -17,5 +18,5 @@ const mapDispatchToProps = dispatch => ({
   openModal: modal => dispatch(openModal(modal))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePinForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreatePinForm));
 

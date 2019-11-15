@@ -6,6 +6,7 @@
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
     "babel-loader": "^8.0.6",
+    "imagesloaded": "^4.1.4",
     "masonry-layout": "^4.2.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
