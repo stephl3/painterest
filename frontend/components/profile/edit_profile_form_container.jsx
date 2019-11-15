@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import EditProfileForm from "./edit_profile_form";
-import { update } from "../../actions/session_actions";
+import { updateUser } from "../../actions/user_actions";
 
 const mapStateToProps = state => ({
   errors: state.errors.user,
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateUser: (user, id) => dispatch(update(user, id))
+  updateUser: (user, id) => dispatch(updateUser(user, id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfileForm);

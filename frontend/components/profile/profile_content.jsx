@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Link, NavLink } from "react-router-dom";
 
 import ProfileSwitches from "./profile_switches";
-
+import PinIndexContainer from "../pin/pin_index_container";
 
 class ProfileContent extends React.Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class ProfileContent extends React.Component {
     const { user, openModal, closeModal } = this.props;
     const contentTabs = [
       "BoardIndexContainer",
-      "PinIndexContainer"
+      <PinIndexContainer />
     ];
     const selectedTab = contentTabs[this.state.selectedSwitch];
 

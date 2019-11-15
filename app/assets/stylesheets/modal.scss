@@ -15,12 +15,9 @@
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
-  &#signup,
-  &#login {
-    background-image: image-url("bob_ross_painting.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+  &#login,
+  &#signup {
+    
   }
   &#new-board {
     background-color: #333;

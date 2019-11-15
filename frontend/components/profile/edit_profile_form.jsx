@@ -41,7 +41,7 @@ class EditProfileForm extends React.Component {
     const details = Object.assign({}, this.state);
     delete details["id"];
     delete details["photoPreview"];
-    if (!this.state.photo) {
+    if (!this.state.photoPreview) {
       delete details["photo"];
     }
 

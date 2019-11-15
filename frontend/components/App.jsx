@@ -12,7 +12,7 @@ import Modal from "./modal/modal";
 import SignupFormContainer from "./session/signup_form_container";
 import LoginFormContainer from "./session/login_form_container";
 import NavBarContainer from "./navbar/nav_bar_container";
-import HomeFeedContainer from "./homefeed/home_feed_container";
+import PinIndexContainer from "./pin/pin_index_container";
 import CreatePinFormContainer from "./pin/form/create_pin_form_container";
 import EditProfileFormContainer from "./profile/edit_profile_form_container";
 import ProfileShowContainer from "./profile/profile_show_container";
@@ -27,7 +27,7 @@ const App = () => (
       <ProtectedRoute path="/pin-builder" component={CreatePinFormContainer} />
       <ProtectedRoute path="/settings" component={EditProfileFormContainer} />
       <ProtectedRoute path="/:username" component={ProfileShowContainer} />
-      {/* <ProtectedRoute exact path="/" component={HomeFeedContainer} /> */}
+      <Route exact path="/" component={PinIndexContainer} />
     </Switch>
     {/* <footer>
       create pin button?

@@ -1,3 +1,56 @@
 // Place all the styles related to the api/Pins controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.pin-index#background {
+  padding-top: 65px;
+}
+
+.pin-index#main-container {
+  width: 100%;
+  padding: 24px 0;
+
+
+}
+
+.pin-index#grid-container {
+  margin: 0 40px;
+}
+
+.pin-index#grid {
+  width: 100%;
+  min-width: 550px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(252px,1fr));
+  grid-gap: 10px;
+  grid-auto-rows: 40px;
+  justify-items: center;
+  justify-content: center;
+}
+
+.pin-index.item-container {
+  width: 252px;
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+  padding: 0 8px;
+  padding-bottom: 16px;
+}
+
+.pin-index#item {
+  box-sizing: border-box;
+  border-radius: 8px;
+  width: 236px;
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pin#image {
+  box-sizing: border-box;
+  border-radius: 8px;
+  width: 236px;
+  height: auto;
+}
