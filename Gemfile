@@ -31,6 +31,7 @@ gem 'annotate'
 gem 'jquery-rails'
 gem 'rails_12factor'
 gem 'aws-sdk-s3'
+gem 'kaminari'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
