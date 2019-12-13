@@ -21,18 +21,77 @@ class CreateBoardForm extends React.Component {
               </div>
               <div className="create-board" id="close-button-container">
                 <button className="create-board" id="close-button">
-                  <div className="create-board" id="close-icon-container-shadow">
-                    <div className="create-board" id="close-icon-container">
-                      <i className="fas fa-times" id="close-icon"></i>
-                    </div>
+                  <div className="create-board" id="close-icon-container">
+                    <i className="fas fa-times create-board" id="close-icon"></i>
                   </div>
                 </button>
               </div>
             </div>
             <div className="create-board" id="body">
               <div className="create-board" id="form-container">
-                <form>
-
+                <form className="create-board" id="form" onSubmit={null}>
+                  <div className="create-board" id="fields">
+                    <div className="create-board field-container" id="name">
+                      <div className="create-board label-container">
+                        <label
+                          htmlFor="name-input"
+                          className="create-board label"
+                          id="name-label">
+                          Name
+                        </label>
+                      </div>
+                      <div className="create-board input-container">
+                        <input
+                          type="text"
+                          className="create-board"
+                          id="name-input"
+                          placeholder='Like "Places to Go" or "Recipes to Make"'
+                        />
+                      </div>
+                    </div>
+                    <div className="create-board field-container" id="visibility">
+                      <div className="create-board label-container">
+                        <label
+                          htmlFor="name-input"
+                          className="create-board label"
+                          id="visibility-label">
+                          Visibility
+                        </label>
+                      </div>
+                      <div className="create-board input-container">
+                        <input
+                          type="checkbox"
+                          className="create-board"
+                          id="visibility-input"
+                        />
+                        <div className="create-board" id="visibility-note">
+                          Keep this board secret.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="create-board footer-container">
+                    <div className="create-board footer">
+                      <div className="create-board buttons-container">
+                        <div className="create-board buttons">
+                          <div className="create-board button-container">
+                            <button
+                              className="create-board"
+                              id="cancel">
+                              Cancel
+                            </button>
+                          </div>
+                          <div className="create-board button-container">
+                            <button
+                              className="create-board"
+                              id="create">
+                              Create
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>

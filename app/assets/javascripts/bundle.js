@@ -672,20 +672,76 @@ function (_React$Component) {
         id: "close-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board",
-        id: "close-icon-container-shadow"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-board",
         id: "close-icon-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-times",
+        className: "fas fa-times create-board",
         id: "close-icon"
-      })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board",
         id: "body"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board",
         id: "form-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null))))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "create-board",
+        id: "form",
+        onSubmit: null
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board",
+        id: "fields"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board field-container",
+        id: "name"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board label-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "name-input",
+        className: "create-board label",
+        id: "name-label"
+      }, "Name")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board input-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: "create-board",
+        id: "name-input",
+        placeholder: "Like \"Places to Go\" or \"Recipes to Make\""
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board field-container",
+        id: "visibility"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board label-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "name-input",
+        className: "create-board label",
+        id: "visibility-label"
+      }, "Visibility")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board input-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "checkbox",
+        className: "create-board",
+        id: "visibility-input"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board",
+        id: "visibility-note"
+      }, "Keep this board secret.")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board footer-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board buttons-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board buttons"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board button-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "create-board",
+        id: "cancel"
+      }, "Cancel")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board button-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "create-board",
+        id: "create"
+      }, "Create"))))))))))));
     }
   }]);
 
@@ -36309,7 +36365,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

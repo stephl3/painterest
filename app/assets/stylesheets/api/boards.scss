@@ -1,3 +1,174 @@
 // Place all the styles related to the api/Boards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.create-board#sizing {
+  width: 544px;
+  border-radius: 8px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  margin: 0 16px;
+  background-color: #fff;
+  max-height: calc(100vh - 32px);
+  outline: none;
+}
+
+.create-board#modal-fg {
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  box-sizing: border-box;
+  position: relative;
+  flex-direction: column;
+  display: flex;
+  cursor: default;
+}
+
+.create-board#header {
+  box-sizing: border-box;
+  max-width: 100%;
+  border-bottom: 1px solid #efefef;
+}
+
+.create-board#header-title-container {
+  padding: 20px 50px;
+  justify-content: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+}
+
+.create-board#header-title {
+  hyphens: auto;
+  word-wrap: break-word;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.create-board#close-button-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.create-board#close-button {
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+}
+
+.create-board#close-icon-container {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: transparent;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.06)
+  }
+}
+
+.create-board#close-icon {
+  color: #8e8e8e;
+  fill: currentColor;
+  stroke-width: 0;
+  vertical-align: middle;
+  height: 30px;
+  width: 30px;
+  overflow: hidden;
+}
+
+.create-board#body {
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  box-sizing: border-box;
+  position: relative;
+  overflow: auto;
+}
+
+.create-board#form-container {
+  max-width: 600px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background-color: #fff;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.create-board#form {
+
+}
+
+.create-board#fields {
+  box-sizing: border-box;
+}
+
+.create-board.field-container {
+  border-bottom: 1px solid #efefef;
+
+}
+
+.create-board.label-container {
+
+}
+
+.create-board.label {
+
+}
+
+.create-board.input-container {
+
+}
+
+.create-board#name-input {
+
+}
+
+.create-board#visibility-input {
+  
+}
+
+.create-board#visibility-note {
+
+}
+
+.create-board.footer-container {
+  box-sizing: border-box;
+  padding: 8px 16px;
+}
+
+.create-board.footer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.create-board.buttons-container {
+  box-sizing: border-box;
+}
+
+.create-board.buttons {
+  box-sizing: border-box;
+  padding: 8px 0;
+  margin: 0 -8px;
+  display: flex;
+  flex-direction: row;
+}
+
+.create-board.button-container {
+
+}
