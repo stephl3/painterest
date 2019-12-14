@@ -119,7 +119,7 @@
 #create-options-container {
   stroke: rgb(239, 239, 239);
   top: 72px;
-  left: 49px;
+  left: auto;
   position: absolute;
   background-color: #fff;
   color: #fff;
@@ -152,6 +152,16 @@
   outline: none;
   border-radius: 0;
   overflow: hidden;
+}
+
+#create-options-triangle {
+  top: -24px;
+  left: 10px;
+  fill: currentColor;
+  height: 24px;
+  pointer-events: none;
+  position: absolute;
+  color: #fff;
 }
 
 .option-container-shadow {
