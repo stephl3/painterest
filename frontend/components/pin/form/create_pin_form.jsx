@@ -20,8 +20,14 @@ class CreatePinForm extends React.Component {
     for (let key in details) {
       formData.append(`pin[${key}]`, details[key])
     }
-    this.props.processForm(formData)
-    // .then(this.props.createBoardPin({ "pin_id": 1, "board_id": 1 }));
+
+    const board = document.getElementById('selected-board');
+    debugger;
+    return this.props.processForm(formData)
+      .then(res => {
+        // debugger;
+        this.props.createBoardPin({ "pin_id": res.pin.id, "board_id": board.innerText })
+      });
   }
 
   uploadImage() {
@@ -93,7 +99,9 @@ class CreatePinForm extends React.Component {
               <div className="create-pin" id="buttons">
                 <button className="create-pin" id="select-board-dropdown">
                   <div className="create-pin" id="select-board-label">
-                    PAINTING{/* Select */}
+                    <div className="create-pin" id="selected-board">
+                      1{/* Select */}
+                    </div>
                   </div>
                   <div className="create-pin" id="dropdown-icon-container">
                     <i className="fas fa-angle-down" id="dropdown-icon"></i>

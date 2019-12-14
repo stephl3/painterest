@@ -1350,6 +1350,8 @@ function (_React$Component) {
   _createClass(CreatePinForm, [{
     key: "handleSave",
     value: function handleSave(e) {
+      var _this2 = this;
+
       // e.preventDefault();
       var details = Object.assign({}, this.state);
       delete details["photoPreview"];
@@ -1359,7 +1361,15 @@ function (_React$Component) {
         formData.append("pin[".concat(key, "]"), details[key]);
       }
 
-      this.props.processForm(formData); // .then(this.props.createBoardPin({ "pin_id": 1, "board_id": 1 }));
+      var board = document.getElementById('selected-board');
+      debugger;
+      return this.props.processForm(formData).then(function (res) {
+        // debugger;
+        _this2.props.createBoardPin({
+          "pin_id": res.pin.id,
+          "board_id": board.innerText
+        });
+      });
     }
   }, {
     key: "uploadImage",
@@ -1376,13 +1386,13 @@ function (_React$Component) {
   }, {
     key: "handleFile",
     value: function handleFile(e) {
-      var _this2 = this;
+      var _this3 = this;
 
       var file = e.currentTarget.files[0];
       var fileReader = new FileReader();
 
       fileReader.onloadend = function () {
-        _this2.setState({
+        _this3.setState({
           photo: file,
           photoPreview: fileReader.result
         });
@@ -1395,10 +1405,10 @@ function (_React$Component) {
   }, {
     key: "changeInput",
     value: function changeInput(field) {
-      var _this3 = this;
+      var _this4 = this;
 
       return function (e) {
-        return _this3.setState(_defineProperty({}, field, e.currentTarget.value));
+        return _this4.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
   }, {
@@ -1475,7 +1485,10 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin",
         id: "select-board-label"
-      }, "PAINTING"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-pin",
+        id: "selected-board"
+      }, "1")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin",
         id: "dropdown-icon-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
