@@ -48,7 +48,7 @@
   -webkit-font-smoothing: antialiased;
   color: #333;
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .create-board#close-button-container {
@@ -64,6 +64,7 @@
   padding: 0;
   cursor: pointer;
   background: transparent;
+  outline: none;
 }
 
 .create-board#close-icon-container {
@@ -76,6 +77,9 @@
   background-color: transparent;
   &:hover {
     background-color: rgba(0, 0, 0, 0.06)
+  }
+  &:focus {
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.5);
   }
 }
 
@@ -117,31 +121,147 @@
 
 .create-board.field-container {
   border-bottom: 1px solid #efefef;
-
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 9px 6px;
+  @media (min-width: 576px) {
+    padding: 12px 8px;
+  }
+  @media (min-width: 768px) {
+    padding: 18px 16px;
+  }
+  @media (min-width: 1312px) {
+    padding: 18px 16px;
+  }
 }
 
-.create-board.label-container {
 
+.create-board.label-container {
+  box-sizing: border-box;
+  padding: 12px 4px;
+  width: 100%;
+  @media (min-width: 768px) {
+    width: 25%;
+  }
 }
 
 .create-board.label {
+  cursor: pointer;
+}
 
+.create-board.label-content {
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  font-weight: 400;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  color: #333;
 }
 
 .create-board.input-container {
+  box-sizing: border-box;
+  width: 100%;
+  @media (min-width: 768px) {
+    width: 75%;
+  }
+  &.secret {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 8px 0;
+  }
+}
+
+.create-board.name-input {
+  box-sizing: border-box;
+  min-height: 40px;
+  width: 100%;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+  cursor: text;
+  border-color: #8e8e8e;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 4px;
+  border: 1px solid;
+  padding: 8px 14px;
+}
+
+.create-board.error-container {
+  box-sizing: border-box;
+  margin-top: 4px;
 
 }
 
-.create-board#name-input {
-
+.create-board.error {
+  text-align: left;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  font-weight: 400;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  color: #e60023;
 }
 
-.create-board#visibility-input {
+.create-board.error-content {}
+
+.create-board#visibility-checkbox {
+  position: relative;
+  cursor: pointer;
+  margin-right: 12px;
+  height: 26px;
+  width: 26px;
+  border: 1px solid gray;
+  box-sizing: border-box;
+  border-radius: 4px;
+  // wrong sub-selector
+  // &:focus {
+  //   box-shadow: 0 0 0 4px rgba(0, 132, 255, 0.5)
+  // }
+}
+
+#visibility-checked {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  height: 28px;
+  width: 28px;
+  color: black;
+  opacity: 0;
   
 }
 
 .create-board#visibility-note {
-
+  text-align: left;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  font-weight: 400;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  color: #333;
+  @media (min-width: 576px) {
+    font-size: 12px;
+  }
 }
 
 .create-board.footer-container {
@@ -170,5 +290,27 @@
 }
 
 .create-board.button-container {
-
+  box-sizing: border-box;
+  padding: 0 8px;
 }
+
+.create-board.button {
+  border: 0;
+  border-radius: 8px;
+  box-sizing: border-box;
+  min-height: 40px;
+  display: inline-block;
+  background-color: #efefef;
+  padding: 10px 14px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  color: #333;
+  &:hover {
+    background-color: #e2e2e2;
+  }
+}
+

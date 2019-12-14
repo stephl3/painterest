@@ -616,9 +616,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -638,10 +638,50 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CreateBoardForm).call(this, props));
     _this.state = _this.props.board;
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.handleCheck = _this.handleCheck.bind(_assertThisInitialized(_this));
+    _this.handleClose = _this.handleClose.bind(_assertThisInitialized(_this));
+    _this.handleCreate = _this.handleCreate.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(CreateBoardForm, [{
+    key: "update",
+    value: function update(e) {
+      this.setState({
+        "title": e.currentTarget.value
+      });
+    }
+  }, {
+    key: "handleCheck",
+    value: function handleCheck() {
+      this.setState({
+        "secret": !this.state.secret
+      });
+      var checkbox = document.getElementById('visibility-checkbox');
+
+      if (this.state.secret) {
+        checkbox.firstChild.style.opacity = 1.0;
+      } else {
+        checkbox.firstChild.style.opacity = 0.0;
+      }
+
+      ;
+    }
+  }, {
+    key: "handleClose",
+    value: function handleClose(e) {
+      e.preventDefault();
+      this.props.closeModal();
+    }
+  }, {
+    key: "handleCreate",
+    value: function handleCreate(e) {
+      e.preventDefault();
+      debugger;
+      this.props.processForm(this.state);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -669,7 +709,8 @@ function (_React$Component) {
         id: "close-button-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "create-board",
-        id: "close-button"
+        id: "close-button",
+        onClick: this.handleClose
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board",
         id: "close-icon-container"
@@ -698,29 +739,44 @@ function (_React$Component) {
         htmlFor: "name-input",
         className: "create-board label",
         id: "name-label"
-      }, "Name")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board label-content"
+      }, "Name"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board input-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        className: "create-board",
+        className: "create-board name-input",
         id: "name-input",
-        placeholder: "Like \"Places to Go\" or \"Recipes to Make\""
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        placeholder: "Like \"Places to Go\" or \"Recipes to Make\"",
+        onChange: this.update
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board error-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board error"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "create-board error-content"
+      })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board field-container",
         id: "visibility"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board label-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "name-input",
+        htmlFor: "visibility-input",
         className: "create-board label",
         id: "visibility-label"
-      }, "Visibility")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-board input-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board label-content",
+        onClick: this.handleCheck
+      }, "Visibility"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board input-container secret"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board",
-        id: "visibility-input"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "visibility-checkbox",
+        onClick: this.handleCheck
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-check-square",
+        id: "visibility-checked"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board",
         id: "visibility-note"
       }, "Keep this board secret.")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -734,13 +790,15 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board button-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "create-board",
-        id: "cancel"
+        className: "create-board button",
+        id: "cancel",
+        onClick: this.handleCancel
       }, "Cancel")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board button-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "create-board",
-        id: "create"
+        className: "create-board button",
+        id: "create",
+        onClick: this.handleCreate
       }, "Create"))))))))))));
     }
   }]);

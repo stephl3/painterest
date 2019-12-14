@@ -4,6 +4,36 @@ class CreateBoardForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.board
+
+    this.update = this.update.bind(this);
+    this.handleCheck = this.handleCheck.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleCreate = this.handleCreate.bind(this);
+  }
+
+  update(e) {
+    this.setState({ "title": e.currentTarget.value });
+  }
+
+  handleCheck() {
+    this.setState({ "secret": !this.state.secret });
+    const checkbox = document.getElementById('visibility-checkbox');
+    if (this.state.secret) {
+      checkbox.firstChild.style.opacity = 1.0;
+    } else {
+      checkbox.firstChild.style.opacity = 0.0;
+    };
+  }
+
+  handleClose(e) {
+    e.preventDefault();
+    this.props.closeModal();
+  }
+
+  handleCreate(e) {
+    e.preventDefault();
+    debugger;
+    this.props.processForm(this.state);
   }
 
   render() {
@@ -20,7 +50,11 @@ class CreateBoardForm extends React.Component {
                 </h1>
               </div>
               <div className="create-board" id="close-button-container">
-                <button className="create-board" id="close-button">
+                <button
+                  className="create-board"
+                  id="close-button"
+                  onClick={this.handleClose}
+                >
                   <div className="create-board" id="close-icon-container">
                     <i className="fas fa-times create-board" id="close-icon"></i>
                   </div>
@@ -37,33 +71,50 @@ class CreateBoardForm extends React.Component {
                           htmlFor="name-input"
                           className="create-board label"
                           id="name-label">
-                          Name
+                          <div className="create-board label-content">
+                            Name
+                          </div>
                         </label>
                       </div>
                       <div className="create-board input-container">
-                        <input
-                          type="text"
-                          className="create-board"
-                          id="name-input"
-                          placeholder='Like "Places to Go" or "Recipes to Make"'
-                        />
+                        <span>
+                          <input
+                            type="text"
+                            className="create-board name-input"
+                            id="name-input"
+                            placeholder='Like "Places to Go" or "Recipes to Make"'
+                            onChange={this.update}
+                          />
+                          <div className="create-board error-container">
+                            <div className="create-board error">
+                              <span className="create-board error-content"></span>
+                            </div>
+                          </div>
+                        </span>
                       </div>
                     </div>
                     <div className="create-board field-container" id="visibility">
                       <div className="create-board label-container">
                         <label
-                          htmlFor="name-input"
+                          htmlFor="visibility-input"
                           className="create-board label"
                           id="visibility-label">
-                          Visibility
+                          <div
+                            className="create-board label-content"
+                            onClick={this.handleCheck}
+                          >
+                            Visibility
+                          </div>
                         </label>
                       </div>
-                      <div className="create-board input-container">
-                        <input
-                          type="checkbox"
+                      <div className="create-board input-container secret">
+                        <div
                           className="create-board"
-                          id="visibility-input"
-                        />
+                          id="visibility-checkbox"
+                          onClick={this.handleCheck}
+                        >
+                          <i className="fas fa-check-square" id="visibility-checked"></i>
+                        </div>
                         <div className="create-board" id="visibility-note">
                           Keep this board secret.
                         </div>
@@ -76,15 +127,19 @@ class CreateBoardForm extends React.Component {
                         <div className="create-board buttons">
                           <div className="create-board button-container">
                             <button
-                              className="create-board"
-                              id="cancel">
+                              className="create-board button"
+                              id="cancel"
+                              onClick={this.handleCancel}
+                            >
                               Cancel
                             </button>
                           </div>
                           <div className="create-board button-container">
                             <button
-                              className="create-board"
-                              id="create">
+                              className="create-board button"
+                              id="create"
+                              onClick={this.handleCreate}
+                            >
                               Create
                             </button>
                           </div>
