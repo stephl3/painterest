@@ -13,8 +13,8 @@ import { openModal } from "../../actions/modal_actions";
 import PinIndex from "./pin_index";
 
 const mapStateToProps =(state, ownProps) => ({
-  currentUser: state.entities.users[state.session.id],
-  pins: Object.values(state.entities.pins)
+  pins: ownProps.pins,
+  user: ownProps.user,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => ({
   // updatePin: pin => dispatch(updatePin(pin)),
   deleteBoardPin: boardPinId => dispatch(deleteBoardPin(boardPinId)),
   createBoardPin: boardPin => dispatch(createBoardPin(boardPin)),
-  openModal: modal => dispatch(openModal(modal))
+  editPin: () => dispatch(openModal("edit-pin")),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PinIndex);
