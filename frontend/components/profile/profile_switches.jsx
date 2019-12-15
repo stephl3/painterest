@@ -3,24 +3,34 @@ import { Route, Link, NavLink } from "react-router-dom";
 
 const ProfileSwitches = ({ user, selectedSwitch, onSwitchClick, tabs }) => {
   const switches = tabs.map((tab, idx) => {
-    let selected = (idx === selectedSwitch ? "active" : "");
-    let url, label;
-    (idx === 0) ? (
-      url = "boards", label = "Boards"
-    ) : (
-      url = "pins", label = "Pins"
-    );
+    const label = (idx === 0) ? "Boards" : "Pins";
 
-    return (
+    return (idx === 0) ? (
       <NavLink
         key={idx}
-        to={`/${user.username}/${url}`}
-        className={`profile-switch-link ${selected}`}
+        to={`/${user.username}/${label.toLowerCase()}`}
+        isActive={() => {
+          if (!window.location.hash.includes("/pins")) {
+            return true;
+          }
+        }}
+        className={`profile-switch-link`}
+        activeStyle={{ backgroundColor: '#efefef', color: '#333' }}
         onClick={() => onSwitchClick(idx)}
       >
         <div className="profile-switch-link-label">{label}</div>
       </NavLink>
-    )
+    ) : (
+        <NavLink
+          key={idx}
+          to={`/${user.username}/${label.toLowerCase()}`}
+          className={`profile-switch-link`}
+          activeStyle={{ backgroundColor: '#efefef', color: '#333' }}
+          onClick={() => onSwitchClick(idx)}
+        >
+          <div className="profile-switch-link-label">{label}</div>
+        </NavLink>
+    );
   });
 
   return (

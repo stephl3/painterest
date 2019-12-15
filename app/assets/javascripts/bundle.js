@@ -3047,13 +3047,33 @@ var ProfileSwitches = function ProfileSwitches(_ref) {
       onSwitchClick = _ref.onSwitchClick,
       tabs = _ref.tabs;
   var switches = tabs.map(function (tab, idx) {
-    var selected = idx === selectedSwitch ? "active" : "";
-    var url, label;
-    idx === 0 ? (url = "boards", label = "Boards") : (url = "pins", label = "Pins");
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+    var label = idx === 0 ? "Boards" : "Pins";
+    return idx === 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
       key: idx,
-      to: "/".concat(user.username, "/").concat(url),
-      className: "profile-switch-link ".concat(selected),
+      to: "/".concat(user.username, "/").concat(label.toLowerCase()),
+      isActive: function isActive() {
+        if (!window.location.hash.includes("/pins")) {
+          return true;
+        }
+      },
+      className: "profile-switch-link",
+      activeStyle: {
+        backgroundColor: '#efefef',
+        color: '#333'
+      },
+      onClick: function onClick() {
+        return onSwitchClick(idx);
+      }
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "profile-switch-link-label"
+    }, label)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+      key: idx,
+      to: "/".concat(user.username, "/").concat(label.toLowerCase()),
+      className: "profile-switch-link",
+      activeStyle: {
+        backgroundColor: '#efefef',
+        color: '#333'
+      },
       onClick: function onClick() {
         return onSwitchClick(idx);
       }
