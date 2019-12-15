@@ -31,7 +31,7 @@ class Api::UsersController < ApplicationController
 
   private
   def selected_user
-    User.find(params[:id])
+    User.includes(:boards).includes(:pins).find(params[:id])
   end
   
   def new_user_params
