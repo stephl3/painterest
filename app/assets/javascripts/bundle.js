@@ -1179,6 +1179,21 @@ var Modal = function Modal(_ref) {
       clickBackground = closeModal;
       break;
 
+    case "delete-board":
+      // component = <DeleteBoardContainer />;
+      clickBackground = null;
+      break;
+
+    case "edit-pin":
+      // component = <EditPinFormContainer />;
+      clickBackground = closeModal;
+      break;
+
+    case "delete-pin":
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DeletePinContainer, null);
+      clickBackground = openModal('edit-pin');
+      break;
+
     default:
       return null;
   }

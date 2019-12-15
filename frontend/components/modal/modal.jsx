@@ -36,6 +36,18 @@ const Modal = ({ modal, openModal, closeModal }) => {
       component = <EditBoardFormContainer />;
       clickBackground = closeModal;
       break;
+    case "delete-board":
+      // component = <DeleteBoardContainer />;
+      clickBackground = null;
+      break;
+    case "edit-pin":
+      // component = <EditPinFormContainer />;
+      clickBackground = closeModal;
+      break;
+    case "delete-pin":
+      component = <DeletePinContainer />;
+      clickBackground = openModal('edit-pin');
+      break;
     default:
       return null;
   }
