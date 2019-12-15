@@ -20,21 +20,15 @@ class ProfileContent extends React.Component {
   }
 
   render() {
-    const { user, openModal, closeModal } = this.props;
+    const { user, boards, pins, openModal, closeModal } = this.props;
     const contentTabs = [
-      <BoardIndexContainer
-        boards={user.boards}
-        user={user}
-      />,
-      <PinIndexContainer
-        pins={user.pins}
-        user={user}
-      />
+      <BoardIndexContainer boards={boards} />,
+      <PinIndexContainer pins={pins} />
     ];
     const selectedTab = contentTabs[this.state.selectedSwitch];
 
     return (
-      <div id="profile-content-wrapper">
+      <div id="profile-content">
         <div id="profile-switches-wrapper">
           <ProfileSwitches
             user={user}

@@ -6,14 +6,29 @@ import BoardIndexItem from './board_index_item';
 class BoardIndex extends Component {
   constructor(props) {
     super(props);
+  }
 
+  componentDidMount() {
+    // this.props.fetchSingleUser(this.props.user.id);
+    // this.props.fetchAllBoardsPins();
   }
 
   render() {
-    const { } = this.props;
+    const { boards, user } = this.props;
+    const getBoardIndexItems = (
+      boards.map(board => (
+        <BoardIndexItem
+          key={board.id}
+          board={board}
+          pins={board}
+          user={user}
+        />
+      ))
+    );
+
     return (
-      <div>
-        
+      <div className="board-index">
+        {getBoardIndexItems}
       </div>
     )
   }

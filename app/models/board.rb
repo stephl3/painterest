@@ -20,6 +20,8 @@ class Board < ApplicationRecord
   belongs_to :user
 
   has_many :boards_pins,
+    class_name: :BoardsPins,
+    foreign_key: :board_id,
     dependent: :destroy
     
   has_many :pins,

@@ -432,6 +432,11 @@
   right: 0;
 }
 
+
+#profile-content-container {}
+
+#profile-content {}
+
 #profile-switches-wrapper {
   justify-content: center;
   box-sizing: border-box;
@@ -503,8 +508,8 @@
   -webkit-font-smoothing: antialiased;
 }
 
-
-/* PROFILE CONTENT */
-#profile-content-container {
-
+#profile-tab-wrapper {
+  box-sizing: border-box;
+  overflow: hidden;
+  margin-bottom: 24px;
 }

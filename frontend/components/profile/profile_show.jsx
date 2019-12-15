@@ -9,9 +9,12 @@ class ProfileShow extends React.Component {
     super(props);
   }
 
-  render() {
-    const { currentUser, openModal, closeModal } = this.props;
+  componentDidMount() {
+    this.props.fetchSingleUser(this.props.currentUser.id);
+  }
 
+  render() {
+    const { currentUser, boards, pins, openModal, closeModal } = this.props;
     return (
       <div id="profile-background">
         <div id="profile-container">
@@ -26,6 +29,8 @@ class ProfileShow extends React.Component {
             <div id="profile-content-container">
               <ProfileContent
                 user={currentUser}
+                boards={boards}
+                pins={pins}
                 openModal={openModal}
                 closeModal={closeModal}
               />

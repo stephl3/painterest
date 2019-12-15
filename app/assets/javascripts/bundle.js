@@ -495,10 +495,10 @@ var receiveAllUsers = function receiveAllUsers(users) {
   };
 };
 
-var receiveSingleUser = function receiveSingleUser(user) {
+var receiveSingleUser = function receiveSingleUser(payload) {
   return {
     type: RECEIVE_SINGLE_USER,
-    user: user
+    payload: payload
   };
 };
 
@@ -609,8 +609,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _board_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./board_index_item */ "./frontend/components/board/board_index_item.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -642,11 +640,27 @@ function (_Component) {
   }
 
   _createClass(BoardIndex, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {// this.props.fetchSingleUser(this.props.user.id);
+      // this.props.fetchAllBoardsPins();
+    }
+  }, {
     key: "render",
     value: function render() {
-      _objectDestructuringEmpty(this.props);
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+      var _this$props = this.props,
+          boards = _this$props.boards,
+          user = _this$props.user;
+      var getBoardIndexItems = boards.map(function (board) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: board.id,
+          board: board,
+          pins: board,
+          user: user
+        });
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-index"
+      }, getBoardIndexItems);
     }
   }]);
 
@@ -674,6 +688,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _board_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./board_index */ "./frontend/components/board/board_index.jsx");
 
+ // import { fetchSingleUser } from "../../actions/user_actions";
 
 
 
@@ -682,15 +697,16 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    boards: ownProps.boards,
-    user: ownProps.user,
-    pinnings: state.entities.boardsPins,
-    pins: state.entities.pins
+    boards: Object.values(ownProps.boards),
+    boardsPins: state.entities.boardsPins,
+    pins: state.entities.pins,
+    user: state.entities.users[state.session.id]
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    // fetchSingleUser: id => dispatch(fetchSingleUser(id)),
     fetchBoards: function fetchBoards() {
       return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_2__["fetchBoards"])());
     },
@@ -728,11 +744,11 @@ __webpack_require__.r(__webpack_exports__);
 var BoardIndexItem = function BoardIndexItem(_ref) {
   var board = _ref.board;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "board-index item-container"
+    className: "board-index-item-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "board-index masonry-item",
+    className: "board-index-item",
     id: "item"
-  }));
+  }, board.title, board.description));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (BoardIndexItem);
@@ -1952,8 +1968,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    pins: ownProps.pins,
-    user: ownProps.user
+    pins: state.entities.pins,
+    user: state.entities.users[state.session.id]
   };
 };
 
@@ -2525,18 +2541,18 @@ function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           user = _this$props.user,
+          boards = _this$props.boards,
+          pins = _this$props.pins,
           openModal = _this$props.openModal,
           closeModal = _this$props.closeModal;
       var contentTabs = [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        boards: user.boards,
-        user: user
+        boards: boards
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_pin_index_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        pins: user.pins,
-        user: user
+        pins: pins
       })];
       var selectedTab = contentTabs[this.state.selectedSwitch];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "profile-content-wrapper"
+        id: "profile-content"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "profile-switches-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_switches__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -2917,10 +2933,17 @@ function (_React$Component) {
   }
 
   _createClass(ProfileShow, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchSingleUser(this.props.currentUser.id);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
+          boards = _this$props.boards,
+          pins = _this$props.pins,
           openModal = _this$props.openModal,
           closeModal = _this$props.closeModal;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2939,6 +2962,8 @@ function (_React$Component) {
         id: "profile-content-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_content__WEBPACK_IMPORTED_MODULE_3__["default"], {
         user: currentUser,
+        boards: boards,
+        pins: pins,
         openModal: openModal,
         closeModal: closeModal
       })))));
@@ -2965,8 +2990,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _profile_show__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile_show */ "./frontend/components/profile/profile_show.jsx");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _profile_show__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profile_show */ "./frontend/components/profile/profile_show.jsx");
+
 
 
 
@@ -2974,22 +3001,28 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    currentUser: state.entities.users[state.session.id]
+    currentUser: state.entities.users[state.session.id],
+    boards: state.entities.boards,
+    boardsPins: state.entities.boardsPins,
+    pins: state.entities.pins
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    fetchSingleUser: function fetchSingleUser(id) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["fetchSingleUser"])(id));
+    },
     openModal: function openModal(modal) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["openModal"])(modal));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])(modal));
     },
     closeModal: function closeModal() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["closeModal"])());
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_profile_show__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_profile_show__WEBPACK_IMPORTED_MODULE_4__["default"]));
 
 /***/ }),
 
@@ -3558,8 +3591,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/board_pin_actions */ "./frontend/actions/board_pin_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/board_pin_actions */ "./frontend/actions/board_pin_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -3570,13 +3605,16 @@ var BoardsPinsReducer = function BoardsPinsReducer() {
   var nextState = Object.assign({}, oldState);
 
   switch (action.type) {
-    case _actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_BOARDS_PINS"]:
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SINGLE_USER"]:
+      return Object.assign(nextState, action.payload.boardsPins);
+
+    case _actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ALL_BOARDS_PINS"]:
       return action.boardsPins;
 
-    case _actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_BOARD_PIN"]:
+    case _actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARD_PIN"]:
       return Object.assign({}, nextState, _defineProperty({}, action.boardPin.id, action.boardPin));
 
-    case _actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_BOARD_PIN"]:
+    case _actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_BOARD_PIN"]:
       delete nextState[action.boardPinId];
       return nextState;
 
@@ -3598,8 +3636,10 @@ var BoardsPinsReducer = function BoardsPinsReducer() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/board_actions */ "./frontend/actions/board_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -3610,13 +3650,16 @@ var BoardsReducer = function BoardsReducer() {
   var nextState = Object.assign({}, oldState);
 
   switch (action.type) {
-    case _actions_board_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_BOARDS"]:
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SINGLE_USER"]:
+      return Object.assign(nextState, action.payload.boards);
+
+    case _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARDS"]:
       return action.boards;
 
-    case _actions_board_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_BOARD"]:
-      return Object.assign({}, nextState, _defineProperty({}, action.board.id, action.board));
+    case _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARD"]:
+      return Object.assign(nextState, _defineProperty({}, action.board.id, action.board));
 
-    case _actions_board_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_BOARD"]:
+    case _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_BOARD"]:
       delete nextState[action.boardId];
       return nextState;
 
@@ -3727,8 +3770,10 @@ var ModalReducer = function ModalReducer() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/pin_actions */ "./frontend/actions/pin_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/pin_actions */ "./frontend/actions/pin_actions.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -3739,13 +3784,16 @@ var PinsReducer = function PinsReducer() {
   var nextState = Object.assign({}, oldState);
 
   switch (action.type) {
-    case _actions_pin_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PINS"]:
+    case _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SINGLE_USER"]:
+      return Object.assign(nextState, action.payload.pins);
+
+    case _actions_pin_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_PINS"]:
       return action.pins;
 
-    case _actions_pin_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PIN"]:
-      return Object.assign({}, nextState, _defineProperty({}, action.pin.id, action.pin));
+    case _actions_pin_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_PIN"]:
+      return Object.assign(nextState, _defineProperty({}, action.pin.id, action.pin));
 
-    case _actions_pin_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_PIN"]:
+    case _actions_pin_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_PIN"]:
       delete nextState[action.pinId];
       return nextState;
 
@@ -3906,16 +3954,17 @@ var UsersReducer = function UsersReducer() {
   var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(oldState);
+  var nextState = Object.assign({}, oldState);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      return Object.assign({}, oldState, _defineProperty({}, action.currentUser.id, action.currentUser));
+      return Object.assign(nextState, _defineProperty({}, action.currentUser.id, action.currentUser));
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_ALL_USERS"]:
       return action.users;
 
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_SINGLE_USER"]:
-      return Object.assign({}, oldState, _defineProperty({}, action.user.id, action.user));
+      return Object.assign(nextState, action.payload.user);
 
     default:
       return oldState;

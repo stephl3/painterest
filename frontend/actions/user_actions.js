@@ -11,9 +11,9 @@ const receiveAllUsers = users => ({
   users
 });
 
-const receiveSingleUser = user => ({
+const receiveSingleUser = payload => ({
   type: RECEIVE_SINGLE_USER,
-  user
+  payload
 });
 
 const receiveUserErrors = errors => ({

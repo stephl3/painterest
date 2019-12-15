@@ -13,8 +13,8 @@ import { openModal } from "../../actions/modal_actions";
 import PinIndex from "./pin_index";
 
 const mapStateToProps =(state, ownProps) => ({
-  pins: ownProps.pins,
-  user: ownProps.user,
+  pins: state.entities.pins,
+  user: state.entities.users[state.session.id],
 });
 
 const mapDispatchToProps = dispatch => ({
