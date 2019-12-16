@@ -24,6 +24,18 @@ class BoardIndex extends Component {
     return (
       <div className="board-index">
         {getBoardIndexItems}
+        <div className="board-index-item filler"></div>
+        <div className="board-index-item filler"></div>
+        <div className="board-index-item filler"></div>
+        <div className="board-index-item filler"></div>
+        <div className="board-index-item filler"></div>
+        <div className="board-index-item filler"></div>
+        <div className="board-index-item filler"></div>
+        <div className="board-index-item filler"></div>
+        <div className="board-index-item filler"></div>
+        <div className="board-index-item filler"></div>
+        <div className="board-index-item filler"></div>
+        <div className="board-index-item filler"></div>
       </div>
     )
   }

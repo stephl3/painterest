@@ -655,7 +655,31 @@ function (_Component) {
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-index"
-      }, getBoardIndexItems);
+      }, getBoardIndexItems, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-index-item filler"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-index-item filler"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-index-item filler"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-index-item filler"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-index-item filler"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-index-item filler"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-index-item filler"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-index-item filler"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-index-item filler"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-index-item filler"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-index-item filler"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-index-item filler"
+      }));
     }
   }]);
 
@@ -737,16 +761,44 @@ __webpack_require__.r(__webpack_exports__);
  // import LinesEllipsis from "react-lines-ellipsis";
 
 var BoardIndexItem = function BoardIndexItem(_ref) {
-  var board = _ref.board;
+  var board = _ref.board,
+      pins = _ref.pins,
+      user = _ref.user;
+  var numPins = board.pinIds.length;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "board-index-item"
+    className: "board-index-item inner-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "board-index-item hover-overlay"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/".concat(user.username, "/").concat(board.title),
+    className: "board-index-item link"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "board-index-item content"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item pins-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item pins"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "board-index-item pin",
+    id: "a"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "board-index-item pin",
+    id: "b"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "board-index-item pin",
+    id: "c"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "board-index-item pin",
+    id: "d"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "board-index-item pin",
+    id: "e"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "board-index-item pin",
+    id: "f"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item info"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item info-details"
@@ -757,14 +809,16 @@ var BoardIndexItem = function BoardIndexItem(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item visibility"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    "class": "fas fa-lock"
+    className: "fas fa-lock board-index-item",
+    id: "lock-icon"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item pin-count"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "board-index-item edit-button-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    "class": "fas fa-pencil-alt"
-  }))))));
+  }, numPins, " Pins"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "board-index-item edit-button"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-pencil-alt board-index-item",
+    id: "edit-icon"
+  }))))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (BoardIndexItem);
