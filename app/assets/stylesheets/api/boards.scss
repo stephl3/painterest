@@ -342,10 +342,6 @@
   box-sizing: border-box;
 }
 
-.board-index-item.inner-container {
-  position: relative;
-}
-
 .board-index-item.hover-overlay {
   border-radius: 8px;
   box-sizing: content-box;
@@ -359,20 +355,25 @@
   pointer-events: none;
   width: 105%;
   height: 105%;
-  opacity: 0.1;
-  transition: opacity .2s ease-in-out;
-  &:hover {
-    opacity: 1;
-  }
+  opacity: 0;
+  transition: opacity .2s ease;
 }
 
 .board-index-item.link {
   color: #333;
-  text-decoration: none;
+  text-decoration: none;  
 }
 
 .board-index-item.content {
   position: relative;
+  &:hover {
+    .hover-overlay {
+      opacity: 1;
+    }
+    .edit-button {
+      opacity: 1;
+    }
+  }
 }
 
 .board-index-item.pins-container {
@@ -506,6 +507,7 @@
 
 .board-index-item.edit-button {
   border: none;
+  margin: 4px;
   height: 40px;
   width: 40px;
   border-radius: 50%;
@@ -513,6 +515,7 @@
   align-items: center;
   display: flex;
   background-color: transparent;
+  opacity: 0;
   &:hover {
     background-color: #efefef;
   }
