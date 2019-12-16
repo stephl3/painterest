@@ -2059,7 +2059,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    pins: Object.values(ownProps.pins),
+    pins: Object.values(state.entities.pins),
+    // pins: Object.values(ownProps.pins),
     user: state.entities.users[state.session.id]
   };
 };
