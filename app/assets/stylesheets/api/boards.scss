@@ -392,46 +392,51 @@
 }
 
 .board-index-item.pin {
-  width: 98.6667px;
   position: absolute;
+  width: 98.6667px;
   background-color: #efefef;
+  &#a {
+    top: 0px;
+    left: 0px;
+    height: 99px;
+  }
+  
+  &#b {
+    top: 0px;
+    left: 100.667px;
+    height: 48.5px;
+  }
+  
+  &#c {
+    top: 0px;
+    left: 201.333px;
+    height: 99px;
+  }
+  
+  &#d {
+    top: 50.5px;
+    left: 100.667px;
+    height: 149.5px;
+  }
+  
+  &#e {
+    top: 101px;
+    left: 0px;
+    height: 99px;
+  }
+  
+  &#f {
+    top: 101px;
+    left: 201.333px;
+    height: 99px;
+  }
+  & img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
 }
 
-.board-index-item.pin#a {
-  top: 0px;
-  left: 0px;
-  height: 99px;
-}
-
-.board-index-item.pin#b {
-  top: 0px;
-  left: 100.667px;
-  height: 48.5px;
-}
-
-.board-index-item.pin#c {
-  top: 0px;
-  left: 201.333px;
-  height: 99px;
-}
-
-.board-index-item.pin#d {
-  top: 50.5px;
-  left: 100.667px;
-  height: 149.5px;
-}
-
-.board-index-item.pin#e {
-  top: 101px;
-  left: 0px;
-  height: 99px;
-}
-
-.board-index-item.pin#f {
-  top: 101px;
-  left: 201.333px;
-  height: 99px;
-}
 
 .board-index-item.info {
   display: flex;

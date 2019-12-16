@@ -644,12 +644,17 @@ function (_Component) {
     value: function render() {
       var _this$props = this.props,
           boards = _this$props.boards,
+          pins = _this$props.pins,
           user = _this$props.user;
       var getBoardIndexItems = boards.map(function (board) {
+        var prevPinIds = board.pinIds.slice(0, 6);
+        var previewPins = prevPinIds.map(function (pinId) {
+          return pins[pinId];
+        });
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: board.id,
           board: board,
-          pins: board,
+          pins: previewPins,
           user: user
         });
       });
@@ -765,6 +770,24 @@ var BoardIndexItem = function BoardIndexItem(_ref) {
       pins = _ref.pins,
       user = _ref.user;
   var numPins = board.pinIds.length;
+  var pinA = pins[0] ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "".concat(pins[0].photo)
+  }) : null;
+  var pinB = pins[1] ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "".concat(pins[1].photo)
+  }) : null;
+  var pinC = pins[2] ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "".concat(pins[2].photo)
+  }) : null;
+  var pinD = pins[3] ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "".concat(pins[3].photo)
+  }) : null;
+  var pinE = pins[4] ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "".concat(pins[4].photo)
+  }) : null;
+  var pinF = pins[5] ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "".concat(pins[5].photo)
+  }) : null;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -781,22 +804,22 @@ var BoardIndexItem = function BoardIndexItem(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item pin",
     id: "a"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, pinA), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item pin",
     id: "b"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, pinB), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item pin",
     id: "c"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, pinC), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item pin",
     id: "d"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, pinD), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item pin",
     id: "e"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, pinE), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item pin",
     id: "f"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, pinF))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item info"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item info-details"
@@ -36747,7 +36770,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

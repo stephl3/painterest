@@ -9,16 +9,22 @@ class BoardIndex extends Component {
   }
 
   render() {
-    const { boards, user } = this.props;
+    const { boards, pins, user } = this.props;
     const getBoardIndexItems = (
-      boards.map(board => (
-        <BoardIndexItem
-          key={board.id}
-          board={board}
-          pins={board}
-          user={user}
-        />
-      ))
+      boards.map(board => {
+        const prevPinIds = board.pinIds.slice(0, 6);
+        const previewPins = prevPinIds.map((pinId) => {
+          return pins[pinId];
+        });
+        return (
+          <BoardIndexItem
+            key={board.id}
+            board={board}
+            pins={previewPins}
+            user={user}
+          />
+        )
+      })
     );
 
     return (

@@ -6,7 +6,13 @@ import { Link, withRouter } from "react-router-dom";
 
 
 const BoardIndexItem = ({ board, pins, user }) => {
-  const numPins = board.pinIds.length
+  const numPins = board.pinIds.length;
+  const pinA = (pins[0]) ? <img src={`${pins[0].photo}`}></img> : null;
+  const pinB = (pins[1]) ? <img src={`${pins[1].photo}`}></img> : null;
+  const pinC = (pins[2]) ? <img src={`${pins[2].photo}`}></img> : null;
+  const pinD = (pins[3]) ? <img src={`${pins[3].photo}`}></img> : null;
+  const pinE = (pins[4]) ? <img src={`${pins[4].photo}`}></img> : null;
+  const pinF = (pins[5]) ? <img src={`${pins[5].photo}`}></img> : null;
 
   return (
     <div className="board-index-item container">
@@ -19,12 +25,12 @@ const BoardIndexItem = ({ board, pins, user }) => {
           <div>
             <div className="board-index-item pins-container">
               <div className="board-index-item pins">
-                <div className="board-index-item pin" id="a"></div>
-                <div className="board-index-item pin" id="b"></div>
-                <div className="board-index-item pin" id="c"></div>
-                <div className="board-index-item pin" id="d"></div>
-                <div className="board-index-item pin" id="e"></div>
-                <div className="board-index-item pin" id="f"></div>
+                <div className="board-index-item pin" id="a">{pinA}</div>
+                <div className="board-index-item pin" id="b">{pinB}</div>
+                <div className="board-index-item pin" id="c">{pinC}</div>
+                <div className="board-index-item pin" id="d">{pinD}</div>
+                <div className="board-index-item pin" id="e">{pinE}</div>
+                <div className="board-index-item pin" id="f">{pinF}</div>
               </div>
             </div>
             <div className="board-index-item info">
