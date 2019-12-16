@@ -14,12 +14,12 @@ class Api::BoardsController < ApplicationController
   end
   
   def show
-    @board = Board.find(params[:id])
+    @board = Board.find(params[:id]).includes(:pins)
     render "api/boards/show"
   end
   
   def index
-    @boards = Board.all
+    @boards = Board.all.includes(:pins)
     render "api/boards/index"
   end
 

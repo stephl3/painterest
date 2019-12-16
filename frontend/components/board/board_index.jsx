@@ -8,11 +8,6 @@ class BoardIndex extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    // this.props.fetchSingleUser(this.props.user.id);
-    // this.props.fetchAllBoardsPins();
-  }
-
   render() {
     const { boards, user } = this.props;
     const getBoardIndexItems = (

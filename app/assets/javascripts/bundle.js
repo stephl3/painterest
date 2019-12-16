@@ -640,11 +640,6 @@ function (_Component) {
   }
 
   _createClass(BoardIndex, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {// this.props.fetchSingleUser(this.props.user.id);
-      // this.props.fetchAllBoardsPins();
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -744,11 +739,32 @@ __webpack_require__.r(__webpack_exports__);
 var BoardIndexItem = function BoardIndexItem(_ref) {
   var board = _ref.board;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "board-index-item-container"
+    className: "board-index-item container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "board-index-item",
-    id: "item"
-  }, board.title, board.description));
+    className: "board-index-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "board-index-item pins-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "board-index-item pins"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "board-index-item info"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "board-index-item info-details"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "board-index-item title"
+  }, board.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "board-index-item additional"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "board-index-item visibility"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    "class": "fas fa-lock"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "board-index-item pin-count"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "board-index-item edit-button-container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    "class": "fas fa-pencil-alt"
+  }))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (BoardIndexItem);
