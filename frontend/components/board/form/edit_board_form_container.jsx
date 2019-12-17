@@ -8,12 +8,12 @@ import EditBoardForm from "./edit_board_form";
 const mapStateToProps = (state) => ({
   board: state.entities.boards[state.ui.objectId],
   errors: state.errors.board,
-  formType: "Edit your board"
+  formTitle: "Edit your board"
 });
 
 const mapDispatchToProps = dispatch => ({
   processForm: (board) => dispatch(updateBoard(board)),
-  deleteBoard: (id) => dispatch(openModal('delete-board', id)),
+  openDeleteBoard: (boardId) => dispatch(openModal('delete-board', boardId)),
   closeModal: () => dispatch(closeModal())
 });
 

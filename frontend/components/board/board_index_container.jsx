@@ -16,12 +16,12 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchSingleUser: id => dispatch(fetchSingleUser(id)),
+  fetchSingleUser: userId => dispatch(fetchSingleUser(userId)),
   fetchBoards: () => dispatch(fetchBoards()),
   fetchAllBoardsPins: () => dispatch(fetchAllBoardsPins()),
   fetchBoard: (boardId) => dispatch(fetchBoard(boardId)),
   newBoard: () => dispatch(openModal("new-board")),
-  editBoard: (id) => dispatch(openModal("edit-board", id)), // UPDATE MODAL ACTION
+  openEditBoard: (boardId) => dispatch(openModal("edit-board", boardId)), // UPDATE MODAL ACTION
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BoardIndex);

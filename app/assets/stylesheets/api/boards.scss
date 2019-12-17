@@ -2,7 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// CREATE BOARD
+////////////////////////////////////////////////////////////////////
+/////////////////////////// CREATE BOARD ///////////////////////////
+////////////////////////////////////////////////////////////////////
 #create-board-container {
   position: relative;
 }
@@ -321,7 +323,9 @@
 
 
 
-// ALL BOARDS
+////////////////////////////////////////////////////////////////////
+/////////////////////////// BOARD INDEX ////////////////////////////
+////////////////////////////////////////////////////////////////////
 .board-index {
   box-sizing: border-box;
   justify-content: center;
@@ -540,14 +544,18 @@
 
 
 
-// SHOW BOARD
+////////////////////////////////////////////////////////////////////
+//////////////////////////// BOARD SHOW ////////////////////////////
+////////////////////////////////////////////////////////////////////
 .board-show.container {
   margin-top: 65px;
 }
 
 
 
-// EDIT BOARD
+////////////////////////////////////////////////////////////////////
+//////////////////////////// EDIT BOARD ////////////////////////////
+////////////////////////////////////////////////////////////////////
 .edit-board.container {
   max-width: 600px;
   width: 100%;
@@ -692,32 +700,165 @@
 
 
 .edit-board.footer {
+  box-sizing: border-box;
+  padding: 8px 16px;
   display: flex;
+  flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
 }
 
-.edit-board.left-footer {
-  
+.edit-board.footer-part {
+  box-sizing: border-box;
+  margin: 0 -8px;
+  padding: 8px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.edit-board.delete-button {
-
+.edit-board.button {
+  box-sizing: border-box;
+  margin: 0 8px;
+  border: 0;
+  box-sizing: border-box;
+  border-radius: 8px;
+  min-height: 40px;
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px 14px;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  &.delete,
+  &.cancel {
+    background-color: #efefef;
+    color: #333;
+    &:hover {
+      background-color: #e2e2e2;
+    }
+  }
+  &.save {
+    background-color: #e60023;
+    color: #fff;
+    &:hover {
+      background-color: #ad081b;
+    }
+  }
 }
 
-.edit-board.right-footer {
-  
-}
 
 .edit-board.cancel-button {
 
 }
 
 .edit-board.save-button {
-  
+
 }
 
 
+////////////////////////////////////////////////////////////////////
+/////////////////////////// DELETE BOARD ///////////////////////////
+////////////////////////////////////////////////////////////////////
+.delete-board.container {
+  border-radius: 6px;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.22);
+  margin: auto;
+  max-height: 200%;
+  position: relative;
+  width: 380px;
+}
 
+.delete-board.form {
+  background-color: #fff;
+  border-radius: 6px;
+  margin-bottom: 0;
+  width: auto;
+  margin: 0 auto 70px;
+  max-width: 734px;
+}
 
-// DELETE BOARD
+.delete-board.header {
+  box-sizing: border-box;
+  border-bottom: 1px solid #efefef;
+  padding: 16px 48px;
+}
+
+.delete-board.form-title {
+  text-align: center;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  font-weight: 700;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 21px;
+  color: #333;
+}
+
+.delete-board.body {
+  color: #333;
+  font-size: 14px;
+  line-height: 21px;
+  padding: 21px;
+}
+
+.delete-board.confirmation-message {
+  text-align: left;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  font-weight: 400;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  color: #333;
+}
+
+.delete-board.footer {}
+
+.delete-board.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  padding: 12px 20px;
+}
+
+.delete-board.button {
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 0;
+  padding: 10px 14px;
+  min-height: 40px;
+  display: inline-block;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  &.delete {
+    margin-right: 8px;
+    background-color: #efefef;
+    color: #333;
+    &:hover {
+      background-color: #e2e2e2;
+    }
+  }
+  &.cancel {
+    background-color: #e60023;
+    color: #fff;
+    &:hover {
+      background-color: #ad081b;
+    }
+  }
+}

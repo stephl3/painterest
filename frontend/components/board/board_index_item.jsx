@@ -5,7 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 
 
 
-const BoardIndexItem = ({ board, pins, user, editBoard }) => {
+const BoardIndexItem = ({ board, pins, user, openEditBoard }) => {
   const numPins = board.pinIds.length;
   const pinA = (pins[0]) ? <img src={`${pins[0].photo}`}></img> : null;
   const pinB = (pins[1]) ? <img src={`${pins[1].photo}`}></img> : null;
@@ -57,7 +57,10 @@ const BoardIndexItem = ({ board, pins, user, editBoard }) => {
                   </div>
                 </div>
               </div>
-              <button className="board-index-item edit-button" onClick={(e, boardId) => editBoard(e, board.id)}>
+              <button
+                className="board-index-item edit-button"
+                onClick={(e, boardId) => openEditBoard(e, board.id)}
+              >
                 <i className="fas fa-pencil-alt board-index-item" id="edit-icon"></i>
               </button>
             </div>

@@ -12,6 +12,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  padding: 20px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -30,7 +31,9 @@
   }
   &#edit-board {
     background-color: rgba(226,228,228,.9);
-    padding: 20px;
+  }
+  &#delete-board {
+    background-color: rgba(226,228,228,.99);
   }
 }
 

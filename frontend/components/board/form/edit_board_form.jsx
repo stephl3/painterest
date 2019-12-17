@@ -7,7 +7,7 @@ class EditBoardForm extends React.Component {
 
     this.update = this.update.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
+    this.openDeleteBoard = this.openDeleteBoard.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleSave = this.handleSave.bind(this);
   }
@@ -29,9 +29,9 @@ class EditBoardForm extends React.Component {
     this.setState({ "secret": !this.state.secret });
   }
 
-  handleDelete(e) {
+  openDeleteBoard(e, boardId) {
     e.preventDefault();
-    this.props.deleteBoard();
+    this.props.openDeleteBoard(boardId);
   }
 
   handleClose(e) {
@@ -45,16 +45,16 @@ class EditBoardForm extends React.Component {
   }
 
   render() {
-    const { board, errors, formType } = this.props;
+    const { board, errors, formTitle } = this.props;
 
     return (!board) ? null : (
       <div className="edit-board container">
         <div className="edit-board main">
           <form className="edit-board form">
             <div className="edit-board header">
-              <div className="edit-board form-type">
-                <h5 className="edit-board form-type-label">
-                  {formType}
+              <div className="edit-board form-title">
+                <h5 className="edit-board form-title-label">
+                  {formTitle}
                 </h5>
               </div>
               <button
@@ -149,23 +149,23 @@ class EditBoardForm extends React.Component {
               </div>
             </div>
             <div className="edit-board footer">
-              <div className="edit-board left-footer">
+              <div className="edit-board footer-part left">
                 <button
-                  className="edit-board delete-button"
-                  onClick={this.handleDelete}
+                  className="edit-board button delete"
+                  onClick={(e, boardId) => this.openDeleteBoard(e, board.id)}
                 >
                   Delete
                 </button>
               </div>
-              <div className="edit-board right-footer">
+              <div className="edit-board footer-part right">
                 <button
-                  className="edit-board cancel-button"
+                  className="edit-board button cancel"
                   onClick={this.handleClose}
                 >
                   Cancel
                 </button>
                 <button
-                  className="edit-board save-button"
+                  className="edit-board button save"
                   onClick={this.handleSave}
                 >
                   Save

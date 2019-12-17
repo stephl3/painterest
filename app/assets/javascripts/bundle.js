@@ -654,15 +654,15 @@ function (_Component) {
     _classCallCheck(this, BoardIndex);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardIndex).call(this, props));
-    _this.editBoard = _this.editBoard.bind(_assertThisInitialized(_this));
+    _this.openEditBoard = _this.openEditBoard.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(BoardIndex, [{
-    key: "editBoard",
-    value: function editBoard(e, boardId) {
+    key: "openEditBoard",
+    value: function openEditBoard(e, boardId) {
       e.preventDefault();
-      this.props.editBoard(boardId);
+      this.props.openEditBoard(boardId);
     }
   }, {
     key: "render",
@@ -684,7 +684,7 @@ function (_Component) {
           board: board,
           pins: previewPins,
           user: user,
-          editBoard: _this2.editBoard
+          openEditBoard: _this2.openEditBoard
         });
       }) : null // swap with add button using newBoard
       ;
@@ -761,8 +761,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchSingleUser: function fetchSingleUser(id) {
-      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["fetchSingleUser"])(id));
+    fetchSingleUser: function fetchSingleUser(userId) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["fetchSingleUser"])(userId));
     },
     fetchBoards: function fetchBoards() {
       return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_3__["fetchBoards"])());
@@ -776,8 +776,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     newBoard: function newBoard() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])("new-board"));
     },
-    editBoard: function editBoard(id) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])("edit-board", id));
+    openEditBoard: function openEditBoard(boardId) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])("edit-board", boardId));
     } // UPDATE MODAL ACTION
 
   };
@@ -806,7 +806,7 @@ var BoardIndexItem = function BoardIndexItem(_ref) {
   var board = _ref.board,
       pins = _ref.pins,
       user = _ref.user,
-      editBoard = _ref.editBoard;
+      openEditBoard = _ref.openEditBoard;
   var numPins = board.pinIds.length;
   var pinA = pins[0] ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: "".concat(pins[0].photo)
@@ -881,7 +881,7 @@ var BoardIndexItem = function BoardIndexItem(_ref) {
   }, numPins, " Pins"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "board-index-item edit-button",
     onClick: function onClick(e, boardId) {
-      return editBoard(e, board.id);
+      return openEditBoard(e, board.id);
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-pencil-alt board-index-item",
@@ -1343,6 +1343,154 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/board/form/delete_board_form.jsx":
+/*!**************************************************************!*\
+  !*** ./frontend/components/board/form/delete_board_form.jsx ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var DeleteBoardForm =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(DeleteBoardForm, _React$Component);
+
+  function DeleteBoardForm(props) {
+    var _this;
+
+    _classCallCheck(this, DeleteBoardForm);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DeleteBoardForm).call(this, props));
+    _this.handleDeleteFOREVER = _this.handleDeleteFOREVER.bind(_assertThisInitialized(_this));
+    _this.handleCancel = _this.handleCancel.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(DeleteBoardForm, [{
+    key: "handleDeleteFOREVER",
+    value: function handleDeleteFOREVER(e) {
+      e.preventDefault();
+      this.props.processForm(this.props.boardId);
+    }
+  }, {
+    key: "handleCancel",
+    value: function handleCancel(e, boardId) {
+      e.preventDefault();
+      this.props.openEditBoard(this.props.boardId);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _this$props = this.props,
+          boardId = _this$props.boardId,
+          formTitle = _this$props.formTitle;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-board container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "delete-board form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-board header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-board form-title"
+      }, formTitle)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-board body"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-board confirmation-message"
+      }, "Once you delete a board and all its Pins, you can't undo it!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-board footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-board buttons"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "delete-board button delete",
+        onClick: this.handleDeleteFOREVER
+      }, "Delete forever"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "delete-board button cancel",
+        onClick: function onClick(e, boardId) {
+          return _this2.handleCancel(e, boardId);
+        }
+      }, "Cancel")))));
+    }
+  }]);
+
+  return DeleteBoardForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (DeleteBoardForm);
+
+/***/ }),
+
+/***/ "./frontend/components/board/form/delete_board_form_container.jsx":
+/*!************************************************************************!*\
+  !*** ./frontend/components/board/form/delete_board_form_container.jsx ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _delete_board_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./delete_board_form */ "./frontend/components/board/form/delete_board_form.jsx");
+
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    boardId: state.entities.boards[state.ui.objectId].id,
+    formTitle: "Are you sure?"
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    processForm: function processForm(boardId) {
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_2__["deleteBoard"])(boardId));
+    },
+    openEditBoard: function openEditBoard(boardId) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])('edit-board', boardId));
+    },
+    closeModal: function closeModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_delete_board_form__WEBPACK_IMPORTED_MODULE_4__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/board/form/edit_board_form.jsx":
 /*!************************************************************!*\
   !*** ./frontend/components/board/form/edit_board_form.jsx ***!
@@ -1388,7 +1536,7 @@ function (_React$Component) {
     _this.state = _this.props.board;
     _this.update = _this.update.bind(_assertThisInitialized(_this));
     _this.handleCheck = _this.handleCheck.bind(_assertThisInitialized(_this));
-    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    _this.openDeleteBoard = _this.openDeleteBoard.bind(_assertThisInitialized(_this));
     _this.handleClose = _this.handleClose.bind(_assertThisInitialized(_this));
     _this.handleSave = _this.handleSave.bind(_assertThisInitialized(_this));
     return _this;
@@ -1419,10 +1567,10 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "handleDelete",
-    value: function handleDelete(e) {
+    key: "openDeleteBoard",
+    value: function openDeleteBoard(e, boardId) {
       e.preventDefault();
-      this.props.deleteBoard();
+      this.props.openDeleteBoard(boardId);
     }
   }, {
     key: "handleClose",
@@ -1439,10 +1587,12 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var _this$props = this.props,
           board = _this$props.board,
           errors = _this$props.errors,
-          formType = _this$props.formType;
+          formTitle = _this$props.formTitle;
       return !board ? null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1452,10 +1602,10 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-board form-type"
+        className: "edit-board form-title"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "edit-board form-type-label"
-      }, formType)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "edit-board form-title-label"
+      }, formTitle)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "edit-board close-button",
         onClick: this.handleClose
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -1536,17 +1686,19 @@ function (_React$Component) {
       }, "Keep this board secret.")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-board left-footer"
+        className: "edit-board footer-part left"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "edit-board delete-button",
-        onClick: this.handleDelete
+        className: "edit-board button delete",
+        onClick: function onClick(e, boardId) {
+          return _this2.openDeleteBoard(e, board.id);
+        }
       }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-board right-footer"
+        className: "edit-board footer-part right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "edit-board cancel-button",
+        className: "edit-board button cancel",
         onClick: this.handleClose
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "edit-board save-button",
+        className: "edit-board button save",
         onClick: this.handleSave
       }, "Save"))))));
     }
@@ -1584,7 +1736,7 @@ var mapStateToProps = function mapStateToProps(state) {
   return {
     board: state.entities.boards[state.ui.objectId],
     errors: state.errors.board,
-    formType: "Edit your board"
+    formTitle: "Edit your board"
   };
 };
 
@@ -1593,8 +1745,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     processForm: function processForm(board) {
       return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_2__["updateBoard"])(board));
     },
-    deleteBoard: function deleteBoard(id) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])('delete-board', id));
+    openDeleteBoard: function openDeleteBoard(boardId) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])('delete-board', boardId));
     },
     closeModal: function closeModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
@@ -1623,6 +1775,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_login_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../session/login_form_container */ "./frontend/components/session/login_form_container.jsx");
 /* harmony import */ var _board_form_create_board_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../board/form/create_board_form_container */ "./frontend/components/board/form/create_board_form_container.jsx");
 /* harmony import */ var _board_form_edit_board_form_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../board/form/edit_board_form_container */ "./frontend/components/board/form/edit_board_form_container.jsx");
+/* harmony import */ var _board_form_delete_board_form_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../board/form/delete_board_form_container */ "./frontend/components/board/form/delete_board_form_container.jsx");
 
 
 
@@ -1630,6 +1783,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // import EditPinFormContainer from "../pin/form/edit_pin_form_container";
+// import DeletePinFormContainer from "../pin/form/delete_pin_form_container";
 
 var Modal = function Modal(_ref) {
   var modal = _ref.modal,
@@ -1669,7 +1824,7 @@ var Modal = function Modal(_ref) {
       break;
 
     case "delete-board":
-      // component = <DeleteBoardContainer />;
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_form_delete_board_form_container__WEBPACK_IMPORTED_MODULE_7__["default"], null);
       clickBackground = null;
       break;
 
@@ -1679,7 +1834,7 @@ var Modal = function Modal(_ref) {
       break;
 
     case "delete-pin":
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DeletePinContainer, null);
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DeletePinFormContainer, null);
       clickBackground = openModal('edit-pin');
       break;
 

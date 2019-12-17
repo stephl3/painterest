@@ -6,6 +6,9 @@ import SignupFormContainer from "../session/signup_form_container";
 import LoginFormContainer from "../session/login_form_container";
 import CreateBoardFormContainer from "../board/form/create_board_form_container";
 import EditBoardFormContainer from "../board/form/edit_board_form_container";
+import DeleteBoardFormContainer from "../board/form/delete_board_form_container";
+// import EditPinFormContainer from "../pin/form/edit_pin_form_container";
+// import DeletePinFormContainer from "../pin/form/delete_pin_form_container";
 
 
 const Modal = ({ modal, openModal, closeModal }) => {
@@ -37,7 +40,7 @@ const Modal = ({ modal, openModal, closeModal }) => {
       clickBackground = closeModal;
       break;
     case "delete-board":
-      // component = <DeleteBoardContainer />;
+      component = <DeleteBoardFormContainer />;
       clickBackground = null;
       break;
     case "edit-pin":
@@ -45,7 +48,7 @@ const Modal = ({ modal, openModal, closeModal }) => {
       clickBackground = closeModal;
       break;
     case "delete-pin":
-      component = <DeletePinContainer />;
+      component = <DeletePinFormContainer />;
       clickBackground = openModal('edit-pin');
       break;
     default:

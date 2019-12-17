@@ -6,12 +6,12 @@ import BoardIndexItem from './board_index_item';
 class BoardIndex extends Component {
   constructor(props) {
     super(props);
-    this.editBoard = this.editBoard.bind(this);
+    this.openEditBoard = this.openEditBoard.bind(this);
   }
 
-  editBoard(e, boardId) {
+  openEditBoard(e, boardId) {
     e.preventDefault();
-    this.props.editBoard(boardId);
+    this.props.openEditBoard(boardId);
   }
 
   render() {
@@ -32,7 +32,7 @@ class BoardIndex extends Component {
             board={board}
             pins={previewPins}
             user={user}
-            editBoard={this.editBoard}
+            openEditBoard={this.openEditBoard}
           />
         )
       })
