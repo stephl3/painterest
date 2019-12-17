@@ -1260,7 +1260,7 @@ function (_React$Component) {
         id: "visibility-checkbox",
         onClick: this.handleCheck
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-check-square",
+        className: "fas fa-check-square create-board checkbox ".concat(checked),
         id: "visibility-checked"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board",
@@ -1556,9 +1556,9 @@ function (_React$Component) {
       var checkbox = document.getElementById('visibility-checkbox');
 
       if (this.state.secret) {
-        checkbox.firstChild.style.opacity = 1.0;
+        checkbox.firstChild.classList.add('checked');
       } else {
-        checkbox.firstChild.style.opacity = 0.0;
+        checkbox.firstChild.classList.remove('checked');
       }
 
       ;
@@ -1593,7 +1593,8 @@ function (_React$Component) {
           board = _this$props.board,
           errors = _this$props.errors,
           formTitle = _this$props.formTitle;
-      return !board ? null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      var checked = this.state.secret ? 'checked' : null;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "edit-board form"
@@ -1666,10 +1667,11 @@ function (_React$Component) {
       }, "Visibility")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board input-container secret"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "edit-board visibility-checkbox",
+        className: "edit-board",
+        id: "visibility-checkbox",
         onClick: this.handleCheck
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-check-square",
+        className: "fas fa-check-square edit-board checkbox ".concat(checked),
         id: "visibility-checked"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board visibility-note"

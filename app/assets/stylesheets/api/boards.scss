@@ -243,15 +243,20 @@
   // }
 }
 
-#visibility-checked {
+.create-board#visibility-checked {
   position: absolute;
   top: -2px;
   left: -2px;
   height: 28px;
   width: 28px;
-  color: black;
+  color: black;  
+}
+
+.create-board.checkbox {
   opacity: 0;
-  
+  &.checked {
+    opacity: 1;
+  }
 }
 
 .create-board#visibility-note {
@@ -719,24 +724,35 @@
   }
 }
 
-.edit-board.visibility-checkbox {
+.edit-board#visibility-checkbox {
+  position: relative;
   margin-right: 12px;
+  height: 24px;
+  width: 24px;
+  background-color: transparent;
+  border-radius: 4px;
+  border: 1px solid #8e8e8e;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
   cursor: pointer;
-  background-color: transparent;
-  border-radius: 4px;
-  height: 24px;
-  width: 24px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #333;
 }
 
-#visibility-checked {
+.edit-board.checkbox {
+  opacity: 0;
+  &.checked {
+    opacity: 1;
+  }
+}
 
+.edit-board#visibility-checked {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  height: 28px;
+  width: 28px;
+  color: black;
 }
 
 .edit-board.visibility-note {

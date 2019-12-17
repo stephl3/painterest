@@ -112,7 +112,10 @@ class CreateBoardForm extends React.Component {
                           id="visibility-checkbox"
                           onClick={this.handleCheck}
                         >
-                          <i className="fas fa-check-square" id="visibility-checked"></i>
+                          <i
+                            className={`fas fa-check-square create-board checkbox ${checked}`}
+                            id="visibility-checked"
+                          ></i>
                         </div>
                         <div className="create-board" id="visibility-note">
                           Keep this board secret.

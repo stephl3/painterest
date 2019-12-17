@@ -21,9 +21,9 @@ class EditBoardForm extends React.Component {
 
     const checkbox = document.getElementById('visibility-checkbox');
     if (this.state.secret) {
-      checkbox.firstChild.style.opacity = 1.0;
+      checkbox.firstChild.classList.add('checked');
     } else {
-      checkbox.firstChild.style.opacity = 0.0;
+      checkbox.firstChild.classList.remove('checked');
     };
     
     this.setState({ "secret": !this.state.secret });
@@ -46,8 +46,9 @@ class EditBoardForm extends React.Component {
 
   render() {
     const { board, errors, formTitle } = this.props;
+    const checked = (this.state.secret) ? 'checked' : null;
 
-    return (!board) ? null : (
+    return (
       <div className="edit-board container">
         <form className="edit-board form">
           <div className="edit-board header">
@@ -129,10 +130,14 @@ class EditBoardForm extends React.Component {
               </div>
               <div className="edit-board input-container secret">
                 <button
-                  className="edit-board visibility-checkbox"
+                  className="edit-board"
+                  id="visibility-checkbox"
                   onClick={this.handleCheck}
                 >
-                  <i className="fas fa-check-square" id="visibility-checked"></i>
+                  <i
+                    className={`fas fa-check-square edit-board checkbox ${checked}`}
+                    id="visibility-checked"
+                  ></i>
                 </button>
                 <div className="edit-board visibility-note">
                   Keep this board secret.
