@@ -3,10 +3,11 @@ export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 // when dispatched, sets modal slice of state to a string
 // which denotes what component to display
-export const openModal = modal => {
+export const openModal = (modal, objectId) => {
   return {
     type: OPEN_MODAL,
-    modal
+    modal,
+    objectId
   };
 };
 

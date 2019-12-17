@@ -21,10 +21,12 @@
 
   }
   &#new-board {
-    background-color: #333;
-    opacity: 0.9;
+    background-color:rgba(0, 0, 0, 0.8);
     cursor: zoom-out;
     overflow-y: scroll;
+  }
+  &#edit-board {
+    background-color: rgba(226,228,228,.9);
   }
 }
 

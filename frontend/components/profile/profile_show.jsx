@@ -12,6 +12,10 @@ class ProfileShow extends React.Component {
   componentDidMount() {
     this.props.fetchSingleUser(this.props.currentUser.id);
   }
+  
+  // componentWillUnmount() {
+  //   this.props.fetchSingleUser(this.props.currentUser.id);
+  // }
 
   render() {
     const { currentUser, boards, pins, openModal, closeModal } = this.props;

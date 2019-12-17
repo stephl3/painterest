@@ -2,7 +2,7 @@ import React from "react";
 
 class EditBoardForm extends React.Component {
   componentDidMount() {
-    this.props.fetchBoard(this.props.match.params.boardId);
+    // this.props.fetchBoard(this.props.match.params.boardId);
   }
 
   render() {
@@ -11,6 +11,7 @@ class EditBoardForm extends React.Component {
     return (!board) ? null : (
       <div>
         hm
+        {board.title}
       </div>
     );
   }

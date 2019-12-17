@@ -1,20 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { fetchBoard, updateBoard, deleteBoard } from "../../../actions/board_actions";
-import { closeModal } from "../../../actions/modal_actions";
+import { updateBoard } from "../../../actions/board_actions";
+import { openModal, closeModal } from "../../../actions/modal_actions";
 import EditBoardForm from "./edit_board_form";
 
-const mapStateToProps = (state, ownProps) => ({
-  board: state.entities.boards[ownProps.match.params.boardId],
+const mapStateToProps = (state) => ({
+  board: state.entities.boards[state.ui.objectId],
   errors: state.errors.board,
   formType: "Edit your board"
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchBoard: boardId => dispatch(fetchBoard(boardId)),
-  processForm: board => dispatch(updateBoard(board)),
-  deleteBoard: boardId => dispatch(deleteBoard(boardId)),
+  processForm: (board) => dispatch(updateBoard(board)),
+  deleteBoard: (id) => dispatch(openModal('delete-board', id)),
   closeModal: () => dispatch(closeModal())
 });
 

@@ -30,14 +30,14 @@ class PinIndex extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.props.fetchPins().then(setTimeout(
-      () => this.resizeAllGridItems(), 2000)
-    )
-    masonryEvents.forEach(
-      (e) => window.addEventListener(event, this.resizeAllGridItems)
-    )
-  }
+  // componentDidMount() {
+  //   this.props.fetchPins().then(setTimeout(
+  //     () => this.resizeAllGridItems(), 2000)
+  //   )
+  //   masonryEvents.forEach(
+  //     (e) => window.addEventListener(event, this.resizeAllGridItems)
+  //   )
+  // }
 
   render() {
     const { currentUser, pins, deleteBoardPin, createBoardPin, openModal } = this.props;

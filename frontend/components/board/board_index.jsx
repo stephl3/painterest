@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import BoardIndexItem from './board_index_item';
 
 
@@ -6,11 +6,21 @@ import BoardIndexItem from './board_index_item';
 class BoardIndex extends Component {
   constructor(props) {
     super(props);
+    this.editBoard = this.editBoard.bind(this);
+  }
+
+  // componentDidMount() {
+  //   this.props.fetchBoards();
+  // }
+
+  editBoard(e, boardId) {
+    e.preventDefault();
+    this.props.editBoard(boardId);
   }
 
   render() {
-    const { boards, pins, user } = this.props;
-    const getBoardIndexItems = (
+    const { boards, pins, user, newBoard } = this.props;
+    const boardIndexItems = (boards.length > 0) ? (
       boards.map(board => {
         const prevPinIds = board.pinIds.slice(0, 6);
         const previewPins = prevPinIds.map((pinId) => {
@@ -22,14 +32,17 @@ class BoardIndex extends Component {
             board={board}
             pins={previewPins}
             user={user}
+            editBoard={this.editBoard}
           />
         )
       })
+    ) : (
+      null // swap with add button using newBoard
     );
 
     return (
       <div className="board-index">
-        {getBoardIndexItems}
+        {boardIndexItems}
         <div className="board-index-item filler"></div>
         <div className="board-index-item filler"></div>
         <div className="board-index-item filler"></div>

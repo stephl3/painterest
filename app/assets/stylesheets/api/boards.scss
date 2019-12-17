@@ -3,6 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // CREATE BOARD
+#create-board-container {
+  position: relative;
+}
+
 .create-board#sizing {
   width: 544px;
   border-radius: 8px;
@@ -437,7 +441,6 @@
   }
 }
 
-
 .board-index-item.info {
   display: flex;
   flex-direction: row;
@@ -533,6 +536,13 @@
   fill: currentColor;
   stroke-width: 0;
   vertical-align: middle;
+}
+
+
+
+// SHOW BOARD
+.board-show.container {
+  margin-top: 65px;
 }
 
 

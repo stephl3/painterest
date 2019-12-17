@@ -5,7 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 
 
 
-const BoardIndexItem = ({ board, pins, user }) => {
+const BoardIndexItem = ({ board, pins, user, editBoard }) => {
   const numPins = board.pinIds.length;
   const pinA = (pins[0]) ? <img src={`${pins[0].photo}`}></img> : null;
   const pinB = (pins[1]) ? <img src={`${pins[1].photo}`}></img> : null;
@@ -13,13 +13,25 @@ const BoardIndexItem = ({ board, pins, user }) => {
   const pinD = (pins[3]) ? <img src={`${pins[3].photo}`}></img> : null;
   const pinE = (pins[4]) ? <img src={`${pins[4].photo}`}></img> : null;
   const pinF = (pins[5]) ? <img src={`${pins[5].photo}`}></img> : null;
+  const secretIcon = (board.secret) ? (
+    <div className="board-index-item visibility">
+      <i className="fas fa-lock board-index-item" id="lock-icon"></i>
+    </div>
+  ) : (
+    null
+  );
 
   return (
     <div className="board-index-item container">
       <Link
-        to={`/${user.username}/${board.title}`}
+        to={{
+          pathname: `/${user.username}/${board.title}`,
+          state: {
+            fromProfile: true
+          }
+        }}
         className="board-index-item link"
-      >
+        >
         <div className="board-index-item content">
           <div className="board-index-item hover-overlay"></div>
           <div>
@@ -39,15 +51,13 @@ const BoardIndexItem = ({ board, pins, user }) => {
                   {board.title}
                 </div>
                 <div className="board-index-item additional">
-                  <div className="board-index-item visibility">
-                    <i className="fas fa-lock board-index-item" id="lock-icon"></i>
-                  </div>
+                  {secretIcon}
                   <div className="board-index-item pin-count">
                     {numPins} Pins
                   </div>
                 </div>
               </div>
-              <button className="board-index-item edit-button">
+              <button className="board-index-item edit-button" onClick={(e, boardId) => editBoard(e, board.id)}>
                 <i className="fas fa-pencil-alt board-index-item" id="edit-icon"></i>
               </button>
             </div>
@@ -58,4 +68,4 @@ const BoardIndexItem = ({ board, pins, user }) => {
   );
 };
 
-export default BoardIndexItem;
+export default withRouter(BoardIndexItem);
