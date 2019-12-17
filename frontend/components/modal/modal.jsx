@@ -68,7 +68,7 @@ const Modal = ({ modal, openModal, closeModal }) => {
   return (
     <div className="modal-container">
       <div className="modal-background" id={modal} onClick={clickBackground}>
-        <div className="modal-child" onClick={e => e.stopPropagation()}>
+        <div className="modal-child" id={`${modal}-child`} onClick={e => e.stopPropagation()}>
           {component}
         </div>
         <div className="modal-child-two" onClick={e => e.stopPropagation()}>

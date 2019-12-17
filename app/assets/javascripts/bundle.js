@@ -1595,40 +1595,35 @@ function (_React$Component) {
           formTitle = _this$props.formTitle;
       return !board ? null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-board main"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "edit-board form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board form-title"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "edit-board form-title-label"
-      }, formTitle)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, formTitle), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "edit-board close-button",
         onClick: this.handleClose
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-times edit-board close-icon"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-board fields"
+        className: "edit-board body"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-board field-container name"
+        className: "edit-board field name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board label-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "name-input",
         className: "edit-board label",
         id: "name-label"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-board label-content"
-      }, "Name"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Name")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board input-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         className: "edit-board input name",
         id: "name-input",
         placeholder: "Like \"Places to Go\" or \"Recipes to Make\"",
+        value: "".concat(this.state.title),
         onChange: this.update
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board error-container"
@@ -1637,22 +1632,22 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "edit-board error-content"
       })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-board field-container description"
+        className: "edit-board field description"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board label-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "description-input",
         className: "edit-board label",
         id: "description-label"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-board label-content"
-      }, "Description"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Description")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board input-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         className: "edit-board input description",
         id: "description-input",
         placeholder: "What's your board about?",
-        onChange: this.update
+        value: "".concat(this.state.description),
+        onChange: this.update,
+        rows: "3"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board error-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1660,29 +1655,24 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "edit-board error-content"
       })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-board field-container",
-        id: "visibility"
+        className: "edit-board field visibility"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board label-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "visibility-input",
         className: "edit-board label",
-        id: "visibility-label"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-board label-content",
+        id: "visibility-label",
         onClick: this.handleCheck
-      }, "Visibility"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Visibility")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board input-container secret"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "edit-board",
-        id: "visibility-checkbox",
+        className: "edit-board visibility-checkbox",
         onClick: this.handleCheck
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-check-square",
         id: "visibility-checked"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "edit-board",
-        id: "visibility-note"
+        className: "edit-board visibility-note"
       }, "Keep this board secret.")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1700,7 +1690,7 @@ function (_React$Component) {
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "edit-board button save",
         onClick: this.handleSave
-      }, "Save"))))));
+      }, "Save")))));
     }
   }]);
 
@@ -1858,6 +1848,7 @@ var Modal = function Modal(_ref) {
     onClick: clickBackground
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "modal-child",
+    id: "".concat(modal, "-child"),
     onClick: function onClick(e) {
       return e.stopPropagation();
     }

@@ -558,16 +558,6 @@
 ////////////////////////////////////////////////////////////////////
 .edit-board.container {
   max-width: 600px;
-  width: 100%;
-  border-radius: 6px;
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,.22);
-  margin: auto;
-  max-height: 200%;
-  position: relative;
-}
-
-.edit-board.main {
-  max-width: 600px;
   border-radius: 8px;
   box-sizing: border-box;
   background-color: #fff;
@@ -596,7 +586,7 @@
   }
 }
 
-.edit-board.form-type {
+.edit-board.form-title {
   box-sizing: border-box;
   margin-right: 3px;
   @media (min-width: 576px) {
@@ -608,9 +598,6 @@
   @media (min-width: 1312px) {
     margin-right: 8px;
   }
-}
-
-.edit-board.form-type-label {
   -webkit-hyphens: auto;
   -ms-hyphens: auto;
   hyphens: auto;
@@ -620,11 +607,7 @@
   -webkit-font-smoothing: antialiased;
   color: #333;
   font-size: 24px;
-  margin-block-start: 1.67em;
-  margin-block-end: 1.67em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .edit-board.close-button {
@@ -646,11 +629,11 @@
   vertical-align: middle;
 }
 
-.edit-board.fields {
+.edit-board.body {
   box-sizing: border-box;
 }
 
-.edit-board.field-container {
+.edit-board.field {
   box-sizing: border-box;
   border-bottom: 1px solid #efefef;
   padding: 9px 6px;
@@ -668,27 +651,116 @@
   }
 }
 
-.edit-board.field-container {
+.edit-board.label-container {
   box-sizing: border-box;
   padding-bottom: 12px 4px;
   width: 100%;
   @media (min-width: 768px) {
     width: 25%;
   }
+}
+
+.edit-board.label {
+  cursor: pointer;
+  text-align: left;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  font-weight: 400;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  color: #333;
+}
+
+.edit-board.input-container {
+  box-sizing: border-box;
+  width: 100%;
   @media (min-width: 768px) {
-    // width: 25%;
+    width: 75%;
+  }
+  &.secret {
+    padding: 8px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 }
 
-.edit-board.label-container {}
+.edit-board.input {
+  box-sizing: border-box;
+  width: 100%;
+  letter-spacing: -.4px;
+  box-sizing: border-box;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+  cursor: text;
+  border-color: #8e8e8e;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  padding: 8px 14px;
+  &.name {
+    min-height: 40px;
+  }
+  &.description {
+    line-height: 1.5;
+    overflow: auto;
+    resize: none;
+    vertical-align: top;
+  }
+}
 
-.edit-board.label {}
+.edit-board.visibility-checkbox {
+  margin-right: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 4px;
+  height: 24px;
+  width: 24px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #333;
+}
 
-.edit-board.label-content {}
+#visibility-checked {
 
-.edit-board.input-container {}
+}
 
-.edit-board.input {}
+.edit-board.visibility-note {
+  text-align: left;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: #333;
+  font-weight: 400;
+  font-size: 12px;
+  @media (min-width: 576px) {
+      font-size: 12px;
+  }
+  @media (min-width: 768px) {
+      font-size: 12px;
+  }
+  @media (min-width: 1312px) {
+    font-size: 14px;
+  }
+}
 
 .edit-board.error-container {}
 
@@ -751,14 +823,6 @@
 }
 
 
-.edit-board.cancel-button {
-
-}
-
-.edit-board.save-button {
-
-}
-
 
 ////////////////////////////////////////////////////////////////////
 /////////////////////////// DELETE BOARD ///////////////////////////
@@ -777,8 +841,6 @@
   border-radius: 6px;
   margin-bottom: 0;
   width: auto;
-  margin: 0 auto 70px;
-  max-width: 734px;
 }
 
 .delete-board.header {
