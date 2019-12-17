@@ -12,8 +12,10 @@ class EditBoardForm extends React.Component {
     this.handleSave = this.handleSave.bind(this);
   }
 
-  update(e) {
-    this.setState({ "title": e.currentTarget.value });
+  update(field) {
+    return (e =>
+      this.setState({ [field]: e.currentTarget.value })
+    )
   }
 
   handleCheck(e) {
@@ -80,7 +82,7 @@ class EditBoardForm extends React.Component {
                     id="name-input"
                     placeholder='Like "Places to Go" or "Recipes to Make"'
                     value={`${this.state.title}`}
-                    onChange={this.update}
+                    onChange={this.update('title')}
                   />
                   <div className="edit-board error-container">
                     <div className="edit-board error">
@@ -106,7 +108,7 @@ class EditBoardForm extends React.Component {
                     id="description-input"
                     placeholder="What's your board about?"
                     value={`${this.state.description}`}
-                    onChange={this.update}
+                    onChange={this.update('description')}
                     rows="3"
                   />
                   <div className="edit-board error-container">
