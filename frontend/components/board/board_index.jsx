@@ -9,10 +9,6 @@ class BoardIndex extends Component {
     this.editBoard = this.editBoard.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.props.fetchBoards();
-  // }
-
   editBoard(e, boardId) {
     e.preventDefault();
     this.props.editBoard(boardId);
@@ -22,7 +18,11 @@ class BoardIndex extends Component {
     const { boards, pins, user, newBoard } = this.props;
     const boardIndexItems = (boards.length > 0) ? (
       boards.map(board => {
-        const prevPinIds = board.pinIds.slice(0, 6);
+        const prevPinIds = (board.pinIds) ? (
+          board.pinIds.slice(0, 6)
+        ) : (
+          board.pinIds
+        );
         const previewPins = prevPinIds.map((pinId) => {
           return pins[pinId];
         });

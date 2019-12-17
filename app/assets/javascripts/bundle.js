@@ -656,10 +656,7 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardIndex).call(this, props));
     _this.editBoard = _this.editBoard.bind(_assertThisInitialized(_this));
     return _this;
-  } // componentDidMount() {
-  //   this.props.fetchBoards();
-  // }
-
+  }
 
   _createClass(BoardIndex, [{
     key: "editBoard",
@@ -678,7 +675,7 @@ function (_Component) {
           user = _this$props.user,
           newBoard = _this$props.newBoard;
       var boardIndexItems = boards.length > 0 ? boards.map(function (board) {
-        var prevPinIds = board.pinIds.slice(0, 6);
+        var prevPinIds = board.pinIds ? board.pinIds.slice(0, 6) : board.pinIds;
         var previewPins = prevPinIds.map(function (pinId) {
           return pins[pinId];
         });
@@ -740,12 +737,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
-/* harmony import */ var _actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/board_pin_actions */ "./frontend/actions/board_pin_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _board_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./board_index */ "./frontend/components/board/board_index.jsx");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var _actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/board_pin_actions */ "./frontend/actions/board_pin_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _board_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./board_index */ "./frontend/components/board/board_index.jsx");
 
- // import { fetchSingleUser } from "../../actions/user_actions";
+
 
 
 
@@ -763,27 +761,29 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    // fetchSingleUser: id => dispatch(fetchSingleUser(id)),
+    fetchSingleUser: function fetchSingleUser(id) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["fetchSingleUser"])(id));
+    },
     fetchBoards: function fetchBoards() {
-      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_2__["fetchBoards"])());
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_3__["fetchBoards"])());
     },
     fetchAllBoardsPins: function fetchAllBoardsPins() {
-      return dispatch(Object(_actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_3__["fetchAllBoardsPins"])());
+      return dispatch(Object(_actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_4__["fetchAllBoardsPins"])());
     },
     fetchBoard: function fetchBoard(boardId) {
-      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_2__["fetchBoard"])(boardId));
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_3__["fetchBoard"])(boardId));
     },
     newBoard: function newBoard() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])("new-board"));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])("new-board"));
     },
     editBoard: function editBoard(id) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])("edit-board", id));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])("edit-board", id));
     } // UPDATE MODAL ACTION
 
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_board_index__WEBPACK_IMPORTED_MODULE_5__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_board_index__WEBPACK_IMPORTED_MODULE_6__["default"]));
 
 /***/ }),
 
@@ -1165,7 +1165,6 @@ function (_React$Component) {
     key: "handleCreate",
     value: function handleCreate(e) {
       e.preventDefault();
-      debugger;
       this.props.processForm(this.state);
     }
   }, {
@@ -1365,9 +1364,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1380,15 +1379,61 @@ var EditBoardForm =
 function (_React$Component) {
   _inherits(EditBoardForm, _React$Component);
 
-  function EditBoardForm() {
+  function EditBoardForm(props) {
+    var _this;
+
     _classCallCheck(this, EditBoardForm);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(EditBoardForm).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditBoardForm).call(this, props));
+    _this.state = _this.props.board;
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.handleCheck = _this.handleCheck.bind(_assertThisInitialized(_this));
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    _this.handleClose = _this.handleClose.bind(_assertThisInitialized(_this));
+    _this.handleSave = _this.handleSave.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(EditBoardForm, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {// this.props.fetchBoard(this.props.match.params.boardId);
+    key: "update",
+    value: function update(e) {
+      this.setState({
+        "title": e.currentTarget.value
+      });
+    }
+  }, {
+    key: "handleCheck",
+    value: function handleCheck() {
+      this.setState({
+        "secret": !this.state.secret
+      });
+      var checkbox = document.getElementById('visibility-checkbox');
+
+      if (this.state.secret) {
+        checkbox.firstChild.style.opacity = 1.0;
+      } else {
+        checkbox.firstChild.style.opacity = 0.0;
+      }
+
+      ;
+    }
+  }, {
+    key: "handleDelete",
+    value: function handleDelete(e) {
+      e.preventDefault();
+      this.props.deleteBoard();
+    }
+  }, {
+    key: "handleClose",
+    value: function handleClose(e) {
+      e.preventDefault();
+      this.props.closeModal();
+    }
+  }, {
+    key: "handleSave",
+    value: function handleSave(e) {
+      e.preventDefault();
+      this.props.processForm(this.state);
     }
   }, {
     key: "render",
@@ -1396,9 +1441,114 @@ function (_React$Component) {
       var _this$props = this.props,
           board = _this$props.board,
           errors = _this$props.errors,
-          formType = _this$props.formType,
-          processForm = _this$props.processForm;
-      return !board ? null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "hm", board.title);
+          formType = _this$props.formType;
+      return !board ? null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board main"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: true,
+        className: "edit-board form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board form-type"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "edit-board form-type-label"
+      }, formType)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "edit-board close-button",
+        onClick: this.handleClose
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-times edit-board close-icon"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board fields"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board field-container name"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board label-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "name-input",
+        className: "edit-board label",
+        id: "name-label"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board label-content"
+      }, "Name"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board input-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: "edit-board name-input",
+        id: "name-input",
+        placeholder: "Like \"Places to Go\" or \"Recipes to Make\"",
+        onChange: this.update
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board error-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board error"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "edit-board error-content"
+      })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board field-container description"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board label-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "description-input",
+        className: "edit-board label",
+        id: "description-label"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board label-content"
+      }, "Description"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board input-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        className: "edit-board description-input",
+        id: "description-input",
+        placeholder: "What's your board about?",
+        onChange: this.update
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board error-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board error"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "edit-board error-content"
+      })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board field-container",
+        id: "visibility"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board label-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "visibility-input",
+        className: "edit-board label",
+        id: "visibility-label"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board label-content",
+        onClick: this.handleCheck
+      }, "Visibility"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board input-container secret"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board",
+        id: "visibility-checkbox",
+        onClick: this.handleCheck
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-check-square",
+        id: "visibility-checked"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board",
+        id: "visibility-note"
+      }, "Keep this board secret.")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board left-footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "edit-board delete-button",
+        onClick: this.handleDelete
+      }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-board right-footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "edit-board cancel-button",
+        onClick: this.handleClose
+      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "edit-board save-button",
+        onClick: this.handleSave
+      }, "Save"))))));
     }
   }]);
 
@@ -3256,6 +3406,16 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchSingleUser(this.props.currentUser.id);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      var boards = JSON.stringify(this.props.boards);
+      var prevBoards = JSON.stringify(prevProps.boards);
+
+      if (boards !== prevBoards) {
+        this.props.fetchSingleUser(this.props.currentUser.id);
+      }
     } // componentWillUnmount() {
     //   this.props.fetchSingleUser(this.props.currentUser.id);
     // }

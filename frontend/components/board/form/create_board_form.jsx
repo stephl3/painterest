@@ -3,7 +3,7 @@ import React from "react";
 class CreateBoardForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.board
+    this.state = this.props.board;
 
     this.update = this.update.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
@@ -32,7 +32,6 @@ class CreateBoardForm extends React.Component {
 
   handleCreate(e) {
     e.preventDefault();
-    debugger;
     this.props.processForm(this.state);
   }
 

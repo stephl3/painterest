@@ -548,7 +548,139 @@
 
 
 // EDIT BOARD
+.edit-board.container {
+  max-width: 600px;
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.22);
+  margin: auto;
+  max-height: 200%;
+  position: relative;
+}
 
+.edit-board.main {
+  max-width: 600px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+.edit-board.form {}
+
+.edit-board.header {
+  box-sizing: border-box;
+  border-bottom: 1px solid #efefef;
+  width: 100%;
+  padding: 9px 6px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  @media (min-width: 576px) {
+    padding-bottom: 12px 8px;
+  }
+  @media (min-width: 768px) {
+    padding: 18px 16px;
+  }
+  @media (min-width: 1312px) {
+    padding: 18px 16px;
+  }
+}
+
+.edit-board.form-type {
+  box-sizing: border-box;
+  margin-right: 3px;
+  @media (min-width: 576px) {
+    margin-right: 4px;
+  }
+  @media (min-width: 768px) {
+    margin-right: 8px;
+  }
+  @media (min-width: 1312px) {
+    margin-right: 8px;
+  }
+}
+
+.edit-board.form-type-label {
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: #333;
+  font-size: 24px;
+  margin-block-start: 1.67em;
+  margin-block-end: 1.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+.edit-board.close-button {
+  width: 28px;
+  height: 28px;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+.edit-board.close-icon {
+  height: 100%;
+  width: 100%;
+  color: #8e8e8e;
+  fill: currentColor;
+  stroke-width: 0;
+  vertical-align: middle;
+}
+
+.edit-board.fields {
+  box-sizing: border-box;
+}
+
+.edit-board.field-container {
+  box-sizing: border-box;
+  border-bottom: 1px solid #efefef;
+  padding: 9px 6px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  @media (min-width: 576px) {
+    padding: 12px 8px;
+  }
+  @media (min-width: 768px) {
+    padding: 18px 16px;
+  }
+  @media (min-width: 1312px) {
+    padding: 18px 16px;
+  }
+}
+
+.edit-board.field-container {
+  box-sizing: border-box;
+  padding-bottom: 12px 4px;
+  width: 100%;
+  @media (min-width: 768px) {
+    width: 25%;
+  }
+  @media (min-width: 768px) {
+    // width: 25%;
+  }
+}
+
+.edit-board.label-container {}
+
+.edit-board.label {}
+
+.edit-board.label-content {}
+
+.edit-board.input-container {}
+
+.edit-board.input {}
 
 
 
