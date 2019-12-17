@@ -1403,10 +1403,8 @@ function (_React$Component) {
     }
   }, {
     key: "handleCheck",
-    value: function handleCheck() {
-      this.setState({
-        "secret": !this.state.secret
-      });
+    value: function handleCheck(e) {
+      e.preventDefault();
       var checkbox = document.getElementById('visibility-checkbox');
 
       if (this.state.secret) {
@@ -1416,6 +1414,9 @@ function (_React$Component) {
       }
 
       ;
+      this.setState({
+        "secret": !this.state.secret
+      });
     }
   }, {
     key: "handleDelete",
@@ -1447,7 +1448,6 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board main"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: true,
         className: "edit-board form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board header"
@@ -1476,7 +1476,7 @@ function (_React$Component) {
         className: "edit-board input-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        className: "edit-board name-input",
+        className: "edit-board input name",
         id: "name-input",
         placeholder: "Like \"Places to Go\" or \"Recipes to Make\"",
         onChange: this.update
@@ -1499,7 +1499,7 @@ function (_React$Component) {
       }, "Description"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board input-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        className: "edit-board description-input",
+        className: "edit-board input description",
         id: "description-input",
         placeholder: "What's your board about?",
         onChange: this.update
@@ -1523,7 +1523,7 @@ function (_React$Component) {
         onClick: this.handleCheck
       }, "Visibility"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board input-container secret"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "edit-board",
         id: "visibility-checkbox",
         onClick: this.handleCheck

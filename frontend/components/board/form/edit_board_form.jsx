@@ -16,14 +16,17 @@ class EditBoardForm extends React.Component {
     this.setState({ "title": e.currentTarget.value });
   }
 
-  handleCheck() {
-    this.setState({ "secret": !this.state.secret });
+  handleCheck(e) {
+    e.preventDefault();
+
     const checkbox = document.getElementById('visibility-checkbox');
     if (this.state.secret) {
       checkbox.firstChild.style.opacity = 1.0;
     } else {
       checkbox.firstChild.style.opacity = 0.0;
     };
+    
+    this.setState({ "secret": !this.state.secret });
   }
 
   handleDelete(e) {
@@ -47,7 +50,7 @@ class EditBoardForm extends React.Component {
     return (!board) ? null : (
       <div className="edit-board container">
         <div className="edit-board main">
-          <form onSubmit className="edit-board form">
+          <form className="edit-board form">
             <div className="edit-board header">
               <div className="edit-board form-type">
                 <h5 className="edit-board form-type-label">
@@ -77,7 +80,7 @@ class EditBoardForm extends React.Component {
                   <span>
                     <input
                       type="text"
-                      className="edit-board name-input"
+                      className="edit-board input name"
                       id="name-input"
                       placeholder='Like "Places to Go" or "Recipes to Make"'
                       onChange={this.update}
@@ -104,7 +107,7 @@ class EditBoardForm extends React.Component {
                 <div className="edit-board input-container">
                   <span>
                     <textarea
-                      className="edit-board description-input"
+                      className="edit-board input description"
                       id="description-input"
                       placeholder="What's your board about?"
                       onChange={this.update}
@@ -132,13 +135,13 @@ class EditBoardForm extends React.Component {
                   </label>
                 </div>
                 <div className="edit-board input-container secret">
-                  <div
+                  <button
                     className="edit-board"
                     id="visibility-checkbox"
                     onClick={this.handleCheck}
                   >
                     <i className="fas fa-check-square" id="visibility-checked"></i>
-                  </div>
+                  </button>
                   <div className="edit-board" id="visibility-note">
                     Keep this board secret.
                   </div>
