@@ -1148,9 +1148,9 @@ function (_React$Component) {
       var checkbox = document.getElementById('visibility-checkbox');
 
       if (this.state.secret) {
-        checkbox.firstChild.style.opacity = 1.0;
+        checkbox.firstChild.classList.add('checked');
       } else {
-        checkbox.firstChild.style.opacity = 0.0;
+        checkbox.firstChild.classList.remove('checked');
       }
 
       ;
@@ -1173,6 +1173,7 @@ function (_React$Component) {
       var _this$props = this.props,
           errors = _this$props.errors,
           formType = _this$props.formType;
+      var checked = this.state.secret ? 'checked' : null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "create-board-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

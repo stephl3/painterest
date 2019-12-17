@@ -19,9 +19,9 @@ class CreateBoardForm extends React.Component {
     this.setState({ "secret": !this.state.secret });
     const checkbox = document.getElementById('visibility-checkbox');
     if (this.state.secret) {
-      checkbox.firstChild.style.opacity = 1.0;
+      checkbox.firstChild.classList.add('checked');
     } else {
-      checkbox.firstChild.style.opacity = 0.0;
+      checkbox.firstChild.classList.remove('checked');
     };
   }
 
@@ -37,6 +37,7 @@ class CreateBoardForm extends React.Component {
 
   render() {
     const { errors, formType } = this.props;
+    const checked = (this.state.secret) ? 'checked' : null;
 
     return (
       <div id="create-board-container">
