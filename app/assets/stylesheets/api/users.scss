@@ -449,12 +449,12 @@
 #profile-content {}
 
 #profile-switches-wrapper {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
   margin-top: 16px;
   padding: 0px 8px;
-  display: flex;
-  flex-direction: row;
 }
 
 #profile-switches-container {
@@ -513,6 +513,34 @@
   font-weight: 700;
   letter-spacing: -.4px;
   -webkit-font-smoothing: antialiased;
+}
+
+.profile-show.pin-count-container {
+  max-width: 850px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 8px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-show.pin-count {
+  text-align: left;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  font-weight: 400;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  color: #8e8e8e;
+}
+
+.profile-show.number {
+  font-weight: 700;
 }
 
 #profile-tab-wrapper {

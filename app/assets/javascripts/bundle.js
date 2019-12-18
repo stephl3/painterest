@@ -3296,6 +3296,13 @@ function (_React$Component) {
         pins: pins
       })];
       var selectedTab = contentTabs[this.state.selectedSwitch];
+      var pinCount = this.state.selectedSwitch === 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-show pin-count-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-show pin-count"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "profile-show number"
+      }, "13 "), "Pins")) : null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "profile-content"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3305,7 +3312,7 @@ function (_React$Component) {
         selectedSwitch: this.state.selectedSwitch,
         onSwitchClick: this.selectSwitch,
         tabs: contentTabs
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), pinCount), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "profile-tab-wrapper"
       }, selectedTab));
     }

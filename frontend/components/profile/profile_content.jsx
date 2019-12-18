@@ -26,6 +26,13 @@ class ProfileContent extends React.Component {
       <PinIndexContainer pins={pins} />
     ];
     const selectedTab = contentTabs[this.state.selectedSwitch];
+    const pinCount = (this.state.selectedSwitch === 1) ? (
+      <div className="profile-show pin-count-container">
+        <div className="profile-show pin-count">
+          <span className="profile-show number">13 </span>Pins
+        </div>
+      </div>
+    ) : null;
 
     return (
       <div id="profile-content">
@@ -36,6 +43,7 @@ class ProfileContent extends React.Component {
             onSwitchClick={this.selectSwitch}
             tabs={contentTabs}
           />
+          {pinCount}
         </div>
         <div id="profile-tab-wrapper">
           {selectedTab}
