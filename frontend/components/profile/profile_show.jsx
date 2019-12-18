@@ -17,7 +17,7 @@ class ProfileShow extends React.Component {
     const boards = JSON.stringify(this.props.boards);
     const prevBoards = JSON.stringify(prevProps.boards);
     if (boards !== prevBoards) {
-      this.props.fetchSingleUser(this.props.currentUser.id);
+      // this.props.fetchSingleUser(this.props.currentUser.id);
     }
   }
   // componentWillUnmount() {

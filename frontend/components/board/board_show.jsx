@@ -1,62 +1,52 @@
 import React, { Component } from 'react'
 
+import BoardShowNavBar from './board_show_nav_bar';
 import PinIndexContainer from "../pin/pin_index_container";
 
 export default class BoardShow extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   board: null
-    // }
+    this.state = this.props.board;
+
+    this.openEditBoard = this.openEditBoard.bind(this);
   }
 
-  UNSAFE_componentWillMount() {
-    this.props.fetchBoards();
-  }
+  componentDidUpdate() {}
 
-  componentDidMount() {
-    const { boardTitle } = this.props.match.params;
-    debugger;
-    const { id } = this.props.location.state;
-    this.props.fetchBoard(this.props.location.state.id);
+
+  openEditBoard(e, boardId) {
+    e.preventDefault();
+    this.props.openEditBoard(boardId)
   }
 
   render() {
-    const { userPhoto } = this.props.currentUser;
-    // const { title, description, secret } = this.props.board;
-    // const secretIcon = (secret) ? (
-    //   <div className="board-show visibility">
-    //     <i className="fas fa-lock board-show" id="lock-icon"></i>
-    //   </div>
-    // ) : (
-    //     null
-    // );
+    const { currentUser, board, openEditBoard } = this.props;
+    const { userPhoto } = currentUser;
+    const secretIcon = (this.state.secret) ? (
+      <div className="board-show visibility">
+        <i className="fas fa-lock board-show" id="lock-icon"></i>
+      </div>
+    ) : (
+        null
+    );
 
     return (
       <div className="board-show container">
         <div className="board-show header">
-          <div className="board-show navbar">
-            <div className="board-show buttons">
-              <button className="board-show button">
-                <i className="fas fa-plus board-show" id="create-pin-icon"></i>
-              </button>
-              <button className="board-show button">
-                <i className="fas fa-pencil-alt board-show" id="edit-board-icon"></i>
-              </button>
-            </div>
-            <div className="board-show profile-link">
-              <button className="board-show profile-button">
-                <img src={userPhoto}/>
-              </button>
-            </div>
+          <div className="board-show navbar-container">
+            {/* <BoardShowNavBar
+              openEditBoard={this.openEditBoard}
+              boardId={board} 
+              userPhoto={userPhoto}
+            /> */}
           </div>
           <div className="board-show info">
             <div className="board-show main-info">
               <div className="board-show title">
-                {/* {title} */}
+                {this.state.title}
               </div>
               <div className="board-show stats">
-                {/* {secretIcon} */}
+                {secretIcon}
                 <div className="board-show pin-count">
                   252 pins
                 </div>
@@ -66,11 +56,18 @@ export default class BoardShow extends Component {
               </div>
             </div>
             <div className="board-show description">
-              {/* {description} */}
+              {this.state.description}
             </div>
           </div>
         </div>
         <div className="board-show pin-feed">
+          <div className="board-show filler"></div>
+          <div className="board-show filler"></div>
+          <div className="board-show filler"></div>
+          <div className="board-show filler"></div>
+          <div className="board-show filler"></div>
+          <div className="board-show filler"></div>
+          
           {/* <PinIndexContainer pins={pins} /> */}
         </div>
       </div>

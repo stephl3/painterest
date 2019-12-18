@@ -7,16 +7,16 @@ import { openModal, closeModal } from "../../actions/modal_actions";
 import BoardShow from './board_show';
 
 const mapStateToProps = (state, ownProps) => {
-  const board = Board.all;
-  debugger;
+  const board = Object.values(state.entities.boards).find(board => 
+    board.title === ownProps.match.params.boardTitle
+  );
+  // debugger;
   return {
     currentUser: state.entities.users[state.session.id],
-    board: Object.values(state.entities.boards).find(board => {
-      return board.title === ownProps.match.params.boardTitle
-    }),
-    pins: Object.values(state.entities.pins).filter(pin => {
-      board.pinIds.includes(pin.id)
-    }),
+    board: state.entities.boards[board.id],
+    // pins: Object.values(state.entities.pins).filter(pin => 
+    //   board.pinIds.includes(pin.id)
+    // ),
     errors: state.errors.board,
   }
 };
@@ -24,7 +24,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => ({
   fetchBoards: () => dispatch(fetchBoards()),
   fetchBoard: boardId => dispatch(fetchBoard(boardId)),
-  editBoard: () => dispatch(openModal('edit-board')),
+  openEditBoard: boardId => dispatch(openModal('edit-board', boardId)),
   closeModal: () => dispatch(closeModal())
 });
 
