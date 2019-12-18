@@ -961,7 +961,6 @@ function (_Component) {
           currentUser = _this$props.currentUser,
           board = _this$props.board,
           openEditBoard = _this$props.openEditBoard;
-      var userPhoto = currentUser.userPhoto;
       var secretIcon = this.state.secret ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show visibility"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -974,7 +973,11 @@ function (_Component) {
         className: "board-show header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show navbar-container"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_show_nav_bar__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        openEditBoard: this.openEditBoard,
+        board: board,
+        user: currentUser
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show info"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show main-info"
@@ -983,10 +986,10 @@ function (_Component) {
       }, this.state.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show stats"
       }, secretIcon, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-show pin-count"
+        className: "board-show count pin"
       }, "252 pins"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-show follower-count"
-      }, " · ", " 7 followers"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-show count follower"
+      }, "\xB7  7 followers"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show description"
       }, this.state.description))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show pin-feed"
@@ -1112,27 +1115,26 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var ProfileNavBar =
+var BoardShowNavBar =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(ProfileNavBar, _React$Component);
+  _inherits(BoardShowNavBar, _React$Component);
 
-  function ProfileNavBar(props) {
+  function BoardShowNavBar(props) {
     var _this;
 
-    _classCallCheck(this, ProfileNavBar);
+    _classCallCheck(this, BoardShowNavBar);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfileNavBar).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardShowNavBar).call(this, props));
     _this.state = {
       prevScrollPos: window.pageYOffset,
-      fadeInName: false,
-      showCreateOptions: false
+      fadeInTitle: false
     };
     _this.handleScroll = _this.handleScroll.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  _createClass(ProfileNavBar, [{
+  _createClass(BoardShowNavBar, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       window.addEventListener("scroll", this.handleScroll);
@@ -1147,127 +1149,57 @@ function (_React$Component) {
     value: function handleScroll() {
       var prevScrollPos = this.state.prevScrollPos;
       var currentScrollPos = window.pageYOffset;
-      var fadeInName = prevScrollPos < currentScrollPos - 50;
+      var fadeInTitle = prevScrollPos < currentScrollPos - 50; // calculates how far down the screen you are before enacting title transition
+
       this.setState({
-        fadeInName: fadeInName
+        fadeInTitle: fadeInTitle
       });
     }
   }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          user = _this$props.user,
-          openModal = _this$props.openModal,
-          closeModal = _this$props.closeModal; // debugger;
-
+          openEditBoard = _this$props.openEditBoard,
+          board = _this$props.board,
+          user = _this$props.user;
+      var transition = this.state.fadeInTitle ? 'in' : 'out';
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "profile-nav-bar-wrapper"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show navbar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show buttons"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/pin-builder",
         className: "board-show button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-plus board-show",
-        id: "create-pin-icon"
+        className: "fas fa-map-pin board-show icon"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "board-show button"
+        className: "board-show button",
+        onClick: function onClick(e, boardId) {
+          return openEditBoard(e, board.id);
+        }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-pencil-alt board-show",
+        className: "fas fa-pencil-alt board-show icon",
         id: "edit-board-icon"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-show profile-link"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "board-show fade-title-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-show fade-title ".concat(transition)
+      }, board.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-show profile-button-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/".concat(user.username),
         className: "board-show profile-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: userPhoto
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "profile-nav-bar"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "buttons-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "buttons"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "profile-header-expander"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-header-button",
-        id: "create-dropdown"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "profile-header-link",
-        onClick: this.toggleShow,
-        onBlur: this.hide
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-icon-container-shadow"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-icon-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-plus",
-        id: "create-dropdown-icon"
-      }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "create-options-container",
-        style: {
-          visibility: this.state.showCreateOptions ? "visible" : "hidden"
-        }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "create-options"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "create-board-button",
-        tabIndex: "0",
-        onClick: this.openEditBoard
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "option-container-shadow"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "option-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-        className: "option-label",
-        id: "create-board"
-      }, "Create board")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "create-pin-button"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-        to: "/pin-builder"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "option-container-shadow"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "option-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-        className: "option-label",
-        id: "create-pin"
-      }, "Create Pin")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "create-options-triangle"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-        width: "24",
-        height: "24"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-        d: "M0 24 L12 12 L24 24"
-      }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-header-button",
-        id: "edit-profile"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/settings#profile",
-        className: "profile-header-link"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-icon-container-shadow"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-icon-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-pencil-alt",
-        id: "edit-profile-icon"
-      }))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "nav-bar-name-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "nav-bar-name-fixed"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "nav-bar-name",
-        className: this.state.fadeInName ? "transitionIn" : "transitionOut"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, user.firstName + " " + user.lastName))))));
+        src: user.photo,
+        className: "board-show profile-photo"
+      }))));
     }
   }]);
 
-  return ProfileNavBar;
+  return BoardShowNavBar;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (ProfileNavBar);
+/* harmony default export */ __webpack_exports__["default"] = (BoardShowNavBar);
 
 /***/ }),
 

@@ -21,7 +21,6 @@ export default class BoardShow extends Component {
 
   render() {
     const { currentUser, board, openEditBoard } = this.props;
-    const { userPhoto } = currentUser;
     const secretIcon = (this.state.secret) ? (
       <div className="board-show visibility">
         <i className="fas fa-lock board-show" id="lock-icon"></i>
@@ -34,11 +33,11 @@ export default class BoardShow extends Component {
       <div className="board-show container">
         <div className="board-show header">
           <div className="board-show navbar-container">
-            {/* <BoardShowNavBar
+            <BoardShowNavBar
               openEditBoard={this.openEditBoard}
-              boardId={board} 
-              userPhoto={userPhoto}
-            /> */}
+              board={board} 
+              user={currentUser}
+            />
           </div>
           <div className="board-show info">
             <div className="board-show main-info">
@@ -47,11 +46,11 @@ export default class BoardShow extends Component {
               </div>
               <div className="board-show stats">
                 {secretIcon}
-                <div className="board-show pin-count">
+                <div className="board-show count pin">
                   252 pins
                 </div>
-                <div className="board-show follower-count">
-                  {" · "} 7 followers
+                <div className="board-show count follower">
+                  ·  7 followers
                 </div>
               </div>
             </div>
