@@ -499,7 +499,7 @@
   padding: 0 8px;
 }
 
-.pin-index#item {
+.pin-index.masonry-item {
   box-sizing: border-box;
   border-radius: 8px;
   width: 236px;
@@ -511,7 +511,7 @@
   align-items: center;
 }
 
-.pin-index#image {
+.pin-index.masonry-content {
   box-sizing: border-box;
   border-radius: 8px;
   width: 100%;

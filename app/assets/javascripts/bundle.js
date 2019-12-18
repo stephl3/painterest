@@ -264,6 +264,34 @@ var deleteBoardPin = function deleteBoardPin(boardPinId) {
 
 /***/ }),
 
+/***/ "./frontend/actions/loading_actions.js":
+/*!*********************************************!*\
+  !*** ./frontend/actions/loading_actions.js ***!
+  \*********************************************/
+/*! exports provided: START_LOADING, STOP_LOADING, startLoading, stopLoading */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "START_LOADING", function() { return START_LOADING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "STOP_LOADING", function() { return STOP_LOADING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "startLoading", function() { return startLoading; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stopLoading", function() { return stopLoading; });
+var START_LOADING = 'START_LOADING';
+var STOP_LOADING = 'STOP_LOADING';
+var startLoading = function startLoading() {
+  return {
+    type: START_LOADING
+  };
+};
+var stopLoading = function stopLoading() {
+  return {
+    type: STOP_LOADING
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/modal_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/modal_actions.js ***!
@@ -2643,12 +2671,17 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      this.props.fetchPins().then(setTimeout(function () {
+      this.props.startLoading();
+      this.props.fetchPins();
+      setTimeout(function () {
         return _this2.resizeAllGridItems();
-      }, 2000));
+      }, 1000);
       masonryEvents.forEach(function (e) {
         return window.addEventListener(event, _this2.resizeAllGridItems);
       });
+      setTimeout(function () {
+        return _this2.props.stopLoading();
+      }, 2000);
     }
   }, {
     key: "render",
@@ -2656,9 +2689,15 @@ function (_React$Component) {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
           pins = _this$props.pins,
+          loading = _this$props.loading,
           deleteBoardPin = _this$props.deleteBoardPin,
           createBoardPin = _this$props.createBoardPin,
           openModal = _this$props.openModal;
+      var loader = loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "loading-background"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "loading"
+      })) : null;
       var pinIndexItems = shuffle(pins).map(function (pin) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: pin.id,
@@ -2671,7 +2710,7 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index",
         id: "background"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, loader, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index",
         id: "main-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2706,8 +2745,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
 /* harmony import */ var _actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/board_pin_actions */ "./frontend/actions/board_pin_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _pin_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pin_index */ "./frontend/components/pin/pin_index.jsx");
+/* harmony import */ var _actions_loading_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/loading_actions */ "./frontend/actions/loading_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _pin_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pin_index */ "./frontend/components/pin/pin_index.jsx");
+
 
 
 
@@ -2719,7 +2760,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     pins: Object.values(state.entities.pins),
     // pins: Object.values(ownProps.pins),
-    user: state.entities.users[state.session.id]
+    user: state.entities.users[state.session.id],
+    loading: state.ui.loading
   };
 };
 
@@ -2735,13 +2777,19 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     createBoardPin: function createBoardPin(boardPin) {
       return dispatch(Object(_actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_3__["createBoardPin"])(boardPin));
     },
+    startLoading: function startLoading() {
+      return dispatch(Object(_actions_loading_actions__WEBPACK_IMPORTED_MODULE_4__["startLoading"])());
+    },
+    stopLoading: function stopLoading() {
+      return dispatch(Object(_actions_loading_actions__WEBPACK_IMPORTED_MODULE_4__["stopLoading"])());
+    },
     editPin: function editPin() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])("edit-pin"));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])("edit-pin"));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_pin_index__WEBPACK_IMPORTED_MODULE_5__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_pin_index__WEBPACK_IMPORTED_MODULE_6__["default"]));
 
 /***/ }),
 
@@ -4512,6 +4560,35 @@ var ErrorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
 
 /***/ }),
 
+/***/ "./frontend/reducers/loading_reducer.js":
+/*!**********************************************!*\
+  !*** ./frontend/reducers/loading_reducer.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_loading_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/loading_actions */ "./frontend/actions/loading_actions.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actions_loading_actions__WEBPACK_IMPORTED_MODULE_0__["START_LOADING"]:
+      return true;
+
+    case _actions_loading_actions__WEBPACK_IMPORTED_MODULE_0__["STOP_LOADING"]:
+      return false;
+
+    default:
+      return oldState;
+  }
+});
+
+/***/ }),
+
 /***/ "./frontend/reducers/modal_object_reducer.js":
 /*!***************************************************!*\
   !*** ./frontend/reducers/modal_object_reducer.js ***!
@@ -4745,14 +4822,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _modal_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal_reducer */ "./frontend/reducers/modal_reducer.js");
 /* harmony import */ var _modal_object_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modal_object_reducer */ "./frontend/reducers/modal_object_reducer.js");
+/* harmony import */ var _loading_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./loading_reducer */ "./frontend/reducers/loading_reducer.js");
  // import filters from './filters_reducer';
+
 
 
 
 var UIReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   // filters,
   modal: _modal_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  objectId: _modal_object_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  objectId: _modal_object_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  loading: _loading_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (UIReducer);
 

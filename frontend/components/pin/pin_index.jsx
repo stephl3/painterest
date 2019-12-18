@@ -31,17 +31,24 @@ class PinIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchPins().then(setTimeout(
-      () => this.resizeAllGridItems(), 2000)
-    )
+    this.props.startLoading();
+    this.props.fetchPins();
+    setTimeout(() => this.resizeAllGridItems(), 1000);
+
     masonryEvents.forEach(
       (e) => window.addEventListener(event, this.resizeAllGridItems)
-    )
+    );
+
+    setTimeout(() => this.props.stopLoading(), 2000);
   }
 
   render() {
-    const { currentUser, pins, deleteBoardPin, createBoardPin, openModal } = this.props;
-
+    const { currentUser, pins, loading, deleteBoardPin, createBoardPin, openModal } = this.props;
+    const loader = (loading) ? (
+      <div className="loading-background">
+        <div className="loading"></div>
+      </div>
+    ) : null;
     const pinIndexItems = (shuffle(pins)).map(pin => (
       <PinIndexItem
         key={pin.id}
@@ -51,9 +58,9 @@ class PinIndex extends React.Component {
         openModal={openModal}
       />
     ));
-
     return (
       <div className="pin-index" id="background">
+        {loader}
         <div className="pin-index" id="main-container">
           <div className="pin-index" id="grid-container">
             <div className="pin-index masonry" id="grid">
