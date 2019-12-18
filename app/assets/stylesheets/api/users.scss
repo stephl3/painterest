@@ -320,8 +320,7 @@
   letter-spacing: -.4px;
   -webkit-font-smoothing: antialiased;
   font-size: 36px;
-  margin-bottom: 0px;
-  margin-top: 0px;
+  margin-bottom: 4px;
   display: block;
   font-weight: bold;
 }
@@ -366,6 +365,9 @@
   word-wrap: break-word;
   font-weight: 700;
   letter-spacing: -.4px;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -webkit-font-smoothing: antialiased;
 }
 
 #profile-follows-spacer-container {
@@ -403,6 +405,9 @@
   word-wrap: break-word;
   font-weight: 400;
   letter-spacing: -.4px;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -webkit-font-smoothing: antialiased;
 }
 
 #profile-image-container-outer {
