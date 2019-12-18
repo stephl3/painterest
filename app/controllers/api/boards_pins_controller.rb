@@ -23,6 +23,7 @@ class Api::BoardsPinsController < ApplicationController
       render 'api/boards_pins/show'
     else
       render json: @boards_pins.errors.full_messages, status: 401
+    end
   end
 
   private
