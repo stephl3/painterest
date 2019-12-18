@@ -586,7 +586,7 @@ var App = function App() {
     component: _profile_edit_profile_form_container__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     exact: true,
-    path: "/:username",
+    path: "/:username/pins",
     component: _profile_profile_show_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     exact: true,
@@ -594,7 +594,7 @@ var App = function App() {
     component: _profile_profile_show_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     exact: true,
-    path: "/:username/pins",
+    path: "/:username",
     component: _profile_profile_show_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/:username/:boardTitle",
@@ -2618,12 +2618,13 @@ function (_React$Component) {
   _createClass(PinIndex, [{
     key: "resizeGridItem",
     value: function resizeGridItem(item) {
-      var grid = document.getElementsByClassName("masonry")[0];
+      var grid = document.getElementById('grid');
       var rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
       var rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
-      var gridImagesAsContent = item.querySelector("img.masonry-content");
-      var rowSpan = Math.ceil((item.querySelector('.masonry-content').getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
+      var itemImg = item.querySelector(".masonry-content");
+      var rowSpan = Math.ceil((itemImg.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
       item.style.gridRowEnd = "span " + rowSpan;
+      itemImg.style.height = '100%';
     }
   }, {
     key: "resizeAllGridItems",
@@ -2636,15 +2637,19 @@ function (_React$Component) {
           this.resizeGridItem(allItems[i]);
         }
       }
-    } // componentDidMount() {
-    //   this.props.fetchPins().then(setTimeout(
-    //     () => this.resizeAllGridItems(), 2000)
-    //   )
-    //   masonryEvents.forEach(
-    //     (e) => window.addEventListener(event, this.resizeAllGridItems)
-    //   )
-    // }
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
 
+      this.props.fetchPins().then(setTimeout(function () {
+        return _this2.resizeAllGridItems();
+      }, 2000));
+      masonryEvents.forEach(function (e) {
+        return window.addEventListener(event, _this2.resizeAllGridItems);
+      });
+    }
   }, {
     key: "render",
     value: function render() {

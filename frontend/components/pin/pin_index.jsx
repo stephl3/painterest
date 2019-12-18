@@ -12,13 +12,13 @@ class PinIndex extends React.Component {
   }
 
   resizeGridItem(item) {
-    let grid = document.getElementsByClassName("masonry")[0];
+    let grid = document.getElementById('grid');
     let rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
     let rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
-    let gridImagesAsContent = item.querySelector("img.masonry-content");
-    let rowSpan = Math.ceil((item.querySelector('.masonry-content').getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
+    let itemImg = item.querySelector(".masonry-content");
+    let rowSpan = Math.ceil((itemImg.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
     item.style.gridRowEnd = "span " + rowSpan;
-
+    itemImg.style.height = '100%';
   }
 
   resizeAllGridItems() {
@@ -30,14 +30,14 @@ class PinIndex extends React.Component {
     }
   }
 
-  // componentDidMount() {
-  //   this.props.fetchPins().then(setTimeout(
-  //     () => this.resizeAllGridItems(), 2000)
-  //   )
-  //   masonryEvents.forEach(
-  //     (e) => window.addEventListener(event, this.resizeAllGridItems)
-  //   )
-  // }
+  componentDidMount() {
+    this.props.fetchPins().then(setTimeout(
+      () => this.resizeAllGridItems(), 2000)
+    )
+    masonryEvents.forEach(
+      (e) => window.addEventListener(event, this.resizeAllGridItems)
+    )
+  }
 
   render() {
     const { currentUser, pins, deleteBoardPin, createBoardPin, openModal } = this.props;

@@ -2,7 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// CREATE PIN
+////////////////////////////////////////////////////////////////////
+//////////////////////////// CREATE PIN ////////////////////////////
+////////////////////////////////////////////////////////////////////
 #create-pin-background {
   position: fixed;
   top: 65px;
@@ -424,7 +426,9 @@
 
 
 
-// PIN INDEX
+////////////////////////////////////////////////////////////////////
+//////////////////////////// PIN INDEX /////////////////////////////
+////////////////////////////////////////////////////////////////////
 .pin-index#background {
   padding-top: 65px;
 }
@@ -437,8 +441,43 @@
 }
 
 .pin-index#grid-container {
-  margin: 0 100px;
-
+  margin: 0 auto;
+  @media (max-width: 755px) and (min-width: 0px) {
+    width: 504px;
+  }
+  @media (max-width: 1007px) and (min-width: 756px) {
+    width: 756px;
+  }
+  @media (max-width: 1259px) and (min-width: 1008px) {
+    width: 1008px;
+  }
+  @media (max-width: 1511px) and (min-width: 1260px) {
+    width: 1260px;
+  }
+  @media (max-width: 1763px) and (min-width: 1512px) {
+    width: 1512px;
+  }
+  @media (max-width: 2015px) and (min-width: 1764px) {
+    width: 1764px;
+  }
+  @media (max-width: 2267px) and (min-width: 2016px) {
+    width: 2016px;
+  }
+  @media (max-width: 2519px) and (min-width: 2268px) {
+    width: 2268px;
+  }
+  @media (max-width: 2771px) and (min-width: 2520px) {
+    width: 2520px;
+  }
+  @media (max-width: 3023px) and (min-width: 2772px) {
+    width: 2772px;
+  }
+  @media (max-width: 3275px) and (min-width: 3024px) {
+    width: 3024px;
+  }
+  @media (max-width: 3527px) and (min-width: 3276px) {
+    width: 3276px;
+  } 
 }
 
 .pin-index#grid {
@@ -446,7 +485,7 @@
   min-width: 550px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(252px,1fr));
-  grid-gap: 10px;
+  grid-row-gap: 10px;
   grid-auto-rows: 40px;
   justify-items: center;
   justify-content: center;
@@ -464,7 +503,8 @@
   box-sizing: border-box;
   border-radius: 8px;
   width: 236px;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -474,6 +514,26 @@
 .pin-index#image {
   box-sizing: border-box;
   border-radius: 8px;
-  width: 236px;
+  width: 100%;
   height: auto;
 }
+
+
+
+////////////////////////////////////////////////////////////////////
+///////////////////////////// PIN SHOW /////////////////////////////
+////////////////////////////////////////////////////////////////////
+
+
+
+
+////////////////////////////////////////////////////////////////////
+///////////////////////////// EDIT PIN /////////////////////////////
+////////////////////////////////////////////////////////////////////
+
+
+
+
+////////////////////////////////////////////////////////////////////
+//////////////////////////// DELETE PIN ////////////////////////////
+////////////////////////////////////////////////////////////////////
