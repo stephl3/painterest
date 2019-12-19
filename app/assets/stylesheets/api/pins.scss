@@ -429,15 +429,13 @@
 ////////////////////////////////////////////////////////////////////
 //////////////////////////// PIN INDEX /////////////////////////////
 ////////////////////////////////////////////////////////////////////
-.pin-index#background {
+.pin-index.container {
   padding-top: 65px;
 }
 
 .pin-index#main-container {
   width: 100%;
   padding: 24px 0;
-
-
 }
 
 .pin-index#grid-container {
@@ -491,17 +489,17 @@
   justify-content: center;
 }
 
-.pin-index.item-container {
+.pin-index-item.container {
   width: 252px;
   display: flex;
   align-items: flex-start;
   box-sizing: border-box;
-  padding: 0 8px;
+  padding: 4px 8px;
 }
 
-.pin-index.masonry-item {
+.pin-index-item.masonry-item {
   box-sizing: border-box;
-  border-radius: 8px;
+  border-radius: 16px;
   width: 236px;
   height: 100%;
   object-fit: cover;
@@ -509,14 +507,44 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
-.pin-index.masonry-content {
+.pin-index-item.pin-show-link {
+  width: 100%;
+  height: 100%;
+  cursor: zoom-in;
+}
+
+.pin-index-item.masonry-image {
   box-sizing: border-box;
-  border-radius: 8px;
+  border-radius: 16px;
   width: 100%;
   height: auto;
 }
+
+.pin-index-item.overlay {
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  position: absolute;
+  background: rgba(0,0,0,.03);
+  // pointer-events: none;
+  &:hover {
+    background: rgba(0,0,0,.06);
+  }
+}
+
+.pin-index-item.buttons-container {
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+
+
 
 
 

@@ -15,7 +15,7 @@ class PinIndex extends React.Component {
     let grid = document.getElementById('grid');
     let rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
     let rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
-    let itemImg = item.querySelector(".masonry-content");
+    let itemImg = item.querySelector(".masonry-image");
     let rowSpan = Math.ceil((itemImg.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
     item.style.gridRowEnd = "span " + rowSpan;
     itemImg.style.height = '100%';
@@ -23,7 +23,7 @@ class PinIndex extends React.Component {
 
   resizeAllGridItems() {
     // debugger;
-    let allItems = document.getElementsByClassName("pin-index item-container");
+    let allItems = document.getElementsByClassName("pin-index-item container");
     if (allItems) {
       for (let i = 0; i < allItems.length; i++)
         this.resizeGridItem(allItems[i]);
@@ -38,12 +38,12 @@ class PinIndex extends React.Component {
     masonryEvents.forEach(
       (e) => window.addEventListener(event, this.resizeAllGridItems)
     );
-
-    setTimeout(() => this.props.stopLoading(), 2000);
+    setTimeout(() => this.props.stopLoading(), 1200);
   }
 
   render() {
-    const { currentUser, pins, loading, deleteBoardPin, createBoardPin, openModal } = this.props;
+    const { currentUser, pins, loading,
+      openEditPin, openNewBoardPin, createBoardPin } = this.props;
     const loader = (loading) ? (
       <div className="loading-background">
         <div className="loading"></div>
@@ -52,20 +52,19 @@ class PinIndex extends React.Component {
     const pinIndexItems = (shuffle(pins)).map(pin => (
       <PinIndexItem
         key={pin.id}
+        user={currentUser}
         pin={pin}
-        deleteBoardPin={deleteBoardPin}
+        openEditPin={openEditPin}
+        openNewBoardPin={openNewBoardPin}
         createBoardPin={createBoardPin}
-        openModal={openModal}
       />
     ));
     return (
-      <div className="pin-index" id="background">
+      <div className="pin-index container">
         {loader}
-        <div className="pin-index" id="main-container">
-          <div className="pin-index" id="grid-container">
-            <div className="pin-index masonry" id="grid">
-              {pinIndexItems}
-            </div>
+        <div className="pin-index" id="grid-container">
+          <div className="pin-index masonry" id="grid">
+            {pinIndexItems}
           </div>
         </div>
       </div>

@@ -13,21 +13,28 @@ import { startLoading, stopLoading } from "../../actions/loading_actions";
 import { openModal } from "../../actions/modal_actions";
 import PinIndex from "./pin_index";
 
-const mapStateToProps =(state, ownProps) => ({
-  pins: Object.values(state.entities.pins),
-  // pins: Object.values(ownProps.pins),
-  user: state.entities.users[state.session.id],
-  loading: state.ui.loading
-});
+const mapStateToProps =(state, ownProps) => {
+  const pins = (typeof ownProps.pins !== 'undefined') ? (
+    Object.values(ownProps.pins)
+  ) : (
+    Object.values(state.entities.pins)
+  );
+
+  return {
+    pins,
+    user: state.entities.users[state.session.id],
+    loading: state.ui.loading,
+    parent: ownProps.parent
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   fetchPins: () => dispatch(fetchPins()),
-  // updatePin: pin => dispatch(updatePin(pin)),
-  deleteBoardPin: boardPinId => dispatch(deleteBoardPin(boardPinId)),
+  openEditPin: pinId => dispatch(openModal("edit-pin", pinId)),
+  openNewBoardPin: pinId => dispatch(openModal("new-board-pin", pinId)),
   createBoardPin: boardPin => dispatch(createBoardPin(boardPin)),
   startLoading: () => dispatch(startLoading()),
   stopLoading: () => dispatch(stopLoading()),
-  editPin: () => dispatch(openModal("edit-pin")),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PinIndex);

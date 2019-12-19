@@ -1976,7 +1976,7 @@ var Modal = function Modal(_ref) {
       break;
 
     case "edit-pin":
-      // component = <EditPinFormContainer />;
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(EditPinFormContainer, null);
       clickBackground = closeModal;
       break;
 
@@ -2649,7 +2649,7 @@ function (_React$Component) {
       var grid = document.getElementById('grid');
       var rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
       var rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
-      var itemImg = item.querySelector(".masonry-content");
+      var itemImg = item.querySelector(".masonry-image");
       var rowSpan = Math.ceil((itemImg.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
       item.style.gridRowEnd = "span " + rowSpan;
       itemImg.style.height = '100%';
@@ -2658,7 +2658,7 @@ function (_React$Component) {
     key: "resizeAllGridItems",
     value: function resizeAllGridItems() {
       // debugger;
-      var allItems = document.getElementsByClassName("pin-index item-container");
+      var allItems = document.getElementsByClassName("pin-index-item container");
 
       if (allItems) {
         for (var i = 0; i < allItems.length; i++) {
@@ -2681,7 +2681,7 @@ function (_React$Component) {
       });
       setTimeout(function () {
         return _this2.props.stopLoading();
-      }, 2000);
+      }, 1200);
     }
   }, {
     key: "render",
@@ -2690,9 +2690,9 @@ function (_React$Component) {
           currentUser = _this$props.currentUser,
           pins = _this$props.pins,
           loading = _this$props.loading,
-          deleteBoardPin = _this$props.deleteBoardPin,
-          createBoardPin = _this$props.createBoardPin,
-          openModal = _this$props.openModal;
+          openEditPin = _this$props.openEditPin,
+          openNewBoardPin = _this$props.openNewBoardPin,
+          createBoardPin = _this$props.createBoardPin;
       var loader = loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "loading-background"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2701,25 +2701,22 @@ function (_React$Component) {
       var pinIndexItems = shuffle(pins).map(function (pin) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: pin.id,
+          user: currentUser,
           pin: pin,
-          deleteBoardPin: deleteBoardPin,
-          createBoardPin: createBoardPin,
-          openModal: openModal
+          openEditPin: openEditPin,
+          openNewBoardPin: openNewBoardPin,
+          createBoardPin: createBoardPin
         });
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-index",
-        id: "background"
+        className: "pin-index container"
       }, loader, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-index",
-        id: "main-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index",
         id: "grid-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index masonry",
         id: "grid"
-      }, pinIndexItems))));
+      }, pinIndexItems)));
     }
   }]);
 
@@ -2757,11 +2754,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var pins = typeof ownProps.pins !== 'undefined' ? Object.values(ownProps.pins) : Object.values(state.entities.pins);
   return {
-    pins: Object.values(state.entities.pins),
-    // pins: Object.values(ownProps.pins),
+    pins: pins,
     user: state.entities.users[state.session.id],
-    loading: state.ui.loading
+    loading: state.ui.loading,
+    parent: ownProps.parent
   };
 };
 
@@ -2770,9 +2768,11 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchPins: function fetchPins() {
       return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPins"])());
     },
-    // updatePin: pin => dispatch(updatePin(pin)),
-    deleteBoardPin: function deleteBoardPin(boardPinId) {
-      return dispatch(Object(_actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_3__["deleteBoardPin"])(boardPinId));
+    openEditPin: function openEditPin(pinId) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])("edit-pin", pinId));
+    },
+    openNewBoardPin: function openNewBoardPin(pinId) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])("new-board-pin", pinId));
     },
     createBoardPin: function createBoardPin(boardPin) {
       return dispatch(Object(_actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_3__["createBoardPin"])(boardPin));
@@ -2782,9 +2782,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     stopLoading: function stopLoading() {
       return dispatch(Object(_actions_loading_actions__WEBPACK_IMPORTED_MODULE_4__["stopLoading"])());
-    },
-    editPin: function editPin() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])("edit-pin"));
     }
   };
 };
@@ -2804,25 +2801,68 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _pin_index_item_buttons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pin_index_item_buttons */ "./frontend/components/pin/pin_index_item_buttons.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
  // import LinesEllipsis from "react-lines-ellipsis";
 
 var PinIndexItem = function PinIndexItem(_ref) {
-  var pin = _ref.pin;
+  var user = _ref.user,
+      pin = _ref.pin,
+      openEditPin = _ref.openEditPin,
+      openNewBoardPin = _ref.openNewBoardPin,
+      createBoardPin = _ref.createBoardPin;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pin-index item-container"
+    className: "pin-index-item container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pin-index masonry-item",
-    id: "item"
+    className: "pin-index-item masonry-item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    to: "/pin/".concat(pin.id),
+    className: "pin-index-item pin-show-link"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: pin.photo,
-    className: "pin-index masonry-content",
-    id: "image"
+    className: "pin-index-item masonry-image"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pin-index-item overlay"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item_buttons__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    user: user,
+    pin: pin,
+    openEditPin: openEditPin,
+    openNewBoardPin: openNewBoardPin,
+    createBoardPin: createBoardPin
   })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PinIndexItem);
+
+/***/ }),
+
+/***/ "./frontend/components/pin/pin_index_item_buttons.jsx":
+/*!************************************************************!*\
+  !*** ./frontend/components/pin/pin_index_item_buttons.jsx ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var PinIndexItemButtons = function PinIndexItemButtons(_ref) {
+  var user = _ref.user,
+      pin = _ref.pin,
+      openEditPin = _ref.openEditPin,
+      openNewBoardPin = _ref.openNewBoardPin,
+      createBoardPin = _ref.createBoardPin;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pin-index-item buttons-container"
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PinIndexItemButtons);
 
 /***/ }),
 
@@ -3346,7 +3386,8 @@ function (_React$Component) {
       var contentTabs = [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         boards: boards
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_pin_index_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        pins: pins
+        pins: pins,
+        parent: "profile"
       })];
       var selectedTab = contentTabs[this.state.selectedSwitch];
       var pinCount = this.state.selectedSwitch === 1 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
