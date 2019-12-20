@@ -32,13 +32,13 @@ class PinIndex extends React.Component {
 
   componentDidMount() {
     this.props.startLoading();
-    this.props.fetchPins();
-    setTimeout(() => this.resizeAllGridItems(), 1000);
+    // this.props.fetchPins();
+    setTimeout(() => this.resizeAllGridItems(), 2000);
 
     masonryEvents.forEach(
       (e) => window.addEventListener(event, this.resizeAllGridItems)
     );
-    setTimeout(() => this.props.stopLoading(), 1200);
+    setTimeout(() => this.props.stopLoading(), 3000);
   }
 
   render() {

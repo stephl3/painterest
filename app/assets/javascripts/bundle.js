@@ -2671,17 +2671,17 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      this.props.startLoading();
-      this.props.fetchPins();
+      this.props.startLoading(); // this.props.fetchPins();
+
       setTimeout(function () {
         return _this2.resizeAllGridItems();
-      }, 1000);
+      }, 2000);
       masonryEvents.forEach(function (e) {
         return window.addEventListener(event, _this2.resizeAllGridItems);
       });
       setTimeout(function () {
         return _this2.props.stopLoading();
-      }, 1200);
+      }, 3000);
     }
   }, {
     key: "render",
@@ -2817,15 +2817,15 @@ var PinIndexItem = function PinIndexItem(_ref) {
     className: "pin-index-item container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item masonry-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pin-index-item overlay"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/pin/".concat(pin.id),
     className: "pin-index-item pin-show-link"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: pin.photo,
     className: "pin-index-item masonry-image"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pin-index-item overlay"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item_buttons__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item_buttons__WEBPACK_IMPORTED_MODULE_1__["default"], {
     user: user,
     pin: pin,
     openEditPin: openEditPin,

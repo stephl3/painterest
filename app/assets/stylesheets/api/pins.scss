@@ -529,10 +529,11 @@
   right: 0;
   top: 0;
   position: absolute;
-  background: rgba(0,0,0,.03);
-  // pointer-events: none;
+  z-index: 2;
+  background-color: rgba(0,0,0,.03);
+  cursor: zoom-in;
   &:hover {
-    background: rgba(0,0,0,.06);
+    background-color: rgba(0,0,0,0.06);
   }
 }
 
@@ -542,6 +543,12 @@
   right: 0;
   top: 0;
   position: absolute;
+  z-index: 1;
+  display: none;
+  &:hover {
+    background-color: rgba(0,0,0,0.03);
+    display: initial;
+  }
 }
 
 
