@@ -19,6 +19,7 @@ const mapStateToProps =(state, ownProps) => {
   ) : (
     Object.values(state.entities.pins)
   );
+  // review this to ensure correct pins
 
   return {
     pins,
