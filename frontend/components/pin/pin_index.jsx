@@ -32,6 +32,7 @@ class PinIndex extends React.Component {
 
   componentDidMount() {
     this.props.startLoading();
+    // when to fetch pins and when to not...?
     // this.props.fetchPins();
     setTimeout(() => this.resizeAllGridItems(), 2000);
 
