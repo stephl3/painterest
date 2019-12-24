@@ -2671,7 +2671,8 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      this.props.startLoading(); // this.props.fetchPins();
+      this.props.startLoading(); // when to fetch pins and when to not...?
+      // this.props.fetchPins();
 
       setTimeout(function () {
         return _this2.resizeAllGridItems();
@@ -2738,14 +2739,11 @@ function (_React$Component) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _pin_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pin_index */ "./frontend/components/pin/pin_index.jsx");
 /* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
 /* harmony import */ var _actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/board_pin_actions */ "./frontend/actions/board_pin_actions.js");
 /* harmony import */ var _actions_loading_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/loading_actions */ "./frontend/actions/loading_actions.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _pin_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pin_index */ "./frontend/components/pin/pin_index.jsx");
-
 
 
 
@@ -2754,7 +2752,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var pins = typeof ownProps.pins !== 'undefined' ? Object.values(ownProps.pins) : Object.values(state.entities.pins);
+  var pins = typeof ownProps.pins !== 'undefined' ? Object.values(ownProps.pins) : Object.values(state.entities.pins); // review this to ensure correct pins
+
   return {
     pins: pins,
     user: state.entities.users[state.session.id],
@@ -2786,7 +2785,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_pin_index__WEBPACK_IMPORTED_MODULE_6__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_pin_index__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 

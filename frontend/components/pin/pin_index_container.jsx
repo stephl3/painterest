@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import React from "react";
+import PinIndex from "./pin_index";
 
 import {
   fetchPins,
@@ -11,7 +11,6 @@ import {
 } from "../../actions/board_pin_actions";
 import { startLoading, stopLoading } from "../../actions/loading_actions";
 import { openModal } from "../../actions/modal_actions";
-import PinIndex from "./pin_index";
 
 const mapStateToProps =(state, ownProps) => {
   const pins = (typeof ownProps.pins !== 'undefined') ? (

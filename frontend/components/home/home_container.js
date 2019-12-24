@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
-import DiscoverFeed from './discover_feed';
-import { fetchAllPins, loadPin } from '../../actions/pin_actions';
+import Home from './home';
+
+
+import { fetchPins, loadPin } from '../../actions/pin_actions';
 import { fetchAllUsers } from '../../actions/user_actions';
 
 const mapStateToProps = state => ({
@@ -14,7 +16,4 @@ const mapDispatchToProps = dispatch => ({
   loadPin: pin => dispatch(loadPin(pin))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DiscoverFeed);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -4,7 +4,7 @@ import SyncLoader from 'react-spinners/SyncLoader';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import LinesEllipsis from 'react-lines-ellipsis';
 
-class DiscoverFeed extends React.Component {
+class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.loadedPins;
@@ -97,4 +97,4 @@ class DiscoverFeed extends React.Component {
   }
 }
 
-export default withRouter(DiscoverFeed);
+export default Home;
