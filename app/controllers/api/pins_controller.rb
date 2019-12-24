@@ -19,7 +19,7 @@ class Api::PinsController < ApplicationController
   end
   
   def index
-    @pins = Pin.all.page(rand(1...20))
+    @pins = Pin.all.page(7).per(30).padding(10)
     render "api/pins/index"
   end
 

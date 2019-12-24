@@ -30,17 +30,25 @@ class PinIndex extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.props.startLoading();
-    // when to fetch pins and when to not...?
-    // this.props.fetchPins();
-    setTimeout(() => this.resizeAllGridItems(), 2000);
-
+  componentWillMount() {
+    this.props.fetchPins();
+    setTimeout(() => this.resizeAllGridItems(), 170);
     masonryEvents.forEach(
       (e) => window.addEventListener(event, this.resizeAllGridItems)
     );
-    setTimeout(() => this.props.stopLoading(), 3000);
   }
+
+  // componentDidMount() {
+  //   // this.props.startLoading();
+  //   // when to fetch pins and when to not...?
+  //   this.props.fetchPins();
+  //   setTimeout(() => this.resizeAllGridItems(), 2000);
+
+  //   masonryEvents.forEach(
+  //     (e) => window.addEventListener(event, this.resizeAllGridItems)
+  //   );
+  //   // setTimeout(() => this.props.stopLoading(), 3000);
+  // }
 
   render() {
     const { currentUser, pins, loading,
@@ -50,7 +58,8 @@ class PinIndex extends React.Component {
         <div className="loading"></div>
       </div>
     ) : null;
-    const pinIndexItems = (shuffle(pins)).map(pin => (
+    
+    const pinIndexItems = (pins).map(pin => (
       <PinIndexItem
         key={pin.id}
         user={currentUser}

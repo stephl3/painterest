@@ -12,6 +12,7 @@ import Modal from "./modal/modal";
 import SignupFormContainer from "./session/signup_form_container";
 import LoginFormContainer from "./session/login_form_container";
 import NavBarContainer from "./navbar/nav_bar_container";
+import HomeContainer from "./home/home_container";
 import CreatePinFormContainer from "./pin/form/create_pin_form_container";
 import EditProfileFormContainer from "./profile/edit_profile_form_container";
 import ProfileShowContainer from "./profile/profile_show_container";
@@ -25,13 +26,13 @@ const App = () => (
       <ProtectedRoute path="/" component={NavBarContainer} />
     </header>
     <Switch>
+      <Route exact path="/" component={PinIndexContainer} />
       <ProtectedRoute path="/pin-builder" component={CreatePinFormContainer} />
       <ProtectedRoute path="/settings" component={EditProfileFormContainer} />
       <ProtectedRoute exact path="/:username/pins" component={ProfileShowContainer} />
       <ProtectedRoute exact path="/:username/boards" component={ProfileShowContainer} />
       <ProtectedRoute exact path="/:username" component={ProfileShowContainer} />
       <ProtectedRoute path="/:username/:boardTitle" component={BoardShowContainer} />
-      <Route exact path="/" component={PinIndexContainer} />
     </Switch>
     {/* <footer>
       create pin button?

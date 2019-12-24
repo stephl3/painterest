@@ -430,16 +430,13 @@
 //////////////////////////// PIN INDEX /////////////////////////////
 ////////////////////////////////////////////////////////////////////
 .pin-index.container {
-  padding-top: 65px;
-}
-
-.pin-index#main-container {
-  width: 100%;
-  padding: 24px 0;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .pin-index#grid-container {
-  margin: 0 auto;
+  position: fixed;
   @media (max-width: 755px) and (min-width: 0px) {
     width: 504px;
   }
