@@ -32,7 +32,7 @@ class PinIndex extends React.Component {
 
   UNSAFE_componentWillMount() {
     this.props.fetchPins();
-    setTimeout(() => this.resizeAllGridItems(), 1000);
+    setTimeout(() => this.resizeAllGridItems(), 1500);
     masonryEvents.forEach(
       (e) => window.addEventListener(event, this.resizeAllGridItems)
     );

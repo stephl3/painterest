@@ -6,11 +6,11 @@ import { fetchPins } from '../../actions/pin_actions';
 import { fetchAllUsers } from '../../actions/user_actions';
 
 const mapStateToProps = state => {
-  debugger;
+  // debugger;
   const pins = (state.session.id) ? (
-    Object.values(state.entities.pins).slice(180, 220)
-  ) : (
     Object.values(state.entities.pins)
+  ) : (
+    Object.values(state.entities.pins).slice(180, 220)
   );
   return {
     pins: pins,
