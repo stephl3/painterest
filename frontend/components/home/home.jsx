@@ -13,11 +13,11 @@ class Home extends React.Component {
       .then(() => this.props.fetchAllUsers());
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.loadedPins !== prevProps.loadedPins) {
-      this.setState(this.props.loadedPins);
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.loadedPins !== prevProps.loadedPins) {
+  //     this.setState(this.props.loadedPins);
+  //   }
+  // }
 
   onLoad(pin) {
     this.props.loadPin(pin);

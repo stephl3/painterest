@@ -22,7 +22,11 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const user = Object.assign({}, this.state)
-    this.props.processForm(user).then(this.props.closeModal);
+    this.props.processForm(user)
+      .then(this.props.closeModal)
+      .then(window.setTimeout(() => {
+        window.location.reload(false);
+      }, 500))
   }
 
   handleDemo(e) {
@@ -37,7 +41,11 @@ class SessionForm extends React.Component {
       this._autoInput("email", email, () =>
         this._autoInput("password", password, () => {
           const demoUser = Object.assign({}, this.state);
-          this.props.demoLogin(demoUser).then(this.props.closeModal);
+          this.props.demoLogin(demoUser)
+            .then(this.props.closeModal)
+            .then(window.setTimeout(() => {
+              window.location.reload(false);
+            }, 500))
         })
       )
     )
