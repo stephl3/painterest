@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  openModal: () => dispatch(openModal("search")),
+  openSearchModal: () => dispatch(openModal("search")),
   closeModal: () => dispatch(closeModal())
 });
 

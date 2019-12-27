@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import SignupFormContainer from "../session/signup_form_container";
 import LoginFormContainer from "../session/login_form_container";
+import SearchContainer from "../search/search_container";
 import CreateBoardFormContainer from "../board/form/create_board_form_container";
 import EditBoardFormContainer from "../board/form/edit_board_form_container";
 import DeleteBoardFormContainer from "../board/form/delete_board_form_container";
@@ -30,6 +31,10 @@ const Modal = ({ modal, openModal, closeModal }) => {
       altModal = "login";
       component = <SignupFormContainer />;
       clickBackground = null;
+      break;
+    case "search":
+      component = <SearchContainer />;
+      clickBackground = closeModal;
       break;
     case "new-board":
       component = <CreateBoardFormContainer />;
