@@ -2,17 +2,21 @@ import React from "react";
 
 
 const PinIndexItemButtons = ({ user, pin, openEditPin, openNewBoardPin }) => {
+  const editPinLink = (
+    <a className="pin-index-item edit-pin-link">
+      <div className="pin-index-item edit-pin-icon">
+        <i className="fas fa-pencil-alt"></i>
+      </div>
+    </a>
+  );
   const pinUrl = pin.url;
-
 
   return (
     <div className="pin-index-item buttons-container">
       <div className="pin-index-item buttons upper">
-        <a className="pin-index-item edit-pin-link">
-          <div className="pin-index-item edit-pin-icon">
-            <i className="fas fa-pencil"></i>
-          </div>
-        </a>
+        <div>
+          {editPinLink}
+        </div>
         <a className="pin-index-item save-board-pin-link">
           <div className="pin-index-item save-board-pin-text">
             Save

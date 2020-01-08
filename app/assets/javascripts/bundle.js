@@ -1988,10 +1988,11 @@ function (_React$Component) {
       var otherPins = pins.filter(function (pin) {
         return pin.userId !== currentUserId;
       });
+      var firstSet = otherPins.slice(0, 20);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "home-container ".concat(klass)
       }, spacer, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_pin_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        pins: otherPins
+        pins: firstSet
       })); // const pinArray = Object.values(pins);
       // const loadedPins = this.state.loadedPins.map(pin =>
       //   <div key={pin.id} className="pin">
@@ -3043,18 +3044,19 @@ var PinIndexItemButtons = function PinIndexItemButtons(_ref) {
       pin = _ref.pin,
       openEditPin = _ref.openEditPin,
       openNewBoardPin = _ref.openNewBoardPin;
+  var editPinLink = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "pin-index-item edit-pin-link"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pin-index-item edit-pin-icon"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-pencil-alt"
+  })));
   var pinUrl = pin.url;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item buttons-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item buttons upper"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "pin-index-item edit-pin-link"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pin-index-item edit-pin-icon"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-pencil"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, editPinLink), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "pin-index-item save-board-pin-link"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item save-board-pin-text"

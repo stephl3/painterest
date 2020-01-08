@@ -32,11 +32,11 @@ class Home extends React.Component {
       spacer = <div id="spacer"></div>;
     };
     const otherPins = pins.filter(pin => pin.userId !== currentUserId);
-
+    const firstSet = otherPins.slice(0, 20);
     return (
       <div className={`home-container ${klass}`}>
         {spacer}
-        <PinIndexContainer pins={otherPins} />
+        <PinIndexContainer pins={firstSet} />
       </div>
     )
     // const pinArray = Object.values(pins);
