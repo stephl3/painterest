@@ -1976,7 +1976,9 @@ function (_React$Component) {
 
       if (currentUserId === null) {
         klass = "no-scroll";
+        spacer = null;
       } else {
+        klass = "";
         spacer = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "spacer"
         });
@@ -2847,8 +2849,8 @@ function (_React$Component) {
       }
     }
   }, {
-    key: "UNSAFE_componentWillMount",
-    value: function UNSAFE_componentWillMount() {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       var _this2 = this;
 
       // debugger;
@@ -2859,19 +2861,18 @@ function (_React$Component) {
       masonryEvents.forEach(function (e) {
         return window.addEventListener(event, _this2.resizeAllGridItems);
       });
-    }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {// debugger;
-      //   // this.props.startLoading();
-      //   // when to fetch pins and when to not...?
-      //   this.props.fetchPins();
-      //   setTimeout(() => this.resizeAllGridItems(), 2000);
-      //   masonryEvents.forEach(
-      //     (e) => window.addEventListener(event, this.resizeAllGridItems)
-      //   );
-      //   // setTimeout(() => this.props.stopLoading(), 3000);
-    }
+    } // componentDidMount() {
+    // debugger;
+    //   // this.props.startLoading();
+    //   // when to fetch pins and when to not...?
+    //   this.props.fetchPins();
+    //   setTimeout(() => this.resizeAllGridItems(), 2000);
+    //   masonryEvents.forEach(
+    //     (e) => window.addEventListener(event, this.resizeAllGridItems)
+    //   );
+    //   // setTimeout(() => this.props.stopLoading(), 3000);
+    // }
+
   }, {
     key: "render",
     value: function render() {
@@ -2940,10 +2941,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var pins = typeof ownProps.pins !== 'undefined' ? Object.values(ownProps.pins) : Object.values(state.entities.pins); // review this to ensure correct pins
-
+  // const pins = (ownProps.pins.length > 0) ? (
+  //   ownProps.pins
+  // ) : (
+  //   Object.values(state.entities.pins)
+  // );
+  // review this to ensure correct pins
   return {
-    pins: pins,
+    pins: ownProps.pins,
     user: state.entities.users[state.session.id],
     loading: state.ui.loading,
     parent: ownProps.parent
@@ -3044,9 +3049,25 @@ var PinIndexItemButtons = function PinIndexItemButtons(_ref) {
       openEditPin = _ref.openEditPin,
       openNewBoardPin = _ref.openNewBoardPin,
       createBoardPin = _ref.createBoardPin;
+  var pinUrl = pin.url;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item buttons-container"
-  });
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pin-index-item buttons upper"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pin-index-item buttons lower"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pin-index-item pin-url"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "pinUrl",
+    className: "pin-index-item pin-url"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pin-index-item link-icon"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    "class": "fas fa-external-link-alt"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pin-index-item link-text"
+  }, pinUrl)))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PinIndexItemButtons);

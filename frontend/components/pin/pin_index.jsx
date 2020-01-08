@@ -30,7 +30,7 @@ class PinIndex extends React.Component {
     }
   }
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     // debugger;
     // this.props.fetchPins();
     setTimeout(() => this.resizeAllGridItems(), 1500);
@@ -39,7 +39,7 @@ class PinIndex extends React.Component {
     );
   }
 
-  componentDidMount() {
+  // componentDidMount() {
     // debugger;
   //   // this.props.startLoading();
   //   // when to fetch pins and when to not...?
@@ -50,7 +50,7 @@ class PinIndex extends React.Component {
   //     (e) => window.addEventListener(event, this.resizeAllGridItems)
   //   );
   //   // setTimeout(() => this.props.stopLoading(), 3000);
-  }
+  // }
 
   render() {
     const { currentUser, pins, loading,

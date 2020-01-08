@@ -13,15 +13,15 @@ import { startLoading, stopLoading } from "../../actions/loading_actions";
 import { openModal } from "../../actions/modal_actions";
 
 const mapStateToProps =(state, ownProps) => {
-  const pins = (typeof ownProps.pins !== 'undefined') ? (
-    Object.values(ownProps.pins)
-  ) : (
-    Object.values(state.entities.pins)
-  );
+  // const pins = (ownProps.pins.length > 0) ? (
+  //   ownProps.pins
+  // ) : (
+  //   Object.values(state.entities.pins)
+  // );
   // review this to ensure correct pins
 
   return {
-    pins,
+    pins: ownProps.pins,
     user: state.entities.users[state.session.id],
     loading: state.ui.loading,
     parent: ownProps.parent

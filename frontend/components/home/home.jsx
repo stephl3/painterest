@@ -25,8 +25,10 @@ class Home extends React.Component {
     const { currentUserId, pins } = this.props;
     let spacer, klass;
     if (currentUserId === null) {
-      klass = "no-scroll"
+      klass = "no-scroll";
+      spacer = null;
     } else {
+      klass = "";
       spacer = <div id="spacer"></div>;
     };
     const otherPins = pins.filter(pin => pin.userId !== currentUserId);
