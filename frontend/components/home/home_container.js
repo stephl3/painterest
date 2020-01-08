@@ -8,11 +8,13 @@ import { fetchSingleUser } from '../../actions/user_actions';
 const mapStateToProps = state => {
   // debugger;
   const currentUserId = state.session.id;
+  const allPins = Object.values(state.entities.pins);
   const pins = (state.session.id) ? (
-    Object.values(state.entities.pins).filter(pin => pin.userId !== currentUserId)
+    allPins
   ) : (
-    Object.values(state.entities.pins).slice(180, 220)
+    allPins.slice(180, 220)
   );
+  
   return {
     currentUserId,
     pins: pins,
@@ -20,6 +22,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
+  fetchPins: () => dispatch(fetchPins()),
   fetchSingleUser: id => dispatch(fetchSingleUser(id)),
 
 });

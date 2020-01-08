@@ -11,7 +11,7 @@ class Home extends React.Component {
 
   componentDidMount() {
     // debugger;
-    // this.props.fetchSingleUser(this.props.currentUserId);
+    this.props.fetchPins();
   }
 
   // componentDidUpdate(prevProps) {
@@ -24,15 +24,17 @@ class Home extends React.Component {
   render() {
     const { currentUserId, pins } = this.props;
     let spacer, klass;
-    if (currentUserId) {
+    if (currentUserId === null) {
+      klass = "no-scroll"
+    } else {
       spacer = <div id="spacer"></div>;
-      klass = "no-scroll";
     };
+    const otherPins = pins.filter(pin => pin.userId !== currentUserId);
 
     return (
-      <div className="home-container">
+      <div className={`home-container ${klass}`}>
         {spacer}
-        <PinIndexContainer pins={pins} />
+        <PinIndexContainer pins={otherPins} />
       </div>
     )
     // const pinArray = Object.values(pins);

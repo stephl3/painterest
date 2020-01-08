@@ -1957,9 +1957,10 @@ function (_React$Component) {
 
   _createClass(Home, [{
     key: "componentDidMount",
-    value: function componentDidMount() {} // debugger;
-    // this.props.fetchSingleUser(this.props.currentUserId);
-    // componentDidUpdate(prevProps) {
+    value: function componentDidMount() {
+      // debugger;
+      this.props.fetchPins();
+    } // componentDidUpdate(prevProps) {
     //   if (this.props.loadedPins !== prevProps.loadedPins) {
     //     this.setState(this.props.loadedPins);
     //   }
@@ -1973,18 +1974,22 @@ function (_React$Component) {
           pins = _this$props.pins;
       var spacer, klass;
 
-      if (currentUserId) {
+      if (currentUserId === null) {
+        klass = "no-scroll";
+      } else {
         spacer = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "spacer"
         });
-        klass = "no-scroll";
       }
 
       ;
+      var otherPins = pins.filter(function (pin) {
+        return pin.userId !== currentUserId;
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "home-container"
+        className: "home-container ".concat(klass)
       }, spacer, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_pin_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        pins: pins
+        pins: otherPins
       })); // const pinArray = Object.values(pins);
       // const loadedPins = this.state.loadedPins.map(pin =>
       //   <div key={pin.id} className="pin">
@@ -2050,9 +2055,8 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state) {
   // debugger;
   var currentUserId = state.session.id;
-  var pins = state.session.id ? Object.values(state.entities.pins).filter(function (pin) {
-    return pin.userId !== currentUserId;
-  }) : Object.values(state.entities.pins).slice(180, 220);
+  var allPins = Object.values(state.entities.pins);
+  var pins = state.session.id ? allPins : allPins.slice(180, 220);
   return {
     currentUserId: currentUserId,
     pins: pins
@@ -2061,6 +2065,9 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    fetchPins: function fetchPins() {
+      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPins"])());
+    },
     fetchSingleUser: function fetchSingleUser(id) {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchSingleUser"])(id));
     }
@@ -2845,24 +2852,26 @@ function (_React$Component) {
       var _this2 = this;
 
       // debugger;
-      this.props.fetchPins();
+      // this.props.fetchPins();
       setTimeout(function () {
         return _this2.resizeAllGridItems();
       }, 1500);
       masonryEvents.forEach(function (e) {
         return window.addEventListener(event, _this2.resizeAllGridItems);
       });
-    } // componentDidMount() {
-    //   // this.props.startLoading();
-    //   // when to fetch pins and when to not...?
-    //   this.props.fetchPins();
-    //   setTimeout(() => this.resizeAllGridItems(), 2000);
-    //   masonryEvents.forEach(
-    //     (e) => window.addEventListener(event, this.resizeAllGridItems)
-    //   );
-    //   // setTimeout(() => this.props.stopLoading(), 3000);
-    // }
-
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {// debugger;
+      //   // this.props.startLoading();
+      //   // when to fetch pins and when to not...?
+      //   this.props.fetchPins();
+      //   setTimeout(() => this.resizeAllGridItems(), 2000);
+      //   masonryEvents.forEach(
+      //     (e) => window.addEventListener(event, this.resizeAllGridItems)
+      //   );
+      //   // setTimeout(() => this.props.stopLoading(), 3000);
+    }
   }, {
     key: "render",
     value: function render() {
