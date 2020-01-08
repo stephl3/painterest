@@ -6,7 +6,7 @@ import { Link, withRouter } from "react-router-dom";
 
 
 
-const PinIndexItem = ({ user, pin, openEditPin, openNewBoardPin, createBoardPin }) => {
+const PinIndexItem = ({ user, pin, openEditPin, openNewBoardPin }) => {
 
   return (
     <div className="pin-index-item container">
@@ -19,10 +19,10 @@ const PinIndexItem = ({ user, pin, openEditPin, openNewBoardPin, createBoardPin 
           <img src={pin.photo} className="pin-index-item masonry-image"/>
         </Link>
         <PinIndexItemButtons
-          user={user} pin={pin}
+          user={user}
+          pin={pin}
           openEditPin={openEditPin}
           openNewBoardPin={openNewBoardPin}
-          createBoardPin={createBoardPin}
         />
       </div>
     </div>

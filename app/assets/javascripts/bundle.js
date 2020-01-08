@@ -2966,9 +2966,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     openNewBoardPin: function openNewBoardPin(pinId) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])("new-board-pin", pinId));
     },
-    createBoardPin: function createBoardPin(boardPin) {
-      return dispatch(Object(_actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_3__["createBoardPin"])(boardPin));
-    },
     startLoading: function startLoading() {
       return dispatch(Object(_actions_loading_actions__WEBPACK_IMPORTED_MODULE_4__["startLoading"])());
     },
@@ -3003,8 +3000,7 @@ var PinIndexItem = function PinIndexItem(_ref) {
   var user = _ref.user,
       pin = _ref.pin,
       openEditPin = _ref.openEditPin,
-      openNewBoardPin = _ref.openNewBoardPin,
-      createBoardPin = _ref.createBoardPin;
+      openNewBoardPin = _ref.openNewBoardPin;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3021,8 +3017,7 @@ var PinIndexItem = function PinIndexItem(_ref) {
     user: user,
     pin: pin,
     openEditPin: openEditPin,
-    openNewBoardPin: openNewBoardPin,
-    createBoardPin: createBoardPin
+    openNewBoardPin: openNewBoardPin
   })));
 };
 
@@ -3047,27 +3042,35 @@ var PinIndexItemButtons = function PinIndexItemButtons(_ref) {
   var user = _ref.user,
       pin = _ref.pin,
       openEditPin = _ref.openEditPin,
-      openNewBoardPin = _ref.openNewBoardPin,
-      createBoardPin = _ref.createBoardPin;
+      openNewBoardPin = _ref.openNewBoardPin;
   var pinUrl = pin.url;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item buttons-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item buttons upper"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pin-index-item buttons lower"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "pin-index-item edit-pin-link"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pin-index-item pin-url"
+    className: "pin-index-item edit-pin-icon"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-pencil"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "pin-index-item save-board-pin-link"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pin-index-item save-board-pin-text"
+  }, "Save"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pin-index-item buttons lower"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "pinUrl",
+    target: "_blank",
     className: "pin-index-item pin-url"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pin-index-item link-icon"
+    className: "pin-index-item pin-link-icon"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    "class": "fas fa-external-link-alt"
+    className: "fas fa-external-link-alt"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pin-index-item link-text"
-  }, pinUrl)))));
+    className: "pin-index-item pin-link-text"
+  }, pinUrl))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PinIndexItemButtons);

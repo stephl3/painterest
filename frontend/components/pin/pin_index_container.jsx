@@ -32,7 +32,6 @@ const mapDispatchToProps = dispatch => ({
   fetchPins: () => dispatch(fetchPins()),
   openEditPin: pinId => dispatch(openModal("edit-pin", pinId)),
   openNewBoardPin: pinId => dispatch(openModal("new-board-pin", pinId)),
-  createBoardPin: boardPin => dispatch(createBoardPin(boardPin)),
   startLoading: () => dispatch(startLoading()),
   stopLoading: () => dispatch(stopLoading()),
 });
