@@ -9,10 +9,10 @@ class Home extends React.Component {
     // this.handleClick = this.handleClick.bind(this);
   }
 
-  // componentDidMount() {
-    // this.props.fetchAllPins()
-    //   .then(() => this.props.fetchAllUsers());
-  // }
+  componentDidMount() {
+    // debugger;
+    // this.props.fetchSingleUser(this.props.currentUserId);
+  }
 
   // componentDidUpdate(prevProps) {
   //   if (this.props.loadedPins !== prevProps.loadedPins) {
@@ -22,9 +22,16 @@ class Home extends React.Component {
 
 
   render() {
-    const { pins } = this.props;
+    const { currentUserId, pins } = this.props;
+    let spacer, klass;
+    if (currentUserId) {
+      spacer = <div id="spacer"></div>;
+      klass = "no-scroll";
+    };
+
     return (
       <div className="home-container">
+        {spacer}
         <PinIndexContainer pins={pins} />
       </div>
     )

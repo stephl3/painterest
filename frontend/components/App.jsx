@@ -16,9 +16,8 @@ import CreatePinFormContainer from "./pin/form/create_pin_form_container";
 import EditProfileFormContainer from "./profile/edit_profile_form_container";
 import ProfileShowContainer from "./profile/profile_show_container";
 import BoardShowContainer from "./board/board_show_container";
-import PinIndexContainer from "./pin/pin_index_container";
 import HomeContainer from "./home/home_container";
-// import Splash from "./session/splash";
+// import PinIndexContainer from "./pin/pin_index_container";
 
 const App = () => (
   <div className="app">
@@ -27,12 +26,12 @@ const App = () => (
       <ProtectedRoute path="/" component={NavBarContainer} />
     </header>
     <Switch>
-      <ProtectedRoute path="/pin-builder" component={CreatePinFormContainer} />
-      <ProtectedRoute path="/settings" component={EditProfileFormContainer} />
+      <ProtectedRoute exact path="/pin-builder" component={CreatePinFormContainer} />
+      <ProtectedRoute exact path="/settings" component={EditProfileFormContainer} />
       <ProtectedRoute exact path="/:username/pins" component={ProfileShowContainer} />
       <ProtectedRoute exact path="/:username/boards" component={ProfileShowContainer} />
       <ProtectedRoute exact path="/:username" component={ProfileShowContainer} />
-      <ProtectedRoute path="/:username/:boardTitle" component={BoardShowContainer} />
+      <ProtectedRoute exact path="/:username/:boardTitle" component={BoardShowContainer} />
       <Route exact path="/" component={HomeContainer} />
     </Switch>
     {/* <footer>

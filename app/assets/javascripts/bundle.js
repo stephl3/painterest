@@ -586,8 +586,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_edit_profile_form_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./profile/edit_profile_form_container */ "./frontend/components/profile/edit_profile_form_container.jsx");
 /* harmony import */ var _profile_profile_show_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./profile/profile_show_container */ "./frontend/components/profile/profile_show_container.jsx");
 /* harmony import */ var _board_board_show_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./board/board_show_container */ "./frontend/components/board/board_show_container.jsx");
-/* harmony import */ var _pin_pin_index_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pin/pin_index_container */ "./frontend/components/pin/pin_index_container.jsx");
-/* harmony import */ var _home_home_container__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./home/home_container */ "./frontend/components/home/home_container.js");
+/* harmony import */ var _home_home_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./home/home_container */ "./frontend/components/home/home_container.js");
 
 
 
@@ -599,8 +598,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
- // import Splash from "./session/splash";
+ // import PinIndexContainer from "./pin/pin_index_container";
 
 var App = function App() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -609,9 +607,11 @@ var App = function App() {
     path: "/",
     component: _navbar_nav_bar_container__WEBPACK_IMPORTED_MODULE_6__["default"]
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
+    exact: true,
     path: "/pin-builder",
     component: _pin_form_create_pin_form_container__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
+    exact: true,
     path: "/settings",
     component: _profile_edit_profile_form_container__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
@@ -627,12 +627,13 @@ var App = function App() {
     path: "/:username",
     component: _profile_profile_show_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
+    exact: true,
     path: "/:username/:boardTitle",
     component: _board_board_show_container__WEBPACK_IMPORTED_MODULE_10__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/",
-    component: _home_home_container__WEBPACK_IMPORTED_MODULE_12__["default"]
+    component: _home_home_container__WEBPACK_IMPORTED_MODULE_11__["default"]
   })));
 };
 
@@ -1952,24 +1953,37 @@ function (_React$Component) {
 
     return _possibleConstructorReturn(this, _getPrototypeOf(Home).call(this, props)); // this.state = this.props.pins;
     // this.handleClick = this.handleClick.bind(this);
-  } // componentDidMount() {
-  // this.props.fetchAllPins()
-  //   .then(() => this.props.fetchAllUsers());
-  // }
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.loadedPins !== prevProps.loadedPins) {
-  //     this.setState(this.props.loadedPins);
-  //   }
-  // }
-
+  }
 
   _createClass(Home, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {} // debugger;
+    // this.props.fetchSingleUser(this.props.currentUserId);
+    // componentDidUpdate(prevProps) {
+    //   if (this.props.loadedPins !== prevProps.loadedPins) {
+    //     this.setState(this.props.loadedPins);
+    //   }
+    // }
+
+  }, {
     key: "render",
     value: function render() {
-      var pins = this.props.pins;
+      var _this$props = this.props,
+          currentUserId = _this$props.currentUserId,
+          pins = _this$props.pins;
+      var spacer, klass;
+
+      if (currentUserId) {
+        spacer = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "spacer"
+        });
+        klass = "no-scroll";
+      }
+
+      ;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "home-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_pin_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, spacer, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_pin_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
         pins: pins
       })); // const pinArray = Object.values(pins);
       // const loadedPins = this.state.loadedPins.map(pin =>
@@ -2035,16 +2049,20 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   // debugger;
-  var pins = state.session.id ? Object.values(state.entities.pins) : Object.values(state.entities.pins).slice(180, 220);
+  var currentUserId = state.session.id;
+  var pins = state.session.id ? Object.values(state.entities.pins).filter(function (pin) {
+    return pin.userId !== currentUserId;
+  }) : Object.values(state.entities.pins).slice(180, 220);
   return {
+    currentUserId: currentUserId,
     pins: pins
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchPins: function fetchPins() {
-      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPins"])());
+    fetchSingleUser: function fetchSingleUser(id) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchSingleUser"])(id));
     }
   };
 };
@@ -2068,9 +2086,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _session_signup_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../session/signup_form_container */ "./frontend/components/session/signup_form_container.jsx");
 /* harmony import */ var _session_login_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../session/login_form_container */ "./frontend/components/session/login_form_container.jsx");
-/* harmony import */ var _board_form_create_board_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../board/form/create_board_form_container */ "./frontend/components/board/form/create_board_form_container.jsx");
-/* harmony import */ var _board_form_edit_board_form_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../board/form/edit_board_form_container */ "./frontend/components/board/form/edit_board_form_container.jsx");
-/* harmony import */ var _board_form_delete_board_form_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../board/form/delete_board_form_container */ "./frontend/components/board/form/delete_board_form_container.jsx");
+/* harmony import */ var _search_search_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../search/search_container */ "./frontend/components/search/search_container.jsx");
+/* harmony import */ var _board_form_create_board_form_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../board/form/create_board_form_container */ "./frontend/components/board/form/create_board_form_container.jsx");
+/* harmony import */ var _board_form_edit_board_form_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../board/form/edit_board_form_container */ "./frontend/components/board/form/edit_board_form_container.jsx");
+/* harmony import */ var _board_form_delete_board_form_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../board/form/delete_board_form_container */ "./frontend/components/board/form/delete_board_form_container.jsx");
+
 
 
 
@@ -2108,18 +2128,23 @@ var Modal = function Modal(_ref) {
       clickBackground = null;
       break;
 
+    case "search":
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_search_container__WEBPACK_IMPORTED_MODULE_5__["default"], null);
+      clickBackground = closeModal;
+      break;
+
     case "new-board":
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_form_create_board_form_container__WEBPACK_IMPORTED_MODULE_5__["default"], null);
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_form_create_board_form_container__WEBPACK_IMPORTED_MODULE_6__["default"], null);
       clickBackground = closeModal;
       break;
 
     case "edit-board":
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_form_edit_board_form_container__WEBPACK_IMPORTED_MODULE_6__["default"], null);
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_form_edit_board_form_container__WEBPACK_IMPORTED_MODULE_7__["default"], null);
       clickBackground = closeModal;
       break;
 
     case "delete-board":
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_form_delete_board_form_container__WEBPACK_IMPORTED_MODULE_7__["default"], null);
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_form_delete_board_form_container__WEBPACK_IMPORTED_MODULE_8__["default"], null);
       clickBackground = null;
       break;
 
@@ -2819,6 +2844,7 @@ function (_React$Component) {
     value: function UNSAFE_componentWillMount() {
       var _this2 = this;
 
+      // debugger;
       this.props.fetchPins();
       setTimeout(function () {
         return _this2.resizeAllGridItems();
@@ -4239,7 +4265,7 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    openModal: function openModal() {
+    openSearchModal: function openSearchModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["openModal"])("search"));
     },
     closeModal: function closeModal() {

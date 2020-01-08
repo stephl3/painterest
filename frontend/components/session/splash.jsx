@@ -11,9 +11,7 @@ const Splash = ({ pins }) => {
   )
 };
 
-const mapStateToProps = state => (
-  
-  {
+const mapStateToProps = state => ({
   pins: Object.values(state.entities.pins).slice(180, 220),
 })
 
