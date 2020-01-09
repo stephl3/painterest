@@ -36,7 +36,10 @@ class Home extends React.Component {
     return (
       <div className={`home-container ${klass}`}>
         {spacer}
-        <PinIndexContainer pins={firstSet} />
+        <PinIndexContainer
+          pins={firstSet}
+          page="home"
+        />
       </div>
     )
     // const pinArray = Object.values(pins);

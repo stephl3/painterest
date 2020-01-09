@@ -498,40 +498,54 @@
   border-radius: 16px;
   width: 236px;
   height: 100%;
-  object-fit: cover;
+  -webkit-mask-image: -webkit-radial-gradient(center, white, black);
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
   position: relative;
 }
 
+.pin-index-item.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.03);
+  opacity: 0;
+  pointer-events: none;
+  // &:hover a {
+  //   background-color: rgba(0,0,0,0.06);
+  //   opacity: 1;
+  // }
+  & div {
+    pointer-events: inherit;
+  }
+}
+
 .pin-index-item.pin-show-link {
-  width: 100%;
-  height: 100%;
   cursor: zoom-in;
+  box-sizing: border-box;
+  // position: absolute;
+  // z-index: 1;
+  // top: 0;
+  // bottom: 0;
+  // left: 0;
+  // right: 0;
+  &:hover + .overlay {
+    background-color: rgba(0, 0, 0, 0.06);
+    opacity: 1;
+  }
 }
 
 .pin-index-item.masonry-image {
-  box-sizing: border-box;
-  border-radius: 16px;
   width: 100%;
   height: auto;
+  box-sizing: border-box;
+  border-radius: 16px;
 }
 
-.pin-index-item.overlay {
-  left: 0;
-  bottom: 0;
-  right: 0;
-  top: 0;
-  position: absolute;
-  z-index: 2;
-  background-color: rgba(0,0,0,.03);
-  cursor: zoom-in;
-  &:hover {
-    background-color: rgba(0,0,0,0.06);
-  }
-}
 
 .pin-index-item.buttons-container {
   left: 0;
@@ -539,15 +553,16 @@
   right: 0;
   top: 0;
   position: absolute;
-  z-index: 3;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  opacity: 0;
-  &:hover {
-    background-color: rgba(0,0,0,0.03);
-    opacity: 1;
-  }
+  pointer-events: none;
+  // background-color: rgba(0,0,0,0.03);
+  // opacity: 0;
+  // &:hover {
+  //   background-color: rgba(0,0,0,0.06);
+  //   opacity: 1;
+  // }
 }
 
 .pin-index-item.buttons {
@@ -560,9 +575,110 @@
 
 }
 
-.pin-index-item {
-
+.pin-index-item.edit-pin-link {
+  height: 32px;
+  width: 32px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  background-color: rgba(255,255,255,0.9);
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(255, 255, 255);
+  }
+  & > .edit-pin-icon {
+    color: #333;
+    height: 12px;
+    width: 12px;
+    overflow: hidden;
+  }
 }
+
+.pin-index-item.save-board-pin-link {
+  position: absolute;
+  z-index: 2;
+  outline: 0;
+  min-height: 40px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border-radius: 22px;
+  cursor: pointer;
+  background-color: #e60023;
+  background:transparent;
+  &:hover {
+    background-color: #ad081b;
+  }
+  & > .save-board-pin-text {
+    text-align: left;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    word-wrap: break-word;
+    font-weight: 600;
+    letter-spacing: -.4px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    color: #fff;
+  }
+}
+
+
+.pin-index-item.pin-link {
+  position: absolute;
+  z-index: 2;
+  height: 32px;
+  max-width: 132px;
+  box-sizing: border-box;
+  border-radius: 18px;
+  background-color: rgba(255,255,255,0.9);
+  color: rgb(51,51,51);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  &:hover {
+    background-color: rgb(255, 255, 255);
+  }
+  & > .pin-link-icon {
+    margin: 12px 0 12px 12px;
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    color: #333;
+    height: 9px;
+    width: 9px;
+  }
+  & > .pin-link-text {
+    height: 18px;
+    margin: 0 12px 0 8px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    text-align: left;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    word-wrap: break-word;
+    font-weight: 700;
+    letter-spacing: -.4px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    color: #333;
+  }
+}
+
 
 
 

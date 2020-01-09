@@ -1,15 +1,19 @@
 import React from "react";
 
 
-const PinIndexItemButtons = ({ user, pin, openEditPin, openNewBoardPin }) => {
-  const editPinLink = (
-    <a className="pin-index-item edit-pin-link">
-      <div className="pin-index-item edit-pin-icon">
-        <i className="fas fa-pencil-alt"></i>
-      </div>
+const PinIndexItemButtons = ({ user, page, pin, openEditPin, openNewBoardPin }) => {
+  const editPinLink = (page === 'home') ? (
+    null
+  ) : (
+    <a
+      className="pin-index-item edit-pin-link"
+      onClick={openEditPin}
+    >
+      <i className="fas fa-pencil-alt edit-pin-icon"></i>
     </a>
   );
   const pinUrl = pin.url;
+  const abbrvPinUrl = pinUrl.slice(12, 22) + "...";
 
   return (
     <div className="pin-index-item buttons-container">
@@ -24,14 +28,13 @@ const PinIndexItemButtons = ({ user, pin, openEditPin, openNewBoardPin }) => {
         </a>
       </div>
       <div className="pin-index-item buttons lower">
-        <a href={`pinUrl`} target="_blank" className="pin-index-item pin-url">
-          <div className="pin-index-item pin-link-icon">
-            <i className="fas fa-external-link-alt"></i>
-          </div>
+        <a href={`${pinUrl}`} target="_blank" className="pin-index-item pin-link">
+          <i className="fas fa-external-link-alt pin-link-icon"></i>
           <div className="pin-index-item pin-link-text">
-            {pinUrl}
+            {abbrvPinUrl}
           </div>
         </a>
+        <div></div>
       </div>
     </div>
   );

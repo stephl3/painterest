@@ -53,7 +53,7 @@ class PinIndex extends React.Component {
   // }
 
   render() {
-    const { currentUser, pins, loading,
+    const { currentUser, page, pins, loading,
       openEditPin, openNewBoardPin, createBoardPin } = this.props;
     const loader = (loading) ? (
       <div className="loading-background">
@@ -65,6 +65,7 @@ class PinIndex extends React.Component {
       <PinIndexItem
         key={pin.id}
         user={currentUser}
+        page={page}
         pin={pin}
         openEditPin={openEditPin}
         openNewBoardPin={openNewBoardPin}

@@ -6,24 +6,34 @@ import { Link, withRouter } from "react-router-dom";
 
 
 
-const PinIndexItem = ({ user, pin, openEditPin, openNewBoardPin }) => {
+const PinIndexItem = ({ user, page, pin, openEditPin, openNewBoardPin }) => {
 
   return (
     <div className="pin-index-item container">
       <div className="pin-index-item masonry-item">
-        <div className="pin-index-item overlay"></div>
         <Link
           to={`/pin/${pin.id}`}
           className="pin-index-item pin-show-link"
         >
           <img src={pin.photo} className="pin-index-item masonry-image"/>
         </Link>
-        <PinIndexItemButtons
-          user={user}
-          pin={pin}
-          openEditPin={openEditPin}
-          openNewBoardPin={openNewBoardPin}
-        />
+        <div className="pin-index-item overlay">
+          {/* <PinIndexItemButtons
+            user={user}
+            page={page}
+            pin={pin}
+            openEditPin={openEditPin}
+            openNewBoardPin={openNewBoardPin}
+          /> */}
+          <div>
+            <a className="pin-index-item save-board-pin-link">
+              <div className="pin-index-item save-board-pin-text">
+                Save
+              </div>
+            </a>
+
+          </div>
+        </div>
       </div>
     </div>
   );

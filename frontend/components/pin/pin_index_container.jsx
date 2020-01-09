@@ -21,8 +21,9 @@ const mapStateToProps =(state, ownProps) => {
   // review this to ensure correct pins
 
   return {
+    page: ownProps.page,
     pins: ownProps.pins,
-    user: state.entities.users[state.session.id],
+    currentUser: state.entities.users[state.session.id],
     loading: state.ui.loading,
     parent: ownProps.parent
   };
