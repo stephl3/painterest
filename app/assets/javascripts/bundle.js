@@ -3007,17 +3007,10 @@ var PinIndexItem = function PinIndexItem(_ref) {
       pin = _ref.pin,
       openEditPin = _ref.openEditPin,
       openNewBoardPin = _ref.openNewBoardPin;
-
-  var throwShade = function throwShade(e) {
-    // debugger;
-    e.currentTarget.firstElementChild.firstElementChild.style.visibility = 'visible';
-  };
-
-  var removeShade = function removeShade(e) {
-    e.currentTarget.firstElementChild.firstElementChild.style.visibility = 'hidden';
-  };
-
-  var editPinLink = page === 'home' ? null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  var editPinLink = //(page === 'home') ? (
+  //   null
+  // ) : (
+  react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "pin-index-item edit-pin-link",
     onClick: openEditPin
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -3038,21 +3031,17 @@ var PinIndexItem = function PinIndexItem(_ref) {
     src: pin.photo,
     className: "pin-index-item masonry-image"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pin-index-item button-container"
+    className: "pin-index-item links"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "aaa"
-  }, editPinLink)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pin-index-item button-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "aaa"
+    className: "pin-index-item edit-pin-link-container"
+  }, editPinLink), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "save-board-pin-link-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "pin-index-item save-board-pin-link"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item save-board-pin-text"
-  }, "Save")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pin-index-item button-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "aaa"
+  }, "Save"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pin-index-item pin-link-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "".concat(pinUrl),
     target: "_blank",

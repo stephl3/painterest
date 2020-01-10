@@ -520,52 +520,12 @@
   pointer-events: none;
 }
 
-
 .pin-index-item.pin-show-link {
   cursor: zoom-in;
   box-sizing: border-box;
-  // position: absolute;
-  // z-index: 1;
-  // top: 0;
-  // bottom: 0;
-  // left: 0;
-  // right: 0;
-  &:hover ~ .button-container {
-    // background-color: rgba(0, 0, 0, 0.03);
+  &:hover ~ .links {
     visibility: visible;
-    // opacity: 1;
   }
-  &:hover + .overlaid {
-    background-color: rgba(0,0,0,0.06);
-  }
-}
-
-// .pin-index-item.overlay {
-//   position: absolute;
-//   top: 0;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   // background-color: rgba(0,0,0,0.03);
-//   visibility: hidden;
-//   // opacity: 0;
-//   pointer-events: none;
-//   &:hover {
-//     // opacity: 1;
-//     visibility: visible;
-//     // background-color: rgba(0,0,0,0.06);
-//   }
-//   &:hover + .overlaid {
-//     background-color: rgba(0,0,0,0.06);
-//   }
-// }
-
-
-.aaa {
-  pointer-events: auto;
-  position: absolute;
-  top: 12px;
-  right: 12px;
 }
 
 .pin-index-item.masonry-image {
@@ -575,33 +535,35 @@
   border-radius: 16px;
 }
 
-
-.pin-index-item.buttons-container {
-  left: 0;
-  bottom: 0;
-  right: 0;
-  top: 0;
+.pin-index-item.links {
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   pointer-events: none;
-  // background-color: rgba(0,0,0,0.03);
-  // opacity: 0;
-  // &:hover {
-  //   background-color: rgba(0,0,0,0.06);
-  //   opacity: 1;
-  // }
-}
-
-.pin-index-item.buttons {
-  padding: 12px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
+  visibility: hidden;
+  &:hover {
+    visibility: visible;
+  }
+  & > .edit-pin-link-container {
+    pointer-events: auto;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+  }
+  & > .save-board-pin-link-container {
+    pointer-events: auto;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+  & > .pin-link-container {
+    pointer-events: auto;
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+  }
 }
 
 .pin-index-item.edit-pin-link {
@@ -638,8 +600,6 @@
   border-radius: 22px;
   cursor: pointer;
   background-color: rgba(230,0,35,0.9);
-  // opacity: 1;
-
   &:hover {
     background-color: rgb(230,0,35);
   }
@@ -658,21 +618,17 @@
   }
 }
 
-
 .pin-index-item.pin-link {
-  position: absolute;
-  z-index: 1;
   height: 32px;
   max-width: 132px;
   box-sizing: border-box;
   border-radius: 18px;
-  background-color: rgba(255,255,255,0.9);
   color: rgb(51,51,51);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
-  visibility: hidden;
+  background-color: rgba(255,255,255,0.9);
   &:hover {
     background-color: rgb(255, 255, 255);
   }
