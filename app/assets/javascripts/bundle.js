@@ -3007,11 +3007,31 @@ var PinIndexItem = function PinIndexItem(_ref) {
       pin = _ref.pin,
       openEditPin = _ref.openEditPin,
       openNewBoardPin = _ref.openNewBoardPin;
+
+  var throwShade = function throwShade(e) {
+    // debugger;
+    e.currentTarget.firstElementChild.firstElementChild.style.visibility = 'visible';
+  };
+
+  var removeShade = function removeShade(e) {
+    e.currentTarget.firstElementChild.firstElementChild.style.visibility = 'hidden';
+  };
+
+  var editPinLink = page === 'home' ? null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "pin-index-item edit-pin-link",
+    onClick: openEditPin
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-pencil-alt edit-pin-icon"
+  }));
+  var pinUrl = pin.url;
+  var shortPinUrl = pinUrl.slice(12, 22) + "...";
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item masonry-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "overlaid"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/pin/".concat(pin.id),
     className: "pin-index-item pin-show-link"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -3019,11 +3039,29 @@ var PinIndexItem = function PinIndexItem(_ref) {
     className: "pin-index-item masonry-image"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item overlay"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "aaa"
+  }, editPinLink)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pin-index-item overlay"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "aaa"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "pin-index-item save-board-pin-link"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item save-board-pin-text"
-  }, "Save"))))));
+  }, "Save")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pin-index-item overlay"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "aaa"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "".concat(pinUrl),
+    target: "_blank",
+    className: "pin-index-item pin-link"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-external-link-alt pin-link-icon"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pin-index-item pin-link-text"
+  }, shortPinUrl))))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PinIndexItem);

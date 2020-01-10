@@ -504,25 +504,10 @@
   // justify-content: center;
   // align-items: center;
   position: relative;
+  
 }
 
-.pin-index-item.overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0,0,0,0.03);
-  opacity: 0;
-  pointer-events: none;
-  // &:hover a {
-  //   background-color: rgba(0,0,0,0.06);
-  //   opacity: 1;
-  // }
-  & div {
-    pointer-events: inherit;
-  }
-}
+
 
 .pin-index-item.pin-show-link {
   cursor: zoom-in;
@@ -533,10 +518,53 @@
   // bottom: 0;
   // left: 0;
   // right: 0;
-  &:hover + .overlay {
-    background-color: rgba(0, 0, 0, 0.06);
-    opacity: 1;
+  &:hover ~ .overlay {
+    // background-color: rgba(0, 0, 0, 0.03);
+    visibility: visible;
+    // opacity: 1;
   }
+  &:hover + .overlaid {
+    background-color: rgba(0,0,0,0.06);
+  }
+}
+
+.pin-index-item.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  // background-color: rgba(0,0,0,0.03);
+  visibility: hidden;
+  // opacity: 0;
+  pointer-events: none;
+  &:hover {
+    // opacity: 1;
+    visibility: visible;
+    // background-color: rgba(0,0,0,0.06);
+  }
+  &:hover + .overlaid {
+    background-color: rgba(0,0,0,0.06);
+  }
+}
+
+.overlaid {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.03);
+  bottom: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.aaa {
+  pointer-events: auto;
+  position: absolute;
+  top: 12px;
+  right: 12px;
 }
 
 .pin-index-item.masonry-image {
@@ -600,8 +628,6 @@
 }
 
 .pin-index-item.save-board-pin-link {
-  position: absolute;
-  z-index: 2;
   outline: 0;
   min-height: 40px;
   padding: 10px 14px;
@@ -610,10 +636,11 @@
   box-sizing: border-box;
   border-radius: 22px;
   cursor: pointer;
-  background-color: #e60023;
-  background:transparent;
+  background-color: rgba(230,0,35,0.9);
+  // opacity: 1;
+
   &:hover {
-    background-color: #ad081b;
+    background-color: rgb(230,0,35);
   }
   & > .save-board-pin-text {
     text-align: left;
@@ -644,6 +671,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: baseline;
+  visibility: hidden;
   &:hover {
     background-color: rgb(255, 255, 255);
   }
