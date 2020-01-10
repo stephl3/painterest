@@ -7,9 +7,9 @@ import { Link, withRouter } from "react-router-dom";
 
 
 const PinIndexItem = ({ user, page, pin, openEditPin, openNewBoardPin }) => {
-  const editPinLink = //(page === 'home') ? (
-  //   null
-  (// ) : (
+  const editPinLink = (page === 'home') ? (
+    null
+  ) : (
     <a
       className="pin-index-item edit-pin-link"
       onClick={openEditPin}
@@ -36,7 +36,10 @@ const PinIndexItem = ({ user, page, pin, openEditPin, openNewBoardPin }) => {
             {editPinLink}
           </div>
           <div className="save-board-pin-link-container">
-            <a className="pin-index-item save-board-pin-link">
+            <a
+              className="pin-index-item save-board-pin-link"
+              onClick={openNewBoardPin}
+            >
               <div className="pin-index-item save-board-pin-text">
                 Save
               </div>
