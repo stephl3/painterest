@@ -2111,6 +2111,7 @@ __webpack_require__.r(__webpack_exports__);
 
  // import EditPinFormContainer from "../pin/form/edit_pin_form_container";
 // import DeletePinFormContainer from "../pin/form/delete_pin_form_container";
+// import CreateBoardPinFormContainer from "../board_pin/create_board_pin_form_container";
 
 var Modal = function Modal(_ref) {
   var modal = _ref.modal,
@@ -2167,6 +2168,11 @@ var Modal = function Modal(_ref) {
     case "delete-pin":
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DeletePinFormContainer, null);
       clickBackground = openModal('edit-pin');
+      break;
+
+    case "new-board-pin":
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CreateBoardPinFormContainer, null);
+      clickBackground = openModal('new-board-pin');
       break;
 
     default:
@@ -2859,7 +2865,7 @@ function (_React$Component) {
       // this.props.fetchPins();
       setTimeout(function () {
         return _this2.resizeAllGridItems();
-      }, 1500);
+      }, 1800);
       masonryEvents.forEach(function (e) {
         return window.addEventListener(event, _this2.resizeAllGridItems);
       });
@@ -3007,10 +3013,7 @@ var PinIndexItem = function PinIndexItem(_ref) {
       pin = _ref.pin,
       openEditPin = _ref.openEditPin,
       openNewBoardPin = _ref.openNewBoardPin;
-  var editPinLink = //(page === 'home') ? (
-  //   null
-  // ) : (
-  react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  var editPinLink = page === 'home' ? null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "pin-index-item edit-pin-link",
     onClick: openEditPin
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
@@ -3037,7 +3040,8 @@ var PinIndexItem = function PinIndexItem(_ref) {
   }, editPinLink), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "save-board-pin-link-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "pin-index-item save-board-pin-link"
+    className: "pin-index-item save-board-pin-link",
+    onClick: openNewBoardPin
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item save-board-pin-text"
   }, "Save"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
