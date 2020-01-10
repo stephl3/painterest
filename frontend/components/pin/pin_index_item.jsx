@@ -33,23 +33,23 @@ const PinIndexItem = ({ user, page, pin, openEditPin, openNewBoardPin }) => {
       <div className="pin-index-item masonry-item">
         {/* onMouseEnter={throwShade}
         onMouseLeave={removeShade} */}
-        <div className="overlaid"></div>
         <Link
           to={`/pin/${pin.id}`}
           className="pin-index-item pin-show-link"
 
         >
+          <div className="pin-index-item overlay"></div>
           <img src={pin.photo} className="pin-index-item masonry-image"/>
         </Link>
         {/* <div className="pin-index-item overlay"> */}
           {/* <div className="overlaid"></div> */}
         {/* </div> */}
-        <div className="pin-index-item overlay">
+        <div className="pin-index-item button-container">
           <div className="aaa">
             {editPinLink}
           </div>
         </div>
-        <div className="pin-index-item overlay">
+        <div className="pin-index-item button-container">
           <div className="aaa">
             <a className="pin-index-item save-board-pin-link">
               <div className="pin-index-item save-board-pin-text">
@@ -58,7 +58,7 @@ const PinIndexItem = ({ user, page, pin, openEditPin, openNewBoardPin }) => {
             </a>
           </div>
         </div>
-        <div className="pin-index-item overlay">
+        <div className="pin-index-item button-container">
           <div className="aaa">
             <a href={`${pinUrl}`} target="_blank" className="pin-index-item pin-link">
               <i className="fas fa-external-link-alt pin-link-icon"></i>

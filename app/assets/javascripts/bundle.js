@@ -3029,20 +3029,20 @@ var PinIndexItem = function PinIndexItem(_ref) {
     className: "pin-index-item container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item masonry-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "overlaid"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/pin/".concat(pin.id),
     className: "pin-index-item pin-show-link"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pin-index-item overlay"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: pin.photo,
     className: "pin-index-item masonry-image"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pin-index-item overlay"
+    className: "pin-index-item button-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "aaa"
   }, editPinLink)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pin-index-item overlay"
+    className: "pin-index-item button-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "aaa"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -3050,7 +3050,7 @@ var PinIndexItem = function PinIndexItem(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item save-board-pin-text"
   }, "Save")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pin-index-item overlay"
+    className: "pin-index-item button-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "aaa"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {

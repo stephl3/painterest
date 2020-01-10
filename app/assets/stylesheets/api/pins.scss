@@ -504,9 +504,21 @@
   // justify-content: center;
   // align-items: center;
   position: relative;
-  
+  &:hover .overlay {
+    background-color: rgba(0,0,0,0.06);
+  }
 }
 
+.pin-index-item.overlay {
+  position: absolute;
+  // z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.03);
+  pointer-events: none;
+}
 
 
 .pin-index-item.pin-show-link {
@@ -518,7 +530,7 @@
   // bottom: 0;
   // left: 0;
   // right: 0;
-  &:hover ~ .overlay {
+  &:hover ~ .button-container {
     // background-color: rgba(0, 0, 0, 0.03);
     visibility: visible;
     // opacity: 1;
@@ -528,37 +540,26 @@
   }
 }
 
-.pin-index-item.overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  // background-color: rgba(0,0,0,0.03);
-  visibility: hidden;
-  // opacity: 0;
-  pointer-events: none;
-  &:hover {
-    // opacity: 1;
-    visibility: visible;
-    // background-color: rgba(0,0,0,0.06);
-  }
-  &:hover + .overlaid {
-    background-color: rgba(0,0,0,0.06);
-  }
-}
+// .pin-index-item.overlay {
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   // background-color: rgba(0,0,0,0.03);
+//   visibility: hidden;
+//   // opacity: 0;
+//   pointer-events: none;
+//   &:hover {
+//     // opacity: 1;
+//     visibility: visible;
+//     // background-color: rgba(0,0,0,0.06);
+//   }
+//   &:hover + .overlaid {
+//     background-color: rgba(0,0,0,0.06);
+//   }
+// }
 
-.overlaid {
-  position: absolute;
-  z-index: 3;
-  top: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0,0,0,0.03);
-  bottom: 0;
-  pointer-events: none;
-  visibility: hidden;
-}
 
 .aaa {
   pointer-events: auto;
@@ -660,7 +661,7 @@
 
 .pin-index-item.pin-link {
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   height: 32px;
   max-width: 132px;
   box-sizing: border-box;
