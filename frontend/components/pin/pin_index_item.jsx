@@ -12,7 +12,7 @@ const PinIndexItem = ({ user, page, pin, openEditPin, openNewBoardPin }) => {
   ) : (
     <a
       className="pin-index-item edit-pin-link"
-      onClick={openEditPin}
+      onClick={() => openEditPin(pin.id)}
     >
       <i className="fas fa-pencil-alt edit-pin-icon"></i>
     </a>
@@ -37,23 +37,18 @@ const PinIndexItem = ({ user, page, pin, openEditPin, openNewBoardPin }) => {
         <Link
           to={`/pin/${pin.id}`}
           className="pin-index-item pin-show-link"
-
         >
           <div className="pin-index-item overlay"></div>
           <img src={pin.photo} className="pin-index-item masonry-image"/>
         </Link>
         <div className="pin-index-item links">
-          <div className="pin-index-item edit-pin-link-container">
-            {editPinLink}
-          </div>
+          <div className="pin-index-item edit-pin-link-container">{editPinLink}</div>
           <div className="save-board-pin-link-container">
             <a
               className="pin-index-item save-board-pin-link"
-              onClick={openNewBoardPin}
+              onClick={() => openNewBoardPin(pin.id)}
             >
-              <div className="pin-index-item save-board-pin-text">
-                Save
-              </div>
+              <div className="pin-index-item save-board-pin-text">Save</div>
             </a>
           </div>
           <div className="pin-index-item pin-link-container">

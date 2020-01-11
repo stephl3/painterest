@@ -5,10 +5,6 @@ import {
   fetchPins,
   updatePin
 } from "../../actions/pin_actions";
-import {
-  createBoardPin,
-  deleteBoardPin
-} from "../../actions/board_pin_actions";
 import { startLoading, stopLoading } from "../../actions/loading_actions";
 import { openModal } from "../../actions/modal_actions";
 
