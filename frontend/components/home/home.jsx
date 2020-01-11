@@ -2,6 +2,8 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PinIndexContainer from "../pin/pin_index_container";
 
+const shuffle = require('shuffle-array');
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -12,6 +14,7 @@ class Home extends React.Component {
   componentDidMount() {
     // debugger;
     this.props.fetchPins();
+    // this.props.fetchSingleUser(this.props.currentUserId);
   }
 
   // componentDidUpdate(prevProps) {
@@ -31,7 +34,8 @@ class Home extends React.Component {
       klass = "";
       spacer = <div id="spacer"></div>;
     };
-    const otherPins = pins.filter(pin => pin.userId !== currentUserId);
+    // debugger;
+    const otherPins = shuffle(pins.filter(pin => pin.userId !== currentUserId));
     const firstSet = otherPins.slice(0, 20);
     return (
       <div className={`home-container ${klass}`}>

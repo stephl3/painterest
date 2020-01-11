@@ -1943,6 +1943,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+var shuffle = __webpack_require__(/*! shuffle-array */ "./node_modules/shuffle-array/index.js");
+
 var Home =
 /*#__PURE__*/
 function (_React$Component) {
@@ -1959,7 +1961,7 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       // debugger;
-      this.props.fetchPins();
+      this.props.fetchPins(); // this.props.fetchSingleUser(this.props.currentUserId);
     } // componentDidUpdate(prevProps) {
     //   if (this.props.loadedPins !== prevProps.loadedPins) {
     //     this.setState(this.props.loadedPins);
@@ -1984,10 +1986,11 @@ function (_React$Component) {
         });
       }
 
-      ;
-      var otherPins = pins.filter(function (pin) {
+      ; // debugger;
+
+      var otherPins = shuffle(pins.filter(function (pin) {
         return pin.userId !== currentUserId;
-      });
+      }));
       var firstSet = otherPins.slice(0, 20);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "home-container ".concat(klass)
@@ -2050,7 +2053,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home */ "./frontend/components/home/home.jsx");
 /* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
-/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/board_pin_actions */ "./frontend/actions/board_pin_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+
 
 
 
@@ -2072,8 +2077,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchPins: function fetchPins() {
       return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPins"])());
     },
+    // fetchAllBoardsPins: () => dispatch(fetchAllBoardsPins()),
     fetchSingleUser: function fetchSingleUser(id) {
-      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_3__["fetchSingleUser"])(id));
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_4__["fetchSingleUser"])(id));
     }
   };
 };
@@ -2865,7 +2871,7 @@ function (_React$Component) {
       // this.props.fetchPins();
       setTimeout(function () {
         return _this2.resizeAllGridItems();
-      }, 1800);
+      }, 2400);
       masonryEvents.forEach(function (e) {
         return window.addEventListener(event, _this2.resizeAllGridItems);
       });
@@ -3021,6 +3027,15 @@ var PinIndexItem = function PinIndexItem(_ref) {
   }));
   var pinUrl = pin.url;
   var shortPinUrl = pinUrl.slice(12, 22) + "...";
+  var pinLink = pinUrl === '' ? null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "".concat(pinUrl),
+    target: "_blank",
+    className: "pin-index-item pin-link"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-external-link-alt pin-link-icon"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pin-index-item pin-link-text"
+  }, shortPinUrl));
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3046,15 +3061,7 @@ var PinIndexItem = function PinIndexItem(_ref) {
     className: "pin-index-item save-board-pin-text"
   }, "Save"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "pin-index-item pin-link-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "".concat(pinUrl),
-    target: "_blank",
-    className: "pin-index-item pin-link"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "fas fa-external-link-alt pin-link-icon"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pin-index-item pin-link-text"
-  }, shortPinUrl))))));
+  }, pinLink))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PinIndexItem);

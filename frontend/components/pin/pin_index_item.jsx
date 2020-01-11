@@ -17,9 +17,20 @@ const PinIndexItem = ({ user, page, pin, openEditPin, openNewBoardPin }) => {
       <i className="fas fa-pencil-alt edit-pin-icon"></i>
     </a>
   );
+
   const pinUrl = pin.url;
   const shortPinUrl = pinUrl.slice(12, 22) + "...";
-
+  const pinLink = (pinUrl === '') ? (
+    null
+  ) : (
+    <a href={`${pinUrl}`} target="_blank" className="pin-index-item pin-link">
+      <i className="fas fa-external-link-alt pin-link-icon"></i>
+      <div className="pin-index-item pin-link-text">
+        {shortPinUrl}
+      </div>
+    </a>
+  )
+  
   return (
     <div className="pin-index-item container">
       <div className="pin-index-item masonry-item">
@@ -46,12 +57,7 @@ const PinIndexItem = ({ user, page, pin, openEditPin, openNewBoardPin }) => {
             </a>
           </div>
           <div className="pin-index-item pin-link-container">
-            <a href={`${pinUrl}`} target="_blank" className="pin-index-item pin-link">
-              <i className="fas fa-external-link-alt pin-link-icon"></i>
-              <div className="pin-index-item pin-link-text">
-                {shortPinUrl}
-              </div>
-            </a>
+            {pinLink}
           </div>
         </div>
       </div>

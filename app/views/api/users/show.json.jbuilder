@@ -15,13 +15,13 @@ json.boards do
   end
 end
 
-# json.boardsPins do
-#   @user.boards_pins.each do |boardPin|
-#     json.set! boardPin.id do
-#       json.partial! "api/boards_pins/board_pin", boardPin: boardPin
-#     end
-#   end
-# end
+json.boardsPins do
+  @user.boards_pins.each do |boardPin|
+    json.set! boardPin.id do
+      json.partial! "api/boards_pins/board_pin", boardPin: boardPin
+    end
+  end
+end
 
 json.pins do
   @user.pins.each do |pin|
