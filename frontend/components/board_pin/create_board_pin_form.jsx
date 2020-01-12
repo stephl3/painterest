@@ -1,166 +1,65 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 class CreateBoardPinForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = Object.assign({}, this.props.pin,
-      { photoPreview: null });
+    this.state = {
+      pinId: this.props.pin.id,
+      boardId: null
+    };
     this.handleSave = this.handleSave.bind(this);
-    this.handleFile = this.handleFile.bind(this);
-    this.deleteImage = this.deleteImage.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchBoards();
   }
 
   handleSave(e) {
-    // e.preventDefault();
-    const details = Object.assign({}, this.state);
-    delete details["photoPreview"];
+    e.preventDefault();
 
-    const formData = new FormData();
-    for (let key in details) {
-      formData.append(`pin[${key}]`, details[key])
-    }
-
-    const board = document.getElementById('selected-board');
-    debugger;
-    return this.props.processForm(formData)
-      .then(res => {
-        // debugger;
-        this.props.createBoardPin({ "pin_id": res.pin.id, "board_id": board.innerText })
-      });
-  }
-
-  uploadImage() {
-    document.getElementById("image-upload-input").click();
-  }
-
-  deleteImage() {
-    this.setState({ photoPreview: null });
-  }
-
-  handleFile(e) {
-    const file = e.currentTarget.files[0];
-    const fileReader = new FileReader();
-    fileReader.onloadend = () => {
-      this.setState({ photo: file, photoPreview: fileReader.result });
-    };
-
-    if (file) {
-      fileReader.readAsDataURL(file);
-    }
-  }
-
-  changeInput(field) {
-    return (
-      e => this.setState({ [field]: e.currentTarget.value })
-    );
   }
 
   render() {
-    const { currentUser, errors, formType } = this.props;
-    const displayImage = (this.state.photoPreview) ? (
-      <div className="create-pin" id="image-uploaded-container">
-        <img src={this.state.photoPreview} className="create-pin" id="photo" />
-        <div className="create-pin" id="delete-image-button-container">
-          <button className="create-pin" id="delete-image-button" onClick={this.deleteImage}>
-            <div className="create-pin" id="trash-icon-container">
-              <i className="fas fa-trash" id="trash-icon"></i>
-            </div>
-          </button>
+    const { currentUserId, pin, allBoards, closeModal } = this.props;
+    const boards = allBoards.filter(board => board.userId === currentUserId);
+    const boardListItems = boards.map(board => (
+      <li
+        key={board.id}
+        className="board-list-item"
+        value={board.id}
+        onClick={this.handleSave}
+      >
+        <div className="board-list-item photo-container">
+          <img src={board.firstPin.photo} className="board-list-item photo"/>
         </div>
-      </div>
-    ) : (
-        <div className="create-pin" id="image-upload-container">
-          <div className="create-pin" id="image-upload-area" onClick={this.uploadImage}>
-            <div className="create-pin" id="image-upload-area-border">
-              <div className="create-pin" id="upload-icon-container">
-                <i className="fas fa-arrow-circle-up" id="upload-icon"></i>
-              </div>
-              <div className="create-pin" id="instruction">
-                Click to upload
-            </div>
-            </div>
-            <div className="create-pin" id="upload-recommendation">
-              Recommendation: Use high-quality .jpg files less than 2 MB
-          </div>
-          </div>
-          <input
-            type="file"
-            onChange={this.handleFile}
-            className="create-pin"
-            id="image-upload-input" />
+        <div className="board-list-item title">
+          {board.title}
         </div>
-      )
+        <div className="board-list-item save-button">
+          <i className="fas fa-thumbtack save-icon"></i>
+          <div className="save-text">Save</div>
+        </div>
+      </li>
+    ))
+
     return (
-      <div id="create-pin-background">
-        <div id="create-pin-container">
-          <div className="create-pin" id="sizing">
-            <div className="create-pin" id="header">
-              <div className="create-pin" id="buttons">
-                <button className="create-pin" id="select-board-dropdown">
-                  <div className="create-pin" id="select-board-label">
-                    <div className="create-pin" id="selected-board">
-                      1{/* Select */}
-                    </div>
-                  </div>
-                  <div className="create-pin" id="dropdown-icon-container">
-                    <i className="fas fa-angle-down" id="dropdown-icon"></i>
-                  </div>
-                </button>
-                <Link to="/" className="create-pin" id="save-button" onClick={this.handleSave}>
-                  <div className="create-pin" id="save-button-label">
-                    Save
-                  </div>
-                </Link>
-              </div>
-            </div>
-            <div className="create-pin" id="content">
-              <div className="create-pin" id="image-container">
-                {displayImage}
-              </div>
-              <div className="create-pin" id="details-container">
-                <div className="create-pin" id="title-container">
-                  <input
-                    type="text"
-                    className="create-pin"
-                    id="title"
-                    placeholder="Add your title"
-                    value={this.state.title}
-                    onChange={this.changeInput("title")} />
-                </div>
-                <div className="create-pin" id="user-container">
-                  <div className="create-pin" id="user-image-frame">
-                    <img
-                      src={currentUser.photo}
-                      alt="profile-icon"
-                      className="create-pin"
-                      id="user-image" />
-                  </div>
-                  <div className="create-pin" id="username">
-                    {currentUser.firstName} {currentUser.lastName}
-                  </div>
-                </div>
-                <div className="create-pin" id="description-container">
-                  <textarea
-                    rows="1"
-                    className="create-pin"
-                    id="description"
-                    placeholder="Tell everyone what your Pin is about"
-                    value={this.state.description}
-                    onChange={this.changeInput("description")} />
-                </div>
-                <div className="create-pin" id="url-container">
-                  <textarea
-                    rows="1"
-                    className="create-pin"
-                    id="url"
-                    placeholder="Add a destination link"
-                    value={this.state.url}
-                    onChange={this.changeInput("url")} />
-                </div>
-              </div>
-            </div>
+      <div className="create-board-pin container">
+        <div className="create-board-pin header">
+          <div className="create-board-pin form-title">ChooseBoard</div>
+          <a
+            onClick={closeModal}
+            className="create-board-pin close-link"
+          >
+            <i className="fas fa-times close-icon"></i>
+          </a>
+        </div>
+        <div className="create-board-pin body">
+          <div className="create-board-pin photo-container">
+            <img src={pin.photo} className="create-board-pin photo"/>
           </div>
+          <ul className="create-board-pin board-list">
+            {boardListItems}
+          </ul>
         </div>
       </div>
     );

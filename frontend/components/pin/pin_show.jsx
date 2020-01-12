@@ -21,7 +21,7 @@ class PinShow extends React.Component {
     const { pin, users, currentUserId, openEditPin, openNewBoardPin } = this.props;
     if (!pin) return <div style={{"paddingTop": "65px"}}>Loading...</div>;
 
-    const pinOwner = pin.user;
+    const pinOwner = pin.user || {username: ""};
     const editPinLink = (pin.userId === currentUserId) ? (
       <a
         className="pin-show edit-pin-link"
