@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-class CreatePinForm extends React.Component {
+class CreateBoardPinForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = Object.assign({}, this.props.pin,
@@ -167,4 +167,4 @@ class CreatePinForm extends React.Component {
   }
 }
 
-export default CreatePinForm;
+export default CreateBoardPinForm;

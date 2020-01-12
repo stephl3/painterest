@@ -1,22 +1,30 @@
-import { connect } from "react-redux";
 import React from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
-import { createPin } from "../../../actions/pin_actions";
 import CreatePinForm from "./create_board_pin_form";
 
-const mapStateToProps = state => ({
-  currentUser: state.entities.users[state.session.id],
-  pin: { "title": "", "description": "", url: "", photo: null },
-  errors: state.errors.pin,
-  formType: "Create Pin",
-});
+
+import { fetchBoards } from "../../actions/board_actions";
+import { createBoardPin } from "../../actions/board_pin_actions";
+import { closeModal } from "../../actions/modal_actions";
+
+const mapStateToProps = state => {
+  const currentUserId = state.session.id;
+  const pin = state.entities.pins[state.ui.objectId];
+  const allBoards = Object.values(state.entities.boards);
+  const boards = allBoards.filter(board => board.userId === currentUserId);
+
+  return {
+    currentUserId,
+    pin,
+    boards,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
-  processForm: pin => dispatch(createPin(pin)),
+  fetchBoards: () => dispatch(fetchBoards()),
   createBoardPin: boardPin => dispatch(createBoardPin(boardPin)),
-  openModal: modal => dispatch(openModal(modal))
+  closeModal: () => dispatch(closeModal())
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreatePinForm));
-
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreateBoardPinForm));

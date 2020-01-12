@@ -8,7 +8,7 @@ class PinShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchPin(this.props.pin.id);
+    this.props.fetchPin(this.props.match.params.pinId);
   }
 
   goBack(e) {
@@ -19,6 +19,9 @@ class PinShow extends React.Component {
 
   render() {
     const { pin, users, currentUserId, openEditPin, openNewBoardPin } = this.props;
+    if (!pin) return <div style={{"paddingTop": "65px"}}>Loading...</div>;
+
+    const pinOwner = pin.user;
     const editPinLink = (pin.userId === currentUserId) ? (
       <a
         className="pin-show edit-pin-link"
@@ -31,28 +34,28 @@ class PinShow extends React.Component {
     );
     const pinCreditPhoto = (
       <Link
-        to={`/${pin.username}`}
+        to={`/${pinOwner.username}`}
         className="pin-show profile-link-frame"
       >
-        <img src={pin.userPhoto} className="pin-show profile-link-photo"/>
+        <img src={pinOwner.photo} className="pin-show profile-link-photo"/>
       </Link>
     );
-    const name = (pin.userId === currentUserId) ? (
+    const name = (pinOwner.id === currentUserId) ? (
       "You"
     ) : (
-      `${pin.firstName} ${pin.lastName}`
+      `${pinOwner.firstName} ${pinOwner.lastName}`
     )
     const pinCreditText = (
       <div className="pin-show credit-summary">
         <Link
-          to={`/${pin.username}`}
+          to={`/${pinOwner.username}`}
           className="pin-show credit-link"
         >
           {name}
         </Link>
         <span> saved to </span>
         <Link
-          to={`/${pin.username}/${pin.boardTitle}`}
+          to={`/${pinOwner.username}/${pin.boardTitle}`}
           className="pin-show credit-link"
         >
           {pin.boardTitle}
@@ -84,10 +87,10 @@ class PinShow extends React.Component {
             <div className="pin-show nav-bar">
               {editPinLink}
               <a
-                className="pin-index-item save-board-pin-link"
+                className="pin-show save-board-pin-link"
                 onClick={() => openNewBoardPin(pin.id)}
               >
-                <div className="pin-index-item save-board-pin-text">Save</div>
+                <div className="pin-show save-board-pin-text">Save</div>
               </a>
             </div>
             <div className="pin-show info">

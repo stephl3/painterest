@@ -3177,7 +3177,7 @@ function (_React$Component) {
   _createClass(PinShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchPin(this.props.pin.id);
+      this.props.fetchPin(this.props.match.params.pinId);
     }
   }, {
     key: "goBack",
@@ -3195,6 +3195,12 @@ function (_React$Component) {
           currentUserId = _this$props.currentUserId,
           openEditPin = _this$props.openEditPin,
           openNewBoardPin = _this$props.openNewBoardPin;
+      if (!pin) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          "paddingTop": "65px"
+        }
+      }, "Loading...");
+      var pinOwner = pin.user;
       var editPinLink = pin.userId === currentUserId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "pin-show edit-pin-link",
         onClick: function onClick() {
@@ -3204,20 +3210,20 @@ function (_React$Component) {
         className: "fas fa-pencil-alt edit-pin-icon"
       })) : null;
       var pinCreditPhoto = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/".concat(pin.username),
+        to: "/".concat(pinOwner.username),
         className: "pin-show profile-link-frame"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: pin.userPhoto,
+        src: pinOwner.photo,
         className: "pin-show profile-link-photo"
       }));
-      var name = pin.userId === currentUserId ? "You" : "".concat(pin.firstName, " ").concat(pin.lastName);
+      var name = pinOwner.id === currentUserId ? "You" : "".concat(pinOwner.firstName, " ").concat(pinOwner.lastName);
       var pinCreditText = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show credit-summary"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/".concat(pin.username),
+        to: "/".concat(pinOwner.username),
         className: "pin-show credit-link"
       }, name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " saved to "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/".concat(pin.username, "/").concat(pin.boardTitle),
+        to: "/".concat(pinOwner.username, "/").concat(pin.boardTitle),
         className: "pin-show credit-link"
       }, pin.boardTitle));
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3244,12 +3250,12 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show nav-bar"
       }, editPinLink, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "pin-index-item save-board-pin-link",
+        className: "pin-show save-board-pin-link",
         onClick: function onClick() {
           return openNewBoardPin(pin.id);
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-index-item save-board-pin-text"
+        className: "pin-show save-board-pin-text"
       }, "Save"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show info"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5184,8 +5190,6 @@ var ModalReducer = function ModalReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
 /* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/pin_actions */ "./frontend/actions/pin_actions.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -5203,7 +5207,7 @@ var PinsReducer = function PinsReducer() {
       return action.pins;
 
     case _actions_pin_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_PIN"]:
-      return Object.assign(nextState, _defineProperty({}, action.pin.id, action.pin));
+      return Object.assign(nextState, action.pin);
 
     case _actions_pin_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_PIN"]:
       delete nextState[action.pinId];
