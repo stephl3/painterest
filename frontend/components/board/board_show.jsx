@@ -6,21 +6,26 @@ import PinIndexContainer from "../pin/pin_index_container";
 export default class BoardShow extends Component {
   constructor(props) {
     super(props);
-    this.state = this.props.board;
+    this.state = this.props.board || JSON.parse(localStorage.getItem("board"));
 
+    localStorage.setItem("board", JSON.stringify(this.state));
     this.openEditBoard = this.openEditBoard.bind(this);
+  }
+
+  componentDidMount() {
+    // debugger;
+    this.props.fetchBoard(this.state.id);
   }
 
   componentDidUpdate() {}
 
-
-  openEditBoard(e, boardId) {
+  openEditBoard(e) {
     e.preventDefault();
-    this.props.openEditBoard(boardId)
+    this.props.openEditBoard(this.state.id)
   }
 
   render() {
-    const { currentUser, board, openEditBoard } = this.props;
+    const { currentUser, board, pins } = this.props;
     const secretIcon = (this.state.secret) ? (
       <div className="board-show visibility">
         <i className="fas fa-lock board-show" id="lock-icon"></i>
@@ -28,7 +33,7 @@ export default class BoardShow extends Component {
     ) : (
         null
     );
-
+    // debugger;
     return (
       <div className="board-show container">
         <div className="board-show header">
@@ -60,14 +65,16 @@ export default class BoardShow extends Component {
           </div>
         </div>
         <div className="board-show pin-feed">
+          {/* <div className="board-show filler"></div>
           <div className="board-show filler"></div>
           <div className="board-show filler"></div>
           <div className="board-show filler"></div>
           <div className="board-show filler"></div>
-          <div className="board-show filler"></div>
-          <div className="board-show filler"></div>
-          
-          {/* <PinIndexContainer pins={pins} /> */}
+          <div className="board-show filler"></div> */}
+          <PinIndexContainer
+            pins={pins}
+            page="profile"
+          />
         </div>
       </div>
     )

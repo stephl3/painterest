@@ -12,9 +12,9 @@ const receiveBoards = boards => ({
   boards
 });
 
-const receiveBoard = board => ({
+const receiveBoard = payload => ({
   type: RECEIVE_BOARD,
-  board
+  payload
 });
 
 const removeBoard = boardId => ({
@@ -36,7 +36,7 @@ export const fetchBoards = () => dispatch => (
 
 export const fetchBoard = boardId => dispatch => (
   BoardAPIUtil.fetchBoard(boardId).then(
-    board => dispatch(receiveBoard(board))
+    payload => dispatch(receiveBoard(payload))
   )
 );
 

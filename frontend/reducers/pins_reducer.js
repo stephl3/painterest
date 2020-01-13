@@ -1,4 +1,5 @@
 import { RECEIVE_SINGLE_USER } from "../actions/user_actions";
+import { RECEIVE_BOARD } from "../actions/board_actions";
 import {
   RECEIVE_PINS,
   RECEIVE_PIN,
@@ -11,6 +12,8 @@ const PinsReducer = (oldState = {}, action) => {
   let nextState = Object.assign({}, oldState);
   switch (action.type) {
     case RECEIVE_SINGLE_USER:
+      return Object.assign(nextState, action.payload.pins);
+    case RECEIVE_BOARD:
       return Object.assign(nextState, action.payload.pins);
     case RECEIVE_PINS:
       return action.pins;

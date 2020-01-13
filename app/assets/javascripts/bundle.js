@@ -119,10 +119,10 @@ var receiveBoards = function receiveBoards(boards) {
   };
 };
 
-var receiveBoard = function receiveBoard(board) {
+var receiveBoard = function receiveBoard(payload) {
   return {
     type: RECEIVE_BOARD,
-    board: board
+    payload: payload
   };
 };
 
@@ -150,8 +150,8 @@ var fetchBoards = function fetchBoards() {
 };
 var fetchBoard = function fetchBoard(boardId) {
   return function (dispatch) {
-    return _util_board_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchBoard"](boardId).then(function (board) {
-      return dispatch(receiveBoard(board));
+    return _util_board_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchBoard"](boardId).then(function (payload) {
+      return dispatch(receiveBoard(payload));
     });
   };
 };
@@ -548,8 +548,8 @@ var fetchAllUsers = function fetchAllUsers() {
 };
 var fetchSingleUser = function fetchSingleUser(id) {
   return function (dispatch) {
-    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchSingleUser"](id).then(function (user) {
-      return dispatch(receiveSingleUser(user));
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchSingleUser"](id).then(function (payload) {
+      return dispatch(receiveSingleUser(payload));
     });
   };
 };
@@ -978,19 +978,26 @@ function (_Component) {
     _classCallCheck(this, BoardShow);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardShow).call(this, props));
-    _this.state = _this.props.board;
+    _this.state = _this.props.board || JSON.parse(localStorage.getItem("board"));
+    localStorage.setItem("board", JSON.stringify(_this.state));
     _this.openEditBoard = _this.openEditBoard.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(BoardShow, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      // debugger;
+      this.props.fetchBoard(this.state.id);
+    }
+  }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {}
   }, {
     key: "openEditBoard",
-    value: function openEditBoard(e, boardId) {
+    value: function openEditBoard(e) {
       e.preventDefault();
-      this.props.openEditBoard(boardId);
+      this.props.openEditBoard(this.state.id);
     }
   }, {
     key: "render",
@@ -998,13 +1005,14 @@ function (_Component) {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
           board = _this$props.board,
-          openEditBoard = _this$props.openEditBoard;
+          pins = _this$props.pins;
       var secretIcon = this.state.secret ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show visibility"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-lock board-show",
         id: "lock-icon"
-      })) : null;
+      })) : null; // debugger;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1031,18 +1039,9 @@ function (_Component) {
         className: "board-show description"
       }, this.state.description))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show pin-feed"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-show filler"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-show filler"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-show filler"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-show filler"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-show filler"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-show filler"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_pin_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        pins: pins,
+        page: "profile"
       })));
     }
   }]);
@@ -1087,11 +1086,12 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var board = Object.values(state.entities.boards).find(function (board) {
     return board.title === ownProps.match.params.boardTitle;
-  }); // debugger;
+  }) || JSON.parse(localStorage.getItem("board")); // debugger;
 
   return {
     currentUser: state.entities.users[state.session.id],
     board: state.entities.boards[board.id],
+    pins: Object.values(state.entities.pins),
     errors: state.errors.board
   };
 };
@@ -5517,8 +5517,6 @@ var BoardsPinsReducer = function BoardsPinsReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
 /* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/board_actions */ "./frontend/actions/board_actions.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -5536,7 +5534,7 @@ var BoardsReducer = function BoardsReducer() {
       return action.boards;
 
     case _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARD"]:
-      return Object.assign(nextState, _defineProperty({}, action.board.id, action.board));
+      return Object.assign(nextState, action.payload.boards);
 
     case _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_BOARD"]:
       delete nextState[action.boardId];
@@ -5711,7 +5709,9 @@ var ModalReducer = function ModalReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/user_actions */ "./frontend/actions/user_actions.js");
-/* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/pin_actions */ "./frontend/actions/pin_actions.js");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/pin_actions */ "./frontend/actions/pin_actions.js");
+
 
 
 
@@ -5725,13 +5725,16 @@ var PinsReducer = function PinsReducer() {
     case _actions_user_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SINGLE_USER"]:
       return Object.assign(nextState, action.payload.pins);
 
-    case _actions_pin_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_PINS"]:
+    case _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOARD"]:
+      return Object.assign(nextState, action.payload.pins);
+
+    case _actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_PINS"]:
       return action.pins;
 
-    case _actions_pin_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_PIN"]:
+    case _actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_PIN"]:
       return Object.assign(nextState, action.pin);
 
-    case _actions_pin_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_PIN"]:
+    case _actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["REMOVE_PIN"]:
       delete nextState[action.pinId];
       return nextState;
 

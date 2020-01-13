@@ -9,11 +9,13 @@ import BoardShow from './board_show';
 const mapStateToProps = (state, ownProps) => {
   const board = Object.values(state.entities.boards).find(board => 
     board.title === ownProps.match.params.boardTitle
-  );
+  ) || JSON.parse(localStorage.getItem("board"));
+
   // debugger;
   return {
     currentUser: state.entities.users[state.session.id],
     board: state.entities.boards[board.id],
+    pins: Object.values(state.entities.pins),
     errors: state.errors.board,
   }
 };
