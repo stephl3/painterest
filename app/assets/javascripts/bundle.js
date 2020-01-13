@@ -2468,6 +2468,11 @@ function (_React$Component) {
   }
 
   _createClass(NavBar, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      window.location.reload();
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -3755,7 +3760,7 @@ function (_React$Component) {
         className: "pin-show back-button",
         onClick: this.goBack
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-angle-left"
+        className: "fas fa-arrow-left"
       }), "Back"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5213,7 +5218,7 @@ function (_React$Component) {
       var user = Object.assign({}, this.state);
       this.props.processForm(user).then(this.props.closeModal).then(window.setTimeout(function () {
         window.location.reload(false);
-      }, 700));
+      }, 1000));
     }
   }, {
     key: "handleDemo",
@@ -5236,7 +5241,7 @@ function (_React$Component) {
 
             _this3.props.demoLogin(demoUser).then(_this3.props.closeModal).then(window.setTimeout(function () {
               window.location.reload(false);
-            }, 700));
+            }, 1000));
           });
         });
       });

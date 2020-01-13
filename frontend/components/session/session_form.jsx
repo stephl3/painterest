@@ -26,7 +26,7 @@ class SessionForm extends React.Component {
       .then(this.props.closeModal)
       .then(window.setTimeout(() => {
         window.location.reload(false);
-      }, 700))
+      }, 1000))
   }
 
   handleDemo(e) {
@@ -45,7 +45,7 @@ class SessionForm extends React.Component {
             .then(this.props.closeModal)
             .then(window.setTimeout(() => {
               window.location.reload(false);
-            }, 700))
+            }, 1000))
         })
       )
     )

@@ -8,6 +8,10 @@ class NavBar extends React.Component {
 
   }
 
+  componentWillUnmount() {
+    window.location.reload();
+  }
+
   render() {
     const { currentUser, logout } = this.props;
 
