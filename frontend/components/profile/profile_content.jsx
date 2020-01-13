@@ -29,7 +29,7 @@ class ProfileContent extends React.Component {
     const pinCount = (this.state.selectedSwitch === 1) ? (
       <div className="profile-show pin-count-container">
         <div className="profile-show pin-count">
-          <span className="profile-show number">13 </span>Pins
+          <span className="profile-show number">{pins.length} </span>Pins
         </div>
       </div>
     ) : null;

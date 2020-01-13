@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
   currentUser: state.entities.users[state.session.id],
   boards: state.entities.boards,
   boardsPins: state.entities.boardsPins,
-  pins: state.entities.pins,
+  pins: Object.values(state.entities.pins),
 });
 
 const mapDispatchToProps = dispatch => ({

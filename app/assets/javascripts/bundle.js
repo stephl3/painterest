@@ -4388,7 +4388,7 @@ function (_React$Component) {
         className: "profile-show pin-count"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "profile-show number"
-      }, "13 "), "Pins")) : null;
+      }, pins.length, " "), "Pins")) : null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "profile-content"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4854,7 +4854,7 @@ var mapStateToProps = function mapStateToProps(state) {
     currentUser: state.entities.users[state.session.id],
     boards: state.entities.boards,
     boardsPins: state.entities.boardsPins,
-    pins: state.entities.pins
+    pins: Object.values(state.entities.pins)
   };
 };
 
