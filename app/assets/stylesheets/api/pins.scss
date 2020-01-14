@@ -975,6 +975,182 @@
 ////////////////////////////////////////////////////////////////////
 ///////////////////////////// EDIT PIN /////////////////////////////
 ////////////////////////////////////////////////////////////////////
+.edit-pin.container {
+  position: relative;
+  width: 804px;
+  max-height: calc(100vh - 32px);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.edit-pin.header {
+  box-sizing: border-box;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  border-bottom: 1px solid #efefef;
+}
+
+.edit-pin.form-title {
+  box-sizing: border-box;
+  padding: 20px 50px;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: #333;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.edit-pin.cancel-link-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  box-sizing: border-box;
+  padding: 8px;
+  & > .cancel-link {
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    border: 0;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    &:hover {
+      background-color: rgba(0,0,0,.06);
+    }
+    & > .cancel-icon {
+      color: #8e8e8e;
+      height: 20px;
+      width: 20px;
+    }
+  }
+}
+
+.edit-pin.body {
+  flex: 1 1 auto;
+  position: relative;
+  overflow: auto;
+  min-height: 350px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #efefef;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+  & > .first-half {
+    box-sizing: border-box;
+    width: 100%;
+    @media (min-width: 768px) {
+      width: 75%;
+    }
+  }
+  & > .second-half {
+    box-sizing: border-box;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.edit-pin.footer {
+
+}
+
+.edit-pin.photo-container {
+  width: 236px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  & > img {
+    color: transparent;
+    width: 100%;
+  }
+  & > .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.03);
+    pointer-events: none;
+  }
+}
+
+.edit-pin.footer {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+.edit-pin.links {
+  box-sizing: border-box;
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 40px;
+  & > .left-links {
+    box-sizing: border-box;
+    display: flex;
+  }
+
+  & > .right-links {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.edit-pin.link {
+  cursor: pointer;
+  border: 0;
+  border-radius: 8px;
+  width: 100%;
+  height: 20px;
+  padding: 10px 14px;
+  &.open-delete,
+  &.cancel {
+    background-color: #efefef;
+    &:hover {
+      background-color: #e2e2e2;
+    }
+  }
+  &.save {
+    margin-left: 16px;
+    background-color: #e60023;
+    &:hover {
+      background-color: #ad081b;
+    }
+  }
+}
+
+.edit-pin.link-text {
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  &.open-delete,
+  &.cancel {
+    color: #333;
+  }
+  &.save {
+    color: #fff;
+  }
+}
 
 
 
@@ -983,7 +1159,6 @@
 //////////////////////////// DELETE PIN ////////////////////////////
 ////////////////////////////////////////////////////////////////////
 .delete-pin.container {
-  margin: 0 16px;
   width: 414px;
   max-height: calc(100vh - 32px);
   border-radius: 8px;

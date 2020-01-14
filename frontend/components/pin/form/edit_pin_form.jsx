@@ -81,6 +81,7 @@ class EditPinForm extends React.Component {
           <div className="edit-pin second-half">
             <div className="edit-pin photo-container">
               <img src={`${pin.photo}`}/>
+              <div className="overlay"></div>
             </div>
           </div>
         </div>

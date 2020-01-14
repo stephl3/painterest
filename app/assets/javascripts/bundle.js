@@ -3290,6 +3290,8 @@ function (_React$Component) {
         className: "edit-pin photo-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "".concat(pin.photo)
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "overlay"
       })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-pin footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
