@@ -1970,13 +1970,19 @@ function (_React$Component) {
   }, {
     key: "handleSave",
     value: function handleSave(e) {
-      e.preventDefault(); // this.setState({"boardId": })
-      // this.props.createBoardPin(this.state);
+      var _this2 = this;
+
+      e.preventDefault();
+      this.setState({
+        boardId: e.currentTarget.value
+      }, function () {
+        return _this2.props.createBoardPin(_this2.state).then(_this2.props.closePinningModal);
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var _this$props = this.props,
           currentUserId = _this$props.currentUserId,
@@ -1991,7 +1997,7 @@ function (_React$Component) {
           key: board.id,
           className: "create-board-pin board-list-item",
           value: board.id,
-          onClick: _this2.handleSave
+          onClick: _this3.handleSave
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "board-list-item photo-container"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {

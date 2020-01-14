@@ -922,13 +922,14 @@
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .pin-show.profile-link-frame {
   margin-right: 8px;
   width: 40px;
   height: 40px;
-
   box-sizing: border-box;
   border-radius: 50%;
   overflow: hidden;
@@ -943,7 +944,7 @@
 }
 
 .pin-show.credit-summary {
-  width: 100%;
+  max-width: 100%;
   flex: 1 1 auto;
   box-sizing: border-box;
   display: flex;
