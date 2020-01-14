@@ -16,8 +16,9 @@ class CreateBoardPinForm extends React.Component {
 
   handleSave(e) {
     e.preventDefault();
-    // this.setState({"boardId": })
-    // this.props.createBoardPin(this.state);
+    this.setState({ boardId: e.currentTarget.value },
+      () => this.props.createBoardPin(this.state)
+        .then(this.props.closePinningModal));
   }
 
   render() {
