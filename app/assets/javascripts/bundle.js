@@ -1970,7 +1970,8 @@ function (_React$Component) {
   }, {
     key: "handleSave",
     value: function handleSave(e) {
-      e.preventDefault();
+      e.preventDefault(); // this.setState({"boardId": })
+      // this.props.createBoardPin(this.state);
     }
   }, {
     key: "render",
@@ -1988,7 +1989,7 @@ function (_React$Component) {
       var boardListItems = boards.map(function (board) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: board.id,
-          className: "board-list-item",
+          className: "create-board-pin board-list-item",
           value: board.id,
           onClick: _this2.handleSave
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2004,7 +2005,7 @@ function (_React$Component) {
           className: "fas fa-thumbtack save-icon"
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "save-text"
-        }, "Save")));
+        }, "\xA0Save")));
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board-pin container"
@@ -2020,13 +2021,17 @@ function (_React$Component) {
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board-pin body"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board-pin first-half"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board-pin photo-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: pin.photo,
         className: "create-board-pin photo"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-board-pin second-half"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "create-board-pin board-list"
-      }, boardListItems)));
+      }, boardListItems))));
     }
   }]);
 

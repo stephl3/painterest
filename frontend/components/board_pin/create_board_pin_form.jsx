@@ -16,7 +16,8 @@ class CreateBoardPinForm extends React.Component {
 
   handleSave(e) {
     e.preventDefault();
-
+    // this.setState({"boardId": })
+    // this.props.createBoardPin(this.state);
   }
 
   render() {
@@ -25,7 +26,7 @@ class CreateBoardPinForm extends React.Component {
     const boardListItems = boards.map(board => (
       <li
         key={board.id}
-        className="board-list-item"
+        className="create-board-pin board-list-item"
         value={board.id}
         onClick={this.handleSave}
       >
@@ -37,7 +38,7 @@ class CreateBoardPinForm extends React.Component {
         </div>
         <div className="board-list-item save-button">
           <i className="fas fa-thumbtack save-icon"></i>
-          <div className="save-text">Save</div>
+          <div className="save-text">&nbsp;Save</div>
         </div>
       </li>
     ))
@@ -54,12 +55,16 @@ class CreateBoardPinForm extends React.Component {
           </a>
         </div>
         <div className="create-board-pin body">
-          <div className="create-board-pin photo-container">
-            <img src={pin.photo} className="create-board-pin photo"/>
+          <div className="create-board-pin first-half">
+            <div className="create-board-pin photo-container">
+              <img src={pin.photo} className="create-board-pin photo"/>
+            </div>
           </div>
-          <ul className="create-board-pin board-list">
-            {boardListItems}
-          </ul>
+          <div className="create-board-pin second-half">
+            <ul className="create-board-pin board-list">
+              {boardListItems}
+            </ul>
+          </div>
         </div>
       </div>
     );

@@ -16,6 +16,7 @@
   max-height: calc(100vh -32px);
   flex: 1 1 auto;
   overflow: hidden;
+  cursor: auto;
 }
 
 .create-board-pin.header {
@@ -70,4 +71,126 @@
   box-sizing: border-box;
   position: relative;
   overflow: auto;
+  height: 660px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.create-board-pin.first-half {
+  width: 40%;
+  margin-top: 12px;
+  border-right: 1px solid rgb(245,245,245);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.create-board-pin.photo-container {
+  box-sizing: border-box;
+  border-radius: 8px;
+  max-height: 335px;
+  width: 216px;
+  overflow: hidden;
+  & > .photo {
+    color: transparent;
+    width: 100%;
+  }
+}
+
+.create-board-pin.second-half {
+  width: 60%;
+  margin-top: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 auto;
+  overflow: auto;
+}
+
+.create-board-pin.board-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.create-board-pin.board-list-item {
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 8px 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #fff;
+  position: relative;
+  &:hover {
+    background-color: #efefef;
+    & > .save-button {
+      opacity: 1;
+    }
+  }
+}
+
+.board-list-item.photo-container {
+  margin-right: 8px;
+  height: 36px;
+  width: 36px;
+  border-radius: 8px;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #efefef;
+  & > .photo {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.board-list-item.title{
+  text-align: left;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  font-weight: 700;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  color: #333;
+  line-height: 32px;
+}
+
+.board-list-item.save-button {
+  opacity: 0;
+  position: absolute;
+  right: 24px;
+  min-height: 32px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 8px 12px;
+  overflow: hidden;
+  background-color: rgb(230,0,35);
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  & > .save-icon {
+    height: 20px;
+    width: 20px;
+  }
+  & > .save-text {
+    font-weight: 700;
+    letter-spacing: -.4px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+  }
 }
