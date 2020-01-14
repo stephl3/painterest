@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 class EditPinForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = Object.assign({}, this.props.pin,
-      { photoPreview: null });
+    this.state = this.props.pin;
     this.handleSave = this.handleSave.bind(this);
     this.handleFile = this.handleFile.bind(this);
     this.deleteImage = this.deleteImage.bind(this);

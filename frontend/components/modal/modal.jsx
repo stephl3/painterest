@@ -9,7 +9,7 @@ import CreateBoardFormContainer from "../board/form/create_board_form_container"
 import EditBoardFormContainer from "../board/form/edit_board_form_container";
 import DeleteBoardFormContainer from "../board/form/delete_board_form_container";
 import EditPinFormContainer from "../pin/form/edit_pin_form_container";
-// import DeletePinFormContainer from "../pin/form/delete_pin_form_container";
+import DeletePinFormContainer from "../pin/form/delete_pin_form_container";
 import CreateBoardPinFormContainer from "../board_pin/create_board_pin_form_container";
 
 
