@@ -3237,6 +3237,7 @@ function (_React$Component) {
           pin = _this$props.pin,
           errors = _this$props.errors,
           formTitle = _this$props.formTitle;
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-pin container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3255,33 +3256,26 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-pin first-half"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "edit-pin",
-        id: "title-container"
+        className: "edit-pin field-label title"
       }, "Title", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        className: "edit-pin",
-        id: "title",
+        className: "edit-pin field-input title",
         placeholder: "Add your title",
         value: this.state.title,
         onChange: this.update("title")
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "edit-pin",
-        id: "description-container"
+        className: "edit-pin field-label description"
       }, "Description", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         rows: "1",
-        className: "edit-pin",
-        id: "description",
-        placeholder: "Tell everyone what your Pin is about",
+        className: "edit-pin field-input description",
+        placeholder: "Tell us about this Pin...",
         value: this.state.description,
         onChange: this.update("description")
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "edit-pin",
-        id: "url-container"
+        className: "edit-pin field-label url"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         rows: "1",
-        className: "edit-pin",
-        id: "url",
-        placeholder: "Add a destination link",
+        className: "edit-pin field-input url",
         value: this.state.url,
         onChange: this.update("url")
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5277,7 +5271,11 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SessionForm).call(this, props));
     _this.state = {
       email: "",
-      password: ""
+      password: "",
+      first_name: "",
+      last_name: "",
+      location: "",
+      description: ""
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleDemo = _this.handleDemo.bind(_assertThisInitialized(_this));

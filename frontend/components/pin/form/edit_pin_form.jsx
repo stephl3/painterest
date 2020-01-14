@@ -33,7 +33,7 @@ class EditPinForm extends React.Component {
 
   render() {
     const { pin, errors, formTitle } = this.props;
-
+    debugger;
     return (
       <div className="edit-pin container">
         <div className="edit-pin header">
@@ -48,32 +48,28 @@ class EditPinForm extends React.Component {
         </div>
         <div className="edit-pin body">
           <div className="edit-pin first-half">
-            <label className="edit-pin" id="title-container">
+            <label className="edit-pin field-label title">
               Title
               <input
                 type="text"
-                className="edit-pin"
-                id="title"
+                className="edit-pin field-input title"
                 placeholder="Add your title"
                 value={this.state.title}
                 onChange={this.update("title")} />
             </label>
-            <label className="edit-pin" id="description-container">
+            <label className="edit-pin field-label description">
               Description
               <textarea
                 rows="1"
-                className="edit-pin"
-                id="description"
-                placeholder="Tell everyone what your Pin is about"
+                className="edit-pin field-input description"
+                placeholder="Tell us about this Pin..."
                 value={this.state.description}
                 onChange={this.update("description")} />
             </label>
-            <label className="edit-pin" id="url-container">
+            <label className="edit-pin field-label url">
               <textarea
                 rows="1"
-                className="edit-pin"
-                id="url"
-                placeholder="Add a destination link"
+                className="edit-pin field-input url"
                 value={this.state.url}
                 onChange={this.update("url")} />
             </label>

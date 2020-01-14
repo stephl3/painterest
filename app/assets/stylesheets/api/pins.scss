@@ -1051,8 +1051,11 @@
   & > .first-half {
     box-sizing: border-box;
     width: 100%;
+    border-right: 1px solid #efefef;
     @media (min-width: 768px) {
       width: 75%;
+      border-right: none;
+      border-bottom: 1px solid #efefef;
     }
   }
   & > .second-half {
