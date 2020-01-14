@@ -3762,6 +3762,8 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-arrow-left back-icon"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show first-half"
@@ -3805,7 +3807,7 @@ function (_React$Component) {
         className: "pin-show description"
       }, pin.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show credit"
-      }, pinCreditPhoto, pinCreditText))));
+      }, pinCreditPhoto, pinCreditText)))));
     }
   }]);
 

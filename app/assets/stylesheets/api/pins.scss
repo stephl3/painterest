@@ -672,6 +672,14 @@
 .pin-show.main-container {
   padding-top: 65px;
   cursor: zoom-out;
+  box-sizing: border-box;
+  // display: flex;
+  // justify-content: center;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
 }
 
 .pin-show.back-button {
@@ -691,7 +699,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  @media (max-width: 1136px) {
+  @media (max-width: 1136px) and (min-width: 1056px) {
+    visibility: hidden;
+  }
+  @media (max-width: 630px) {
     visibility: hidden;
   }
   &:hover {
@@ -704,6 +715,27 @@
   }
 }
 
+.pin-show.wrapper {
+  cursor: auto;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 32px;
+}
+
+.pin-show.container {
+  background-color: #fff;
+  box-shadow: rgba(0,0,0,0.1) 0 1px 20px 0;
+  box-sizing: border-box;
+  border-radius: 32px;
+  position: relative;
+  width: 1016px;
+  @media (max-width: 1056px) {
+    width: 508px;
+  }
+}
 
 
 

@@ -72,52 +72,54 @@ class PinShow extends React.Component {
         >
           <i className="fas fa-arrow-left back-icon"></i>
         </a>
-        <div className="pin-show container">
-          <div className="pin-show first-half">
-            <a
-              href={pin.url}
-              target="_blank"
-              className="pin-show pin-link"
-            >
-              <img src={pin.photo} className="pin-show pin-photo"/>
-            </a>
-          </div>
-          <div className="pin-show second-half">
-            <div className="pin-show nav-bar">
-              {editPinLink}
+        <div className="pin-show wrapper">
+          <div className="pin-show container">
+            <div className="pin-show first-half">
               <a
-                className="pin-show save-board-pin-link"
-                onClick={() => openNewBoardPin(pin.id)}
+                href={pin.url}
+                target="_blank"
+                className="pin-show pin-link"
               >
-                <div className="pin-show save-board-pin-text">Save</div>
+                <img src={pin.photo} className="pin-show pin-photo"/>
               </a>
             </div>
-            <div className="pin-show info">
-              <div className="pin-show url-link container">
+            <div className="pin-show second-half">
+              <div className="pin-show nav-bar">
+                {editPinLink}
                 <a
-                  href={pin.url}
-                  target="_blank"
-                  className="pin-show url-link"
+                  className="pin-show save-board-pin-link"
+                  onClick={() => openNewBoardPin(pin.id)}
                 >
-                  <div className="pin-show url-text">{pin.url}</div>
+                  <div className="pin-show save-board-pin-text">Save</div>
                 </a>
               </div>
-              <div className="pin-show title container">
-                <a
-                  href={pin.url}
-                  target="_blank"
-                  className="pin-show title-link"
-                >
-                  <div className="pin-show title-text">{pin.title}</div>
-                </a>
+              <div className="pin-show info">
+                <div className="pin-show url-link container">
+                  <a
+                    href={pin.url}
+                    target="_blank"
+                    className="pin-show url-link"
+                  >
+                    <div className="pin-show url-text">{pin.url}</div>
+                  </a>
+                </div>
+                <div className="pin-show title container">
+                  <a
+                    href={pin.url}
+                    target="_blank"
+                    className="pin-show title-link"
+                  >
+                    <div className="pin-show title-text">{pin.title}</div>
+                  </a>
+                </div>
+                <div className="pin-show description">
+                  {pin.description}
+                </div>
               </div>
-              <div className="pin-show description">
-                {pin.description}
+              <div className="pin-show credit">
+                {pinCreditPhoto}
+                {pinCreditText}
               </div>
-            </div>
-            <div className="pin-show credit">
-              {pinCreditPhoto}
-              {pinCreditText}
             </div>
           </div>
         </div>
