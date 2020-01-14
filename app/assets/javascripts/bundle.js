@@ -2303,7 +2303,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _board_form_edit_board_form_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../board/form/edit_board_form_container */ "./frontend/components/board/form/edit_board_form_container.jsx");
 /* harmony import */ var _board_form_delete_board_form_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../board/form/delete_board_form_container */ "./frontend/components/board/form/delete_board_form_container.jsx");
 /* harmony import */ var _pin_form_edit_pin_form_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../pin/form/edit_pin_form_container */ "./frontend/components/pin/form/edit_pin_form_container.jsx");
-/* harmony import */ var _board_pin_create_board_pin_form_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../board_pin/create_board_pin_form_container */ "./frontend/components/board_pin/create_board_pin_form_container.jsx");
+/* harmony import */ var _pin_form_delete_pin_form_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../pin/form/delete_pin_form_container */ "./frontend/components/pin/form/delete_pin_form_container.jsx");
+/* harmony import */ var _board_pin_create_board_pin_form_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../board_pin/create_board_pin_form_container */ "./frontend/components/board_pin/create_board_pin_form_container.jsx");
 
 
 
@@ -2313,7 +2314,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import DeletePinFormContainer from "../pin/form/delete_pin_form_container";
+
 
 
 
@@ -2370,12 +2371,12 @@ var Modal = function Modal(_ref) {
       break;
 
     case "delete-pin":
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DeletePinFormContainer, null);
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_form_delete_pin_form_container__WEBPACK_IMPORTED_MODULE_10__["default"], null);
       clickBackground = openModal('edit-pin');
       break;
 
     case "new-board-pin":
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_pin_create_board_pin_form_container__WEBPACK_IMPORTED_MODULE_10__["default"], null);
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_pin_create_board_pin_form_container__WEBPACK_IMPORTED_MODULE_11__["default"], null);
       clickBackground = closeModal;
       break;
 
@@ -2989,6 +2990,52 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/pin/form/delete_pin_form_container.jsx":
+/*!********************************************************************!*\
+  !*** ./frontend/components/pin/form/delete_pin_form_container.jsx ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+!(function webpackMissingModule() { var e = new Error("Cannot find module './delete_board_form'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    pinId: state.entities.pins[state.ui.objectId].id,
+    formTitle: "Are you sure?"
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    processForm: function processForm(pinId) {
+      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_3__["deletePin"])(pinId));
+    },
+    openEditPin: function openEditPin(pinId) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])('edit-pin', pinId));
+    },
+    closeModal: function closeModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(!(function webpackMissingModule() { var e = new Error("Cannot find module './delete_board_form'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
+
+/***/ }),
+
 /***/ "./frontend/components/pin/form/edit_pin_form.jsx":
 /*!********************************************************!*\
   !*** ./frontend/components/pin/form/edit_pin_form.jsx ***!
@@ -3035,9 +3082,7 @@ function (_React$Component) {
     _classCallCheck(this, EditPinForm);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(EditPinForm).call(this, props));
-    _this.state = Object.assign({}, _this.props.pin, {
-      photoPreview: null
-    });
+    _this.state = _this.props.pin;
     _this.handleSave = _this.handleSave.bind(_assertThisInitialized(_this));
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     _this.deleteImage = _this.deleteImage.bind(_assertThisInitialized(_this));
@@ -3272,12 +3317,14 @@ function (_React$Component) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
-/* harmony import */ var _edit_pin_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./edit_pin_form */ "./frontend/components/pin/form/edit_pin_form.jsx");
+/* harmony import */ var _edit_pin_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit_pin_form */ "./frontend/components/pin/form/edit_pin_form.jsx");
+/* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -3287,12 +3334,7 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state) {
   return {
     currentUser: state.entities.users[state.session.id],
-    pin: {
-      "title": "",
-      "description": "",
-      url: "",
-      photo: null
-    },
+    pin: state.entities.pins[state.ui.objectId],
     errors: state.errors.pin,
     formType: "Edit this Pin"
   };
@@ -3301,28 +3343,18 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     processForm: function processForm(pin) {
-      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_3__["updatePin"])(pin));
+      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_4__["updatePin"])(pin));
     },
-    createBoardPin: function (_createBoardPin) {
-      function createBoardPin(_x) {
-        return _createBoardPin.apply(this, arguments);
-      }
-
-      createBoardPin.toString = function () {
-        return _createBoardPin.toString();
-      };
-
-      return createBoardPin;
-    }(function (boardPin) {
-      return dispatch(createBoardPin(boardPin));
-    }),
     openDeletePin: function openDeletePin(pinId) {
-      return dispatch(openModal('delete-pin'));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])('delete-pin'));
+    },
+    closeModal: function closeModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["closeModal"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_edit_pin_form__WEBPACK_IMPORTED_MODULE_4__["default"])));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_edit_pin_form__WEBPACK_IMPORTED_MODULE_3__["default"])));
 
 /***/ }),
 

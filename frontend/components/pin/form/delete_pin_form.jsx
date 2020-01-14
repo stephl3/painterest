@@ -1,6 +1,6 @@
 import React from "react";
 
-class DeleteBoardForm extends React.Component {
+class DeletePinForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -8,46 +8,49 @@ class DeleteBoardForm extends React.Component {
     this.handleCancel = this.handleCancel.bind(this);
   }
 
-  handleDeleteFOREVER(e) {
-    e.preventDefault();
-    this.props.processForm(this.props.boardId);
+  handleDeleteFOREVER() {
+    this.props.processForm(this.props.pinId);
   }
 
-  handleCancel(e, boardId) {
-    e.preventDefault();
-    this.props.openEditBoard(this.props.boardId);
+  handleCancel(pinId) {
+    this.props.openEditPin(this.props.pinId);
   }
 
   render() {
-    const { boardId, formTitle } = this.props;
+    const { pinId, formTitle } = this.props;
 
     return (
-      <div className="delete-board container">
-        <form className="delete-board form">
-          <div className="delete-board header">
-            <div className="delete-board form-title">
+      <div className="delete-pin container">
+        <form className="delete-pin form">
+          <div className="delete-pin header">
+            <div className="delete-pin form-title">
               {formTitle}
             </div>
-          </div>
-          <div className="delete-board body">
-            <div className="delete-board confirmation-message">
-              Once you delete a board and all its Pins, you can't undo it!
+            <div className="delete-pin cancel-link-container">
+              <a className="cancel-link" onClick={(pinId) => this.handleCancel(pinId)}>
+                <i className="fas fa-times cancel-icon"></i>
+              </a>
             </div>
           </div>
-          <div className="delete-board footer">
-            <div className="delete-board buttons">
-              <button
-                className="delete-board button delete"
+          <div className="delete-pin body">
+            <div className="delete-pin confirmation-message">
+              Once you delete a pin and all its Pins, you can't undo it!
+            </div>
+          </div>
+          <div className="delete-pin footer">
+            <div className="delete-pin buttons">
+              <a
+                className="delete-pin link cancel"
+                onClick={(pinId) => this.handleCancel(pinId)}
+              >
+                <div className="delete-pin link-text cancel">Cancel</div>
+              </a>
+              <a
+                className="delete-pin link delete"
                 onClick={this.handleDeleteFOREVER}
               >
-                Delete forever
-              </button>
-              <button
-                className="delete-board button cancel"
-                onClick={(e, boardId) => this.handleCancel(e, boardId)}
-              >
-                Cancel
-              </button>
+                <div className="delete-pin link-text delete">Delete Pin</div>
+              </a>
             </div>
           </div>
         </form>
@@ -56,4 +59,4 @@ class DeleteBoardForm extends React.Component {
   }
 }
 
-export default DeleteBoardForm;
+export default DeletePinForm;
