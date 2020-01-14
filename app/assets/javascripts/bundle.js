@@ -2012,7 +2012,7 @@ function (_React$Component) {
         className: "create-board-pin header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board-pin form-title"
-      }, "ChooseBoard"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, "Choose board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: closeModal,
         className: "create-board-pin close-link"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {

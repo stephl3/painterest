@@ -45,7 +45,7 @@ class CreateBoardPinForm extends React.Component {
     return (
       <div className="create-board-pin container">
         <div className="create-board-pin header">
-          <div className="create-board-pin form-title">ChooseBoard</div>
+          <div className="create-board-pin form-title">Choose board</div>
           <a
             onClick={closeModal}
             className="create-board-pin close-link"

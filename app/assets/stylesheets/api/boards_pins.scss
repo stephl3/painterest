@@ -1,3 +1,73 @@
 // Place all the styles related to the api/BoardsPins controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+////////////////////////////////////////////////////////////////////
+///////////////////////// CREATE BOARDPIN //////////////////////////
+////////////////////////////////////////////////////////////////////
+.create-board-pin.container {
+  width: 804px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  max-height: calc(100vh -32px);
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.create-board-pin.header {
+  box-sizing: border-box;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #efefef;
+}
+
+.create-board-pin.form-title {
+  padding: 20px 50px;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: #333;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.create-board-pin.close-link {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 8px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    background-color: rgba(0,0,0,0.06);
+  }
+  & > .close-icon {
+    color: #8e8e8e;
+    height: 20px;
+    width: 20px
+  }
+}
+
+.create-board-pin.body {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  position: relative;
+  overflow: auto;
+}
