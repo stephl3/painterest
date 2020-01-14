@@ -671,8 +671,38 @@
 ////////////////////////////////////////////////////////////////////
 .pin-show.main-container {
   padding-top: 65px;
+  cursor: zoom-out;
 }
 
+.pin-show.back-button {
+  cursor: pointer;
+  background: transparent;
+  position: fixed;
+  top: 65px;
+  box-sizing: border-box;
+  margin-left: 24px;
+  margin-top: 24px;
+  padding: 4px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  min-height: 44px;
+  min-width: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 1136px) {
+    visibility: hidden;
+  }
+  &:hover {
+    background-color: rgb(226,226,226);
+  }
+  & > .back-icon {
+    color: #333;
+    height: 20px;
+    width: 20px;
+  }
+}
 
 
 

@@ -70,8 +70,7 @@ class PinShow extends React.Component {
           className="pin-show back-button"
           onClick={this.goBack}
         >
-          <i className="fas fa-arrow-left"></i>
-          Back
+          <i className="fas fa-arrow-left back-icon"></i>
         </a>
         <div className="pin-show container">
           <div className="pin-show first-half">

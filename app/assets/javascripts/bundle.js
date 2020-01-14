@@ -3760,8 +3760,8 @@ function (_React$Component) {
         className: "pin-show back-button",
         onClick: this.goBack
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-arrow-left"
-      }), "Back"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "fas fa-arrow-left back-icon"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show first-half"
