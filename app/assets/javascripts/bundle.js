@@ -3728,6 +3728,7 @@ function (_React$Component) {
       var pinOwner = pin.user || {
         username: ""
       };
+      var pinOwnerFullName = "".concat(pinOwner.firstName, " ").concat(pinOwner.lastName);
       var imgLink = pin.url === "" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show pin-link"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -3749,23 +3750,43 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-pencil-alt edit-pin-icon"
       })) : null;
+      var pinSource = pin.url === "" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: pin.url,
+        target: "_blank",
+        className: "pin-show source-link"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, pin.url)) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show source-link"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Uploaded by\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/".concat(pinOwner.username)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, pinOwnerFullName))));
+      var pinTitle = pin.url === "" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show title"
+      }, pin.title) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: pin.url,
+        target: "_blank",
+        className: "pin-show title"
+      }, pin.title);
       var pinCreditPhoto = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/".concat(pinOwner.username),
         className: "pin-show profile-link-frame"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: pinOwner.photo,
         className: "pin-show profile-link-photo"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show overlay"
       }));
-      var name = pinOwner.id === currentUserId ? "You" : "".concat(pinOwner.firstName, " ").concat(pinOwner.lastName);
+      var name = pinOwner.id === currentUserId ? "You" : {
+        pinOwnerFullName: pinOwnerFullName
+      };
       var pinCreditText = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show credit-summary"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/".concat(pinOwner.username),
         className: "pin-show credit-link"
-      }, name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " saved to "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, pinOwnerFullName)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\xA0saved to\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/".concat(pinOwner.username, "/").concat(pin.boardTitle),
         className: "pin-show credit-link"
-      }, pin.boardTitle));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, pin.boardTitle)));
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show main-container",
         onClick: this.goBack
@@ -3792,7 +3813,7 @@ function (_React$Component) {
         className: "pin-show second-half"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show nav-bar"
-      }, editPinLink, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, editPinLink, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "pin-show save-board-pin-link",
         onClick: function onClick() {
           return openNewBoardPin(pin.id);
@@ -3801,23 +3822,7 @@ function (_React$Component) {
         className: "pin-show save-board-pin-text"
       }, "Save"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show info"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-show url-link-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: pin.url,
-        target: "_blank",
-        className: "pin-show url-link"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-show url-text"
-      }, pin.url))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-show title-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: pin.url,
-        target: "_blank",
-        className: "pin-show title-link"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-show title-text"
-      }, pin.title))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, pinSource, pinTitle, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show description"
       }, pin.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show credit"

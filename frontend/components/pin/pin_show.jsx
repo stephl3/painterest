@@ -22,6 +22,7 @@ class PinShow extends React.Component {
     if (!pin) return <div style={{"paddingTop": "65px"}}>Loading...</div>;
 
     const pinOwner = pin.user || {username: ""};
+    const pinOwnerFullName = `${pinOwner.firstName} ${pinOwner.lastName}`;
     const imgLink = (pin.url === "") ? (
       <div
         className="pin-show pin-link"
@@ -47,18 +48,49 @@ class PinShow extends React.Component {
     ) : (
       null
     );
+
+    const pinSource = (pin.url === "") ? (
+      <a
+        href={pin.url}
+        target="_blank"
+        className="pin-show source-link"
+      >
+        <div>{pin.url}</div>
+      </a>
+    ) : (
+      <div className="pin-show source-link">
+          <div>Uploaded by&nbsp;
+            <Link to={`/${pinOwner.username}`}>
+              <strong>{pinOwnerFullName}</strong>
+            </Link>
+          </div>
+      </div>
+    );
+    const pinTitle = (pin.url === "") ? (
+      <div className="pin-show title">{pin.title}</div>
+    ) : (
+      <a
+        href={pin.url}
+        target="_blank"
+        className="pin-show title"
+      >
+        {pin.title}
+      </a>
+    );
+
     const pinCreditPhoto = (
       <Link
         to={`/${pinOwner.username}`}
         className="pin-show profile-link-frame"
       >
         <img src={pinOwner.photo} className="pin-show profile-link-photo"/>
+        <div className="pin-show overlay"></div>
       </Link>
     );
     const name = (pinOwner.id === currentUserId) ? (
       "You"
     ) : (
-      `${pinOwner.firstName} ${pinOwner.lastName}`
+      {pinOwnerFullName}
     )
     const pinCreditText = (
       <div className="pin-show credit-summary">
@@ -66,17 +98,17 @@ class PinShow extends React.Component {
           to={`/${pinOwner.username}`}
           className="pin-show credit-link"
         >
-          {name}
+          <strong>{pinOwnerFullName}</strong>
         </Link>
-        <span> saved to </span>
+        <span>&nbsp;saved to&nbsp;</span>
         <Link
           to={`/${pinOwner.username}/${pin.boardTitle}`}
           className="pin-show credit-link"
         >
-          {pin.boardTitle}
+          <strong>{pin.boardTitle}</strong>
         </Link>
       </div>
-    )
+    );
     
     return (
       <div className="pin-show main-container"
@@ -100,6 +132,7 @@ class PinShow extends React.Component {
             <div className="pin-show second-half">
               <div className="pin-show nav-bar">
                 {editPinLink}
+                <div></div>
                 <a
                   className="pin-show save-board-pin-link"
                   onClick={() => openNewBoardPin(pin.id)}
@@ -108,24 +141,8 @@ class PinShow extends React.Component {
                 </a>
               </div>
               <div className="pin-show info">
-                <div className="pin-show url-link-container">
-                  <a
-                    href={pin.url}
-                    target="_blank"
-                    className="pin-show url-link"
-                  >
-                    <div className="pin-show url-text">{pin.url}</div>
-                  </a>
-                </div>
-                <div className="pin-show title-container">
-                  <a
-                    href={pin.url}
-                    target="_blank"
-                    className="pin-show title-link"
-                  >
-                    <div className="pin-show title-text">{pin.title}</div>
-                  </a>
-                </div>
+                {pinSource}
+                {pinTitle}
                 <div className="pin-show description">
                   {pin.description}
                 </div>

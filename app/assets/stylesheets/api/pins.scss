@@ -721,8 +721,8 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 32px;
+  padding-top: 20px;
+  padding-bottom: 32px;
 }
 
 .pin-show.container {
@@ -732,6 +732,7 @@
   box-sizing: border-box;
   border-radius: 32px;
   position: relative;
+  height: 100%;
   width: 1016px;
   display: flex;
   @media (max-width: 1056px) {
@@ -743,6 +744,7 @@
 .pin-show.first-half {
   width: 508px;
   max-height: 770px;
+  padding: 20px;
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
@@ -760,7 +762,6 @@
   box-sizing: border-box;
   border-radius: 32px;
   overflow: hidden;
-
 }
 
 .pin-show.pin-link {
@@ -789,7 +790,184 @@
   background: rgba(0,0,0,.03);
 }
 
+.pin-show.second-half {
+  width: 508px;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
 
+.pin-show.nav-bar {
+  min-height: 72px;
+  padding: 20px 20px 16px 28px;
+  border-radius: 0 32px 32px 0;
+  box-sizing: border-box;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pin-show.edit-pin-link {
+  margin-right: 4px;
+  border: none;
+  outline: none;
+  padding: 0;
+  background: transparent;
+  border-radius: 50%;
+  &:hover {
+    background-color: rgb(226,226,226);
+  }
+  & > .edit-pin-icon {
+    color: #333;
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.pin-show.save-board-pin-link {
+  cursor: pointer;
+  margin-left: 12px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  padding: 0 16px;
+  -webkit-box-align: center;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  background-color: #e60023;
+  &:hover {
+    background-color: #cf001f;
+  }
+  & > .save-board-pin-text {
+    text-align: left;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    word-wrap: break-word;
+    font-weight: 700;
+    letter-spacing: -.4px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-size: 14px;
+    color: #fff;
+  }
+}
+
+.pin-show.info {
+  height: calc(100% - 80px);
+  padding: 0 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.source-link {
+  text-align: left;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  font-weight: 400;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 21px;
+  color: #333;
+  & a {
+    color: #333;
+    &:hover {
+      color: #333;
+    }
+  }
+}
+
+.pin-show.title {
+  margin-top: 16px;
+  font-size: 36px;
+  font-weight: 700;
+  text-align: left;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: #333;
+}
+
+.pin-show.description {
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: #333;
+}
+
+.pin-show.credit {
+  box-sizing: border-box;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding: 0 40px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  display: flex;
+}
+
+.pin-show.profile-link-frame {
+  margin-right: 8px;
+  width: 40px;
+  height: 40px;
+
+  box-sizing: border-box;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  & > .profile-link-photo {
+    color: transparent;
+    width: 100%;
+  }
+  &:hover > .overlay {
+    background: rgba(0,0,0,.06);
+  }
+}
+
+.pin-show.credit-summary {
+  width: 100%;
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  text-align: left;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  font-weight: 400;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  color: #333;
+  & > .credit-link {
+    color: #333;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
 
 
 
