@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import DeletePinForm from "./delete_board_form";
+import DeletePinForm from "./delete_pin_form";
 
 import { deletePin } from "../../../actions/pin_actions";
 import { openModal, closeModal } from "../../../actions/modal_actions";

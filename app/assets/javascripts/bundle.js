@@ -2990,6 +2990,119 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/pin/form/delete_pin_form.jsx":
+/*!**********************************************************!*\
+  !*** ./frontend/components/pin/form/delete_pin_form.jsx ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var DeletePinForm =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(DeletePinForm, _React$Component);
+
+  function DeletePinForm(props) {
+    var _this;
+
+    _classCallCheck(this, DeletePinForm);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DeletePinForm).call(this, props));
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    _this.handleCancel = _this.handleCancel.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(DeletePinForm, [{
+    key: "handleDelete",
+    value: function handleDelete() {
+      this.props.processForm(this.props.pinId);
+    }
+  }, {
+    key: "handleCancel",
+    value: function handleCancel(pinId) {
+      this.props.openEditPin(this.props.pinId);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _this$props = this.props,
+          pinId = _this$props.pinId,
+          formTitle = _this$props.formTitle;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-pin container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "delete-pin form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-pin header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-pin form-title"
+      }, formTitle), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-pin cancel-link-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "cancel-link",
+        onClick: function onClick(pinId) {
+          return _this2.handleCancel(pinId);
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fas fa-times cancel-icon"
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-pin body"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-pin confirmation-message"
+      }, "Once you delete a Pin, you can't undo it!")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-pin footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-pin buttons"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "delete-pin link cancel",
+        onClick: function onClick(pinId) {
+          return _this2.handleCancel(pinId);
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-pin link-text cancel"
+      }, "Cancel")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "delete-pin link delete",
+        onClick: this.handleDelete
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "delete-pin link-text delete"
+      }, "Delete Pin"))))));
+    }
+  }]);
+
+  return DeletePinForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (DeletePinForm);
+
+/***/ }),
+
 /***/ "./frontend/components/pin/form/delete_pin_form_container.jsx":
 /*!********************************************************************!*\
   !*** ./frontend/components/pin/form/delete_pin_form_container.jsx ***!
@@ -3002,7 +3115,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-!(function webpackMissingModule() { var e = new Error("Cannot find module './delete_board_form'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _delete_pin_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./delete_pin_form */ "./frontend/components/pin/form/delete_pin_form.jsx");
 /* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 
@@ -3032,7 +3145,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(!(function webpackMissingModule() { var e = new Error("Cannot find module './delete_board_form'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_delete_pin_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -3083,221 +3196,126 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(EditPinForm).call(this, props));
     _this.state = _this.props.pin;
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.openDeletePin = _this.openDeletePin.bind(_assertThisInitialized(_this));
+    _this.handleCancel = _this.handleCancel.bind(_assertThisInitialized(_this));
     _this.handleSave = _this.handleSave.bind(_assertThisInitialized(_this));
-    _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
-    _this.deleteImage = _this.deleteImage.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(EditPinForm, [{
-    key: "handleSave",
-    value: function handleSave(e) {
+    key: "update",
+    value: function update(field) {
       var _this2 = this;
 
-      // e.preventDefault();
-      var details = Object.assign({}, this.state);
-      delete details["photoPreview"];
-      var formData = new FormData();
-
-      for (var key in details) {
-        formData.append("pin[".concat(key, "]"), details[key]);
-      }
-
-      var board = document.getElementById('selected-board');
-      debugger;
-      return this.props.processForm(formData).then(function (res) {
-        // debugger;
-        _this2.props.createBoardPin({
-          "pin_id": res.pin.id,
-          "board_id": board.innerText
-        });
-      });
-    }
-  }, {
-    key: "uploadImage",
-    value: function uploadImage() {
-      document.getElementById("image-upload-input").click();
-    }
-  }, {
-    key: "deleteImage",
-    value: function deleteImage() {
-      this.setState({
-        photoPreview: null
-      });
-    }
-  }, {
-    key: "handleFile",
-    value: function handleFile(e) {
-      var _this3 = this;
-
-      var file = e.currentTarget.files[0];
-      var fileReader = new FileReader();
-
-      fileReader.onloadend = function () {
-        _this3.setState({
-          photo: file,
-          photoPreview: fileReader.result
-        });
-      };
-
-      if (file) {
-        fileReader.readAsDataURL(file);
-      }
-    }
-  }, {
-    key: "changeInput",
-    value: function changeInput(field) {
-      var _this4 = this;
-
       return function (e) {
-        return _this4.setState(_defineProperty({}, field, e.currentTarget.value));
+        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
+    }
+  }, {
+    key: "openDeletePin",
+    value: function openDeletePin(e, pinId) {
+      e.preventDefault();
+      this.props.openDeletePin(pinId);
+    }
+  }, {
+    key: "handleCancel",
+    value: function handleCancel() {
+      this.props.closeModal();
+    }
+  }, {
+    key: "handleSave",
+    value: function handleSave() {
+      this.props.processForm(this.state);
     }
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       var _this$props = this.props,
-          currentUser = _this$props.currentUser,
+          pin = _this$props.pin,
           errors = _this$props.errors,
-          formType = _this$props.formType;
-      var displayImage = this.state.photoPreview ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "image-uploaded-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: this.state.photoPreview,
-        className: "create-pin",
-        id: "photo"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "delete-image-button-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "create-pin",
-        id: "delete-image-button",
-        onClick: this.deleteImage
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "trash-icon-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-trash",
-        id: "trash-icon"
-      }))))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "image-upload-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "image-upload-area",
-        onClick: this.uploadImage
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "image-upload-area-border"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "upload-icon-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-arrow-circle-up",
-        id: "upload-icon"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "instruction"
-      }, "Click to upload")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "upload-recommendation"
-      }, "Recommendation: Use high-quality .jpg files less than 2 MB")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "file",
-        onChange: this.handleFile,
-        className: "create-pin",
-        id: "image-upload-input"
-      }));
+          formTitle = _this$props.formTitle;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "create-pin-background"
+        className: "edit-pin container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "create-pin-container"
+        className: "edit-pin header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "sizing"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "buttons"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "create-pin",
-        id: "select-board-dropdown"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "select-board-label"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "selected-board"
-      }, "1")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "dropdown-icon-container"
+        className: "edit-pin form-title"
+      }, formTitle), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin cancel-link-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "cancel-link",
+        onClick: this.handleCancel
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-angle-down",
-        id: "dropdown-icon"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/",
-        className: "create-pin",
-        id: "save-button",
-        onClick: this.handleSave
+        className: "fas fa-times cancel-icon"
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin body"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "save-button-label"
-      }, "Save")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "content"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "image-container"
-      }, displayImage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "details-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
+        className: "edit-pin first-half"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "edit-pin",
         id: "title-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Title", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        className: "create-pin",
+        className: "edit-pin",
         id: "title",
         placeholder: "Add your title",
         value: this.state.title,
-        onChange: this.changeInput("title")
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "user-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "user-image-frame"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: currentUser.photo,
-        alt: "profile-icon",
-        className: "create-pin",
-        id: "user-image"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
-        id: "username"
-      }, currentUser.firstName, " ", currentUser.lastName)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
+        onChange: this.update("title")
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "edit-pin",
         id: "description-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+      }, "Description", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         rows: "1",
-        className: "create-pin",
+        className: "edit-pin",
         id: "description",
         placeholder: "Tell everyone what your Pin is about",
         value: this.state.description,
-        onChange: this.changeInput("description")
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin",
+        onChange: this.update("description")
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "edit-pin",
         id: "url-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         rows: "1",
-        className: "create-pin",
+        className: "edit-pin",
         id: "url",
         placeholder: "Add a destination link",
         value: this.state.url,
-        onChange: this.changeInput("url")
-      })))))));
+        onChange: this.update("url")
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin second-half"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin photo-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "".concat(pin.photo)
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin links"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin left-links"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "edit-pin link open-delete",
+        onClick: function onClick(e, pinId) {
+          return _this3.openDeletePin(e, pin.id);
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin link-text open-delete"
+      }, "Delete"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin right-links"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "edit-pin link cancel",
+        onClick: this.handleCancel
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin link-text cancel"
+      }, "Cancel")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "edit-pin link save",
+        onClick: this.handleSave
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin link-text save"
+      }, "Save"))))));
     }
   }]);
 
@@ -3333,10 +3351,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    currentUser: state.entities.users[state.session.id],
     pin: state.entities.pins[state.ui.objectId],
     errors: state.errors.pin,
-    formType: "Edit this Pin"
+    formTitle: "Edit this Pin"
   };
 };
 
@@ -38675,7 +38692,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

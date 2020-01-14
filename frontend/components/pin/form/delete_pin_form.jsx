@@ -4,11 +4,11 @@ class DeletePinForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleDeleteFOREVER = this.handleDeleteFOREVER.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
   }
 
-  handleDeleteFOREVER() {
+  handleDelete() {
     this.props.processForm(this.props.pinId);
   }
 
@@ -34,7 +34,7 @@ class DeletePinForm extends React.Component {
           </div>
           <div className="delete-pin body">
             <div className="delete-pin confirmation-message">
-              Once you delete a pin and all its Pins, you can't undo it!
+              Once you delete a Pin, you can't undo it!
             </div>
           </div>
           <div className="delete-pin footer">
@@ -47,7 +47,7 @@ class DeletePinForm extends React.Component {
               </a>
               <a
                 className="delete-pin link delete"
-                onClick={this.handleDeleteFOREVER}
+                onClick={this.handleDelete}
               >
                 <div className="delete-pin link-text delete">Delete Pin</div>
               </a>

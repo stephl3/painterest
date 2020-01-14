@@ -5,159 +5,108 @@ class EditPinForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.pin;
+
+    this.update = this.update.bind(this);
+    this.openDeletePin = this.openDeletePin.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
     this.handleSave = this.handleSave.bind(this);
-    this.handleFile = this.handleFile.bind(this);
-    this.deleteImage = this.deleteImage.bind(this);
   }
 
-  handleSave(e) {
-    // e.preventDefault();
-    const details = Object.assign({}, this.state);
-    delete details["photoPreview"];
-
-    const formData = new FormData();
-    for (let key in details) {
-      formData.append(`pin[${key}]`, details[key])
-    }
-
-    const board = document.getElementById('selected-board');
-    debugger;
-    return this.props.processForm(formData)
-      .then(res => {
-        // debugger;
-        this.props.createBoardPin({ "pin_id": res.pin.id, "board_id": board.innerText })
-      });
+  update(field) {
+    return (e =>
+      this.setState({ [field]: e.currentTarget.value })
+    )
   }
 
-  uploadImage() {
-    document.getElementById("image-upload-input").click();
+  openDeletePin(e, pinId) {
+    e.preventDefault();
+    this.props.openDeletePin(pinId);
   }
 
-  deleteImage() {
-    this.setState({ photoPreview: null });
+  handleCancel() {
+    this.props.closeModal();
   }
 
-  handleFile(e) {
-    const file = e.currentTarget.files[0];
-    const fileReader = new FileReader();
-    fileReader.onloadend = () => {
-      this.setState({ photo: file, photoPreview: fileReader.result });
-    };
-
-    if (file) {
-      fileReader.readAsDataURL(file);
-    }
-  }
-
-  changeInput(field) {
-    return (
-      e => this.setState({ [field]: e.currentTarget.value })
-    );
+  handleSave() {
+    this.props.processForm(this.state);
   }
 
   render() {
-    const { currentUser, errors, formType } = this.props;
-    const displayImage = (this.state.photoPreview) ? (
-      <div className="create-pin" id="image-uploaded-container">
-        <img src={this.state.photoPreview} className="create-pin" id="photo" />
-        <div className="create-pin" id="delete-image-button-container">
-          <button className="create-pin" id="delete-image-button" onClick={this.deleteImage}>
-            <div className="create-pin" id="trash-icon-container">
-              <i className="fas fa-trash" id="trash-icon"></i>
-            </div>
-          </button>
-        </div>
-      </div>
-    ) : (
-        <div className="create-pin" id="image-upload-container">
-          <div className="create-pin" id="image-upload-area" onClick={this.uploadImage}>
-            <div className="create-pin" id="image-upload-area-border">
-              <div className="create-pin" id="upload-icon-container">
-                <i className="fas fa-arrow-circle-up" id="upload-icon"></i>
-              </div>
-              <div className="create-pin" id="instruction">
-                Click to upload
-            </div>
-            </div>
-            <div className="create-pin" id="upload-recommendation">
-              Recommendation: Use high-quality .jpg files less than 2 MB
-          </div>
-          </div>
-          <input
-            type="file"
-            onChange={this.handleFile}
-            className="create-pin"
-            id="image-upload-input" />
-        </div>
-      )
+    const { pin, errors, formTitle } = this.props;
+
     return (
-      <div id="create-pin-background">
-        <div id="create-pin-container">
-          <div className="create-pin" id="sizing">
-            <div className="create-pin" id="header">
-              <div className="create-pin" id="buttons">
-                <button className="create-pin" id="select-board-dropdown">
-                  <div className="create-pin" id="select-board-label">
-                    <div className="create-pin" id="selected-board">
-                      1{/* Select */}
-                    </div>
-                  </div>
-                  <div className="create-pin" id="dropdown-icon-container">
-                    <i className="fas fa-angle-down" id="dropdown-icon"></i>
-                  </div>
-                </button>
-                <Link to="/" className="create-pin" id="save-button" onClick={this.handleSave}>
-                  <div className="create-pin" id="save-button-label">
-                    Save
-                  </div>
-                </Link>
-              </div>
+      <div className="edit-pin container">
+        <div className="edit-pin header">
+          <div className="edit-pin form-title">
+            {formTitle}
+          </div>
+          <div className="edit-pin cancel-link-container">
+            <a className="cancel-link" onClick={this.handleCancel}>
+              <i className="fas fa-times cancel-icon"></i>
+            </a>
+          </div>
+        </div>
+        <div className="edit-pin body">
+          <div className="edit-pin first-half">
+            <label className="edit-pin" id="title-container">
+              Title
+              <input
+                type="text"
+                className="edit-pin"
+                id="title"
+                placeholder="Add your title"
+                value={this.state.title}
+                onChange={this.update("title")} />
+            </label>
+            <label className="edit-pin" id="description-container">
+              Description
+              <textarea
+                rows="1"
+                className="edit-pin"
+                id="description"
+                placeholder="Tell everyone what your Pin is about"
+                value={this.state.description}
+                onChange={this.update("description")} />
+            </label>
+            <label className="edit-pin" id="url-container">
+              <textarea
+                rows="1"
+                className="edit-pin"
+                id="url"
+                placeholder="Add a destination link"
+                value={this.state.url}
+                onChange={this.update("url")} />
+            </label>
+          </div>
+          <div className="edit-pin second-half">
+            <div className="edit-pin photo-container">
+              <img src={`${pin.photo}`}/>
             </div>
-            <div className="create-pin" id="content">
-              <div className="create-pin" id="image-container">
-                {displayImage}
-              </div>
-              <div className="create-pin" id="details-container">
-                <div className="create-pin" id="title-container">
-                  <input
-                    type="text"
-                    className="create-pin"
-                    id="title"
-                    placeholder="Add your title"
-                    value={this.state.title}
-                    onChange={this.changeInput("title")} />
-                </div>
-                <div className="create-pin" id="user-container">
-                  <div className="create-pin" id="user-image-frame">
-                    <img
-                      src={currentUser.photo}
-                      alt="profile-icon"
-                      className="create-pin"
-                      id="user-image" />
-                  </div>
-                  <div className="create-pin" id="username">
-                    {currentUser.firstName} {currentUser.lastName}
-                  </div>
-                </div>
-                <div className="create-pin" id="description-container">
-                  <textarea
-                    rows="1"
-                    className="create-pin"
-                    id="description"
-                    placeholder="Tell everyone what your Pin is about"
-                    value={this.state.description}
-                    onChange={this.changeInput("description")} />
-                </div>
-                <div className="create-pin" id="url-container">
-                  <textarea
-                    rows="1"
-                    className="create-pin"
-                    id="url"
-                    placeholder="Add a destination link"
-                    value={this.state.url}
-                    onChange={this.changeInput("url")} />
-                </div>
-              </div>
+          </div>
+        </div>
+        <div className="edit-pin footer">
+          <div className="edit-pin links">
+            <div className="edit-pin left-links">
+              <a
+                className="edit-pin link open-delete"
+                onClick={(e, pinId) => this.openDeletePin(e, pin.id)}
+              >
+                <div className="edit-pin link-text open-delete">Delete</div>
+              </a>
+            </div>
+            <div className="edit-pin right-links">
+              <a
+                className="edit-pin link cancel"
+                onClick={this.handleCancel}
+              >
+                <div className="edit-pin link-text cancel">Cancel</div>
+              </a>
+              <a
+                className="edit-pin link save"
+                onClick={this.handleSave}
+              >
+                <div className="edit-pin link-text save">Save</div>
+              </a>
             </div>
           </div>
         </div>
