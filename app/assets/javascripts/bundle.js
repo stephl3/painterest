@@ -3728,6 +3728,19 @@ function (_React$Component) {
       var pinOwner = pin.user || {
         username: ""
       };
+      var imgLink = pin.url === "" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show pin-link"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: pin.photo,
+        className: "pin-show pin-photo"
+      })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: pin.url,
+        target: "_blank",
+        className: "pin-show pin-link url"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: pin.photo,
+        className: "pin-show pin-photo"
+      }));
       var editPinLink = pin.userId === currentUserId ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "pin-show edit-pin-link",
         onClick: function onClick() {
@@ -3762,18 +3775,19 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-arrow-left back-icon"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-show wrapper"
+        className: "pin-show wrapper",
+        onClick: this.goBack
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-show container"
+        className: "pin-show container",
+        onClick: function onClick(e) {
+          return e.stopPropagation();
+        }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show first-half"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: pin.url,
-        target: "_blank",
-        className: "pin-show pin-link"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: pin.photo,
-        className: "pin-show pin-photo"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show link-area"
+      }, imgLink, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show overlay"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show second-half"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3788,7 +3802,7 @@ function (_React$Component) {
       }, "Save"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show info"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-show url-link container"
+        className: "pin-show url-link-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: pin.url,
         target: "_blank",
@@ -3796,7 +3810,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show url-text"
       }, pin.url))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-show title container"
+        className: "pin-show title-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: pin.url,
         target: "_blank",

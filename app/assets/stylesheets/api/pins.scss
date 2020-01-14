@@ -716,7 +716,7 @@
 }
 
 .pin-show.wrapper {
-  cursor: auto;
+  cursor: zoom-out;
   height: 100%;
   width: 100%;
   display: flex;
@@ -726,16 +726,70 @@
 }
 
 .pin-show.container {
+  cursor: auto;
   background-color: #fff;
   box-shadow: rgba(0,0,0,0.1) 0 1px 20px 0;
   box-sizing: border-box;
   border-radius: 32px;
   position: relative;
   width: 1016px;
+  display: flex;
   @media (max-width: 1056px) {
     width: 508px;
+    display: initial;
   }
 }
+
+.pin-show.first-half {
+  width: 508px;
+  max-height: 770px;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 32px 0 0 32px;
+  @media (max-width: 1056px) {
+    border-radius: 32px 32px 0 0;
+  }
+}
+
+.pin-show.link-area {
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 32px;
+  overflow: hidden;
+
+}
+
+.pin-show.pin-link {
+  // position: relative;
+  // overflow: hidden;
+  text-decoration: none;
+  color: #333;
+  &.url {
+    &:hover + .overlay {
+      background: rgba(0,0,0,.4);
+    }
+  }
+  & > .pin-photo {
+    color: transparent;
+    width: 100%;
+  }
+}
+
+.pin-show.overlay {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.03);
+}
+
+
 
 
 

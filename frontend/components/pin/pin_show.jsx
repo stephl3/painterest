@@ -22,6 +22,21 @@ class PinShow extends React.Component {
     if (!pin) return <div style={{"paddingTop": "65px"}}>Loading...</div>;
 
     const pinOwner = pin.user || {username: ""};
+    const imgLink = (pin.url === "") ? (
+      <div
+        className="pin-show pin-link"
+      >
+        <img src={pin.photo} className="pin-show pin-photo" />
+      </div>
+    ) : (
+      <a
+        href={pin.url}
+        target="_blank"
+        className="pin-show pin-link url"
+      >
+        <img src={pin.photo} className="pin-show pin-photo" />
+      </a>
+    );
     const editPinLink = (pin.userId === currentUserId) ? (
       <a
         className="pin-show edit-pin-link"
@@ -72,16 +87,15 @@ class PinShow extends React.Component {
         >
           <i className="fas fa-arrow-left back-icon"></i>
         </a>
-        <div className="pin-show wrapper">
-          <div className="pin-show container">
+        <div className="pin-show wrapper"
+          onClick={this.goBack}>
+          <div className="pin-show container"
+            onClick={(e) => e.stopPropagation()}>
             <div className="pin-show first-half">
-              <a
-                href={pin.url}
-                target="_blank"
-                className="pin-show pin-link"
-              >
-                <img src={pin.photo} className="pin-show pin-photo"/>
-              </a>
+              <div className="pin-show link-area">
+                {imgLink}
+                <div className="pin-show overlay"></div>
+              </div>
             </div>
             <div className="pin-show second-half">
               <div className="pin-show nav-bar">
@@ -94,7 +108,7 @@ class PinShow extends React.Component {
                 </a>
               </div>
               <div className="pin-show info">
-                <div className="pin-show url-link container">
+                <div className="pin-show url-link-container">
                   <a
                     href={pin.url}
                     target="_blank"
@@ -103,7 +117,7 @@ class PinShow extends React.Component {
                     <div className="pin-show url-text">{pin.url}</div>
                   </a>
                 </div>
-                <div className="pin-show title container">
+                <div className="pin-show title-container">
                   <a
                     href={pin.url}
                     target="_blank"
