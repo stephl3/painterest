@@ -25,6 +25,7 @@
   &#signup {
 
   }
+  &#search {}
   &#new-board {
     background-color:rgba(253, 211, 211, 0.8);
     cursor: zoom-out;
@@ -35,7 +36,8 @@
   &#delete-board {
     background-color: rgba(226,228,228,.99);
   }
-  &#edit-pin {
+  &#edit-pin,
+  &#delete-pin {
     background-color: rgba(0, 0, 0, 0.8);
     cursor: zoom-out;
   }
