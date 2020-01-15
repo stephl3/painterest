@@ -43,6 +43,6 @@ export const createBoardPin = boardPin => dispatch => (
 
 export const deleteBoardPin = boardPinId => dispatch => (
   BoardPinAPIUtil.deleteBoardPin(boardPinId).then(
-    () => dispatch(removeBoardPin(boardPinId)),
+    boardPin => dispatch(removeBoardPin(boardPin.id)),
   )
 );

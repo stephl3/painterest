@@ -9,7 +9,7 @@ class ProfileContent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedSwitch: 0
+      selectedSwitch: (location.hash.endsWith('pins')) ? 1 : 0
     };
 
     this.selectSwitch = this.selectSwitch.bind(this);

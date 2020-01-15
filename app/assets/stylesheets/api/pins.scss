@@ -811,11 +811,16 @@
 
 .pin-show.edit-pin-link {
   margin-right: 4px;
+  min-height: 44px;
+  min-width: 44px;
   border: none;
   outline: none;
   padding: 0;
   background: transparent;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &:hover {
     background-color: rgb(226,226,226);
   }
@@ -1341,13 +1346,15 @@
 }
 
 .delete-pin.link {
+  cursor: pointer;
   box-sizing: border-box;
   margin: 0 4px;
   padding: 10px 14px;
   border: 0;
   border-radius: 8px;
   min-height: 40px;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
   &.cancel {
     background-color: #efefef;
     &:hover {

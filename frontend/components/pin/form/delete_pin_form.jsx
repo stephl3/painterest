@@ -9,7 +9,9 @@ class DeletePinForm extends React.Component {
   }
 
   handleDelete() {
-    this.props.processForm(this.props.pinId);
+    this.props.processForm(this.props.pinId)
+      .then(this.props.closeModal)
+      .then(() => location.reload());
   }
 
   handleCancel() {

@@ -175,8 +175,8 @@ var updateBoard = function updateBoard(board) {
 };
 var deleteBoard = function deleteBoard(boardId) {
   return function (dispatch) {
-    return _util_board_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteBoard"](boardId).then(function () {
-      return dispatch(removeBoard(boardId));
+    return _util_board_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteBoard"](boardId).then(function (board) {
+      return dispatch(removeBoard(board.id));
     }, function (err) {
       return dispatch(receiveBoardErrors(err.responseJSON));
     });
@@ -256,8 +256,8 @@ var createBoardPin = function createBoardPin(boardPin) {
 };
 var deleteBoardPin = function deleteBoardPin(boardPinId) {
   return function (dispatch) {
-    return _util_board_pin_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteBoardPin"](boardPinId).then(function () {
-      return dispatch(removeBoardPin(boardPinId));
+    return _util_board_pin_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteBoardPin"](boardPinId).then(function (boardPin) {
+      return dispatch(removeBoardPin(boardPin.id));
     });
   };
 };
@@ -414,8 +414,8 @@ var updatePin = function updatePin(pin) {
 };
 var deletePin = function deletePin(pinId) {
   return function (dispatch) {
-    return _util_pin_api_util__WEBPACK_IMPORTED_MODULE_0__["deletePin"](pinId).then(function () {
-      return dispatch(removePin(pinId));
+    return _util_pin_api_util__WEBPACK_IMPORTED_MODULE_0__["deletePin"](pinId).then(function (pin) {
+      return dispatch(removePin(pin.id));
     }, function (err) {
       return dispatch(receivePinErrors(err.responseJSON));
     });
@@ -1552,7 +1552,7 @@ function (_React$Component) {
     key: "handleDeleteFOREVER",
     value: function handleDeleteFOREVER(e) {
       e.preventDefault();
-      this.props.processForm(this.props.boardId);
+      this.props.processForm(this.props.boardId).then(this.props.closeModal); // .then(() => this.props.history.goBack());
     }
   }, {
     key: "handleCancel",
@@ -3044,7 +3044,9 @@ function (_React$Component) {
   _createClass(DeletePinForm, [{
     key: "handleDelete",
     value: function handleDelete() {
-      this.props.processForm(this.props.pinId);
+      this.props.processForm(this.props.pinId).then(this.props.closeModal).then(function () {
+        return location.reload();
+      });
     }
   }, {
     key: "handleCancel",
@@ -4444,7 +4446,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfileContent).call(this, props));
     _this.state = {
-      selectedSwitch: 0
+      selectedSwitch: location.hash.endsWith('pins') ? 1 : 0
     };
     _this.selectSwitch = _this.selectSwitch.bind(_assertThisInitialized(_this));
     return _this;
