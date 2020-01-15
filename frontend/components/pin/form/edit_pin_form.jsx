@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 class EditPinForm extends React.Component {
   constructor(props) {
@@ -18,9 +17,8 @@ class EditPinForm extends React.Component {
     )
   }
 
-  openDeletePin(e, pinId) {
-    e.preventDefault();
-    this.props.openDeletePin(pinId);
+  openDeletePin() {
+    this.props.openDeletePin(this.props.pin.id);
   }
 
   handleCancel() {
@@ -108,7 +106,7 @@ class EditPinForm extends React.Component {
             <div className="edit-pin left-links">
               <a
                 className="edit-pin link open-delete"
-                onClick={(e, pinId) => this.openDeletePin(e, pin.id)}
+                onClick={this.openDeletePin}
               >
                 <div className="edit-pin link-text open-delete">Delete</div>
               </a>

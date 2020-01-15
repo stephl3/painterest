@@ -1,11 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import EditPinForm from "./edit_pin_form";
 
 import { updatePin } from "../../../actions/pin_actions";
 import { openModal, closeModal } from "../../../actions/modal_actions";
-
 
 const mapStateToProps = state => ({
   pin: state.entities.pins[state.ui.objectId],
@@ -15,8 +13,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   processForm: pin => dispatch(updatePin(pin)),
-  openDeletePin: (pinId) => dispatch(openModal('delete-pin')),
+  openDeletePin: (pinId) => dispatch(openModal('delete-pin', pinId)),
   closeModal: () => dispatch(closeModal())
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EditPinForm));
+export default connect(mapStateToProps, mapDispatchToProps)(EditPinForm);

@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
+import DeleteBoardForm from "./delete_board_form";
 
 import { deleteBoard } from "../../../actions/board_actions";
 import { openModal, closeModal } from "../../../actions/modal_actions";
-import DeleteBoardForm from "./delete_board_form";
 
 const mapStateToProps = (state) => ({
-  boardId: (state.entities.boards[state.ui.objectId]).id,
+  boardId: state.ui.objectId,
   formTitle: "Are you sure?"
 });
 

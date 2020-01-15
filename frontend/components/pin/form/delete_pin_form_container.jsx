@@ -6,7 +6,7 @@ import { deletePin } from "../../../actions/pin_actions";
 import { openModal, closeModal } from "../../../actions/modal_actions";
 
 const mapStateToProps = (state) => ({
-  pinId: (state.entities.pins[state.ui.objectId]).id,
+  pinId: state.ui.objectId,
   formTitle: "Are you sure?"
 });
 

@@ -1615,9 +1615,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/board_actions */ "./frontend/actions/board_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _delete_board_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./delete_board_form */ "./frontend/components/board/form/delete_board_form.jsx");
+/* harmony import */ var _delete_board_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./delete_board_form */ "./frontend/components/board/form/delete_board_form.jsx");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 
 
 
@@ -1626,7 +1626,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    boardId: state.entities.boards[state.ui.objectId].id,
+    boardId: state.ui.objectId,
     formTitle: "Are you sure?"
   };
 };
@@ -1634,18 +1634,18 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     processForm: function processForm(boardId) {
-      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_2__["deleteBoard"])(boardId));
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_3__["deleteBoard"])(boardId));
     },
     openEditBoard: function openEditBoard(boardId) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])('edit-board', boardId));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])('edit-board', boardId));
     },
     closeModal: function closeModal() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_delete_board_form__WEBPACK_IMPORTED_MODULE_4__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_delete_board_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -1877,9 +1877,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/board_actions */ "./frontend/actions/board_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _edit_board_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./edit_board_form */ "./frontend/components/board/form/edit_board_form.jsx");
+/* harmony import */ var _edit_board_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit_board_form */ "./frontend/components/board/form/edit_board_form.jsx");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 
 
 
@@ -1897,18 +1897,18 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     processForm: function processForm(board) {
-      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_2__["updateBoard"])(board));
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_3__["updateBoard"])(board));
     },
     openDeleteBoard: function openDeleteBoard(boardId) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])('delete-board', boardId));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])('delete-board', boardId));
     },
     closeModal: function closeModal() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["closeModal"])());
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_edit_board_form__WEBPACK_IMPORTED_MODULE_4__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_edit_board_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -2372,7 +2372,11 @@ var Modal = function Modal(_ref) {
 
     case "delete-pin":
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_form_delete_pin_form_container__WEBPACK_IMPORTED_MODULE_10__["default"], null);
-      clickBackground = openModal('edit-pin');
+
+      clickBackground = function clickBackground() {
+        return openModal('edit-pin');
+      };
+
       break;
 
     case "new-board-pin":
@@ -3044,17 +3048,12 @@ function (_React$Component) {
     }
   }, {
     key: "handleCancel",
-    value: function handleCancel(pinId) {
+    value: function handleCancel() {
       this.props.openEditPin(this.props.pinId);
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
-      var _this$props = this.props,
-          pinId = _this$props.pinId,
-          formTitle = _this$props.formTitle;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "delete-pin container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -3063,13 +3062,11 @@ function (_React$Component) {
         className: "delete-pin header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "delete-pin form-title"
-      }, formTitle), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.formTitle), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "delete-pin cancel-link-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "cancel-link",
-        onClick: function onClick(pinId) {
-          return _this2.handleCancel(pinId);
-        }
+        onClick: this.handleCancel
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-times cancel-icon"
       })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3082,9 +3079,7 @@ function (_React$Component) {
         className: "delete-pin buttons"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "delete-pin link cancel",
-        onClick: function onClick(pinId) {
-          return _this2.handleCancel(pinId);
-        }
+        onClick: this.handleCancel
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "delete-pin link-text cancel"
       }, "Cancel")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -3126,7 +3121,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    pinId: state.entities.pins[state.ui.objectId].id,
+    pinId: state.ui.objectId,
     formTitle: "Are you sure?"
   };
 };
@@ -3160,7 +3155,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -3180,7 +3174,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 
 
 
@@ -3214,9 +3207,8 @@ function (_React$Component) {
     }
   }, {
     key: "openDeletePin",
-    value: function openDeletePin(e, pinId) {
-      e.preventDefault();
-      this.props.openDeletePin(pinId);
+    value: function openDeletePin() {
+      this.props.openDeletePin(this.props.pin.id);
     }
   }, {
     key: "handleCancel",
@@ -3231,8 +3223,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
-
       var _this$props = this.props,
           pin = _this$props.pin,
           errors = _this$props.errors,
@@ -3317,9 +3307,7 @@ function (_React$Component) {
         className: "edit-pin left-links"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "edit-pin link open-delete",
-        onClick: function onClick(e, pinId) {
-          return _this3.openDeletePin(e, pin.id);
-        }
+        onClick: this.openDeletePin
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-pin link-text open-delete"
       }, "Delete"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3357,11 +3345,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _edit_pin_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./edit_pin_form */ "./frontend/components/pin/form/edit_pin_form.jsx");
-/* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-
+/* harmony import */ var _edit_pin_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit_pin_form */ "./frontend/components/pin/form/edit_pin_form.jsx");
+/* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 
 
 
@@ -3379,18 +3365,18 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     processForm: function processForm(pin) {
-      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_4__["updatePin"])(pin));
+      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_3__["updatePin"])(pin));
     },
     openDeletePin: function openDeletePin(pinId) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["openModal"])('delete-pin'));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])('delete-pin', pinId));
     },
     closeModal: function closeModal() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["closeModal"])());
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["closeModal"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_edit_pin_form__WEBPACK_IMPORTED_MODULE_3__["default"])));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_edit_pin_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 

@@ -12,22 +12,21 @@ class DeletePinForm extends React.Component {
     this.props.processForm(this.props.pinId);
   }
 
-  handleCancel(pinId) {
+  handleCancel() {
     this.props.openEditPin(this.props.pinId);
   }
 
   render() {
-    const { pinId, formTitle } = this.props;
 
     return (
       <div className="delete-pin container">
         <form className="delete-pin form">
           <div className="delete-pin header">
             <div className="delete-pin form-title">
-              {formTitle}
+              {this.props.formTitle}
             </div>
             <div className="delete-pin cancel-link-container">
-              <a className="cancel-link" onClick={(pinId) => this.handleCancel(pinId)}>
+              <a className="cancel-link" onClick={this.handleCancel}>
                 <i className="fas fa-times cancel-icon"></i>
               </a>
             </div>
@@ -41,7 +40,7 @@ class DeletePinForm extends React.Component {
             <div className="delete-pin buttons">
               <a
                 className="delete-pin link cancel"
-                onClick={(pinId) => this.handleCancel(pinId)}
+                onClick={this.handleCancel}
               >
                 <div className="delete-pin link-text cancel">Cancel</div>
               </a>

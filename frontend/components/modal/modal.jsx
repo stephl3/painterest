@@ -55,7 +55,7 @@ const Modal = ({ modal, openModal, closeModal }) => {
       break;
     case "delete-pin":
       component = <DeletePinFormContainer />;
-      clickBackground = openModal('edit-pin');
+      clickBackground = () => openModal('edit-pin');
       break;
     case "new-board-pin":
       component = <CreateBoardPinFormContainer />;

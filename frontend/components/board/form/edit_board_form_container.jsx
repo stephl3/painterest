@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import EditBoardForm from "./edit_board_form";
 
 import { updateBoard } from "../../../actions/board_actions";
 import { openModal, closeModal } from "../../../actions/modal_actions";
-import EditBoardForm from "./edit_board_form";
 
 const mapStateToProps = (state) => ({
   board: state.entities.boards[state.ui.objectId],
