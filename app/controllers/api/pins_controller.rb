@@ -24,6 +24,7 @@ class Api::PinsController < ApplicationController
   end
 
   def update
+    debugger
     @pin = current_user.pins.find(params[:id])
 
     if @pin.update(pin_params)
@@ -34,6 +35,7 @@ class Api::PinsController < ApplicationController
   end
 
   def destroy
+    debugger
     @pin = current_user.pins.find(params[:id])
     if @pin
       @pin.destroy

@@ -3190,7 +3190,13 @@ function (_React$Component) {
     _classCallCheck(this, EditPinForm);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(EditPinForm).call(this, props));
-    _this.state = _this.props.pin;
+    _this.state = {
+      id: _this.props.pin.id,
+      title: _this.props.pin.title,
+      description: _this.props.pin.description,
+      url: _this.props.pin.url,
+      user_id: _this.props.pin.userId
+    };
     _this.update = _this.update.bind(_assertThisInitialized(_this));
     _this.openDeletePin = _this.openDeletePin.bind(_assertThisInitialized(_this));
     _this.handleCancel = _this.handleCancel.bind(_assertThisInitialized(_this));
@@ -3220,7 +3226,7 @@ function (_React$Component) {
   }, {
     key: "handleSave",
     value: function handleSave() {
-      this.props.processForm(this.state);
+      this.props.processForm(this.state).then(this.props.closeModal);
     }
   }, {
     key: "render",
@@ -6184,6 +6190,7 @@ var updatePin = function updatePin(pin) {
   });
 };
 var deletePin = function deletePin(pinId) {
+  debugger;
   return $.ajax({
     method: "DELETE",
     url: "/api/pins/".concat(pinId)
