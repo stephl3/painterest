@@ -32,7 +32,8 @@ class CreateBoardForm extends React.Component {
 
   handleCreate(e) {
     e.preventDefault();
-    this.props.processForm(this.state);
+    this.props.processForm(this.state)
+      .then(this.props.closeModal);
   }
 
   render() {

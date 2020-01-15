@@ -88,9 +88,9 @@
   box-sizing: border-box;
   border-radius: 50%;
   outline: none;
-  &:focus {
-    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.5);
-  }
+  // &:focus {
+  //   box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.5);
+  // }
 }
 
 .profile-icon-container-shadow {
