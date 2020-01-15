@@ -720,6 +720,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   color: #333;
+  line-height: 42px;
   font-size: 36px;
   font-weight: 700;
 }
@@ -787,6 +788,7 @@
 }
 
 .board-show.pin-feed {
+  margin-top: -40px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
