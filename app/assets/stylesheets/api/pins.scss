@@ -1201,6 +1201,8 @@
   width: 100%;
   height: 20px;
   padding: 10px 14px;
+  display: flex;
+  align-items: center;
   &.open-delete,
   &.cancel {
     background-color: #efefef;
