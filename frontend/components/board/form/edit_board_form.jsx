@@ -3,7 +3,13 @@ import React from "react";
 class EditBoardForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.board;
+    this.state = {
+      id: this.props.board.id,
+      title: this.props.board.title,
+      description: this.props.board.description,
+      secret: this.props.board.secret,
+      user_id: this.props.board.userId
+    };
 
     this.update = this.update.bind(this);
     this.handleCheck = this.handleCheck.bind(this);
@@ -42,8 +48,10 @@ class EditBoardForm extends React.Component {
   }
 
   handleSave(e) {
+    debugger;
     e.preventDefault();
-    this.props.processForm(this.state);
+    this.props.processForm(this.state)
+      .then(this.props.closeModal);
   }
 
   render() {

@@ -1693,7 +1693,13 @@ function (_React$Component) {
     _classCallCheck(this, EditBoardForm);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(EditBoardForm).call(this, props));
-    _this.state = _this.props.board;
+    _this.state = {
+      id: _this.props.board.id,
+      title: _this.props.board.title,
+      description: _this.props.board.description,
+      secret: _this.props.board.secret,
+      user_id: _this.props.board.userId
+    };
     _this.update = _this.update.bind(_assertThisInitialized(_this));
     _this.handleCheck = _this.handleCheck.bind(_assertThisInitialized(_this));
     _this.openDeleteBoard = _this.openDeleteBoard.bind(_assertThisInitialized(_this));
@@ -1743,8 +1749,9 @@ function (_React$Component) {
   }, {
     key: "handleSave",
     value: function handleSave(e) {
+      debugger;
       e.preventDefault();
-      this.props.processForm(this.state);
+      this.props.processForm(this.state).then(this.props.closeModal);
     }
   }, {
     key: "render",
