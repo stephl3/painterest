@@ -2,6 +2,11 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const ProfileDetails = ({ user }) => {
+  const name = (user.firstName === "") ? (
+    user.username
+  ) : (
+    user.firstName + " " + user.lastName
+  )
   // debugger;
   return (
     <div id="profile-details-background">
@@ -10,7 +15,7 @@ const ProfileDetails = ({ user }) => {
           <div id="profile-basics">
             <div id="profile-name-container">
               <div id="profile-name">
-                {user.firstName + " " + user.lastName}
+                {name}
               </div>
             </div>
             <div id="profile-follows-container">

@@ -33,7 +33,7 @@ class EditPinForm extends React.Component {
 
   render() {
     const { pin, errors, formTitle } = this.props;
-    debugger;
+
     return (
       <div className="edit-pin container">
         <div className="edit-pin header">
@@ -48,31 +48,53 @@ class EditPinForm extends React.Component {
         </div>
         <div className="edit-pin body">
           <div className="edit-pin first-half">
-            <label className="edit-pin field-label title">
-              Title
-              <input
-                type="text"
-                className="edit-pin field-input title"
-                placeholder="Add your title"
-                value={this.state.title}
-                onChange={this.update("title")} />
-            </label>
-            <label className="edit-pin field-label description">
-              Description
-              <textarea
-                rows="1"
-                className="edit-pin field-input description"
-                placeholder="Tell us about this Pin..."
-                value={this.state.description}
-                onChange={this.update("description")} />
-            </label>
-            <label className="edit-pin field-label url">
-              <textarea
-                rows="1"
-                className="edit-pin field-input url"
-                value={this.state.url}
-                onChange={this.update("url")} />
-            </label>
+            <div className="edit-pin field title">
+              <div className="edit-pin label-container title">
+                <label htmlFor="title" className="edit-pin label title">
+                  Title
+                </label>
+              </div>
+              <div className="edit-pin input-container title">
+                <input
+                  type="text"
+                  id="title"
+                  className="edit-pin input title"
+                  placeholder="Add your title"
+                  value={this.state.title}
+                  onChange={this.update("title")} />
+              </div>
+            </div>
+            <div className="edit-pin field description">
+              <div className="edit-pin label-container description">
+                <label htmlFor="description" className="edit-pin label description">
+                  Description
+                </label>
+              </div>
+              <div className="edit-pin input-container description">
+                <textarea
+                  rows="3"
+                  id="description"
+                  className="edit-pin input description"
+                  placeholder="Tell us about this Pin..."
+                  value={this.state.description}
+                  onChange={this.update("description")} />
+              </div>
+            </div>
+            <div className="edit-pin field url">
+              <div className="edit-pin label-container url">
+                <label htmlFor="url" className="edit-pin label url">
+                  Website
+                </label>
+              </div>
+              <div className="edit-pin input-container url">
+                <input
+                  type="text"
+                  id="url"
+                  className="edit-pin input url"
+                  value={this.state.url}
+                  onChange={this.update("url")} />
+              </div>
+            </div>
           </div>
           <div className="edit-pin second-half">
             <div className="edit-pin photo-container">

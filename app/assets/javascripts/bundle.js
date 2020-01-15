@@ -3237,7 +3237,6 @@ function (_React$Component) {
           pin = _this$props.pin,
           errors = _this$props.errors,
           formTitle = _this$props.formTitle;
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-pin container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3255,30 +3254,54 @@ function (_React$Component) {
         className: "edit-pin body"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-pin first-half"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin field title"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin label-container title"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "edit-pin field-label title"
-      }, "Title", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        htmlFor: "title",
+        className: "edit-pin label title"
+      }, "Title")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin input-container title"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        className: "edit-pin field-input title",
+        id: "title",
+        className: "edit-pin input title",
         placeholder: "Add your title",
         value: this.state.title,
         onChange: this.update("title")
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "edit-pin field-label description"
-      }, "Description", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        rows: "1",
-        className: "edit-pin field-input description",
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin field description"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin label-container description"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "description",
+        className: "edit-pin label description"
+      }, "Description")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin input-container description"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        rows: "3",
+        id: "description",
+        className: "edit-pin input description",
         placeholder: "Tell us about this Pin...",
         value: this.state.description,
         onChange: this.update("description")
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        className: "edit-pin field-label url"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        rows: "1",
-        className: "edit-pin field-input url",
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin field url"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin label-container url"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "url",
+        className: "edit-pin label url"
+      }, "Website")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "edit-pin input-container url"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        id: "url",
+        className: "edit-pin input url",
         value: this.state.url,
         onChange: this.update("url")
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-pin second-half"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-pin photo-container"
@@ -4510,7 +4533,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var ProfileDetails = function ProfileDetails(_ref) {
   var user = _ref.user;
-  // debugger;
+  var name = user.firstName === "" ? user.username : user.firstName + " " + user.lastName; // debugger;
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-details-background"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4523,7 +4547,7 @@ var ProfileDetails = function ProfileDetails(_ref) {
     id: "profile-name-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-name"
-  }, user.firstName + " " + user.lastName)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-follows-container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-follows"
@@ -5271,11 +5295,11 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SessionForm).call(this, props));
     _this.state = {
       email: "",
-      password: "",
-      first_name: "",
-      last_name: "",
-      location: "",
-      description: ""
+      password: "" // first_name: "",
+      // last_name: "",
+      // location: "",
+      // description: ""
+
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleDemo = _this.handleDemo.bind(_assertThisInitialized(_this));
