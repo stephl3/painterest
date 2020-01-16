@@ -2702,7 +2702,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CreatePinForm).call(this, props));
     _this.state = Object.assign({}, _this.props.pin, {
       photoPreview: null,
-      board: null,
+      boardId: null,
       boardList: false
     }); // this.showBoardList = this.showBoardList.bind(this);
 
@@ -2739,9 +2739,9 @@ function (_React$Component) {
     }
   }, {
     key: "selectBoard",
-    value: function selectBoard(board) {
+    value: function selectBoard(e) {
       this.setState({
-        board: board,
+        boardId: e.currentTarget.value,
         boardList: false
       });
     }
@@ -2750,7 +2750,7 @@ function (_React$Component) {
     value: function handleSave(e) {
       var _this2 = this;
 
-      // e.preventDefault();
+      e.stopPropagation();
       var details = Object.assign({}, this.state);
       delete details["photoPreview"];
       delete details["board"];
@@ -2761,12 +2761,19 @@ function (_React$Component) {
         formData.append("pin[".concat(key, "]"), details[key]);
       }
 
-      var board = document.getElementById('selected-board');
+      ;
+
+      var createBoardPin = function createBoardPin(boardPin) {
+        return _this2.props.createBoardPin(boardPin);
+      };
+
+      var boardId = this.state.boardId;
       debugger;
       return this.props.processForm(formData).then(function (res) {
-        return _this2.props.createBoardPin({
-          "pin_id": res.pin.id,
-          "board_id": _this2.state.board.id
+        debugger;
+        return createBoardPin({
+          "board_id": boardId,
+          "pin_id": parseInt(Object.keys(res.pin)[0])
         });
       }).then(function () {
         return _this2.props.history.goBack();
@@ -2823,8 +2830,10 @@ function (_React$Component) {
           errors = _this$props.errors,
           formType = _this$props.formType;
       var klass = this.state.boardList ? 'show' : 'hide';
-      var dropdownLabel = this.state.board === null ? "Select" : this.state.board.title;
-      var clickSave = this.state.board === null ? null : this.handleSave;
+      var dropdownLabel = this.state.boardId === null ? "Select" : boards.find(function (board) {
+        return board.id === _this5.state.boardId;
+      }).title;
+      var clickSave = this.state.boardId === null ? null : this.handleSave;
       var boardListItems = boards.length > 0 ? boards.map(function (board) {
         var firstPinImage = board.firstPin !== undefined ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: "".concat(board.firstPin.photo),
@@ -2836,18 +2845,19 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: board.id,
           className: "create-pin board-list-item",
-          onClick: function onClick(board) {
-            return _this5.selectBoard(board);
-          }
+          value: board.id,
+          onClick: _this5.selectBoard
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "create-pin board-li content"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "board-li pin-photo-frame"
-        }, firstPinImage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, firstPinImage, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "board-li title"
         }, board.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "board-li secret-icon-container ".concat(secret)
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           className: "fas fa-lock board-li secret-icon"
-        })));
+        }))));
       }) : null;
       var displayImage = this.state.photoPreview ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin",

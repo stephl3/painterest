@@ -141,7 +141,8 @@
   left: -42px;
   stroke: rgb(239, 239, 239);
   width: 320px;
-  height: 439px;
+  min-height: 40px;
+  max-height: 90vh;
   border: 1px solid;
   box-shadow: 0 3px 6px rgba(0,0,0,.18);
   outline: none;
@@ -149,6 +150,8 @@
   box-sizing: border-box;
   background-color: #fff;
   color: #fff;
+  display: flex;
+  flex-direction: column;
   & > .triangle {
     position: absolute;
     top: -24px;
@@ -161,37 +164,104 @@
 }
 
 .create-pin.board-list.header {
-
+  padding: 12px;
   & > .title {
-
+    text-align: left;
+    color: #333;
+    font-size: 14px;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    word-wrap: break-word;
+    font-weight: 700;
+    letter-spacing: -.4px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
   }
+}
+
+ul.create-pin.board-list {
+  min-height: 322px;
+  max-height: 322px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .create-pin.board-list-item {
-
-  background-color: #fff;
-  &:hover {
-
+  cursor: pointer;
+  width: 100%;
+  box-sizing: border-box;
+  & > .board-li.content {
+    border-radius: 12px;
+    margin: 4px 12px;
+    height: 52px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #fff;
+  }
+  &:hover > .content {
+    background-color: #efefef;
   }
 }
 
-.create-pin.board-li.pin-photo-frame {
-  
+.board-li.pin-photo-frame {
+  position: relative;
+  margin: 4px 8px 4px 12px; 
+  width: 36px;
+  height: 36px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  flex: 0 0 auto;
+  overflow: hidden;
   & > .pin-photo {
-    
+    width: 100%;
+    height: 100%;
+    background: #efefef;
+  }
+  & > .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.03);
   }
 }
 
-.create-pin.board-li.title {}
+.board-li.title {
+  margin-left: 4px;
+  padding: 4px 0;
+  text-align: left;
+  color: #333;
+  font-size: 16px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+  word-wrap: break-word;
+  font-weight: 700;
+  letter-spacing: -.4px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
 
-.create-pin.board-li.secret-icon-container {
-
+.board-li.secret-icon-container {
+  margin: 0 20px;
+  display: flex;
+  align-items: center;
   & > .secret-icon {
-
+    color: #333;
+    fill: currentColor;
+    vertical-align: middle;
+    height: 16px;
+    width: 16px;
   }
 }
-
-
 
 .create-pin#content {
   padding-bottom: 40px;

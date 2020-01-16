@@ -28,7 +28,7 @@ class Api::BoardsPinsController < ApplicationController
 
   private
   def boards_pins_params
-    params.require(:boards_pins).permit(:board_id, :pin_id)
+    params.require(:board_pin).permit(:board_id, :pin_id)
   end
 
 end

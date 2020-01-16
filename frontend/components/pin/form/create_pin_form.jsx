@@ -6,7 +6,7 @@ class CreatePinForm extends React.Component {
     super(props);
     this.state = Object.assign({}, this.props.pin, {
       photoPreview: null,
-      board: null,
+      boardId: null,
       boardList: false
     });
 
@@ -35,12 +35,12 @@ class CreatePinForm extends React.Component {
     this.setState({ boardList: !this.state.boardList });
   }
 
-  selectBoard(board) {
-    this.setState({ board: board, boardList: false });
+  selectBoard(e) {
+    this.setState({ boardId: e.currentTarget.value, boardList: false });
   }
 
   handleSave(e) {
-    // e.preventDefault();
+    e.stopPropagation();
     const details = Object.assign({}, this.state);
     delete details["photoPreview"];
     delete details["board"];
@@ -49,14 +49,18 @@ class CreatePinForm extends React.Component {
     const formData = new FormData();
     for (let key in details) {
       formData.append(`pin[${key}]`, details[key])
-    }
-
-    const board = document.getElementById('selected-board');
+    };
+    const createBoardPin = (boardPin) => this.props.createBoardPin(boardPin);
+    const boardId = this.state.boardId;
     debugger;
     return this.props.processForm(formData)
-      .then(res => this.props.createBoardPin({
-        "pin_id": res.pin.id, "board_id": this.state.board.id
-      }))
+      .then(res => {
+        debugger
+        return createBoardPin({
+          "board_id": boardId,
+          "pin_id": parseInt(Object.keys(res.pin)[0])
+        })
+      })
       .then(() => this.props.history.goBack());
   }
 
@@ -90,12 +94,12 @@ class CreatePinForm extends React.Component {
     const { currentUser, boards, errors, formType } = this.props;
 
     const klass = (this.state.boardList) ? 'show' : 'hide';
-    const dropdownLabel = (this.state.board === null) ? (
+    const dropdownLabel = (this.state.boardId === null) ? (
       "Select"
     ) : (
-      this.state.board.title
+      boards.find(board => board.id === this.state.boardId).title
     );
-    const clickSave = (this.state.board === null) ? (
+    const clickSave = (this.state.boardId === null) ? (
       null
     ) : (
       this.handleSave
@@ -114,14 +118,18 @@ class CreatePinForm extends React.Component {
           <li
             key={board.id}
             className="create-pin board-list-item"
-            onClick={board => this.selectBoard(board)}
+            value={board.id}
+            onClick={this.selectBoard}
           >
-            <div className="board-li pin-photo-frame">
-              {firstPinImage}
-            </div>
-            <div className="board-li title">{board.title}</div>
-            <div className={`board-li secret-icon-container ${secret}`}>
-              <i className="fas fa-lock board-li secret-icon"></i>
+            <div className="create-pin board-li content">
+              <div className="board-li pin-photo-frame">
+                {firstPinImage}
+                <div></div>
+              </div>
+              <div className="board-li title">{board.title}</div>
+              <div className={`board-li secret-icon-container ${secret}`}>
+                <i className="fas fa-lock board-li secret-icon"></i>
+              </div>
             </div>
           </li>
         )}
