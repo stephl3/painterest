@@ -2726,10 +2726,6 @@ function (_React$Component) {
   }, {
     key: "hideBoardList",
     value: function hideBoardList(e) {
-      if (e && e.relatedTarget) {
-        e.relatedTarget.click();
-      }
-
       this.setState({
         boardList: false
       });
@@ -2902,7 +2898,8 @@ function (_React$Component) {
         id: "image-upload-input"
       }));
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "create-pin-background"
+        id: "create-pin-background",
+        onClick: this.hideBoardList
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "create-pin-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2910,7 +2907,10 @@ function (_React$Component) {
         id: "sizing"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin",
-        id: "header"
+        id: "header",
+        onClick: function onClick(e) {
+          return e.stopPropagation();
+        }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin",
         id: "buttons",
@@ -2942,7 +2942,12 @@ function (_React$Component) {
         className: "create-pin board-list container ".concat(klass)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin board-list triangle"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+        width: "24",
+        height: "24"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+        d: "M0 24 L12 12 L24 24"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin board-list header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin board-list title"

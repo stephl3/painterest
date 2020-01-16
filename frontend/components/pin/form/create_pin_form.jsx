@@ -28,9 +28,6 @@ class CreatePinForm extends React.Component {
   // }
   
   hideBoardList(e) {
-    if (e && e.relatedTarget) {
-      e.relatedTarget.click();
-    }
     this.setState({ boardList: false });
   }
 
@@ -168,10 +165,11 @@ class CreatePinForm extends React.Component {
     );
 
     return (
-      <div id="create-pin-background">
+      <div id="create-pin-background" onClick={this.hideBoardList}>
         <div id="create-pin-container">
           <div className="create-pin" id="sizing">
-            <div className="create-pin" id="header">
+            <div className="create-pin" id="header"
+            onClick={e => e.stopPropagation()}>
               <div
                 className="create-pin"
                 id="buttons"
@@ -194,7 +192,11 @@ class CreatePinForm extends React.Component {
                   </div>
                 </div>
                 <div className={`create-pin board-list container ${klass}`}>
-                  <div className="create-pin board-list triangle"></div>
+                  <div className="create-pin board-list triangle">
+                    <svg width="24" height="24">
+                      <path d="M0 24 L12 12 L24 24"></path>
+                    </svg>
+                  </div>
                   <div className="create-pin board-list header">
                     <div className="create-pin board-list title">
                       All boards

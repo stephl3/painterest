@@ -136,11 +136,27 @@
 
 .create-pin.board-list.container {
   position: absolute;
+  z-index: 2;
   top: 52px;
   left: -42px;
   stroke: rgb(239, 239, 239);
+  width: 320px;
+  height: 439px;
+  border: 1px solid;
+  box-shadow: 0 3px 6px rgba(0,0,0,.18);
+  outline: none;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #fff;
   & > .triangle {
-
+    position: absolute;
+    top: -24px;
+    left: 148px;
+    height: 24px;
+    pointer-events: none;
+    fill: currentColor;
+    color: #fff;
   }
 }
 
@@ -327,16 +343,9 @@
   letter-spacing: -.4px;
 }
 
-// display: flex;
-// flex-direction: column;
-// align-items: center;
-// justify-content: center;
-
-
 .create-pin#image-upload-input {
   display: none;
 }
-
 
 .create-pin#details-container {
   min-height: 510px;
