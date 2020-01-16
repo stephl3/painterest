@@ -575,6 +575,7 @@ ul.create-pin.board-list {
 }
 
 .pin-index#grid-container {
+  position: absolute;
   @media (max-width: 755px) and (min-width: 0px) {
     width: 504px;
   }

@@ -52,15 +52,13 @@ class CreatePinForm extends React.Component {
     };
     const createBoardPin = (boardPin) => this.props.createBoardPin(boardPin);
     const boardId = this.state.boardId;
-    debugger;
+
     return this.props.processForm(formData)
-      .then(res => {
-        debugger
-        return createBoardPin({
+      .then(res => (createBoardPin({
           "board_id": boardId,
           "pin_id": parseInt(Object.keys(res.pin)[0])
         })
-      })
+      ))
       .then(() => window.history.go(-1));
   }
 

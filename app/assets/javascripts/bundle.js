@@ -2774,9 +2774,7 @@ function (_React$Component) {
       };
 
       var boardId = this.state.boardId;
-      debugger;
       return this.props.processForm(formData).then(function (res) {
-        debugger;
         return createBoardPin({
           "board_id": boardId,
           "pin_id": parseInt(Object.keys(res.pin)[0])
