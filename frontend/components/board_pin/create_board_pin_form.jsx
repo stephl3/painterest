@@ -4,8 +4,8 @@ class CreateBoardPinForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pinId: this.props.pin.id,
-      boardId: null
+      pin_id: this.props.pin.id,
+      board_id: null
     };
     this.handleSave = this.handleSave.bind(this);
   }
@@ -16,13 +16,13 @@ class CreateBoardPinForm extends React.Component {
 
   handleSave(e) {
     e.preventDefault();
-    this.setState({ boardId: e.currentTarget.value },
+    this.setState({ board_id: e.currentTarget.value },
       () => this.props.createBoardPin(this.state)
-        .then(this.props.closePinningModal));
+        .then(this.props.closeModal));
   }
 
   render() {
-    debugger;
+    // debugger;
     const { currentUserId, pin, allBoards, closeModal } = this.props;
     const boards = allBoards.filter(board => board.userId === currentUserId);
     const boardListItems = boards.map(board => (
@@ -44,7 +44,7 @@ class CreateBoardPinForm extends React.Component {
         </div>
       </li>
     ))
-
+    // debugger
     return (
       <div className="create-board-pin container">
         <div className="create-board-pin header">

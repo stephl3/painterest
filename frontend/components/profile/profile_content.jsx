@@ -21,15 +21,17 @@ class ProfileContent extends React.Component {
 
   render() {
     const { user, boards, pins, openModal, closeModal } = this.props;
+
+    const userPins = pins.filter(pin => pin.userId === user.id);
     const contentTabs = [
       <BoardIndexContainer boards={boards} />,
-      <PinIndexContainer pins={pins} parent='profile' />
+      <PinIndexContainer pins={userPins} parent='profile' />
     ];
     const selectedTab = contentTabs[this.state.selectedSwitch];
     const pinCount = (this.state.selectedSwitch === 1) ? (
       <div className="profile-show pin-count-container">
         <div className="profile-show pin-count">
-          <span className="profile-show number">{pins.length} </span>Pins
+          <span className="profile-show number">{userPins.length} </span>Pins
         </div>
       </div>
     ) : null;

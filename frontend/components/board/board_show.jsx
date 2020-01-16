@@ -20,7 +20,8 @@ export default class BoardShow extends Component {
   }
 
   render() {
-    const { currentUser, board, pins } = this.props;
+    const { currentUser, board, pins, boardsPins } = this.props;
+
     const secretIcon = (board.secret) ? (
       <div className="board-show visibility">
         <i className="fas fa-lock board-show" id="lock-icon"></i>
@@ -28,6 +29,10 @@ export default class BoardShow extends Component {
     ) : (
         null
     );
+    let boardPins = boardsPins
+      .filter(boardPin => board.id === boardPin.boardId)
+      .map(boardPin => pins[boardPin.pinId])
+      .filter(boardPin => boardPin !== undefined);
 
     return (
       <div className="board-show container">
@@ -60,14 +65,8 @@ export default class BoardShow extends Component {
           </div>
         </div>
         <div className="board-show pin-feed">
-          {/* <div className="board-show filler"></div>
-          <div className="board-show filler"></div>
-          <div className="board-show filler"></div>
-          <div className="board-show filler"></div>
-          <div className="board-show filler"></div>
-          <div className="board-show filler"></div> */}
           <PinIndexContainer
-            pins={pins}
+            pins={boardPins}
             page="profile"
           />
         </div>
@@ -78,6 +77,7 @@ export default class BoardShow extends Component {
 
 BoardShow.defaultProps = {
   board: {
+    id: 1,
     title: 'boardman',
     description: 'boardman gets paid',
     secret: false,

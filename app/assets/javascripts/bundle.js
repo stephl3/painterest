@@ -999,13 +999,21 @@ function (_Component) {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
           board = _this$props.board,
-          pins = _this$props.pins;
+          pins = _this$props.pins,
+          boardsPins = _this$props.boardsPins;
       var secretIcon = board.secret ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show visibility"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-lock board-show",
         id: "lock-icon"
       })) : null;
+      var boardPins = boardsPins.filter(function (boardPin) {
+        return board.id === boardPin.boardId;
+      }).map(function (boardPin) {
+        return pins[boardPin.pinId];
+      }).filter(function (boardPin) {
+        return boardPin !== undefined;
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1033,7 +1041,7 @@ function (_Component) {
       }, board.description))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show pin-feed"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_pin_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        pins: pins,
+        pins: boardPins,
         page: "profile"
       })));
     }
@@ -1045,6 +1053,7 @@ function (_Component) {
 
 BoardShow.defaultProps = {
   board: {
+    id: 1,
     title: 'boardman',
     description: 'boardman gets paid',
     secret: false,
@@ -1089,7 +1098,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     currentUser: state.entities.users[state.session.id],
     board: state.entities.boards[board.id],
-    pins: Object.values(state.entities.pins),
+    pins: state.entities.pins,
+    boardsPins: Object.values(state.entities.boardsPins),
     errors: state.errors.board
   };
 };
@@ -1967,8 +1977,8 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CreateBoardPinForm).call(this, props));
     _this.state = {
-      pinId: _this.props.pin.id,
-      boardId: null
+      pin_id: _this.props.pin.id,
+      board_id: null
     };
     _this.handleSave = _this.handleSave.bind(_assertThisInitialized(_this));
     return _this;
@@ -1986,9 +1996,9 @@ function (_React$Component) {
 
       e.preventDefault();
       this.setState({
-        boardId: e.currentTarget.value
+        board_id: e.currentTarget.value
       }, function () {
-        return _this2.props.createBoardPin(_this2.state).then(_this2.props.closePinningModal);
+        return _this2.props.createBoardPin(_this2.state).then(_this2.props.closeModal);
       });
     }
   }, {
@@ -1996,7 +2006,7 @@ function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      debugger;
+      // debugger;
       var _this$props = this.props,
           currentUserId = _this$props.currentUserId,
           pin = _this$props.pin,
@@ -2025,7 +2035,8 @@ function (_React$Component) {
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "save-text"
         }, "\xA0Save")));
-      });
+      }); // debugger
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board-pin container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4571,10 +4582,13 @@ function (_React$Component) {
           pins = _this$props.pins,
           openModal = _this$props.openModal,
           closeModal = _this$props.closeModal;
+      var userPins = pins.filter(function (pin) {
+        return pin.userId === user.id;
+      });
       var contentTabs = [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         boards: boards
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_pin_index_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        pins: pins,
+        pins: userPins,
         parent: "profile"
       })];
       var selectedTab = contentTabs[this.state.selectedSwitch];
@@ -4584,7 +4598,7 @@ function (_React$Component) {
         className: "profile-show pin-count"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "profile-show number"
-      }, pins.length, " "), "Pins")) : null;
+      }, userPins.length, " "), "Pins")) : null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "profile-content"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
