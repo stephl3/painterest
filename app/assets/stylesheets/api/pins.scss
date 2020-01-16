@@ -50,6 +50,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: relative;
 }
 
 .create-pin#select-board-dropdown {
@@ -120,6 +121,62 @@
   -webkit-font-smoothing: antialiased;
 }
 
+.hide {
+  // opacity: 0;
+  visibility: hidden;
+}
+
+.show {
+  // opacity: 1;
+  visibility: visible;
+  &.ish {
+    visibility: inherit;
+  }
+}
+
+.create-pin.board-list.container {
+  position: absolute;
+  top: 52px;
+  left: -42px;
+  stroke: rgb(239, 239, 239);
+  & > .triangle {
+
+  }
+}
+
+.create-pin.board-list.header {
+
+  & > .title {
+
+  }
+}
+
+.create-pin.board-list-item {
+
+  background-color: #fff;
+  &:hover {
+
+  }
+}
+
+.create-pin.board-li.pin-photo-frame {
+  
+  & > .pin-photo {
+    
+  }
+}
+
+.create-pin.board-li.title {}
+
+.create-pin.board-li.secret-icon-container {
+
+  & > .secret-icon {
+
+  }
+}
+
+
+
 .create-pin#content {
   padding-bottom: 40px;
   box-sizing: border-box;
@@ -160,43 +217,46 @@
 
 .create-pin#delete-image-button-container {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
-  height: 40px;
-  width: 40px;
+  height: 48px;
+  width: 48px;
   background-color: #fff;
   box-sizing: border-box;
-  border-radius: 999px;
-  padding: 4px;
+  border-radius: 50%;
+  overflow: hidden;
   position: absolute;
+  top: 0;
+  bottom: 0;
   left: -20px;
   margin-top: auto;
   margin-bottom: auto;
-  top: 0;
-  bottom: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
 .create-pin#delete-image-button {
-  cursor: pointer;
-  background: transparent;
+  cursor: pointer;  
   border: 0px;
-  padding: 0px;
+  height: 48px;
+  width: 48px;
+  padding: 4px;
   outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover > #trash-icon-container {
+    background-color: #e2e2e2;
+  }
 }
 
 .create-pin#trash-icon-container {
-  height: 32px;
-  width: 32px;
-  background-color: transparent;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
+  display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
-  overflow: hidden;
-  &:hover {
-    background-color: #e2e2e2;
-  }
+  background-color: transparent;
 }
 
 .create-pin#trash-icon {

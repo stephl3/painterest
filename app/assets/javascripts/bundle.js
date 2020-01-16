@@ -2705,8 +2705,8 @@ function (_React$Component) {
       board: null,
       boardList: false
     }); // this.showBoardList = this.showBoardList.bind(this);
-    // this.hideBoardList = this.hideBoardList.bind(this);
 
+    _this.hideBoardList = _this.hideBoardList.bind(_assertThisInitialized(_this));
     _this.toggleBoardList = _this.toggleBoardList.bind(_assertThisInitialized(_this));
     _this.selectBoard = _this.selectBoard.bind(_assertThisInitialized(_this));
     _this.handleSave = _this.handleSave.bind(_assertThisInitialized(_this));
@@ -2722,10 +2722,18 @@ function (_React$Component) {
     } // showBoardList() {
     //   this.setState({ boardList: true });
     // }
-    // hideBoardList() {
-    //   this.setState({ boardList: false });
-    // }
 
+  }, {
+    key: "hideBoardList",
+    value: function hideBoardList(e) {
+      if (e && e.relatedTarget) {
+        e.relatedTarget.click();
+      }
+
+      this.setState({
+        boardList: false
+      });
+    }
   }, {
     key: "toggleBoardList",
     value: function toggleBoardList() {
@@ -2828,10 +2836,10 @@ function (_React$Component) {
         }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "board-li pin-photo"
         });
-        var secret = board.secret ? 'show' : 'hide';
+        var secret = board.secret ? 'show ish' : 'hide';
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: board.id,
-          className: "create-pin board-li",
+          className: "create-pin board-list-item",
           onClick: function onClick(board) {
             return _this5.selectBoard(board);
           }
@@ -2863,7 +2871,7 @@ function (_React$Component) {
         className: "create-pin",
         id: "trash-icon-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-trash",
+        className: "fas fa-trash create-pin",
         id: "trash-icon"
       }))))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin",
@@ -2906,7 +2914,8 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin",
         id: "buttons",
-        onClick: this.toggleBoardList
+        onClick: this.toggleBoardList,
+        onBlur: this.hideBoardList
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin",
         id: "select-board-dropdown"
@@ -2930,9 +2939,9 @@ function (_React$Component) {
         className: "create-pin",
         id: "save-button-label"
       }, "Save")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin board-list-container ".concat(klass)
+        className: "create-pin board-list container ".concat(klass)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "create-pin board-list-triangle"
+        className: "create-pin board-list triangle"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin board-list header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

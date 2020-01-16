@@ -11,7 +11,7 @@ class CreatePinForm extends React.Component {
     });
 
     // this.showBoardList = this.showBoardList.bind(this);
-    // this.hideBoardList = this.hideBoardList.bind(this);
+    this.hideBoardList = this.hideBoardList.bind(this);
     this.toggleBoardList = this.toggleBoardList.bind(this);
     this.selectBoard = this.selectBoard.bind(this);
     this.handleSave = this.handleSave.bind(this);
@@ -27,9 +27,12 @@ class CreatePinForm extends React.Component {
   //   this.setState({ boardList: true });
   // }
   
-  // hideBoardList() {
-  //   this.setState({ boardList: false });
-  // }
+  hideBoardList(e) {
+    if (e && e.relatedTarget) {
+      e.relatedTarget.click();
+    }
+    this.setState({ boardList: false });
+  }
 
   toggleBoardList() {
     this.setState({ boardList: !this.state.boardList });
@@ -109,11 +112,11 @@ class CreatePinForm extends React.Component {
         ) : (
             <div className="board-li pin-photo"></div>
           );
-        const secret = (board.secret) ? 'show' : 'hide';
+        const secret = (board.secret) ? 'show ish' : 'hide';
         return (
           <li
             key={board.id}
-            className="create-pin board-li"
+            className="create-pin board-list-item"
             onClick={board => this.selectBoard(board)}
           >
             <div className="board-li pin-photo-frame">
@@ -136,7 +139,7 @@ class CreatePinForm extends React.Component {
         <div className="create-pin" id="delete-image-button-container">
           <button className="create-pin" id="delete-image-button" onClick={this.deleteImage}>
             <div className="create-pin" id="trash-icon-container">
-              <i className="fas fa-trash" id="trash-icon"></i>
+              <i className="fas fa-trash create-pin" id="trash-icon"></i>
             </div>
           </button>
         </div>
@@ -173,6 +176,7 @@ class CreatePinForm extends React.Component {
                 className="create-pin"
                 id="buttons"
                 onClick={this.toggleBoardList}
+                onBlur={this.hideBoardList}
               >
                 <div className="create-pin" id="select-board-dropdown">
                   <div className="create-pin" id="select-board-label">
@@ -189,8 +193,8 @@ class CreatePinForm extends React.Component {
                     Save
                   </div>
                 </div>
-                <div className={`create-pin board-list-container ${klass}`}>
-                  <div className="create-pin board-list-triangle"></div>
+                <div className={`create-pin board-list container ${klass}`}>
+                  <div className="create-pin board-list triangle"></div>
                   <div className="create-pin board-list header">
                     <div className="create-pin board-list title">
                       All boards
