@@ -22,7 +22,6 @@ class PinIndex extends React.Component {
   }
 
   resizeAllGridItems() {
-    // debugger;
     let allItems = document.getElementsByClassName("pin-index-item container");
     if (allItems) {
       for (let i = 0; i < allItems.length; i++)
@@ -31,26 +30,11 @@ class PinIndex extends React.Component {
   }
 
   componentDidMount() {
-    // debugger;
-    // this.props.fetchPins();
-    setTimeout(() => this.resizeAllGridItems(), 2400);
+    setTimeout(() => this.resizeAllGridItems(), 2500);
     masonryEvents.forEach(
       (e) => window.addEventListener(event, this.resizeAllGridItems)
     );
   }
-
-  // componentDidMount() {
-    // debugger;
-  //   // this.props.startLoading();
-  //   // when to fetch pins and when to not...?
-  //   this.props.fetchPins();
-  //   setTimeout(() => this.resizeAllGridItems(), 2000);
-
-  //   masonryEvents.forEach(
-  //     (e) => window.addEventListener(event, this.resizeAllGridItems)
-  //   );
-  //   // setTimeout(() => this.props.stopLoading(), 3000);
-  // }
 
   render() {
     const { currentUser, page, pins, loading,

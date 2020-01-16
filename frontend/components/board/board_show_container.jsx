@@ -2,16 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import { fetchBoards, fetchBoard } from "../../actions/board_actions";
+import { fetchSingleUser } from "../../actions/user_actions";
+// import { fetchBoards, fetchBoard } from "../../actions/board_actions";
 import { openModal, closeModal } from "../../actions/modal_actions";
 import BoardShow from './board_show';
 
 const mapStateToProps = (state, ownProps) => {
   const board = Object.values(state.entities.boards).find(board => 
     board.title === ownProps.match.params.boardTitle
-  ) || JSON.parse(localStorage.getItem("board"));
+  ) || {board : { id: 0}};
 
-  // debugger;
   return {
     currentUser: state.entities.users[state.session.id],
     board: state.entities.boards[board.id],
@@ -21,8 +21,9 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchBoards: () => dispatch(fetchBoards()),
-  fetchBoard: boardId => dispatch(fetchBoard(boardId)),
+  fetchSingleUser: id => dispatch(fetchSingleUser(id)),
+  // fetchBoards: () => dispatch(fetchBoards()),
+  // fetchBoard: boardId => dispatch(fetchBoard(boardId)),
   openEditBoard: boardId => dispatch(openModal('edit-board', boardId)),
   closeModal: () => dispatch(closeModal())
 });

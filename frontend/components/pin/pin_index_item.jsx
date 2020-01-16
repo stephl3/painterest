@@ -17,6 +17,15 @@ const PinIndexItem = ({ user, page, pin, openEditPin, openNewBoardPin }) => {
       <i className="fas fa-pencil-alt edit-pin-icon"></i>
     </a>
   );
+  
+  const openBoardPinLink = (
+    <a
+      className="pin-index-item save-board-pin-link"
+      onClick={() => openNewBoardPin(pin.id)}
+    >
+      <div className="pin-index-item save-board-pin-text">Save</div>
+    </a>
+  );
 
   const pinUrl = pin.url;
   const shortPinUrl = pinUrl.slice(12, 22) + "...";
@@ -29,7 +38,7 @@ const PinIndexItem = ({ user, page, pin, openEditPin, openNewBoardPin }) => {
         {shortPinUrl}
       </div>
     </a>
-  )
+  );
   
   return (
     <div className="pin-index-item container">
@@ -43,17 +52,8 @@ const PinIndexItem = ({ user, page, pin, openEditPin, openNewBoardPin }) => {
         </Link>
         <div className="pin-index-item links">
           <div className="pin-index-item edit-pin-link-container">{editPinLink}</div>
-          <div className="save-board-pin-link-container">
-            <a
-              className="pin-index-item save-board-pin-link"
-              onClick={() => openNewBoardPin(pin.id)}
-            >
-              <div className="pin-index-item save-board-pin-text">Save</div>
-            </a>
-          </div>
-          <div className="pin-index-item pin-link-container">
-            {pinLink}
-          </div>
+          <div className="save-board-pin-link-container">{openBoardPinLink}</div>
+          <div className="pin-index-item pin-link-container">{pinLink}</div>
         </div>
       </div>
     </div>

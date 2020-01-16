@@ -69,3 +69,11 @@ class BoardShowNavBar extends React.Component {
 }
 
 export default BoardShowNavBar;
+
+BoardShowNavBar.defaultProps = {
+  board: {
+    title: 'boardman',
+    description: 'boardman gets paid',
+    secret: false
+  }
+}

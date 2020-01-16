@@ -6,34 +6,29 @@ import PinIndexContainer from "../pin/pin_index_container";
 export default class BoardShow extends Component {
   constructor(props) {
     super(props);
-    this.state = this.props.board || JSON.parse(localStorage.getItem("board"));
 
-    localStorage.setItem("board", JSON.stringify(this.state));
     this.openEditBoard = this.openEditBoard.bind(this);
   }
 
   componentDidMount() {
-    // debugger;
-    this.props.fetchBoard(this.state.id);
+    this.props.fetchSingleUser(this.props.currentUser.id);
   }
-
-  componentDidUpdate() {}
 
   openEditBoard(e) {
     e.preventDefault();
-    this.props.openEditBoard(this.state.id)
+    this.props.openEditBoard(this.props.board.id)
   }
 
   render() {
     const { currentUser, board, pins } = this.props;
-    const secretIcon = (this.state.secret) ? (
+    const secretIcon = (board.secret) ? (
       <div className="board-show visibility">
         <i className="fas fa-lock board-show" id="lock-icon"></i>
       </div>
     ) : (
         null
     );
-    // debugger;
+
     return (
       <div className="board-show container">
         <div className="board-show header">
@@ -47,12 +42,12 @@ export default class BoardShow extends Component {
           <div className="board-show info">
             <div className="board-show main-info">
               <div className="board-show title">
-                {this.state.title}
+                {board.title}
               </div>
               <div className="board-show stats">
                 {secretIcon}
                 <div className="board-show count pin">
-                  252 pins
+                  {`${board.pinIds.length} pins`}
                 </div>
                 <div className="board-show count follower">
                   ·  7 followers
@@ -60,7 +55,7 @@ export default class BoardShow extends Component {
               </div>
             </div>
             <div className="board-show description">
-              {this.state.description}
+              {board.description}
             </div>
           </div>
         </div>
@@ -81,10 +76,11 @@ export default class BoardShow extends Component {
   }
 }
 
-// BoardShow.defaultProps = {
-//   board: {
-//     title: 'boardman',
-//     description: 'boardman gets paid',
-//     secret: true
-//   }
-// }
+BoardShow.defaultProps = {
+  board: {
+    title: 'boardman',
+    description: 'boardman gets paid',
+    secret: false,
+    pinIds: []
+  }
+}
