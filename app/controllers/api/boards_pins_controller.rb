@@ -3,32 +3,32 @@ class Api::BoardsPinsController < ApplicationController
   before_action :require_login
 
   def create
-    @boards_pins = BoardsPins.new(boards_pins_params)
-    if @boards_pins.save
+    @boardPin = BoardsPins.new(boardPin_params)
+    if @boardPin.save
       render 'api/boards_pins/show'
     else
-      render json: @boards_pins.errors.full_messages, status: 422
+      render json: @boardPin.errors.full_messages, status: 422
     end
   end
 
   def index
-    @boards_pins = BoardsPins.all
+    @boardsPins = BoardsPins.all
     render 'api/boards_pins/index'
   end
 
   def destroy
-    @boards_pins = current_user.boards_pins.find(params[:id])
-    if @boards_pins
-      @boards_pins.destroy
+    @boardPin = current_user.boards_pins.find(params[:id])
+    if @boardPin
+      @boardPin.destroy
       render 'api/boards_pins/show'
     else
-      render json: @boards_pins.errors.full_messages, status: 401
+      render json: @boardPin.errors.full_messages, status: 401
     end
   end
 
   private
-  def boards_pins_params
-    params.require(:board_pin).permit(:board_id, :pin_id)
+  def boardPin_params
+    params.require(:boardPin).permit(:board_id, :pin_id)
   end
 
 end

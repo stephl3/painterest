@@ -11,8 +11,8 @@ class DeleteBoardForm extends React.Component {
   handleDeleteFOREVER(e) {
     e.preventDefault();
     this.props.processForm(this.props.boardId)
-      .then(this.props.closeModal);
-      // .then(() => this.props.history.goBack());
+      .then(this.props.closeModal)
+      .then(() => location.reload());
   }
 
   handleCancel(e, boardId) {

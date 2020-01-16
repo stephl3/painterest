@@ -24,7 +24,6 @@ class Api::PinsController < ApplicationController
   end
 
   def update
-    # debugger
     @pin = current_user.pins.find(params[:id])
 
     if @pin.update(pin_params)
@@ -35,11 +34,10 @@ class Api::PinsController < ApplicationController
   end
 
   def destroy
-    # debugger
     @pin = current_user.pins.find(params[:id])
     if @pin
       @pin.destroy
-      render "api/users/show"
+      render "api/pins/show"
     else
       render json: ["Can't delete this pin!"], status: 401
     end
@@ -47,7 +45,7 @@ class Api::PinsController < ApplicationController
 
   private
   def pin_params
-    params.require(:pin).permit(:title, :description, :url, :photo, :user_id)
+    params.require(:pin).permit(:id, :title, :description, :url, :photo, :user_id)
   end
 
 end

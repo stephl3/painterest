@@ -37,7 +37,7 @@ class Api::BoardsController < ApplicationController
     @board = current_user.boards.find(params[:id])
     if @board
       @board.destroy
-      render "api/users/show"
+      render "api/boards/show"
     else
       render json: ["Can't delete this board!"], status: 401
     end

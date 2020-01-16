@@ -61,7 +61,7 @@ class CreatePinForm extends React.Component {
           "pin_id": parseInt(Object.keys(res.pin)[0])
         })
       })
-      .then(() => this.props.history.goBack());
+      .then(() => window.history.go(-1));
   }
 
   uploadImage() {

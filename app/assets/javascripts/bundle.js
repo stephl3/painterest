@@ -1552,7 +1552,9 @@ function (_React$Component) {
     key: "handleDeleteFOREVER",
     value: function handleDeleteFOREVER(e) {
       e.preventDefault();
-      this.props.processForm(this.props.boardId).then(this.props.closeModal); // .then(() => this.props.history.goBack());
+      this.props.processForm(this.props.boardId).then(this.props.closeModal).then(function () {
+        return location.reload();
+      });
     }
   }, {
     key: "handleCancel",
@@ -2776,7 +2778,7 @@ function (_React$Component) {
           "pin_id": parseInt(Object.keys(res.pin)[0])
         });
       }).then(function () {
-        return _this2.props.history.goBack();
+        return window.history.go(-1);
       });
     }
   }, {
@@ -6296,7 +6298,6 @@ var updatePin = function updatePin(pin) {
   });
 };
 var deletePin = function deletePin(pinId) {
-  debugger;
   return $.ajax({
     method: "DELETE",
     url: "/api/pins/".concat(pinId)
