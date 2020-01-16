@@ -1751,7 +1751,6 @@ function (_React$Component) {
   }, {
     key: "handleSave",
     value: function handleSave(e) {
-      debugger;
       e.preventDefault();
       this.props.processForm(this.state).then(this.props.closeModal);
     }

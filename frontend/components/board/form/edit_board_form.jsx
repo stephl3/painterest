@@ -48,7 +48,6 @@ class EditBoardForm extends React.Component {
   }
 
   handleSave(e) {
-    debugger;
     e.preventDefault();
     this.props.processForm(this.state)
       .then(this.props.closeModal);
