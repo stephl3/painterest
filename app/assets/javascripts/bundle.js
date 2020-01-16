@@ -2701,8 +2701,14 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CreatePinForm).call(this, props));
     _this.state = Object.assign({}, _this.props.pin, {
-      photoPreview: null
-    });
+      photoPreview: null,
+      board: null,
+      boardList: false
+    }); // this.showBoardList = this.showBoardList.bind(this);
+    // this.hideBoardList = this.hideBoardList.bind(this);
+
+    _this.toggleBoardList = _this.toggleBoardList.bind(_assertThisInitialized(_this));
+    _this.selectBoard = _this.selectBoard.bind(_assertThisInitialized(_this));
     _this.handleSave = _this.handleSave.bind(_assertThisInitialized(_this));
     _this.handleFile = _this.handleFile.bind(_assertThisInitialized(_this));
     _this.deleteImage = _this.deleteImage.bind(_assertThisInitialized(_this));
@@ -2710,6 +2716,32 @@ function (_React$Component) {
   }
 
   _createClass(CreatePinForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchBoards();
+    } // showBoardList() {
+    //   this.setState({ boardList: true });
+    // }
+    // hideBoardList() {
+    //   this.setState({ boardList: false });
+    // }
+
+  }, {
+    key: "toggleBoardList",
+    value: function toggleBoardList() {
+      this.setState({
+        boardList: !this.state.boardList
+      });
+    }
+  }, {
+    key: "selectBoard",
+    value: function selectBoard(board) {
+      this.setState({
+        board: board,
+        boardList: false
+      });
+    }
+  }, {
     key: "handleSave",
     value: function handleSave(e) {
       var _this2 = this;
@@ -2717,6 +2749,8 @@ function (_React$Component) {
       // e.preventDefault();
       var details = Object.assign({}, this.state);
       delete details["photoPreview"];
+      delete details["board"];
+      delete details["boardList"];
       var formData = new FormData();
 
       for (var key in details) {
@@ -2726,11 +2760,12 @@ function (_React$Component) {
       var board = document.getElementById('selected-board');
       debugger;
       return this.props.processForm(formData).then(function (res) {
-        // debugger;
-        _this2.props.createBoardPin({
+        return _this2.props.createBoardPin({
           "pin_id": res.pin.id,
-          "board_id": board.innerText
+          "board_id": _this2.state.board.id
         });
+      }).then(function () {
+        return _this2.props.history.goBack();
       });
     }
   }, {
@@ -2776,10 +2811,40 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this5 = this;
+
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
+          boards = _this$props.boards,
           errors = _this$props.errors,
           formType = _this$props.formType;
+      var klass = this.state.boardList ? 'show' : 'hide';
+      var dropdownLabel = this.state.board === null ? "Select" : this.state.board.title;
+      var clickSave = this.state.board === null ? null : this.handleSave;
+      var boardListItems = boards.length > 0 ? boards.map(function (board) {
+        var firstPinImage = board.firstPin !== undefined ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: "".concat(board.firstPin.photo),
+          className: "board-li pin-photo"
+        }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "board-li pin-photo"
+        });
+        var secret = board.secret ? 'show' : 'hide';
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: board.id,
+          className: "create-pin board-li",
+          onClick: function onClick(board) {
+            return _this5.selectBoard(board);
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "board-li pin-photo-frame"
+        }, firstPinImage), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "board-li title"
+        }, board.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "board-li secret-icon-container ".concat(secret)
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fas fa-lock board-li secret-icon"
+        })));
+      }) : null;
       var displayImage = this.state.photoPreview ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin",
         id: "image-uploaded-container"
@@ -2840,8 +2905,9 @@ function (_React$Component) {
         id: "header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin",
-        id: "buttons"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "buttons",
+        onClick: this.toggleBoardList
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin",
         id: "select-board-dropdown"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2850,21 +2916,30 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin",
         id: "selected-board"
-      }, "1")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, dropdownLabel)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin",
         id: "dropdown-icon-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
         className: "fas fa-angle-down",
         id: "dropdown-icon"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/",
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin",
         id: "save-button",
-        onClick: this.handleSave
+        onClick: clickSave
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin",
         id: "save-button-label"
-      }, "Save")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Save")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-pin board-list-container ".concat(klass)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-pin board-list-triangle"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-pin board-list header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-pin board-list title"
+      }, "All boards")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "create-pin board-list"
+      }, boardListItems)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-pin",
         id: "content"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2941,8 +3016,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
-/* harmony import */ var _create_pin_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./create_pin_form */ "./frontend/components/pin/form/create_pin_form.jsx");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
+/* harmony import */ var _actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../actions/board_pin_actions */ "./frontend/actions/board_pin_actions.js");
+/* harmony import */ var _create_pin_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./create_pin_form */ "./frontend/components/pin/form/create_pin_form.jsx");
+
+
 
 
 
@@ -2958,6 +3037,9 @@ var mapStateToProps = function mapStateToProps(state) {
       url: "",
       photo: null
     },
+    boards: Object.values(state.entities.boards).filter(function (board) {
+      return board.userId === state.session.id;
+    }),
     errors: state.errors.pin,
     formType: "Create Pin"
   };
@@ -2965,24 +3047,17 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    processForm: function processForm(pin) {
-      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_3__["createPin"])(pin));
+    fetchBoards: function fetchBoards() {
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_3__["fetchBoards"])());
     },
-    createBoardPin: function (_createBoardPin) {
-      function createBoardPin(_x) {
-        return _createBoardPin.apply(this, arguments);
-      }
-
-      createBoardPin.toString = function () {
-        return _createBoardPin.toString();
-      };
-
-      return createBoardPin;
-    }(function (boardPin) {
-      return dispatch(createBoardPin(boardPin));
-    }),
+    processForm: function processForm(pin) {
+      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_4__["createPin"])(pin));
+    },
+    createBoardPin: function createBoardPin(boardPin) {
+      return dispatch(Object(_actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_5__["createBoardPin"])(boardPin));
+    },
     openModal: function (_openModal) {
-      function openModal(_x2) {
+      function openModal(_x) {
         return _openModal.apply(this, arguments);
       }
 
@@ -2997,7 +3072,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_create_pin_form__WEBPACK_IMPORTED_MODULE_4__["default"])));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_create_pin_form__WEBPACK_IMPORTED_MODULE_6__["default"])));
 
 /***/ }),
 

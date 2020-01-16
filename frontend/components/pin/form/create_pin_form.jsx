@@ -4,17 +4,47 @@ import { Link } from "react-router-dom";
 class CreatePinForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = Object.assign({}, this.props.pin,
-      { photoPreview: null });
+    this.state = Object.assign({}, this.props.pin, {
+      photoPreview: null,
+      board: null,
+      boardList: false
+    });
+
+    // this.showBoardList = this.showBoardList.bind(this);
+    // this.hideBoardList = this.hideBoardList.bind(this);
+    this.toggleBoardList = this.toggleBoardList.bind(this);
+    this.selectBoard = this.selectBoard.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.handleFile = this.handleFile.bind(this);
     this.deleteImage = this.deleteImage.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchBoards();
+  }
+  
+  // showBoardList() {
+  //   this.setState({ boardList: true });
+  // }
+  
+  // hideBoardList() {
+  //   this.setState({ boardList: false });
+  // }
+
+  toggleBoardList() {
+    this.setState({ boardList: !this.state.boardList });
+  }
+
+  selectBoard(board) {
+    this.setState({ board: board, boardList: false });
   }
 
   handleSave(e) {
     // e.preventDefault();
     const details = Object.assign({}, this.state);
     delete details["photoPreview"];
+    delete details["board"];
+    delete details["boardList"];
 
     const formData = new FormData();
     for (let key in details) {
@@ -24,10 +54,10 @@ class CreatePinForm extends React.Component {
     const board = document.getElementById('selected-board');
     debugger;
     return this.props.processForm(formData)
-      .then(res => {
-        // debugger;
-        this.props.createBoardPin({ "pin_id": res.pin.id, "board_id": board.innerText })
-      });
+      .then(res => this.props.createBoardPin({
+        "pin_id": res.pin.id, "board_id": this.state.board.id
+      }))
+      .then(() => this.props.history.goBack());
   }
 
   uploadImage() {
@@ -57,7 +87,49 @@ class CreatePinForm extends React.Component {
   }
 
   render() {
-    const { currentUser, errors, formType } = this.props;
+    const { currentUser, boards, errors, formType } = this.props;
+
+    const klass = (this.state.boardList) ? 'show' : 'hide';
+    const dropdownLabel = (this.state.board === null) ? (
+      "Select"
+    ) : (
+      this.state.board.title
+    );
+    const clickSave = (this.state.board === null) ? (
+      null
+    ) : (
+      this.handleSave
+    );
+
+    const boardListItems = (boards.length > 0) ? (
+      boards.map(board => {
+        const firstPinImage = (board.firstPin !== undefined) ? (
+          <img src={`${board.firstPin.photo}`}
+            className="board-li pin-photo" />
+        ) : (
+            <div className="board-li pin-photo"></div>
+          );
+        const secret = (board.secret) ? 'show' : 'hide';
+        return (
+          <li
+            key={board.id}
+            className="create-pin board-li"
+            onClick={board => this.selectBoard(board)}
+          >
+            <div className="board-li pin-photo-frame">
+              {firstPinImage}
+            </div>
+            <div className="board-li title">{board.title}</div>
+            <div className={`board-li secret-icon-container ${secret}`}>
+              <i className="fas fa-lock board-li secret-icon"></i>
+            </div>
+          </li>
+        )}
+      )
+    ) : (
+      null
+    );
+
     const displayImage = (this.state.photoPreview) ? (
       <div className="create-pin" id="image-uploaded-container">
         <img src={this.state.photoPreview} className="create-pin" id="photo" />
@@ -70,48 +142,64 @@ class CreatePinForm extends React.Component {
         </div>
       </div>
     ) : (
-        <div className="create-pin" id="image-upload-container">
-          <div className="create-pin" id="image-upload-area" onClick={this.uploadImage}>
-            <div className="create-pin" id="image-upload-area-border">
-              <div className="create-pin" id="upload-icon-container">
-                <i className="fas fa-arrow-circle-up" id="upload-icon"></i>
-              </div>
-              <div className="create-pin" id="instruction">
-                Click to upload
+      <div className="create-pin" id="image-upload-container">
+        <div className="create-pin" id="image-upload-area" onClick={this.uploadImage}>
+          <div className="create-pin" id="image-upload-area-border">
+            <div className="create-pin" id="upload-icon-container">
+              <i className="fas fa-arrow-circle-up" id="upload-icon"></i>
             </div>
+            <div className="create-pin" id="instruction">
+              Click to upload
             </div>
-            <div className="create-pin" id="upload-recommendation">
-              Recommendation: Use high-quality .jpg files less than 2 MB
           </div>
-          </div>
-          <input
-            type="file"
-            onChange={this.handleFile}
-            className="create-pin"
-            id="image-upload-input" />
+          <div className="create-pin" id="upload-recommendation">
+            Recommendation: Use high-quality .jpg files less than 2 MB
         </div>
-      )
+        </div>
+        <input
+          type="file"
+          onChange={this.handleFile}
+          className="create-pin"
+          id="image-upload-input" />
+      </div>
+    );
+
     return (
       <div id="create-pin-background">
         <div id="create-pin-container">
           <div className="create-pin" id="sizing">
             <div className="create-pin" id="header">
-              <div className="create-pin" id="buttons">
-                <button className="create-pin" id="select-board-dropdown">
+              <div
+                className="create-pin"
+                id="buttons"
+                onClick={this.toggleBoardList}
+              >
+                <div className="create-pin" id="select-board-dropdown">
                   <div className="create-pin" id="select-board-label">
                     <div className="create-pin" id="selected-board">
-                      1{/* Select */}
+                      {dropdownLabel}
                     </div>
                   </div>
                   <div className="create-pin" id="dropdown-icon-container">
                     <i className="fas fa-angle-down" id="dropdown-icon"></i>
                   </div>
-                </button>
-                <Link to="/" className="create-pin" id="save-button" onClick={this.handleSave}>
+                </div>
+                <div className="create-pin" id="save-button" onClick={clickSave}>
                   <div className="create-pin" id="save-button-label">
                     Save
                   </div>
-                </Link>
+                </div>
+                <div className={`create-pin board-list-container ${klass}`}>
+                  <div className="create-pin board-list-triangle"></div>
+                  <div className="create-pin board-list header">
+                    <div className="create-pin board-list title">
+                      All boards
+                    </div>
+                  </div>
+                  <ul className="create-pin board-list">
+                    {boardListItems}
+                  </ul>
+                </div>
               </div>
             </div>
             <div className="create-pin" id="content">
