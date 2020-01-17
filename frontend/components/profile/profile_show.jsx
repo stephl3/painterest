@@ -21,7 +21,7 @@ class ProfileShow extends React.Component {
   }
 
   render() {
-    const { users, username, boards, pins, openModal, closeModal } = this.props;
+    const { currentUser, users, username, boards, pins, openModal, closeModal } = this.props;
     const user = users.find(user => user.username === username);
 
     return (
@@ -30,6 +30,7 @@ class ProfileShow extends React.Component {
           <div id="profile">
             <div id="profile-header-container">
               <ProfileHeader
+                currentUser={currentUser}
                 user={user}
                 openModal={openModal}
                 closeModal={closeModal}

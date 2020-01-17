@@ -30,6 +30,7 @@ class BoardIndex extends Component {
             key={board.id}
             board={board}
             pins={previewPins}
+            currentUser={currentUser}
             user={user}
             openEditBoard={this.openEditBoard}
           />

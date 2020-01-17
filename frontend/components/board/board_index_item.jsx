@@ -5,7 +5,7 @@ import { Link, withRouter } from "react-router-dom";
 
 
 
-const BoardIndexItem = ({ board, pins, user, openEditBoard }) => {
+const BoardIndexItem = ({ board, pins, currentUser, user, openEditBoard }) => {
   const numPins = board.pinIds.length;
   const pinA = (pins[0]) ? <img src={`${pins[0].photo}`}></img> : null;
   const pinB = (pins[1]) ? <img src={`${pins[1].photo}`}></img> : null;
@@ -13,13 +13,13 @@ const BoardIndexItem = ({ board, pins, user, openEditBoard }) => {
   const pinD = (pins[3]) ? <img src={`${pins[3].photo}`}></img> : null;
   const pinE = (pins[4]) ? <img src={`${pins[4].photo}`}></img> : null;
   const pinF = (pins[5]) ? <img src={`${pins[5].photo}`}></img> : null;
+  
   const secretIcon = (board.secret) ? (
     <div className="board-index-item visibility">
       <i className="fas fa-lock board-index-item" id="lock-icon"></i>
     </div>
-  ) : (
-    null
-  );
+  ) : null;
+  const klass = (currentUser.username === user.username) ? 'show' : 'hide';
 
   return (
     <div className="board-index-item container">
@@ -58,7 +58,7 @@ const BoardIndexItem = ({ board, pins, user, openEditBoard }) => {
                 </div>
               </div>
               <button
-                className="board-index-item edit-button"
+                className={`board-index-item edit-button ${klass}`}
                 onClick={(e, boardId) => openEditBoard(e, board.id)}
               >
                 <i className="fas fa-pencil-alt board-index-item" id="edit-icon"></i>

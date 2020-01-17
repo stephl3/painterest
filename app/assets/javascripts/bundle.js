@@ -726,6 +726,7 @@ function (_Component) {
           key: board.id,
           board: board,
           pins: previewPins,
+          currentUser: currentUser,
           user: user,
           openEditBoard: _this2.openEditBoard
         });
@@ -849,6 +850,7 @@ __webpack_require__.r(__webpack_exports__);
 var BoardIndexItem = function BoardIndexItem(_ref) {
   var board = _ref.board,
       pins = _ref.pins,
+      currentUser = _ref.currentUser,
       user = _ref.user,
       openEditBoard = _ref.openEditBoard;
   var numPins = board.pinIds.length;
@@ -876,6 +878,7 @@ var BoardIndexItem = function BoardIndexItem(_ref) {
     className: "fas fa-lock board-index-item",
     id: "lock-icon"
   })) : null;
+  var klass = currentUser.username === user.username ? 'show' : 'hide';
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item container"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -923,7 +926,7 @@ var BoardIndexItem = function BoardIndexItem(_ref) {
   }, secretIcon, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "board-index-item pin-count"
   }, numPins, " Pins"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "board-index-item edit-button",
+    className: "board-index-item edit-button ".concat(klass),
     onClick: function onClick(e, boardId) {
       return openEditBoard(e, board.id);
     }
@@ -4751,10 +4754,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ProfileHeader = function ProfileHeader(_ref) {
-  var user = _ref.user,
+  var currentUser = _ref.currentUser,
+      user = _ref.user,
       openModal = _ref.openModal,
       closeModal = _ref.closeModal;
-  var klass = location.hash.includes(user.username) ? 'show' : 'hide';
+  var klass = location.hash.includes(currentUser.username) ? 'show' : 'hide';
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-header"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5055,6 +5059,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
+          currentUser = _this$props.currentUser,
           users = _this$props.users,
           username = _this$props.username,
           boards = _this$props.boards,
@@ -5073,6 +5078,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "profile-header-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_header__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        currentUser: currentUser,
         user: user,
         openModal: openModal,
         closeModal: closeModal
@@ -5119,6 +5125,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
+    currentUser: state.entities.users[state.session.id],
     users: Object.values(state.entities.users),
     username: ownProps.match.params.username,
     boards: Object.values(state.entities.boards),
