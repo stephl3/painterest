@@ -3625,6 +3625,7 @@ function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           currentUserId = _this$props.currentUserId,
+          user = _this$props.user,
           page = _this$props.page,
           pins = _this$props.pins,
           openEditPin = _this$props.openEditPin,
@@ -3633,6 +3634,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: pin.id,
           userId: currentUserId,
+          user: user,
           page: page,
           pin: pin,
           openEditPin: openEditPin,
@@ -3688,6 +3690,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     page: ownProps.page,
     pins: ownProps.pins,
     currentUserId: state.session.id,
+    user: state.entities.users[state.session.id],
     parent: ownProps.parent
   };
 };
@@ -3776,6 +3779,7 @@ function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           userId = _this$props.userId,
+          user = _this$props.user,
           page = _this$props.page,
           pin = _this$props.pin,
           openEditPin = _this$props.openEditPin,
@@ -38877,7 +38881,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

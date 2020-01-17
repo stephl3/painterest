@@ -18,7 +18,7 @@ class PinIndexItem extends React.Component {
       let rowSpan = Math.ceil((itemImg.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
       item.style.gridRowEnd = "span " + rowSpan;
       // itemImg.style.height = '100%';
-    }, 500);
+    }, 700);
   }
 
   render() {
