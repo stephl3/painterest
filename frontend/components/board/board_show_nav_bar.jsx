@@ -39,7 +39,7 @@ class BoardShowNavBar extends React.Component {
 
     return (
       <div className="board-show navbar">
-        <div className="board-show buttons">
+        <div className={`board-show buttons ${klass}`}>
           <Link to="/pin-builder"
             className="board-show button">
             {/* <i className="fas fa-plus board-show icon" id="create-pin-icon"></i> */}

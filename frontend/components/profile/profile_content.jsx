@@ -26,7 +26,7 @@ class ProfileContent extends React.Component {
     const userPins = pins.filter(pin => pin.userId === user.id);
 
     const contentTabs = [
-      <BoardIndexContainer boards={userBoards} />,
+      <BoardIndexContainer user={user} boards={userBoards} />,
       <PinIndexContainer pins={userPins} page='profile' />
     ];
     const selectedTab = contentTabs[this.state.selectedSwitch];

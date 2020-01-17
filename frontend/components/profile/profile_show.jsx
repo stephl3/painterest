@@ -7,9 +7,6 @@ import ProfileContent from "./profile_content";
 class ProfileShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      username: this.props.username
-    };
   }
 
   componentDidMount() {
@@ -22,20 +19,9 @@ class ProfileShow extends React.Component {
         return fetchUser(user.id);
       });
   }
-  
-  // componentDidUpdate(prevState) {
-  //   debugger
-  //   if (this.state.username !== prevState.username) {
-  //     location.reload();
-  //     // const username = this.props.match.params.username;
-  //     // const user = this.props.users.find(user => user.username === username);
-  //     // this.props.fetchSingleUser(user.id);
-  //   }
-  // }
 
   render() {
     const { users, username, boards, pins, openModal, closeModal } = this.props;
-    // debugger
     const user = users.find(user => user.username === username);
 
     return (

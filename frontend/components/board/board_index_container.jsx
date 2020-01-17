@@ -11,8 +11,8 @@ const mapStateToProps = (state, ownProps) => ({
   boards: ownProps.boards,
   boardsPins: state.entities.boardsPins,
   pins: state.entities.pins,
-  user: state.entities.users[state.session.id],
-
+  currentUser: state.entities.users[state.session.id],
+  user: ownProps.user
 });
 
 const mapDispatchToProps = dispatch => ({

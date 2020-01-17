@@ -10,7 +10,7 @@ const ProfileSwitches = ({ user, selectedSwitch, onSwitchClick, tabs }) => {
         key={idx}
         to={`/${user.username}/${label.toLowerCase()}`}
         isActive={() => {
-          if (!window.location.hash.includes("/pins")) {
+          if (!location.hash.includes("/pins")) {
             return true;
           }
         }}

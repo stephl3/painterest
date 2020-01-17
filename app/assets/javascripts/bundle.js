@@ -714,6 +714,7 @@ function (_Component) {
       var _this$props = this.props,
           boards = _this$props.boards,
           pins = _this$props.pins,
+          currentUser = _this$props.currentUser,
           user = _this$props.user,
           newBoard = _this$props.newBoard;
       var boardIndexItems = boards.length > 0 ? boards.map(function (board) {
@@ -797,7 +798,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     boards: ownProps.boards,
     boardsPins: state.entities.boardsPins,
     pins: state.entities.pins,
-    user: state.entities.users[state.session.id]
+    currentUser: state.entities.users[state.session.id],
+    user: ownProps.user
   };
 };
 
@@ -1213,7 +1215,7 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show navbar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-show buttons"
+        className: "board-show buttons ".concat(klass)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/pin-builder",
         className: "board-show button"
@@ -4620,6 +4622,7 @@ function (_React$Component) {
         return pin.userId === user.id;
       });
       var contentTabs = [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        user: user,
         boards: userBoards
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_pin_index_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
         pins: userPins,
@@ -5025,26 +5028,20 @@ function (_React$Component) {
   _inherits(ProfileShow, _React$Component);
 
   function ProfileShow(props) {
-    var _this;
-
     _classCallCheck(this, ProfileShow);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfileShow).call(this, props));
-    _this.state = {
-      username: _this.props.username
-    };
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(ProfileShow).call(this, props));
   }
 
   _createClass(ProfileShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
+      var _this = this;
 
       var username = this.props.match.params.username;
 
       var fetchUser = function fetchUser(userId) {
-        return _this2.props.fetchSingleUser(userId);
+        return _this.props.fetchSingleUser(userId);
       };
 
       this.props.fetchAllUsers().then(function (res) {
@@ -5053,16 +5050,7 @@ function (_React$Component) {
         });
         return fetchUser(user.id);
       });
-    } // componentDidUpdate(prevState) {
-    //   debugger
-    //   if (this.state.username !== prevState.username) {
-    //     location.reload();
-    //     // const username = this.props.match.params.username;
-    //     // const user = this.props.users.find(user => user.username === username);
-    //     // this.props.fetchSingleUser(user.id);
-    //   }
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {
@@ -5072,8 +5060,7 @@ function (_React$Component) {
           boards = _this$props.boards,
           pins = _this$props.pins,
           openModal = _this$props.openModal,
-          closeModal = _this$props.closeModal; // debugger
-
+          closeModal = _this$props.closeModal;
       var user = users.find(function (user) {
         return user.username === username;
       });
@@ -5187,7 +5174,7 @@ var ProfileSwitches = function ProfileSwitches(_ref) {
       key: idx,
       to: "/".concat(user.username, "/").concat(label.toLowerCase()),
       isActive: function isActive() {
-        if (!window.location.hash.includes("/pins")) {
+        if (!location.hash.includes("/pins")) {
           return true;
         }
       },
