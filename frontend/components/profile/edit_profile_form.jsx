@@ -51,7 +51,7 @@ class EditProfileForm extends React.Component {
     }
     // debugger;
     this.props.updateUser(formData, this.state.id)
-      .then(window.setTimeout(() => window.location.reload(false), 1000))
+      .then(() => location.reload(false))
   }
 
   handleFile(e) {

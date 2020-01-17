@@ -28,7 +28,7 @@ class SessionForm extends React.Component {
     const user = Object.assign({}, this.state)
     this.props.processForm(user)
       .then(this.props.closeModal)
-      .then(window.setTimeout(() => location.reload(), 1000))
+      .then(() => location.reload(true))
   }
 
   handleDemo(e) {
@@ -45,7 +45,7 @@ class SessionForm extends React.Component {
           const demoUser = Object.assign({}, this.state);
           this.props.demoLogin(demoUser)
             .then(this.props.closeModal)
-            .then(window.setTimeout(() => location.reload(), 1000))
+            .then(() => location.reload(true))
         })
       )
     )

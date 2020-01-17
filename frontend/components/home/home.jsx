@@ -18,8 +18,8 @@ class Home extends React.Component {
   }
 
   // componentDidUpdate(prevProps) {
-  //   if (this.props.loadedPins !== prevProps.loadedPins) {
-  //     this.setState(this.props.loadedPins);
+  //   if (this.props.pins !== prevProps.pins) {
+  //     this.setState(this.props.pins);
   //   }
   // }
 
@@ -36,7 +36,7 @@ class Home extends React.Component {
     };
     // debugger;
     const otherPins = shuffle(pins.filter(pin => pin.userId !== currentUserId));
-    const firstSet = otherPins.slice(0, 20);
+    const firstSet = otherPins.slice(0, 30);
     return (
       <div className={`home-container ${klass}`}>
         {spacer}
