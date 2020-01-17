@@ -3603,16 +3603,10 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      // setTimeout(() => this.resizeAllGridItems(), 2700);
       masonryEvents.forEach(function (e) {
         return window.addEventListener(event, _this2.resizeAllGridItems);
       });
-    } // componentDidUpdate(prevProps) {
-    //   if (this.props.pins !== prevProps.pins) {
-    //     this.resizeAllGridItems();
-    //   }
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {
@@ -3779,7 +3773,7 @@ function (_React$Component) {
         var itemImg = item.querySelector(".masonry-image");
         var rowSpan = Math.ceil((itemImg.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
         item.style.gridRowEnd = "span " + rowSpan; // itemImg.style.height = '100%';
-      }, 200);
+      }, 700);
     }
   }, {
     key: "render",
@@ -3790,6 +3784,11 @@ function (_React$Component) {
           pin = _this$props.pin,
           openEditPin = _this$props.openEditPin,
           openNewBoardPin = _this$props.openNewBoardPin;
+      var pinTitle = pin.title !== "" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-index-item title-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-index-item title"
+      }, pin.title)) : null;
       var editPinLink = page === 'profile' && location.hash.includes(user.username) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "pin-index-item edit-pin-link",
         onClick: function onClick() {
@@ -3808,7 +3807,7 @@ function (_React$Component) {
       }, "Save"));
       var pinUrl = pin.url;
       var shortPinUrl = pinUrl.slice(12, 22) + "...";
-      var pinLink = pinUrl === '' ? null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      var pinLink = pinUrl !== '' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "".concat(pinUrl),
         target: "_blank",
         className: "pin-index-item pin-link"
@@ -3816,7 +3815,7 @@ function (_React$Component) {
         className: "fas fa-external-link-alt pin-link-icon"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index-item pin-link-text"
-      }, shortPinUrl));
+      }, shortPinUrl)) : null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "".concat(this.state.id),
         className: "pin-index-item container"
@@ -3830,7 +3829,7 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: pin.photo,
         className: "pin-index-item masonry-image"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), pinTitle), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index-item links"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index-item edit-pin-link-container"

@@ -18,11 +18,18 @@ class PinIndexItem extends React.Component {
       let rowSpan = Math.ceil((itemImg.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
       item.style.gridRowEnd = "span " + rowSpan;
       // itemImg.style.height = '100%';
-    }, 200);
+    }, 700);
   }
 
   render() {
     const { user, page, pin, openEditPin, openNewBoardPin } = this.props;
+
+    const pinTitle = (pin.title !== "") ? (
+      <div className="pin-index-item title-container">
+        <div className="pin-index-item title">{pin.title}</div>
+      </div>
+    ) : null;
+
     const editPinLink = (page === 'profile' && location.hash.includes(user.username)) ? (
       <a
         className="pin-index-item edit-pin-link"
@@ -30,9 +37,7 @@ class PinIndexItem extends React.Component {
       >
         <i className="fas fa-pencil-alt edit-pin-icon"></i>
       </a>
-    ) : (
-      null
-    );
+    ) : null;
     
     const openBoardPinLink = (
       <a
@@ -45,16 +50,14 @@ class PinIndexItem extends React.Component {
 
     const pinUrl = pin.url;
     const shortPinUrl = pinUrl.slice(12, 22) + "...";
-    const pinLink = (pinUrl === '') ? (
-      null
-    ) : (
+    const pinLink = (pinUrl !== '') ? (
       <a href={`${pinUrl}`} target="_blank" className="pin-index-item pin-link">
         <i className="fas fa-external-link-alt pin-link-icon"></i>
         <div className="pin-index-item pin-link-text">
           {shortPinUrl}
         </div>
       </a>
-    );
+    ) : null;
     
     return (
       <div id={`${this.state.id}`} className="pin-index-item container">
@@ -65,6 +68,7 @@ class PinIndexItem extends React.Component {
           >
             <div className="pin-index-item overlay"></div>
             <img src={pin.photo} className="pin-index-item masonry-image"/>
+            {pinTitle}
           </Link>
           <div className="pin-index-item links">
             <div className="pin-index-item edit-pin-link-container">{editPinLink}</div>

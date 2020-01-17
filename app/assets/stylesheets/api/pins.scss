@@ -640,9 +640,6 @@ ul.create-pin.board-list {
   height: 100%;
   -webkit-mask-image: -webkit-radial-gradient(center, white, black);
   overflow: hidden;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
   position: relative;
   &:hover .overlay {
     background-color: rgba(0,0,0,0.06);
@@ -651,7 +648,6 @@ ul.create-pin.board-list {
 
 .pin-index-item.overlay {
   position: absolute;
-  // z-index: 2;
   top: 0;
   bottom: 0;
   left: 0;
@@ -663,7 +659,9 @@ ul.create-pin.board-list {
 .pin-index-item.pin-show-link {
   cursor: zoom-in;
   box-sizing: border-box;
-  &:hover ~ .links {
+  display: flex;
+  flex-direction: column;
+  &:hover + .links {
     visibility: visible;
   }
 }
@@ -674,6 +672,7 @@ ul.create-pin.board-list {
   box-sizing: border-box;
   border-radius: 16px;
 }
+
 
 .pin-index-item.links {
   position: absolute;
