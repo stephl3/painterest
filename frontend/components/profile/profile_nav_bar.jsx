@@ -54,7 +54,7 @@ class ProfileNavBar extends React.Component {
 
   render() {
     const { user, openModal, closeModal } = this.props;
-    // debugger;
+
     return (
       <div id="profile-nav-bar-wrapper">
         <div id="profile-nav-bar">

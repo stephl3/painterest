@@ -8,7 +8,7 @@ import { openModal, closeModal } from "../../actions/modal_actions";
 import BoardIndex from "./board_index";
 
 const mapStateToProps = (state, ownProps) => ({
-  boards: Object.values(ownProps.boards),
+  boards: ownProps.boards,
   boardsPins: state.entities.boardsPins,
   pins: state.entities.pins,
   user: state.entities.users[state.session.id],

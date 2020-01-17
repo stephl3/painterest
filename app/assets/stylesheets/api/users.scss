@@ -41,12 +41,19 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
+  &.show {
+    visibility: visible;
+  }
+  &.hide {
+    visibility: hidden;
+  }
 }
 
 #profile-nav-bar-wrapper {
   max-width: 800px;
   width: 100%;
   box-sizing: border-box;
+
 }
 
 #profile-nav-bar {

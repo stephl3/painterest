@@ -790,7 +790,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    boards: Object.values(ownProps.boards),
+    boards: ownProps.boards,
     boardsPins: state.entities.boardsPins,
     pins: state.entities.pins,
     user: state.entities.users[state.session.id]
@@ -4582,11 +4582,14 @@ function (_React$Component) {
           pins = _this$props.pins,
           openModal = _this$props.openModal,
           closeModal = _this$props.closeModal;
+      var userBoards = boards.filter(function (board) {
+        return board.userId === user.id;
+      });
       var userPins = pins.filter(function (pin) {
         return pin.userId === user.id;
       });
       var contentTabs = [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        boards: boards
+        boards: userBoards
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_pin_index_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
         pins: userPins,
         parent: "profile"
@@ -4618,6 +4621,13 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (ProfileContent);
+ProfileContent.defaultProps = {
+  user: {
+    username: '',
+    firstName: '',
+    lastName: ''
+  }
+};
 
 /***/ }),
 
@@ -4710,6 +4720,7 @@ var ProfileHeader = function ProfileHeader(_ref) {
   var user = _ref.user,
       openModal = _ref.openModal,
       closeModal = _ref.closeModal;
+  var klass = location.hash.endsWith(user.username) ? 'show' : 'hide';
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-header"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4717,7 +4728,8 @@ var ProfileHeader = function ProfileHeader(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-header-fixed"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "profile-nav-bar-container"
+    id: "profile-nav-bar-container",
+    className: "".concat(klass)
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_nav_bar__WEBPACK_IMPORTED_MODULE_1__["default"], {
     user: user,
     openModal: openModal,
@@ -4730,6 +4742,13 @@ var ProfileHeader = function ProfileHeader(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProfileHeader);
+ProfileHeader.defaultProps = {
+  user: {
+    username: '',
+    firstName: '',
+    lastName: ''
+  }
+};
 
 /***/ }),
 
@@ -4840,8 +4859,7 @@ function (_React$Component) {
       var _this$props = this.props,
           user = _this$props.user,
           openModal = _this$props.openModal,
-          closeModal = _this$props.closeModal; // debugger;
-
+          closeModal = _this$props.closeModal;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "profile-nav-bar-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4976,37 +4994,58 @@ function (_React$Component) {
   _inherits(ProfileShow, _React$Component);
 
   function ProfileShow(props) {
+    var _this;
+
     _classCallCheck(this, ProfileShow);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ProfileShow).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfileShow).call(this, props));
+    _this.state = {
+      username: _this.props.username
+    };
+    return _this;
   }
 
   _createClass(ProfileShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchSingleUser(this.props.currentUser.id);
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      var boards = JSON.stringify(this.props.boards);
-      var prevBoards = JSON.stringify(prevProps.boards);
+      var _this2 = this;
 
-      if (boards !== prevBoards) {// this.props.fetchSingleUser(this.props.currentUser.id);
-      }
-    } // componentWillUnmount() {
-    //   this.props.fetchSingleUser(this.props.currentUser.id);
+      var username = this.props.match.params.username;
+
+      var fetchUser = function fetchUser(userId) {
+        return _this2.props.fetchSingleUser(userId);
+      };
+
+      this.props.fetchAllUsers().then(function (res) {
+        var user = Object.values(res.users).find(function (user) {
+          return user.username === username;
+        });
+        return fetchUser(user.id);
+      });
+    } // componentDidUpdate(prevState) {
+    //   debugger
+    //   if (this.state.username !== prevState.username) {
+    //     location.reload();
+    //     // const username = this.props.match.params.username;
+    //     // const user = this.props.users.find(user => user.username === username);
+    //     // this.props.fetchSingleUser(user.id);
+    //   }
     // }
 
   }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          currentUser = _this$props.currentUser,
+          users = _this$props.users,
+          username = _this$props.username,
           boards = _this$props.boards,
           pins = _this$props.pins,
           openModal = _this$props.openModal,
-          closeModal = _this$props.closeModal;
+          closeModal = _this$props.closeModal; // debugger
+
+      var user = users.find(function (user) {
+        return user.username === username;
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "profile-background"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5016,13 +5055,13 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "profile-header-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_header__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        user: currentUser,
+        user: user,
         openModal: openModal,
         closeModal: closeModal
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "profile-content-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_profile_content__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        user: currentUser,
+        user: user,
         boards: boards,
         pins: pins,
         openModal: openModal,
@@ -5060,10 +5099,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(state) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
-    currentUser: state.entities.users[state.session.id],
-    boards: state.entities.boards,
+    users: Object.values(state.entities.users),
+    username: ownProps.match.params.username,
+    boards: Object.values(state.entities.boards),
     boardsPins: state.entities.boardsPins,
     pins: Object.values(state.entities.pins)
   };
@@ -5071,6 +5111,9 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    fetchAllUsers: function fetchAllUsers() {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllUsers"])());
+    },
     fetchSingleUser: function fetchSingleUser(id) {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["fetchSingleUser"])(id));
     },

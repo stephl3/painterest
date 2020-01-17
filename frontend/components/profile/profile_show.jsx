@@ -7,39 +7,51 @@ import ProfileContent from "./profile_content";
 class ProfileShow extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      username: this.props.username
+    };
   }
 
   componentDidMount() {
-    this.props.fetchSingleUser(this.props.currentUser.id);
+    const username = this.props.match.params.username;
+    const fetchUser = (userId) => this.props.fetchSingleUser(userId);
+
+    this.props.fetchAllUsers()
+      .then(res => {
+        const user = Object.values(res.users).find(user => user.username === username);
+        return fetchUser(user.id);
+      });
   }
   
-  componentDidUpdate(prevProps) {
-    const boards = JSON.stringify(this.props.boards);
-    const prevBoards = JSON.stringify(prevProps.boards);
-    if (boards !== prevBoards) {
-      // this.props.fetchSingleUser(this.props.currentUser.id);
-    }
-  }
-  // componentWillUnmount() {
-  //   this.props.fetchSingleUser(this.props.currentUser.id);
+  // componentDidUpdate(prevState) {
+  //   debugger
+  //   if (this.state.username !== prevState.username) {
+  //     location.reload();
+  //     // const username = this.props.match.params.username;
+  //     // const user = this.props.users.find(user => user.username === username);
+  //     // this.props.fetchSingleUser(user.id);
+  //   }
   // }
 
   render() {
-    const { currentUser, boards, pins, openModal, closeModal } = this.props;
+    const { users, username, boards, pins, openModal, closeModal } = this.props;
+    // debugger
+    const user = users.find(user => user.username === username);
+
     return (
       <div id="profile-background">
         <div id="profile-container">
           <div id="profile">
             <div id="profile-header-container">
               <ProfileHeader
-                user={currentUser}
+                user={user}
                 openModal={openModal}
                 closeModal={closeModal}
               />
             </div>
             <div id="profile-content-container">
               <ProfileContent
-                user={currentUser}
+                user={user}
                 boards={boards}
                 pins={pins}
                 openModal={openModal}

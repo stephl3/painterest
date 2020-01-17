@@ -13,6 +13,12 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = selected_user
+    render "api/users/show"
+  end
+
+  def index
+    @users = User.all
+    render "api/users/index"
   end
   
   def edit

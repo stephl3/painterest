@@ -22,9 +22,11 @@ class ProfileContent extends React.Component {
   render() {
     const { user, boards, pins, openModal, closeModal } = this.props;
 
+    const userBoards = boards.filter(board => board.userId === user.id);
     const userPins = pins.filter(pin => pin.userId === user.id);
+
     const contentTabs = [
-      <BoardIndexContainer boards={boards} />,
+      <BoardIndexContainer boards={userBoards} />,
       <PinIndexContainer pins={userPins} parent='profile' />
     ];
     const selectedTab = contentTabs[this.state.selectedSwitch];
@@ -56,3 +58,11 @@ class ProfileContent extends React.Component {
 }
 
 export default ProfileContent;
+
+ProfileContent.defaultProps = {
+  user: {
+    username: '',
+    firstName: '',
+    lastName: ''
+  }
+}
