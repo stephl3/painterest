@@ -22,7 +22,7 @@ class PinIndexItem extends React.Component {
   }
 
   render() {
-    const { userId, page, pin, openEditPin, openNewBoardPin } = this.props;
+    const { userId, user, page, pin, openEditPin, openNewBoardPin } = this.props;
 
     const pinTitle = (userId !== null && page === "home" && pin.title !== "") ? (
       <div className="pin-index-item title-container">
