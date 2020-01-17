@@ -11,7 +11,7 @@ class Home extends React.Component {
     // this.handleClick = this.handleClick.bind(this);
   }
 
-  UNSAFE_componentWillMount() {
+  // UNSAFE_componentWillMount() {
     // if (this.props.currentUserId !== null) {
     //   this.props.startLoading();
     //   this.props.fetchPins()
@@ -19,8 +19,12 @@ class Home extends React.Component {
     //       setTimeout(() => this.props.stopLoading(), 3000)
     //     )
     // } else {
-      this.props.fetchPins();
+      // this.props.fetchPins();
     // }
+  // }
+
+  componentDidMount() {
+    this.props.fetchPins();
   }
 
   render() {

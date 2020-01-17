@@ -2188,19 +2188,23 @@ function (_React$Component) {
 
     return _possibleConstructorReturn(this, _getPrototypeOf(Home).call(this, props)); // this.state = this.props.pins;
     // this.handleClick = this.handleClick.bind(this);
-  }
+  } // UNSAFE_componentWillMount() {
+  // if (this.props.currentUserId !== null) {
+  //   this.props.startLoading();
+  //   this.props.fetchPins()
+  //     .then(
+  //       setTimeout(() => this.props.stopLoading(), 3000)
+  //     )
+  // } else {
+  // this.props.fetchPins();
+  // }
+  // }
+
 
   _createClass(Home, [{
-    key: "UNSAFE_componentWillMount",
-    value: function UNSAFE_componentWillMount() {
-      // if (this.props.currentUserId !== null) {
-      //   this.props.startLoading();
-      //   this.props.fetchPins()
-      //     .then(
-      //       setTimeout(() => this.props.stopLoading(), 3000)
-      //     )
-      // } else {
-      this.props.fetchPins(); // }
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchPins();
     }
   }, {
     key: "render",
@@ -3599,23 +3603,22 @@ function (_React$Component) {
       pinSetIdx: 0,
       loadedPins: []
     };
-    _this.splitPins = _this.splitPins.bind(_assertThisInitialized(_this));
-    _this.handleScroll = _this.handleScroll.bind(_assertThisInitialized(_this)); // this.resizeGridItem = this.resizeGridItem.bind(this);
+    _this.splitPins = _this.splitPins.bind(_assertThisInitialized(_this)); // this.handleScroll = this.handleScroll.bind(this);
+    // this.resizeGridItem = this.resizeGridItem.bind(this);
     // this.resizeAllGridItems = this.resizeAllGridItems.bind(this);
 
     return _this;
   } // componentDidMount() {
   //   // debugger
-  //   this.setState({ pins: this.props.pins })
+  //   // this.setState({ pins: this.props.pins })
+  //   this.props.fetchPins();
+  // }
+  // componentWillUnmount() {
+  //   window.removeEventListener("scroll", this.handleScroll);
   // }
 
 
   _createClass(PinIndex, [{
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      window.removeEventListener("scroll", this.handleScroll);
-    }
-  }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
       var _this2 = this;
@@ -3624,25 +3627,22 @@ function (_React$Component) {
       var pins = this.props.pins;
 
       if (prevProps.pins.length !== this.props.pins.length) {
-        window.addEventListener("scroll", this.handleScroll);
+        // window.addEventListener("scroll", this.handleScroll);
         var pinSets = this.splitPins(pins);
         this.setState({
           pinSets: pinSets
         }, function () {
-          debugger;
+          // debugger
           if (_this2.state.pinSetIdx === 0) _this2.setState({
-            loadedPins: pinSets[0]
+            loadedPins: pinSets.slice(0, 2)
           });
         });
-      }
+      } // if (prevState.pinSetIdx !== this.state.pinSetIdx) {
+      //   // debugger
+      //   const updatedPins = this.pinSets[this.state.pinSetIdx];
+      //   this.setState({ loadedPins: this.state.loadedPins.concat(updatedPins) })
+      // }
 
-      if (prevState.pinSetIdx !== this.state.pinSetIdx) {
-        debugger;
-        var updatedPins = this.state.loadedPins.concat(this.pinSets[this.state.pinSetIdx]);
-        this.setState({
-          loadedPins: updatedPins
-        });
-      }
     }
   }, {
     key: "splitPins",
@@ -3654,24 +3654,22 @@ function (_React$Component) {
       }
 
       return arr;
-    }
-  }, {
-    key: "handleScroll",
-    value: function handleScroll() {
-      var windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
-      var body = document.body;
-      var html = document.documentElement;
-      var docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-      var windowBottom = windowHeight + window.pageYOffset;
-      var currIdx = this.state.pinSetIdx;
-
-      if (windowBottom >= docHeight && currIdx < this.state.loadedPins.length - 1) {
-        debugger;
-        this.setState({
-          pinsSetIdx: currIdx + 1
-        });
-      }
-    } // resizeGridItem(item) {
+    } // handleScroll() {
+    //   console.log('scroll')
+    //   const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+    //   const body = document.body;
+    //   const html = document.documentElement;
+    //   const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+    //   const windowBottom = windowHeight + window.pageYOffset;
+    //   const currIdx = this.state.pinSetIdx;
+    //   // debugger
+    //   if (windowBottom >= docHeight - 1 && currIdx < this.state.pinSets.length - 1) {
+    //     // debugger
+    //     console.log('hit bottom');
+    //     this.setState({ pinSetIdx: currIdx + 1 });
+    //   }
+    // }
+    // resizeGridItem(item) {
     //   let grid = document.getElementById('grid');
     //   let rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
     //   let rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
@@ -3693,13 +3691,12 @@ function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           page = _this$props.page,
-          pins = _this$props.pins,
           currentUserId = _this$props.currentUserId,
           user = _this$props.user,
           openEditPin = _this$props.openEditPin,
-          openNewBoardPin = _this$props.openNewBoardPin;
-      debugger;
-      var pinIndexItems = this.state.loadedPins.map(function (pin) {
+          openNewBoardPin = _this$props.openNewBoardPin; // debugger
+
+      var pinIndexItems = this.state.loadedPins.flat().map(function (pin) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: pin.id,
           page: page,
@@ -4680,6 +4677,7 @@ function (_React$Component) {
       var userPins = pins.filter(function (pin) {
         return pin.userId === user.id;
       });
+      debugger;
       var contentTabs = [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         user: user,
         boards: userBoards

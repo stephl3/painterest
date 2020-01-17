@@ -15,36 +15,37 @@ class PinIndex extends React.Component {
     };
 
     this.splitPins = this.splitPins.bind(this);
-    this.handleScroll = this.handleScroll.bind(this);
+    // this.handleScroll = this.handleScroll.bind(this);
     // this.resizeGridItem = this.resizeGridItem.bind(this);
     // this.resizeAllGridItems = this.resizeAllGridItems.bind(this);
   }
 
   // componentDidMount() {
   //   // debugger
-  //   this.setState({ pins: this.props.pins })
+  //   // this.setState({ pins: this.props.pins })
+  //   this.props.fetchPins();
   // }
 
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
+  // componentWillUnmount() {
+  //   window.removeEventListener("scroll", this.handleScroll);
+  // }
 
   componentDidUpdate(prevProps, prevState) {
     // debugger;
     const pins = this.props.pins;
     if (prevProps.pins.length !== this.props.pins.length) {
-      window.addEventListener("scroll", this.handleScroll);
+      // window.addEventListener("scroll", this.handleScroll);
       const pinSets = this.splitPins(pins);
       this.setState({ pinSets: pinSets }, () => {
-        debugger
-        if (this.state.pinSetIdx === 0) this.setState({ loadedPins: pinSets[0]})
+        // debugger
+        if (this.state.pinSetIdx === 0) this.setState({ loadedPins: pinSets.slice(0,2) })
       });
     }
-    if (prevState.pinSetIdx !== this.state.pinSetIdx) {
-      debugger
-      const updatedPins = this.state.loadedPins.concat(this.pinSets[this.state.pinSetIdx]);
-      this.setState({ loadedPins: updatedPins })
-    }
+    // if (prevState.pinSetIdx !== this.state.pinSetIdx) {
+    //   // debugger
+    //   const updatedPins = this.pinSets[this.state.pinSetIdx];
+    //   this.setState({ loadedPins: this.state.loadedPins.concat(updatedPins) })
+    // }
   }
 
   splitPins(pins) {
@@ -55,19 +56,22 @@ class PinIndex extends React.Component {
     return arr;
   }
 
-  handleScroll() {
-    const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
-    const body = document.body;
-    const html = document.documentElement;
+  // handleScroll() {
+  //   console.log('scroll')
+  //   const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+  //   const body = document.body;
+  //   const html = document.documentElement;
 
-    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-    const windowBottom = windowHeight + window.pageYOffset;
-    const currIdx = this.state.pinSetIdx;
-    if (windowBottom >= docHeight && currIdx < this.state.loadedPins.length - 1) {
-      debugger
-      this.setState({ pinsSetIdx: currIdx + 1 });
-    }
-  }
+  //   const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+  //   const windowBottom = windowHeight + window.pageYOffset;
+  //   const currIdx = this.state.pinSetIdx;
+  //   // debugger
+  //   if (windowBottom >= docHeight - 1 && currIdx < this.state.pinSets.length - 1) {
+  //     // debugger
+  //     console.log('hit bottom');
+  //     this.setState({ pinSetIdx: currIdx + 1 });
+  //   }
+  // }
 
   // resizeGridItem(item) {
   //   let grid = document.getElementById('grid');
@@ -88,9 +92,9 @@ class PinIndex extends React.Component {
   // }
 
   render() {
-    const { page, pins, currentUserId, user, openEditPin, openNewBoardPin } = this.props;
-    debugger
-    const pinIndexItems = (this.state.loadedPins).map(pin => (
+    const { page, currentUserId, user, openEditPin, openNewBoardPin } = this.props;
+    // debugger
+    const pinIndexItems = this.state.loadedPins.flat().map(pin => (
       <PinIndexItem
         key={pin.id}
         page={page}
