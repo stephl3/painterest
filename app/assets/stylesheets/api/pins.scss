@@ -673,6 +673,19 @@ ul.create-pin.board-list {
   border-radius: 16px;
 }
 
+.pin-index-item.title-container {
+  padding: 8px 6px 16px;
+  pointer-events: auto;
+  & > .title {
+    text-align: left;
+    color: #333;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -.4px;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+}
 
 .pin-index-item.links {
   position: absolute;
