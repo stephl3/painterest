@@ -36,28 +36,20 @@ class PinIndex extends React.Component {
   }
 
   render() {
-    const { currentUser, page, pins, loading,
-      openEditPin, openNewBoardPin, createBoardPin } = this.props;
-    const loader = (loading) ? (
-      <div className="loading-background">
-        <div className="loading"></div>
-      </div>
-    ) : null;
+    const { currentUserId, page, pins, openEditPin, openNewBoardPin } = this.props;
     
     const pinIndexItems = (pins).map(pin => (
       <PinIndexItem
         key={pin.id}
-        user={currentUser}
+        userId={currentUserId}
         page={page}
         pin={pin}
         openEditPin={openEditPin}
         openNewBoardPin={openNewBoardPin}
-        createBoardPin={createBoardPin}
       />
     ));
     return (
       <div className="pin-index container">
-        {loader}
         <div className="pin-index" id="grid-container">
           <div className="pin-index masonry" id="grid">
             {pinIndexItems}

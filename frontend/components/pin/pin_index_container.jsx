@@ -5,7 +5,6 @@ import {
   fetchPins,
   updatePin
 } from "../../actions/pin_actions";
-import { startLoading, stopLoading } from "../../actions/loading_actions";
 import { openModal } from "../../actions/modal_actions";
 
 const mapStateToProps =(state, ownProps) => {
@@ -19,8 +18,7 @@ const mapStateToProps =(state, ownProps) => {
   return {
     page: ownProps.page,
     pins: ownProps.pins,
-    currentUser: state.entities.users[state.session.id],
-    loading: state.ui.loading,
+    currentUserId: state.session.id,
     parent: ownProps.parent
   };
 };
@@ -28,9 +26,7 @@ const mapStateToProps =(state, ownProps) => {
 const mapDispatchToProps = dispatch => ({
   fetchPins: () => dispatch(fetchPins()),
   openEditPin: pinId => dispatch(openModal("edit-pin", pinId)),
-  openNewBoardPin: pinId => dispatch(openModal("new-board-pin", pinId)),
-  startLoading: () => dispatch(startLoading()),
-  stopLoading: () => dispatch(stopLoading()),
+  openNewBoardPin: pinId => dispatch(openModal("new-board-pin", pinId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PinIndex);

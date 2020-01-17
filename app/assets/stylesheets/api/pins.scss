@@ -628,7 +628,8 @@ ul.create-pin.board-list {
 .pin-index-item.container {
   width: 252px;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
   box-sizing: border-box;
   padding: 4px 8px;
 }
@@ -659,8 +660,6 @@ ul.create-pin.board-list {
 .pin-index-item.pin-show-link {
   cursor: zoom-in;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
   &:hover + .links {
     visibility: visible;
   }

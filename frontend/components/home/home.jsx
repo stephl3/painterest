@@ -12,20 +12,19 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    // debugger;
-    this.props.fetchPins();
-    // this.props.fetchSingleUser(this.props.currentUserId);
+    // if (this.props.currentUserId !== null) {
+    //   this.props.startLoading();
+    //   this.props.fetchPins()
+    //     .then(
+    //       setTimeout(() => this.props.stopLoading(), 3000)
+    //     )
+    // } else {
+      this.props.fetchPins();
+    // }
   }
 
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.pins !== prevProps.pins) {
-  //     this.setState(this.props.pins);
-  //   }
-  // }
-
-
   render() {
-    const { currentUserId, pins } = this.props;
+    const { currentUserId, loading, pins } = this.props;
     let spacer, klass;
     if (currentUserId === null) {
       klass = "no-scroll";
@@ -34,12 +33,19 @@ class Home extends React.Component {
       klass = "";
       spacer = <div id="spacer"></div>;
     };
+
+    const loader = (loading) ? (
+      <div className="loading-background">
+        <div className="loading"></div>
+      </div>
+    ) : null;
     // debugger;
     const otherPins = shuffle(pins.filter(pin => pin.userId !== currentUserId));
     const firstSet = otherPins.slice(0, 30);
     return (
       <div className={`home-container ${klass}`}>
         {spacer}
+        {loader}
         <PinIndexContainer
           pins={firstSet}
           page="home"

@@ -18,13 +18,13 @@ class PinIndexItem extends React.Component {
       let rowSpan = Math.ceil((itemImg.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
       item.style.gridRowEnd = "span " + rowSpan;
       // itemImg.style.height = '100%';
-    }, 700);
+    }, 500);
   }
 
   render() {
-    const { user, page, pin, openEditPin, openNewBoardPin } = this.props;
+    const { userId, page, pin, openEditPin, openNewBoardPin } = this.props;
 
-    const pinTitle = (pin.title !== "" && page === "home") ? (
+    const pinTitle = (userId !== null && page === "home" && pin.title !== "") ? (
       <div className="pin-index-item title-container">
         <div className="pin-index-item title">{pin.title}</div>
       </div>
@@ -68,7 +68,6 @@ class PinIndexItem extends React.Component {
           >
             <div className="pin-index-item overlay"></div>
             <img src={pin.photo} className="pin-index-item masonry-image"/>
-            {pinTitle}
           </Link>
           <div className="pin-index-item links">
             <div className="pin-index-item edit-pin-link-container">{editPinLink}</div>
@@ -76,6 +75,7 @@ class PinIndexItem extends React.Component {
             <div className="pin-index-item pin-link-container">{pinLink}</div>
           </div>
         </div>
+        {pinTitle}
       </div>
     );
   }

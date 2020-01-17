@@ -2183,19 +2183,21 @@ function (_React$Component) {
   _createClass(Home, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // debugger;
-      this.props.fetchPins(); // this.props.fetchSingleUser(this.props.currentUserId);
-    } // componentDidUpdate(prevProps) {
-    //   if (this.props.pins !== prevProps.pins) {
-    //     this.setState(this.props.pins);
-    //   }
-    // }
-
+      // if (this.props.currentUserId !== null) {
+      //   this.props.startLoading();
+      //   this.props.fetchPins()
+      //     .then(
+      //       setTimeout(() => this.props.stopLoading(), 3000)
+      //     )
+      // } else {
+      this.props.fetchPins(); // }
+    }
   }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           currentUserId = _this$props.currentUserId,
+          loading = _this$props.loading,
           pins = _this$props.pins;
       var spacer, klass;
 
@@ -2209,7 +2211,12 @@ function (_React$Component) {
         });
       }
 
-      ; // debugger;
+      ;
+      var loader = loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "loading-background"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "loading"
+      })) : null; // debugger;
 
       var otherPins = shuffle(pins.filter(function (pin) {
         return pin.userId !== currentUserId;
@@ -2217,7 +2224,7 @@ function (_React$Component) {
       var firstSet = otherPins.slice(0, 30);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "home-container ".concat(klass)
-      }, spacer, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_pin_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, spacer, loader, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_pin_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
         pins: firstSet,
         page: "home"
       })); // const pinArray = Object.values(pins);
@@ -2276,11 +2283,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _home__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./home */ "./frontend/components/home/home.jsx");
 /* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
-/* harmony import */ var _actions_board_pin_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/board_pin_actions */ "./frontend/actions/board_pin_actions.js");
-/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_loading_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/loading_actions */ "./frontend/actions/loading_actions.js");
 
 
-
+ // import { fetchAllBoardsPins } from '../../actions/board_pin_actions';
+// import { fetchSingleUser } from '../../actions/user_actions';
 
 
 
@@ -2289,9 +2296,11 @@ var mapStateToProps = function mapStateToProps(state) {
   var currentUserId = state.session.id;
   var allPins = Object.values(state.entities.pins);
   var pins = state.session.id ? allPins : allPins.slice(180, 220);
+  var loading = state.ui.loading;
   return {
     currentUserId: currentUserId,
-    pins: pins
+    pins: pins,
+    loading: loading
   };
 };
 
@@ -2301,8 +2310,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPins"])());
     },
     // fetchAllBoardsPins: () => dispatch(fetchAllBoardsPins()),
-    fetchSingleUser: function fetchSingleUser(id) {
-      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_4__["fetchSingleUser"])(id));
+    // fetchSingleUser: id => dispatch(fetchSingleUser(id)),
+    startLoading: function startLoading() {
+      return dispatch(Object(_actions_loading_actions__WEBPACK_IMPORTED_MODULE_3__["startLoading"])());
+    },
+    stopLoading: function stopLoading() {
+      return dispatch(Object(_actions_loading_actions__WEBPACK_IMPORTED_MODULE_3__["stopLoading"])());
     }
   };
 };
@@ -3611,32 +3624,24 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          currentUser = _this$props.currentUser,
+          currentUserId = _this$props.currentUserId,
           page = _this$props.page,
           pins = _this$props.pins,
-          loading = _this$props.loading,
           openEditPin = _this$props.openEditPin,
-          openNewBoardPin = _this$props.openNewBoardPin,
-          createBoardPin = _this$props.createBoardPin;
-      var loader = loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "loading-background"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "loading"
-      })) : null;
+          openNewBoardPin = _this$props.openNewBoardPin;
       var pinIndexItems = pins.map(function (pin) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: pin.id,
-          user: currentUser,
+          userId: currentUserId,
           page: page,
           pin: pin,
           openEditPin: openEditPin,
-          openNewBoardPin: openNewBoardPin,
-          createBoardPin: createBoardPin
+          openNewBoardPin: openNewBoardPin
         });
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index container"
-      }, loader, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index",
         id: "grid-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3666,9 +3671,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _pin_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pin_index */ "./frontend/components/pin/pin_index.jsx");
 /* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
-/* harmony import */ var _actions_loading_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/loading_actions */ "./frontend/actions/loading_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 
 
 
@@ -3684,8 +3687,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     page: ownProps.page,
     pins: ownProps.pins,
-    currentUser: state.entities.users[state.session.id],
-    loading: state.ui.loading,
+    currentUserId: state.session.id,
     parent: ownProps.parent
   };
 };
@@ -3696,16 +3698,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPins"])());
     },
     openEditPin: function openEditPin(pinId) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])("edit-pin", pinId));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])("edit-pin", pinId));
     },
     openNewBoardPin: function openNewBoardPin(pinId) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["openModal"])("new-board-pin", pinId));
-    },
-    startLoading: function startLoading() {
-      return dispatch(Object(_actions_loading_actions__WEBPACK_IMPORTED_MODULE_3__["startLoading"])());
-    },
-    stopLoading: function stopLoading() {
-      return dispatch(Object(_actions_loading_actions__WEBPACK_IMPORTED_MODULE_3__["stopLoading"])());
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["openModal"])("new-board-pin", pinId));
     }
   };
 };
@@ -3773,18 +3769,18 @@ function (_React$Component) {
         var itemImg = item.querySelector(".masonry-image");
         var rowSpan = Math.ceil((itemImg.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
         item.style.gridRowEnd = "span " + rowSpan; // itemImg.style.height = '100%';
-      }, 700);
+      }, 500);
     }
   }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          user = _this$props.user,
+          userId = _this$props.userId,
           page = _this$props.page,
           pin = _this$props.pin,
           openEditPin = _this$props.openEditPin,
           openNewBoardPin = _this$props.openNewBoardPin;
-      var pinTitle = pin.title !== "" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      var pinTitle = userId !== null && page === "home" && pin.title !== "" ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index-item title-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index-item title"
@@ -3829,7 +3825,7 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: pin.photo,
         className: "pin-index-item masonry-image"
-      }), pinTitle), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index-item links"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index-item edit-pin-link-container"
@@ -3837,7 +3833,7 @@ function (_React$Component) {
         className: "save-board-pin-link-container"
       }, openBoardPinLink), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index-item pin-link-container"
-      }, pinLink))));
+      }, pinLink))), pinTitle);
     }
   }]);
 
