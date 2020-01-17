@@ -11,7 +11,7 @@ class Home extends React.Component {
     // this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
+  UNSAFE_componentWillMount() {
     // if (this.props.currentUserId !== null) {
     //   this.props.startLoading();
     //   this.props.fetchPins()
@@ -41,13 +41,12 @@ class Home extends React.Component {
     ) : null;
     // debugger;
     const otherPins = shuffle(pins.filter(pin => pin.userId !== currentUserId));
-    const firstSet = otherPins.slice(0, 30);
     return (
       <div className={`home-container ${klass}`}>
         {spacer}
         {loader}
         <PinIndexContainer
-          pins={firstSet}
+          pins={otherPins}
           page="home"
         />
       </div>

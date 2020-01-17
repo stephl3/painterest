@@ -8,19 +8,12 @@ import {
 import { openModal } from "../../actions/modal_actions";
 
 const mapStateToProps =(state, ownProps) => {
-  // const pins = (ownProps.pins.length > 0) ? (
-  //   ownProps.pins
-  // ) : (
-  //   Object.values(state.entities.pins)
-  // );
-  // review this to ensure correct pins
 
   return {
     page: ownProps.page,
     pins: ownProps.pins,
     currentUserId: state.session.id,
-    user: state.entities.users[state.session.id],
-    parent: ownProps.parent
+    user: state.entities.users[state.session.id]
   };
 };
 

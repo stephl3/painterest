@@ -2191,8 +2191,8 @@ function (_React$Component) {
   }
 
   _createClass(Home, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
+    key: "UNSAFE_componentWillMount",
+    value: function UNSAFE_componentWillMount() {
       // if (this.props.currentUserId !== null) {
       //   this.props.startLoading();
       //   this.props.fetchPins()
@@ -2231,11 +2231,10 @@ function (_React$Component) {
       var otherPins = shuffle(pins.filter(function (pin) {
         return pin.userId !== currentUserId;
       }));
-      var firstSet = otherPins.slice(0, 30);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "home-container ".concat(klass)
       }, spacer, loader, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_pin_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        pins: firstSet,
+        pins: otherPins,
         page: "home"
       })); // const pinArray = Object.values(pins);
       // const loadedPins = this.state.loadedPins.map(pin =>
@@ -3594,55 +3593,119 @@ function (_React$Component) {
     _classCallCheck(this, PinIndex);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PinIndex).call(this, props));
-    _this.resizeGridItem = _this.resizeGridItem.bind(_assertThisInitialized(_this));
-    _this.resizeAllGridItems = _this.resizeAllGridItems.bind(_assertThisInitialized(_this));
+    _this.state = {
+      // pins: [],
+      pinSets: [],
+      pinSetIdx: 0,
+      loadedPins: []
+    };
+    _this.splitPins = _this.splitPins.bind(_assertThisInitialized(_this));
+    _this.handleScroll = _this.handleScroll.bind(_assertThisInitialized(_this)); // this.resizeGridItem = this.resizeGridItem.bind(this);
+    // this.resizeAllGridItems = this.resizeAllGridItems.bind(this);
+
     return _this;
-  }
+  } // componentDidMount() {
+  //   // debugger
+  //   this.setState({ pins: this.props.pins })
+  // }
+
 
   _createClass(PinIndex, [{
-    key: "resizeGridItem",
-    value: function resizeGridItem(item) {
-      var grid = document.getElementById('grid');
-      var rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
-      var rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
-      var itemImg = item.querySelector(".masonry-image");
-      var rowSpan = Math.ceil((itemImg.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
-      item.style.gridRowEnd = "span " + rowSpan;
-      itemImg.style.height = '100%';
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      window.removeEventListener("scroll", this.handleScroll);
     }
   }, {
-    key: "resizeAllGridItems",
-    value: function resizeAllGridItems() {
-      var allItems = document.getElementsByClassName("pin-index-item container");
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      var _this2 = this;
 
-      if (allItems) {
-        for (var i = 0; i < allItems.length; i++) {
-          this.resizeGridItem(allItems[i]);
-        }
+      // debugger;
+      var pins = this.props.pins;
+
+      if (prevProps.pins.length !== this.props.pins.length) {
+        window.addEventListener("scroll", this.handleScroll);
+        var pinSets = this.splitPins(pins);
+        this.setState({
+          pinSets: pinSets
+        }, function () {
+          debugger;
+          if (_this2.state.pinSetIdx === 0) _this2.setState({
+            loadedPins: pinSets[0]
+          });
+        });
       }
-    } // componentDidMount() {
-    //   masonryEvents.forEach(
-    //     (e) => window.addEventListener(event, this.resizeAllGridItems)
-    //   );
+
+      if (prevState.pinSetIdx !== this.state.pinSetIdx) {
+        debugger;
+        var updatedPins = this.state.loadedPins.concat(this.pinSets[this.state.pinSetIdx]);
+        this.setState({
+          loadedPins: updatedPins
+        });
+      }
+    }
+  }, {
+    key: "splitPins",
+    value: function splitPins(pins) {
+      var arr = [];
+
+      for (var i = 0; i < pins.length; i += 30) {
+        arr.push(pins.slice(i, i + 30));
+      }
+
+      return arr;
+    }
+  }, {
+    key: "handleScroll",
+    value: function handleScroll() {
+      var windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+      var body = document.body;
+      var html = document.documentElement;
+      var docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
+      var windowBottom = windowHeight + window.pageYOffset;
+      var currIdx = this.state.pinSetIdx;
+
+      if (windowBottom >= docHeight && currIdx < this.state.loadedPins.length - 1) {
+        debugger;
+        this.setState({
+          pinsSetIdx: currIdx + 1
+        });
+      }
+    } // resizeGridItem(item) {
+    //   let grid = document.getElementById('grid');
+    //   let rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
+    //   let rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
+    //   let itemImg = item.querySelector(".masonry-image");
+    //   let rowSpan = Math.ceil((itemImg.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
+    //   item.style.gridRowEnd = "span " + rowSpan;
+    //   itemImg.style.height = '100%';
+    // }
+    // resizeAllGridItems() {
+    //   let allItems = document.getElementsByClassName("pin-index-item container");
+    //   if (allItems) {
+    //     for (let i = 0; i < allItems.length; i++)
+    //       this.resizeGridItem(allItems[i]);
+    //   }
     // }
 
   }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          currentUserId = _this$props.currentUserId,
-          user = _this$props.user,
           page = _this$props.page,
           pins = _this$props.pins,
+          currentUserId = _this$props.currentUserId,
+          user = _this$props.user,
           openEditPin = _this$props.openEditPin,
           openNewBoardPin = _this$props.openNewBoardPin;
-      var pinIndexItems = pins.map(function (pin) {
+      debugger;
+      var pinIndexItems = this.state.loadedPins.map(function (pin) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: pin.id,
-          userId: currentUserId,
-          user: user,
           page: page,
           pin: pin,
+          userId: currentUserId,
+          user: user,
           openEditPin: openEditPin,
           openNewBoardPin: openNewBoardPin
         });
@@ -3686,18 +3749,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  // const pins = (ownProps.pins.length > 0) ? (
-  //   ownProps.pins
-  // ) : (
-  //   Object.values(state.entities.pins)
-  // );
-  // review this to ensure correct pins
   return {
     page: ownProps.page,
     pins: ownProps.pins,
     currentUserId: state.session.id,
-    user: state.entities.users[state.session.id],
-    parent: ownProps.parent
+    user: state.entities.users[state.session.id]
   };
 };
 
