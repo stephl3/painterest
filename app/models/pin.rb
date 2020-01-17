@@ -3,7 +3,7 @@
 # Table name: pins
 #
 #  id          :bigint(8)        not null, primary key
-#  title       :string           not null
+#  title       :string
 #  description :text
 #  user_id     :integer          not null
 #  created_at  :datetime         not null
@@ -13,7 +13,7 @@
 
 class Pin < ApplicationRecord
 
-  validates :title, :user_id, :photo, presence: true
+  validates :user_id, :photo, presence: true
   
   belongs_to :user
 

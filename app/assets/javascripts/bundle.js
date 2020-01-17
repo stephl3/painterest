@@ -623,6 +623,10 @@ var App = function App() {
     component: _profile_edit_profile_form_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     exact: true,
+    path: "/following",
+    component: _home_home_container__WEBPACK_IMPORTED_MODULE_12__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
+    exact: true,
     path: "/:username/pins",
     component: _profile_profile_show_container__WEBPACK_IMPORTED_MODULE_10__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
@@ -1205,6 +1209,7 @@ function (_React$Component) {
           board = _this$props.board,
           user = _this$props.user;
       var transition = this.state.fadeInTitle ? 'in' : 'out';
+      var klass = location.hash.includes(user.username) ? 'show' : 'hide';
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-show navbar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3610,16 +3615,12 @@ function (_React$Component) {
           this.resizeGridItem(allItems[i]);
         }
       }
-    }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
+    } // componentDidMount() {
+    //   masonryEvents.forEach(
+    //     (e) => window.addEventListener(event, this.resizeAllGridItems)
+    //   );
+    // }
 
-      masonryEvents.forEach(function (e) {
-        return window.addEventListener(event, _this2.resizeAllGridItems);
-      });
-    }
   }, {
     key: "render",
     value: function render() {
@@ -3735,9 +3736,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -3745,6 +3746,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+var masonryEvents = ["load", "resize"];
 
 var PinIndexItem =
 /*#__PURE__*/
@@ -3758,21 +3760,33 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PinIndexItem).call(this, props));
     _this.state = _this.props.pin;
+    _this.resizeGridItem = _this.resizeGridItem.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(PinIndexItem, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
+    key: "resizeGridItem",
+    value: function resizeGridItem() {
       var item = document.getElementById(this.state.id);
       var grid = document.getElementById('grid');
       var rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
       var rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
+      var itemImg = item.querySelector(".masonry-image");
+      var rowSpan = Math.ceil((itemImg.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap)); // if (this.state.title !== '') rowSpan += 2;
+
+      item.style.gridRowEnd = "span " + rowSpan;
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
       setTimeout(function () {
-        var itemImg = item.querySelector(".masonry-image");
-        var rowSpan = Math.ceil((itemImg.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
-        item.style.gridRowEnd = "span " + rowSpan; // itemImg.style.height = '100%';
-      }, 500);
+        return _this2.resizeGridItem();
+      }, 1000);
+      masonryEvents.forEach(function (e) {
+        return window.addEventListener(e, _this2.resizeGridItem);
+      });
     }
   }, {
     key: "render",
@@ -38881,7 +38895,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

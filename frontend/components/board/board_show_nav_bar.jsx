@@ -35,6 +35,7 @@ class BoardShowNavBar extends React.Component {
   render() {
     const { openEditBoard, board, user } = this.props;
     const transition = (this.state.fadeInTitle) ? 'in' : 'out';
+    const klass = (location.hash.includes(user.username)) ? 'show' : 'hide';
 
     return (
       <div className="board-show navbar">

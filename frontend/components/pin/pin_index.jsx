@@ -29,11 +29,11 @@ class PinIndex extends React.Component {
     }
   }
 
-  componentDidMount() {
-    masonryEvents.forEach(
-      (e) => window.addEventListener(event, this.resizeAllGridItems)
-    );
-  }
+  // componentDidMount() {
+  //   masonryEvents.forEach(
+  //     (e) => window.addEventListener(event, this.resizeAllGridItems)
+  //   );
+  // }
 
   render() {
     const { currentUserId, user, page, pins, openEditPin, openNewBoardPin } = this.props;

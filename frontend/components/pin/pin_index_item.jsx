@@ -2,23 +2,30 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 
 
+const masonryEvents = ["load", "resize"];
+
 class PinIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.pin;
+
+    this.resizeGridItem = this.resizeGridItem.bind(this);
   }
 
-  componentDidMount() {
+  resizeGridItem() {
     let item = document.getElementById(this.state.id);
     let grid = document.getElementById('grid');
     let rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
     let rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
-    setTimeout(() => {
-      let itemImg = item.querySelector(".masonry-image");
-      let rowSpan = Math.ceil((itemImg.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
-      item.style.gridRowEnd = "span " + rowSpan;
-      // itemImg.style.height = '100%';
-    }, 700);
+    let itemImg = item.querySelector(".masonry-image");
+    let rowSpan = Math.ceil((itemImg.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
+    // if (this.state.title !== '') rowSpan += 2;
+    item.style.gridRowEnd = "span " + rowSpan;
+  }
+
+  componentDidMount() {
+    setTimeout(() => this.resizeGridItem(), 1000);
+    masonryEvents.forEach((e) => window.addEventListener(e, this.resizeGridItem));
   }
 
   render() {
