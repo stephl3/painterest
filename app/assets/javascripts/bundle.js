@@ -1053,7 +1053,7 @@ function (_Component) {
 
 BoardShow.defaultProps = {
   board: {
-    id: 1,
+    id: 0,
     title: 'boardman',
     description: 'boardman gets paid',
     secret: false,
@@ -1713,8 +1713,7 @@ function (_React$Component) {
       id: _this.props.board.id,
       title: _this.props.board.title,
       description: _this.props.board.description,
-      secret: _this.props.board.secret,
-      user_id: _this.props.board.userId
+      secret: _this.props.board.secret
     };
     _this.update = _this.update.bind(_assertThisInitialized(_this));
     _this.handleCheck = _this.handleCheck.bind(_assertThisInitialized(_this));
@@ -1736,18 +1735,19 @@ function (_React$Component) {
   }, {
     key: "handleCheck",
     value: function handleCheck(e) {
+      var _this3 = this;
+
       e.preventDefault();
-      var checkbox = document.getElementById('visibility-checkbox');
-
-      if (this.state.secret) {
-        checkbox.firstChild.classList.add('checked');
-      } else {
-        checkbox.firstChild.classList.remove('checked');
-      }
-
-      ;
       this.setState({
         "secret": !this.state.secret
+      }, function () {
+        var checkbox = document.getElementById('visibility-checkbox');
+
+        if (_this3.state.secret) {
+          checkbox.firstChild.classList.add('checked');
+        } else {
+          checkbox.firstChild.classList.remove('checked');
+        }
       });
     }
   }, {
@@ -1766,12 +1766,15 @@ function (_React$Component) {
     key: "handleSave",
     value: function handleSave(e) {
       e.preventDefault();
-      this.props.processForm(this.state).then(this.props.closeModal);
+      var username = this.props.currentUser.username;
+      this.props.processForm(this.state).then(this.props.closeModal).then(function () {
+        return location.href = "/#/".concat(username);
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var _this$props = this.props,
           board = _this$props.board,
@@ -1866,7 +1869,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "edit-board button delete",
         onClick: function onClick(e, boardId) {
-          return _this3.openDeleteBoard(e, board.id);
+          return _this4.openDeleteBoard(e, board.id);
         }
       }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "edit-board footer-part right"
@@ -1910,6 +1913,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
+    currentUser: state.entities.users[state.session.id],
     board: state.entities.boards[state.ui.objectId],
     errors: state.errors.board,
     formTitle: "Edit your board"
@@ -2508,9 +2512,14 @@ function (_React$Component) {
   }
 
   _createClass(NavBar, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchSingleUser(this.props.currentUser.id);
+    }
+  }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      window.location.reload();
+      location.reload();
     }
   }, {
     key: "render",
@@ -2643,11 +2652,13 @@ function (_React$Component) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _nav_bar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./nav_bar */ "./frontend/components/navbar/nav_bar.jsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _nav_bar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./nav_bar */ "./frontend/components/navbar/nav_bar.jsx");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+
 
 
 
@@ -2661,13 +2672,16 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    fetchSingleUser: function fetchSingleUser(id) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_4__["fetchSingleUser"])(id));
+    },
     logout: function logout() {
-      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["logout"])());
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["logout"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_nav_bar__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_nav_bar__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -3595,6 +3609,17 @@ function (_React$Component) {
       masonryEvents.forEach(function (e) {
         return window.addEventListener(event, _this2.resizeAllGridItems);
       });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      var _this3 = this;
+
+      if (this.props.pins !== prevProps.pins) {
+        setTimeout(function () {
+          return _this3.resizeAllGridItems();
+        }, 1000);
+      }
     }
   }, {
     key: "render",
@@ -4720,7 +4745,7 @@ var ProfileHeader = function ProfileHeader(_ref) {
   var user = _ref.user,
       openModal = _ref.openModal,
       closeModal = _ref.closeModal;
-  var klass = location.hash.endsWith(user.username) ? 'show' : 'hide';
+  var klass = location.hash.includes(user.username) ? 'show' : 'hide';
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-header"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5470,7 +5495,7 @@ function (_React$Component) {
       e.preventDefault();
       var user = Object.assign({}, this.state);
       this.props.processForm(user).then(this.props.closeModal).then(window.setTimeout(function () {
-        window.location.reload(false);
+        return location.reload();
       }, 1000));
     }
   }, {
@@ -5493,7 +5518,7 @@ function (_React$Component) {
             var demoUser = Object.assign({}, _this3.state);
 
             _this3.props.demoLogin(demoUser).then(_this3.props.closeModal).then(window.setTimeout(function () {
-              window.location.reload(false);
+              return location.reload();
             }, 1000));
           });
         });

@@ -8,8 +8,12 @@ class NavBar extends React.Component {
 
   }
 
+  componentDidMount() {
+    this.props.fetchSingleUser(this.props.currentUser.id);
+  }
+
   componentWillUnmount() {
-    window.location.reload();
+    location.reload();
   }
 
   render() {

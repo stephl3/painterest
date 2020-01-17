@@ -7,8 +7,7 @@ class EditBoardForm extends React.Component {
       id: this.props.board.id,
       title: this.props.board.title,
       description: this.props.board.description,
-      secret: this.props.board.secret,
-      user_id: this.props.board.userId
+      secret: this.props.board.secret
     };
 
     this.update = this.update.bind(this);
@@ -27,14 +26,14 @@ class EditBoardForm extends React.Component {
   handleCheck(e) {
     e.preventDefault();
 
-    const checkbox = document.getElementById('visibility-checkbox');
-    if (this.state.secret) {
-      checkbox.firstChild.classList.add('checked');
-    } else {
-      checkbox.firstChild.classList.remove('checked');
-    };
-    
-    this.setState({ "secret": !this.state.secret });
+    this.setState({ "secret": !this.state.secret }, () => {
+      const checkbox = document.getElementById('visibility-checkbox');
+      if (this.state.secret) {
+        checkbox.firstChild.classList.add('checked');
+      } else {
+        checkbox.firstChild.classList.remove('checked');
+      }
+    });
   }
 
   openDeleteBoard(e, boardId) {
@@ -49,8 +48,10 @@ class EditBoardForm extends React.Component {
 
   handleSave(e) {
     e.preventDefault();
+    const username = this.props.currentUser.username;
     this.props.processForm(this.state)
-      .then(this.props.closeModal);
+      .then(this.props.closeModal)
+      .then(() => location.href = `/#/${username}`)
   }
 
   render() {

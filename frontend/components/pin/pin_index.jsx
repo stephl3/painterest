@@ -36,6 +36,12 @@ class PinIndex extends React.Component {
     );
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.pins !== prevProps.pins) {
+      setTimeout(() => this.resizeAllGridItems(), 1000);
+    }
+  }
+
   render() {
     const { currentUser, page, pins, loading,
       openEditPin, openNewBoardPin, createBoardPin } = this.props;

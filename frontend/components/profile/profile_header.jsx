@@ -4,7 +4,7 @@ import ProfileNavBar from "./profile_nav_bar";
 import ProfileDetails from "./profile_details";
 
 const ProfileHeader = ({ user, openModal, closeModal }) => {
-  const klass = (location.hash.endsWith(user.username)) ? 'show' : 'hide';
+  const klass = (location.hash.includes(user.username)) ? 'show' : 'hide';
 
   return (
     <div id="profile-header">

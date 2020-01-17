@@ -6,6 +6,7 @@ import { updateBoard } from "../../../actions/board_actions";
 import { openModal, closeModal } from "../../../actions/modal_actions";
 
 const mapStateToProps = (state) => ({
+  currentUser: state.entities.users[state.session.id],
   board: state.entities.boards[state.ui.objectId],
   errors: state.errors.board,
   formTitle: "Edit your board"

@@ -77,7 +77,7 @@ export default class BoardShow extends Component {
 
 BoardShow.defaultProps = {
   board: {
-    id: 1,
+    id: 0,
     title: 'boardman',
     description: 'boardman gets paid',
     secret: false,
