@@ -2030,6 +2030,10 @@ function (_React$Component) {
         return board.userId === currentUserId;
       });
       var boardListItems = boards.map(function (board) {
+        var firstPinPhoto = board.firstPin !== undefined ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: board.firstPin.photo,
+          className: "board-list-item photo"
+        }) : null;
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: board.id,
           className: "create-board-pin board-list-item",
@@ -2037,10 +2041,7 @@ function (_React$Component) {
           onClick: _this3.handleSave
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "board-list-item photo-container"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: board.firstPin.photo,
-          className: "board-list-item photo"
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, firstPinPhoto), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "board-list-item title"
         }, board.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "board-list-item save-button"
@@ -2049,8 +2050,7 @@ function (_React$Component) {
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "save-text"
         }, "\xA0Save")));
-      }); // debugger
-
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-board-pin container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4677,7 +4677,6 @@ function (_React$Component) {
       var userPins = pins.filter(function (pin) {
         return pin.userId === user.id;
       });
-      debugger;
       var contentTabs = [react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         user: user,
         boards: userBoards

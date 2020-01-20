@@ -25,26 +25,32 @@ class CreateBoardPinForm extends React.Component {
     // debugger;
     const { currentUserId, pin, allBoards, closeModal } = this.props;
     const boards = allBoards.filter(board => board.userId === currentUserId);
-    const boardListItems = boards.map(board => (
-      <li
-        key={board.id}
-        className="create-board-pin board-list-item"
-        value={board.id}
-        onClick={this.handleSave}
-      >
-        <div className="board-list-item photo-container">
-          <img src={board.firstPin.photo} className="board-list-item photo"/>
-        </div>
-        <div className="board-list-item title">
-          {board.title}
-        </div>
-        <div className="board-list-item save-button">
-          <i className="fas fa-thumbtack save-icon"></i>
-          <div className="save-text">&nbsp;Save</div>
-        </div>
-      </li>
-    ))
-    // debugger
+    const boardListItems = boards.map(board =>  {
+      const firstPinPhoto = (board.firstPin !== undefined) ? (
+        <img src={board.firstPin.photo} className="board-list-item photo" />
+      ) : null;
+
+      return (
+        <li
+          key={board.id}
+          className="create-board-pin board-list-item"
+          value={board.id}
+          onClick={this.handleSave}
+        >
+          <div className="board-list-item photo-container">
+            {firstPinPhoto}
+          </div>
+          <div className="board-list-item title">
+            {board.title}
+          </div>
+          <div className="board-list-item save-button">
+            <i className="fas fa-thumbtack save-icon"></i>
+            <div className="save-text">&nbsp;Save</div>
+          </div>
+        </li>
+      )
+    })
+
     return (
       <div className="create-board-pin container">
         <div className="create-board-pin header">
