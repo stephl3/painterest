@@ -8,10 +8,15 @@
 
 require "open-uri"
 
+### DESTROY ALL
 User.destroy_all
 Board.destroy_all
 Pin.destroy_all
+BoardsPins.destroy_all
 
+
+
+### USERS
 user = User.create(
   username: 'bob_ross',
   first_name: 'Bob',
@@ -22,52 +27,130 @@ user = User.create(
   description: 'We don\'t make mistakes, just happy little accidents.'
 )
 
-file = open("https://painterest-seeds.s3-us-west-1.amazonaws.com/bob_ross.jpg")
+file = open("https://painterest-seeds.s3-us-west-1.amazonaws.com/profile_photos/bob_ross.jpg")
 user.photo.attach(io: file, filename: "bob_ross.jpg")
 
 user = User.create(
   username: 'king_james',
   first_name: 'LeBron',
   last_name: 'James',
-  email: 'king_james@lakers.com',
+  email: 'king_james@gmail.com',
   password: 'password123',
-  location: 'Akron, OH',
+  location: 'Los Angeles, CA',
   description: 'Strive For Greatness'
 )
 
-file = open("https://painterest-seeds.s3-us-west-1.amazonaws.com/lebron_james.jpeg")
-user.photo.attach(io: file, filename: "lebron_james.jpeg")
-
+file = open("https://painterest-seeds.s3-us-west-1.amazonaws.com/profile_photos/lebron_james.jpg")
+user.photo.attach(io: file, filename: "lebron_james.jpg")
 
 user = User.create(
   username: 'big_brow',
   first_name: 'Anthony',
   last_name: 'Davis',
-  email: 'big_brow@lakers.com',
+  email: 'big_brow@gmail.com',
   password: 'password123',
-  location: 'Chicago, IL',
+  location: 'Los Angeles, CA',
   description: 'Fear The Brow'
 )
 
+file = open("https://painterest-seeds.s3-us-west-1.amazonaws.com/profile_photos/anthony_davis.jpg")
+user.photo.attach(io: file, filename: "anthony_davis.jpg")
+
+user = User.create(
+  username: 'chef_curry',
+  first_name: 'Stephen',
+  last_name: 'Curry',
+  email: 'chef_curry@gmail.com',
+  password: 'password123',
+  location: 'San Francisco, CA',
+  description: 'I Can Do All Things'
+)
+
+file = open("https://painterest-seeds.s3-us-west-1.amazonaws.com/profile_photos/steph_curry.jpg")
+user.photo.attach(io: file, filename: "steph_curry.jpg")
+
+user = User.create(
+  username: 'klay',
+  first_name: 'Klay',
+  last_name: 'Thompson',
+  email: 'klay@gmail.com',
+  password: 'password123',
+  location: 'Oakland, CA',
+  description: 'I signed a toaster.'
+)
+
+file = open("https://painterest-seeds.s3-us-west-1.amazonaws.com/profile_photos/klay_thompson.jpg")
+user.photo.attach(io: file, filename: "klay_thompson.jpg")
 
 
-file = open("https://painterest-seeds.s3-us-west-1.amazonaws.com/anthony_davis.jpeg")
-user.photo.attach(io: file, filename: "anthony_davis.jpeg")
+
+### BOARDS
+Board.create(
+  title: "By the water",
+  description: "My favorite Bob Ross paintings by the water",
+  secret: false,
+  user_id: 2
+)
 
 Board.create(
-  title: "paintings",
-  description: "paintings, paintings, and more paintings",
+  title: "Evergreens",
+  description: "My favorite Bob Ross paintings with Evergreens",
+  secret: false,
+  user_id: 3
+)
+
+Board.create(
+  title: "Tranquil Forest",
+  description: "My favorite Bob Ross paintings of forests",
+  secret: false,
+  user_id: 4
+)
+
+Board.create(
+  title: "Winter is coming",
+  description: "My favorite Bob Ross paintings of winter",
+  secret: false,
+  user_id: 5
+)
+
+Board.create(
+  title: "Abstract Artwork",
+  description: "Amazing collection to add at home",
+  secret: true,
+  user_id: 1
+)
+
+Board.create(
+  title: "Aesthetic Animals",
+  description: "Lovely creatures to be admired",
   secret: false,
   user_id: 1
 )
 
 Board.create(
-  title: "Bob Ross paintings",
-  description: "no mistakes, just happy accidents",
+  title: "Nature's Beauty",
+  description: "Truly remarkable work",
   secret: false,
-  user_id: 3
+  user_id: 1
 )
 
+Board.create(
+  title: "Lavish Lands",
+  description: "Every place has a story",
+  secret: false,
+  user_id: 2
+)
+
+Board.create(
+  title: "People Paintings",
+  description: "Everyone has a story",
+  secret: false,
+  user_id: 4
+)
+
+
+
+### PINS
 pin = Pin.create(
   title: "Bob Ross painting 243",
   description: "Bob Ross painting 243",
