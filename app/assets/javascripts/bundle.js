@@ -4214,12 +4214,12 @@ function (_React$Component) {
       var user = this.props.currentUser;
       var initialState = Object.assign({}, {
         id: user.id,
-        first_name: user.firstName,
-        last_name: user.lastName,
+        first_name: user.firstName || "",
+        last_name: user.lastName || "",
         username: user.username,
         email: user.email,
-        description: user.description,
-        location: user.location,
+        description: user.description || "",
+        location: user.location || "",
         photo: user.photo,
         photoPreview: null
       });
@@ -4738,7 +4738,21 @@ __webpack_require__.r(__webpack_exports__);
 
 var ProfileDetails = function ProfileDetails(_ref) {
   var user = _ref.user;
-  var name = user.firstName === "" ? user.username : user.firstName + " " + user.lastName; // debugger;
+  var name = user.firstName ? user.firstName + " " + user.lastName : user.username;
+  var personalInfo = user.location && user.description ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "profile-personal"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, user.location, " \xB7 ", user.description)) : null;
+  var profilePhoto = user.photo ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: user.photo,
+    alt: "profile-pic",
+    id: "profile-photo"
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-user-circle",
+    id: "profile-photo",
+    style: {
+      "color": "#8e8e8e"
+    }
+  }); // debugger;
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-details-background"
@@ -4772,17 +4786,11 @@ var ProfileDetails = function ProfileDetails(_ref) {
     className: "profile-follows-link"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "1 following"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-personal-container"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "profile-personal"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, user.location, " \xB7 ", user.description))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, personalInfo))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-image-container-outer"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "profile-image-frame"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: user.photo,
-    alt: "profile-pic",
-    id: "profile-photo"
-  })))));
+  }, profilePhoto))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProfileDetails);
@@ -4951,6 +4959,7 @@ function (_React$Component) {
           user = _this$props.user,
           openModal = _this$props.openModal,
           closeModal = _this$props.closeModal;
+      var name = user.firstName ? user.firstName + " " + user.lastName : user.username;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "profile-nav-bar-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5031,7 +5040,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "nav-bar-name",
         className: this.state.fadeInName ? "transitionIn" : "transitionOut"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, user.firstName + " " + user.lastName))))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, name))))));
     }
   }]);
 

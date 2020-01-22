@@ -54,6 +54,7 @@ class ProfileNavBar extends React.Component {
 
   render() {
     const { user, openModal, closeModal } = this.props;
+    const name = (user.firstName) ? (user.firstName + " " + user.lastName) : user.username;
 
     return (
       <div id="profile-nav-bar-wrapper">
@@ -118,7 +119,7 @@ class ProfileNavBar extends React.Component {
           <div id="nav-bar-name-container">
             <div id="nav-bar-name-fixed">
               <div id="nav-bar-name" className={this.state.fadeInName ? "transitionIn" : "transitionOut"}>
-                <h3>{user.firstName + " " + user.lastName}</h3>
+                <h3>{name}</h3>
               </div>
             </div>
           </div>

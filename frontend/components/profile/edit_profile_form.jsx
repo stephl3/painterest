@@ -17,12 +17,12 @@ class EditProfileForm extends React.Component {
     const user = this.props.currentUser;
     const initialState = Object.assign({}, {
       id: user.id,
-      first_name: user.firstName,
-      last_name: user.lastName,
+      first_name: user.firstName || "",
+      last_name: user.lastName || "",
       username: user.username,
       email: user.email,
-      description: user.description,
-      location: user.location,
+      description: user.description || "",
+      location: user.location || "",
       photo: user.photo,
       photoPreview: null
     });

@@ -49,6 +49,8 @@ user = User.create(
   description: 'Fear The Brow'
 )
 
+
+
 file = open("https://painterest-seeds.s3-us-west-1.amazonaws.com/anthony_davis.jpeg")
 user.photo.attach(io: file, filename: "anthony_davis.jpeg")
 

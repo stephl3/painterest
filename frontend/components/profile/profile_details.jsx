@@ -2,11 +2,18 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const ProfileDetails = ({ user }) => {
-  const name = (user.firstName === "") ? (
-    user.username
+  const name = (user.firstName) ? (user.firstName + " " + user.lastName) : user.username;
+  const personalInfo = (user.location && user.description) ? (
+    <div id="profile-personal">
+      <h4>{user.location} · {user.description}</h4>
+    </div>
+  ) : null;
+  const profilePhoto = (user.photo) ? (
+    <img src={user.photo} alt="profile-pic" id="profile-photo" />
   ) : (
-    user.firstName + " " + user.lastName
-  )
+    <i className="fas fa-user-circle" id="profile-photo" style={{ "color": "#8e8e8e" }}></i>
+  );
+
   // debugger;
   return (
     <div id="profile-details-background">
@@ -38,15 +45,13 @@ const ProfileDetails = ({ user }) => {
               </div>
             </div>
             <div id="profile-personal-container">
-              <div id="profile-personal">
-                <h4>{user.location} · {user.description}</h4>
-              </div>
+              {personalInfo}
             </div>
           </div>
         </div>
         <div id="profile-image-container-outer">
           <div id="profile-image-frame">
-            <img src={user.photo} alt="profile-pic" id="profile-photo" />
+            {profilePhoto}
           </div>
         </div>
       </div>
