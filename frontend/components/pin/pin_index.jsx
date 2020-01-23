@@ -30,23 +30,23 @@ class PinIndex extends React.Component {
   //   window.removeEventListener("scroll", this.handleScroll);
   // }
 
-  componentDidUpdate(prevProps, prevState) {
-    // debugger;
-    const pins = this.props.pins;
-    if (prevProps.pins.length !== this.props.pins.length) {
-      // window.addEventListener("scroll", this.handleScroll);
-      const pinSets = this.splitPins(pins);
-      this.setState({ pinSets: pinSets }, () => {
-        // debugger
-        if (this.state.pinSetIdx === 0) this.setState({ loadedPins: pinSets.slice(0,2) })
-      });
-    }
-    // if (prevState.pinSetIdx !== this.state.pinSetIdx) {
-    //   // debugger
-    //   const updatedPins = this.pinSets[this.state.pinSetIdx];
-    //   this.setState({ loadedPins: this.state.loadedPins.concat(updatedPins) })
-    // }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   // debugger;
+  //   const pins = this.props.pins;
+  //   if (prevProps.pins.length !== this.props.pins.length) {
+  //     // window.addEventListener("scroll", this.handleScroll);
+  //     const pinSets = this.splitPins(pins);
+  //     this.setState({ pinSets: pinSets }, () => {
+  //       // debugger
+  //       if (this.state.pinSetIdx === 0) this.setState({ loadedPins: pinSets.slice(0,2) })
+  //     });
+  //   }
+  //   // if (prevState.pinSetIdx !== this.state.pinSetIdx) {
+  //   //   // debugger
+  //   //   const updatedPins = this.pinSets[this.state.pinSetIdx];
+  //   //   this.setState({ loadedPins: this.state.loadedPins.concat(updatedPins) })
+  //   // }
+  // }
 
   splitPins(pins) {
     const arr = [];
@@ -92,9 +92,9 @@ class PinIndex extends React.Component {
   // }
 
   render() {
-    const { page, currentUserId, user, openEditPin, openNewBoardPin } = this.props;
+    const { page, pins, currentUserId, user, openEditPin, openNewBoardPin } = this.props;
     // debugger
-    const pinIndexItems = this.state.loadedPins.flat().map(pin => (
+    const pinIndexItems = pins.map(pin => (
       <PinIndexItem
         key={pin.id}
         page={page}

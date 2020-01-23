@@ -14,10 +14,7 @@ import CreateBoardPinFormContainer from "../board_pin/create_board_pin_form_cont
 
 
 const Modal = ({ modal, openModal, closeModal }) => {
-  // debugger
-  if (!modal) {
-    return null;
-  }
+  if (!modal) return null;
   
   let component, switchFormValue, altModal, clickBackground;
   switch (modal) {
@@ -33,10 +30,10 @@ const Modal = ({ modal, openModal, closeModal }) => {
       component = <SignupFormContainer />;
       clickBackground = null;
       break;
-    case "search":
-      component = <SearchContainer />;
-      clickBackground = closeModal;
-      break;
+    // case "search":
+    //   component = <SearchContainer />;
+    //   clickBackground = closeModal;
+    //   break;
     case "new-board":
       component = <CreateBoardFormContainer />;
       clickBackground = closeModal;
@@ -63,7 +60,7 @@ const Modal = ({ modal, openModal, closeModal }) => {
       break;
     default:
       return null;
-  }
+  };
 
   const switchFormButton = (switchFormValue) ? (
     <button className="switch-form-button" onClick={() => openModal(altModal)}>
@@ -71,9 +68,7 @@ const Modal = ({ modal, openModal, closeModal }) => {
         {switchFormValue}
       </div>
     </button>
-  ) : (
-    null
-  );
+  ) : null;
 
   return (
     <div className="modal-container">

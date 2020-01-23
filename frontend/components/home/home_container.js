@@ -12,10 +12,10 @@ const mapStateToProps = state => {
   // debugger;
   const currentUserId = state.session.id;
   const allPins = Object.values(state.entities.pins);
-  const pins = (state.session.id) ? (
-    allPins
-  ) : (
+  const pins = (currentUserId === null) ? (
     allPins.slice(180, 220)
+  ) : (
+    allPins
   );
   const loading = state.ui.loading;
 

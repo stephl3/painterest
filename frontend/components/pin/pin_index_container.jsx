@@ -1,10 +1,7 @@
 import { connect } from "react-redux";
 import PinIndex from "./pin_index";
 
-import {
-  fetchPins,
-  updatePin
-} from "../../actions/pin_actions";
+import { fetchPins } from "../../actions/pin_actions";
 import { openModal } from "../../actions/modal_actions";
 
 const mapStateToProps =(state, ownProps) => {

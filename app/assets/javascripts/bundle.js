@@ -2204,7 +2204,17 @@ function (_React$Component) {
   _createClass(Home, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchPins();
+      var _this = this;
+
+      if (this.props.currentUserId === null) {
+        this.props.fetchPins();
+      } else {
+        this.props.startLoading();
+        this.props.fetchPins();
+        setTimeout(function () {
+          return _this.props.stopLoading();
+        }, 2800);
+      }
     }
   }, {
     key: "render",
@@ -2230,11 +2240,11 @@ function (_React$Component) {
         className: "loading-background"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "loading"
-      })) : null; // debugger;
-
+      })) : null;
       var otherPins = shuffle(pins.filter(function (pin) {
         return pin.userId !== currentUserId;
-      }));
+      })); // debugger;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "home-container ".concat(klass)
       }, spacer, loader, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_pin_index_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -2308,7 +2318,7 @@ var mapStateToProps = function mapStateToProps(state) {
   // debugger;
   var currentUserId = state.session.id;
   var allPins = Object.values(state.entities.pins);
-  var pins = state.session.id ? allPins : allPins.slice(180, 220);
+  var pins = currentUserId === null ? allPins.slice(180, 220) : allPins;
   var loading = state.ui.loading;
   return {
     currentUserId: currentUserId,
@@ -2376,12 +2386,7 @@ var Modal = function Modal(_ref) {
   var modal = _ref.modal,
       openModal = _ref.openModal,
       closeModal = _ref.closeModal;
-
-  // debugger
-  if (!modal) {
-    return null;
-  }
-
+  if (!modal) return null;
   var component, switchFormValue, altModal, clickBackground;
 
   switch (modal) {
@@ -2398,11 +2403,10 @@ var Modal = function Modal(_ref) {
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_signup_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
       clickBackground = null;
       break;
-
-    case "search":
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_search_container__WEBPACK_IMPORTED_MODULE_5__["default"], null);
-      clickBackground = closeModal;
-      break;
+    // case "search":
+    //   component = <SearchContainer />;
+    //   clickBackground = closeModal;
+    //   break;
 
     case "new-board":
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_form_create_board_form_container__WEBPACK_IMPORTED_MODULE_6__["default"], null);
@@ -2442,6 +2446,7 @@ var Modal = function Modal(_ref) {
       return null;
   }
 
+  ;
   var switchFormButton = switchFormValue ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "switch-form-button",
     onClick: function onClick() {
@@ -3616,35 +3621,26 @@ function (_React$Component) {
   // componentWillUnmount() {
   //   window.removeEventListener("scroll", this.handleScroll);
   // }
+  // componentDidUpdate(prevProps, prevState) {
+  //   // debugger;
+  //   const pins = this.props.pins;
+  //   if (prevProps.pins.length !== this.props.pins.length) {
+  //     // window.addEventListener("scroll", this.handleScroll);
+  //     const pinSets = this.splitPins(pins);
+  //     this.setState({ pinSets: pinSets }, () => {
+  //       // debugger
+  //       if (this.state.pinSetIdx === 0) this.setState({ loadedPins: pinSets.slice(0,2) })
+  //     });
+  //   }
+  //   // if (prevState.pinSetIdx !== this.state.pinSetIdx) {
+  //   //   // debugger
+  //   //   const updatedPins = this.pinSets[this.state.pinSetIdx];
+  //   //   this.setState({ loadedPins: this.state.loadedPins.concat(updatedPins) })
+  //   // }
+  // }
 
 
   _createClass(PinIndex, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps, prevState) {
-      var _this2 = this;
-
-      // debugger;
-      var pins = this.props.pins;
-
-      if (prevProps.pins.length !== this.props.pins.length) {
-        // window.addEventListener("scroll", this.handleScroll);
-        var pinSets = this.splitPins(pins);
-        this.setState({
-          pinSets: pinSets
-        }, function () {
-          // debugger
-          if (_this2.state.pinSetIdx === 0) _this2.setState({
-            loadedPins: pinSets.slice(0, 2)
-          });
-        });
-      } // if (prevState.pinSetIdx !== this.state.pinSetIdx) {
-      //   // debugger
-      //   const updatedPins = this.pinSets[this.state.pinSetIdx];
-      //   this.setState({ loadedPins: this.state.loadedPins.concat(updatedPins) })
-      // }
-
-    }
-  }, {
     key: "splitPins",
     value: function splitPins(pins) {
       var arr = [];
@@ -3691,12 +3687,13 @@ function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           page = _this$props.page,
+          pins = _this$props.pins,
           currentUserId = _this$props.currentUserId,
           user = _this$props.user,
           openEditPin = _this$props.openEditPin,
           openNewBoardPin = _this$props.openNewBoardPin; // debugger
 
-      var pinIndexItems = this.state.loadedPins.flat().map(function (pin) {
+      var pinIndexItems = pins.map(function (pin) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: pin.id,
           page: page,
@@ -3841,7 +3838,7 @@ function (_React$Component) {
 
       setTimeout(function () {
         return _this2.resizeGridItem();
-      }, 1000);
+      }, 1500);
       masonryEvents.forEach(function (e) {
         return window.addEventListener(e, _this2.resizeGridItem);
       });
@@ -38951,7 +38948,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

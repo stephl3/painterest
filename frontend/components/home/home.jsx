@@ -24,7 +24,13 @@ class Home extends React.Component {
   // }
 
   componentDidMount() {
-    this.props.fetchPins();
+    if (this.props.currentUserId === null) {
+      this.props.fetchPins();
+    } else {
+      this.props.startLoading();
+      this.props.fetchPins();
+      setTimeout(() => this.props.stopLoading(), 2800);
+    }
   }
 
   render() {
@@ -43,8 +49,9 @@ class Home extends React.Component {
         <div className="loading"></div>
       </div>
     ) : null;
-    // debugger;
     const otherPins = shuffle(pins.filter(pin => pin.userId !== currentUserId));
+    // debugger;
+
     return (
       <div className={`home-container ${klass}`}>
         {spacer}

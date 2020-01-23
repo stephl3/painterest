@@ -24,7 +24,7 @@ class PinIndexItem extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => this.resizeGridItem(), 1000);
+    setTimeout(() => this.resizeGridItem(), 1500);
     masonryEvents.forEach((e) => window.addEventListener(e, this.resizeGridItem));
   }
 
