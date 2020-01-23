@@ -29,6 +29,11 @@ A tough challenge was implementing a flexible and responsive horizontal masonry 
 
 <details>
   <summary>Click to expand</summary>
+  ```scss
+    .pin-index#grid-container {
+       position: absolute;
+    }
+  ```
   <style type="text/css">
     
     .pin-index#grid-container {
@@ -170,7 +175,7 @@ Utilized lightweight, multi-purpose modals for all forms which significantly DRY
     );
   };
   ```
-<details>
+</details>
 
 ## Main Features
 * User authentication built using backend Rails validations with regex and secure BCrypt password hashing
