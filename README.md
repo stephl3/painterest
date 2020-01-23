@@ -22,20 +22,15 @@ Painterest is a social media application that enables users to connect and share
 #### Responsive Pin Index
 
 <p align="center">
-  <img src="https://i.pinimg.com/originals/2d/ce/71/2dce71e32a1a089cb5a3254cc9b65cf0.gif" width="100%" />
+  <img src="https://i.pinimg.com/originals/83/1d/b0/831db0640375666fcb24f6c7bef3e4e8.gif" width="100%" />
 </p>
 
 A tough challenge was implementing a flexible and responsive horizontal masonry layout when displaying Pins. Utilizing CSS grid and media queries, the `PinIndex` responsively adjusts column count depending on the device's screen width.
 
 <details>
   <summary>Click to expand</summary>
+
   ```scss
-    .pin-index#grid-container {
-       position: absolute;
-    }
-  ```
-  <style type="text/css">
-    
     .pin-index#grid-container {
       position: absolute;
       @media (max-width: 755px) and (min-width: 0px) {
@@ -75,7 +70,18 @@ A tough challenge was implementing a flexible and responsive horizontal masonry 
         width: 3276px;
       } 
     }
-  </style>
+    
+    .pin-index#grid {
+      width: 100%;
+      min-width: 550px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(252px,1fr));
+      grid-row-gap: 10px;
+      grid-auto-rows: 2px;
+      justify-items: center;
+      justify-content: center;
+    }
+  ```
 </details>
 
 Coupling these techniques with Vanilla JavaScript within the `PinIndexItem` component, the Pins flexibly resize according to the size of each Pin's attached image.
