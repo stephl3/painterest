@@ -2,7 +2,7 @@
 Painterest is a social media application that enables users to connect and share ideas in the form of paintings inspired by [Pinterest](https://www.pinterest.com/). Painterest is built on a Ruby on Rails backend, utilizing PostgreSQL and AWS S3 for data storage. React and Redux are the main libraries used for the frontend, along with HTML and CSS, with Heroku used for app deployment.
 
 <p align="center">
-  <img src="https://i.pinimg.com/originals/4b/e2/de/4be2ded5919bf134d5339b050595ef98.png" width="100%" />
+  <img src="https://i.pinimg.com/originals/4b/e2/de/4be2ded5919bf134d5339b050595ef98.png" width="85%" />
 </p>
 
 
@@ -22,7 +22,7 @@ Painterest is a social media application that enables users to connect and share
 #### Responsive Pin Index
 
 <p align="center">
-  <img src="https://i.pinimg.com/originals/11/46/cb/1146cba17deac67cb70bbb04a193c969.gif" width="80%" />
+  <img src="https://i.pinimg.com/originals/11/46/cb/1146cba17deac67cb70bbb04a193c969.gif" width="85%" />
 </p>
 
 A tough challenge was implementing a flexible and responsive horizontal masonry layout when displaying Pins. Utilizing CSS grid and media queries, the `PinIndex` responsively adjusts column count depending on the device's screen width.
@@ -105,7 +105,7 @@ Coupling these techniques with Vanilla JavaScript within the `PinIndexItem` comp
 #### Modals
 
 <p align="center">
-  <img src="https://i.pinimg.com/originals/08/36/80/0836803a154852459cde5e30b939d916.gif" width="80%" />
+  <img src="https://i.pinimg.com/originals/08/36/80/0836803a154852459cde5e30b939d916.gif" width="85%" />
 </p>
 
 Utilized lightweight, multi-purpose modals for all forms which significantly DRYed up code.
