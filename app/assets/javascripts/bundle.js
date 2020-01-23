@@ -2318,8 +2318,9 @@ var mapStateToProps = function mapStateToProps(state) {
   // debugger;
   var currentUserId = state.session.id;
   var allPins = Object.values(state.entities.pins);
-  var pins = currentUserId === null ? allPins.slice(180, 220) : allPins;
+  var pins = currentUserId ? allPins : allPins.slice(0, 30);
   var loading = state.ui.loading;
+  debugger;
   return {
     currentUserId: currentUserId,
     pins: pins,
