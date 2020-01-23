@@ -22,7 +22,7 @@ Painterest is a social media application that enables users to connect and share
 #### Responsive Pin Index
 
 <p align="center">
-  <img src="https://i.pinimg.com/originals/ce/09/13/ce0913c539a28e46b7eb274305093f5d.gif" width="80%" />
+  <img src="https://i.pinimg.com/originals/11/46/cb/1146cba17deac67cb70bbb04a193c969.gif" width="80%" />
 </p>
 
 A tough challenge was implementing a flexible and responsive horizontal masonry layout when displaying Pins. Utilizing CSS grid and media queries, the `PinIndex` responsively adjusts column count depending on the device's screen width.
