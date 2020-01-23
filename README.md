@@ -22,7 +22,7 @@ Painterest is a social media application that enables users to connect and share
 #### Responsive Pin Index
 
 <p align="center">
-  <img src="https://i.pinimg.com/originals/2d/ce/71/2dce71e32a1a089cb5a3254cc9b65cf0.gif" />
+  <img src="https://i.pinimg.com/originals/2d/ce/71/2dce71e32a1a089cb5a3254cc9b65cf0.gif" width="100%" />
 </p>
 
 A tough challenge was implementing a flexible and responsive horizontal masonry layout when displaying Pins. Utilizing CSS grid and media queries, the `PinIndex` responsively adjusts column count depending on the device's screen width.
@@ -94,7 +94,7 @@ Coupling these techniques with Vanilla JavaScript within the `PinIndexItem` comp
 #### Modals
 
 <p align="center">
-  <img src="https://i.pinimg.com/originals/08/36/80/0836803a154852459cde5e30b939d916.gif" />
+  <img src="https://i.pinimg.com/originals/08/36/80/0836803a154852459cde5e30b939d916.gif" width="100%" />
 </p>
 
 Utilized lightweight, multi-purpose modals for all forms which significantly DRYed up code.
