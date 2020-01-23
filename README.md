@@ -1,7 +1,8 @@
 # [Painterest](https://painterest.herokuapp.com/#/)
 Painterest is a social media application that enables users to connect and share ideas in the form of paintings inspired by [Pinterest](https://www.pinterest.com/). Painterest is built on a Ruby on Rails backend, utilizing PostgreSQL and AWS S3 for data storage. React and Redux are the main libraries used for the frontend, along with HTML and CSS, with Heroku used for app deployment.
+
 <p align="center">
-  <img src="" width="100%" />
+  <img src="https://i.pinimg.com/originals/4b/e2/de/4be2ded5919bf134d5339b050595ef98.png" width="100%" />
 </p>
 
 
@@ -19,14 +20,17 @@ Painterest is a social media application that enables users to connect and share
 
 ## Highlights
 #### Responsive Pin Index
-(gif)<p align="center">
-  <img src="" width="100%" />
+
+<p align="center">
+  <img src="https://i.pinimg.com/originals/2d/ce/71/2dce71e32a1a089cb5a3254cc9b65cf0.gif" />
 </p>
 
 A tough challenge was implementing a flexible and responsive horizontal masonry layout when displaying Pins. Utilizing CSS grid and media queries, the `PinIndex` responsively adjusts column count depending on the device's screen width.
+
 <details>
   <summary>Click to expand</summary>
-  <style type="text/css">   
+  <style type="text/css">
+    
     .pin-index#grid-container {
       position: absolute;
       @media (max-width: 755px) and (min-width: 0px) {
@@ -73,6 +77,7 @@ Coupling these techniques with Vanilla JavaScript within the `PinIndexItem` comp
 
 <details>
   <summary>Click to expand</summary>
+  
   ```javascript
   resizeGridItem() {
     let item = document.getElementById(this.state.id);
@@ -87,107 +92,91 @@ Coupling these techniques with Vanilla JavaScript within the `PinIndexItem` comp
 </details>
 
 #### Modals
-(gif)<p align="center">
-  <img src="" width="100%" />
+
+<p align="center">
+  <img src="https://i.pinimg.com/originals/08/36/80/0836803a154852459cde5e30b939d916.gif" />
 </p>
+
+Utilized lightweight, multi-purpose modals for all forms which significantly DRYed up code.
 
 <details>
   <summary>Click to expand</summary>
+  
   ```javascript
   const Modal = ({ modal, openModal, closeModal }) => {
-  // debugger
-  if (!modal) {
-    return null;
-  }
+    if (!modal) return null;
   
-  let component, switchFormValue, altModal, clickBackground;
-  switch (modal) {
-    case "login":
-      switchFormValue = "Sign up";
-      altModal = "signup"
-      component = <LoginFormContainer />;
-      clickBackground = null;
-      break;
-    case "signup":
-      switchFormValue = "Log in";
-      altModal = "login";
-      component = <SignupFormContainer />;
-      clickBackground = null;
-      break;
-    case "search":
-      component = <SearchContainer />;
-      clickBackground = closeModal;
-      break;
-    case "new-board":
-      component = <CreateBoardFormContainer />;
-      clickBackground = closeModal;
-      break;
-    case "edit-board":
-      component = <EditBoardFormContainer />;
-      clickBackground = closeModal;
-      break;
-    case "delete-board":
-      component = <DeleteBoardFormContainer />;
-      clickBackground = null;
-      break;
-    case "edit-pin":
-      component = <EditPinFormContainer />;
-      clickBackground = closeModal;
-      break;
-    case "delete-pin":
-      component = <DeletePinFormContainer />;
-      clickBackground = () => openModal('edit-pin');
-      break;
-    case "new-board-pin":
-      component = <CreateBoardPinFormContainer />;
-      clickBackground = closeModal;
-      break;
-    default:
-      return null;
-  }
+    let component, switchFormValue, altModal, clickBackground;
+    switch (modal) {
+      case "login":
+        switchFormValue = "Sign up";
+        altModal = "signup"
+        component = <LoginFormContainer />;
+        clickBackground = null;
+        break;
+      case "signup":
+        switchFormValue = "Log in";
+        altModal = "login";
+        component = <SignupFormContainer />;
+        clickBackground = null;
+        break;
+      case "new-board":
+        component = <CreateBoardFormContainer />;
+        clickBackground = closeModal;
+        break;
+      case "edit-board":
+        component = <EditBoardFormContainer />;
+        clickBackground = closeModal;
+        break;
+      case "delete-board":
+        component = <DeleteBoardFormContainer />;
+        clickBackground = null;
+        break;
+      case "edit-pin":
+        component = <EditPinFormContainer />;
+        clickBackground = closeModal;
+        break;
+      case "delete-pin":
+        component = <DeletePinFormContainer />;
+        clickBackground = () => openModal('edit-pin');
+        break;
+      case "new-board-pin":
+        component = <CreateBoardPinFormContainer />;
+        clickBackground = closeModal;
+        break;
+      default:
+        return null;
+    };
 
-  const switchFormButton = (switchFormValue) ? (
-    <button className="switch-form-button" onClick={() => openModal(altModal)}>
-      <div className="switch-form-value">
-        {switchFormValue}
-      </div>
-    </button>
-  ) : (
-    null
-  );
-
-  return (
-    <div className="modal-container">
-      <div className="modal-background" id={modal} onClick={clickBackground}>
-        <div className="modal-child" id={`${modal}-child`} onClick={e => e.stopPropagation()}>
-          {component}
+    const switchFormButton = (switchFormValue) ? (
+      <button className="switch-form-button" onClick={() => openModal(altModal)}>
+        <div className="switch-form-value">
+          {switchFormValue}
         </div>
-        <div className="modal-child-two" onClick={e => e.stopPropagation()}>
-          {switchFormButton}
+      </button>
+    ) : null;
+
+    return (
+      <div className="modal-container">
+        <div className="modal-background" id={modal} onClick={clickBackground}>
+          <div className="modal-child" id={`${modal}-child`} onClick={e => e.stopPropagation()}>
+            {component}
+          </div>
+          <div className="modal-child-two" onClick={e => e.stopPropagation()}>
+            {switchFormButton}
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
-```
+    );
+  };
+  ```
 <details>
 
-## Features
-#### User Authentication
-
-<p align="center">
-  <img src="" width="100%" />
-</p>
-
-```javascript
-
-```
-
-#### Profiles
-
-#### Boards
-
-#### Pins
+## Main Features
+* User authentication built using backend Rails validations with regex and secure BCrypt password hashing
+* Logged in users can browse responsive home feed, navigate to others' profiles, and edit their own profile
+* Logged in users can complete full CRUD cycle for Boards and Pins or save Pins from other users' Boards
+* Optimized minimal server load with cloud-based image storage via Rails ActiveStorage and Amazon Web Services S3
 
 ## Additional Resources
 * <a href="https://github.com/stephl3/painterest/wiki/mvp-list">MVP List</a>
