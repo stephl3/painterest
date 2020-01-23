@@ -183,7 +183,7 @@ Utilized lightweight, multi-purpose modals for all forms which significantly DRY
   ```
 </details>
 
-## Main Features
+## Features
 * User authentication built using backend Rails validations with regex and secure BCrypt password hashing
 * Logged in users can browse responsive home feed, navigate to others' profiles, and edit their own profile
 * Logged in users can complete full CRUD cycle for Boards and Pins or save Pins from other users' Boards
@@ -200,4 +200,3 @@ Utilized lightweight, multi-purpose modals for all forms which significantly DRY
 * Search
 * Follows
 * Notifications
-* Likes
