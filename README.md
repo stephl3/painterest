@@ -28,7 +28,7 @@ Painterest is a social media application that enables users to connect and share
 A tough challenge was implementing a flexible and responsive horizontal masonry layout when displaying Pins. Utilizing CSS grid and media queries, the `PinIndex` responsively adjusts column count depending on the device's screen width.
 
 <details>
-  <summary>Click to expand</summary>
+  <summary>Click to expand code snippet</summary>
 
   ```scss
     .pin-index#grid-container {
@@ -87,7 +87,7 @@ A tough challenge was implementing a flexible and responsive horizontal masonry 
 Coupling these techniques with Vanilla JavaScript within the `PinIndexItem` component, the Pins flexibly resize according to the size of each Pin's attached image.
 
 <details>
-  <summary>Click to expand</summary>
+  <summary>Click to expand code snippet</summary>
   
   ```javascript
   resizeGridItem() {
@@ -111,7 +111,7 @@ Coupling these techniques with Vanilla JavaScript within the `PinIndexItem` comp
 Utilized lightweight, multi-purpose modals for all forms which significantly DRYed up code.
 
 <details>
-  <summary>Click to expand</summary>
+  <summary>Click to expand code snippet</summary>
   
   ```javascript
   const Modal = ({ modal, openModal, closeModal }) => {
