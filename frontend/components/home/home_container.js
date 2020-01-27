@@ -9,12 +9,14 @@ import { startLoading, stopLoading } from "../../actions/loading_actions";
 
 
 const mapStateToProps = state => {
-  // debugger;
   const currentUserId = state.session.id;
   const allPins = Object.values(state.entities.pins);
-  const pins = (currentUserId) ? allPins : allPins.slice(0, 30);
+  const pins = (currentUserId) ? (
+    allPins.filter(pin => pin.userId !== currentUserId)
+  ) : (
+    allPins.slice(0, 30)
+  );
   const loading = state.ui.loading;
-  debugger
   return { currentUserId, pins, loading };
 };
 

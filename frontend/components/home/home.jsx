@@ -49,8 +49,7 @@ class Home extends React.Component {
         <div className="loading"></div>
       </div>
     ) : null;
-    const otherPins = shuffle(pins.filter(pin => pin.userId !== currentUserId));
-    // debugger;
+    const otherPins = shuffle(pins.slice(0, 60));
 
     return (
       <div className={`home-container ${klass}`}>
